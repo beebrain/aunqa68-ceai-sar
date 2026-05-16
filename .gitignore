@@ -26,3 +26,7 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Local knowledge base & skills (not versioned)
+aun-qa-wiki/
+skills/
