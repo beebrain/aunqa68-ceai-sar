@@ -1,0 +1,28 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.xdv
+*.out
+*.toc
+*.synctex.gz
+SAR-CEAI-2568.pdf
+
+# IDE & local config
+.claude/
+.cursor/
+.vscode/
+
+# Agent runtime files
+.agent_history.json
+conversation_*.json
+_docx_dump.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store

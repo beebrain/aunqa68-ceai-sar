@@ -1,0 +1,443 @@
+{
+    "schema_version": 2,
+    "program_id": 12,
+    "exported_at": "2026-05-11T09:55:13+00:00",
+    "basic": {
+        "name_th": {
+            "value": "วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์",
+            "source": "database",
+            "table": "programs",
+            "column": "name_th",
+            "importable": true
+        },
+        "name_en": {
+            "value": "Computer Engineering and Artificial Intelligence",
+            "source": "database",
+            "table": "programs",
+            "column": "name_en",
+            "importable": true
+        },
+        "degree_th": {
+            "value": "วิศวกรรมศาสตรมหาบัณฑิต (วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์)",
+            "source": "database",
+            "table": "programs",
+            "column": "degree_th",
+            "importable": true
+        },
+        "degree_en": {
+            "value": "Master of Engineering (Computer Engineering and Artificial Intelligence)",
+            "source": "database",
+            "table": "programs",
+            "column": "degree_en",
+            "importable": true
+        },
+        "level": {
+            "value": "master",
+            "source": "database",
+            "table": "programs",
+            "column": "level",
+            "importable": true
+        },
+        "credits": {
+            "value": 36,
+            "source": "database",
+            "table": "programs",
+            "column": "credits",
+            "importable": true
+        },
+        "duration": {
+            "value": 2,
+            "source": "database",
+            "table": "programs",
+            "column": "duration",
+            "importable": true
+        },
+        "description": {
+            "value": "หลักสูตรมุ่งผลิตมหาบัณฑิตที่มีความเชี่ยวชาญในการวิจัย พัฒนา และประยุกต์ใช้เทคโนโลยีด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ เพื่อสร้างนวัตกรรมที่ตอบสนองความต้องการของท้องถิ่นและประเทศ",
+            "source": "database",
+            "table": "programs",
+            "column": "description",
+            "importable": true
+        },
+        "description_en": {
+            "value": "The program aims to produce graduates with high expertise in research, development, and application of Computer Engineering and Artificial Intelligence technologies to create innovations that respond to local and national needs.",
+            "source": "database",
+            "table": "programs",
+            "column": "description_en",
+            "importable": true
+        },
+        "website": {
+            "value": "",
+            "source": "database",
+            "table": "programs",
+            "column": "website",
+            "importable": true
+        }
+    },
+    "content": {
+        "philosophy": {
+            "value": "หลักสูตรมุ่งบูรณาการความรู้ทางด้านคอมพิวเตอร์และปัญญาประดิษฐ์ผ่านกระบวนการวิจัยและพัฒนา เพื่อสร้างองค์ความรู้ใหม่และนวัตกรรมที่สามารถนำไปประยุกต์ในการแก้ไขปัญหาขององค์กร ชุมชน และท้องถิ่นอย่างยั่งยืน ภายใต้กรอบคุณธรรมและจริยธรรมวิชาชีพ",
+            "source": "database",
+            "table": "program_pages",
+            "column": "philosophy",
+            "importable": true
+        },
+        "objectives": {
+            "value": [
+                "มีทักษะในด้านการใช้งานซอฟต์แวร์หรือฮาร์ดแวร์ที่เหมาะสม ในด้านการออกแบบและพัฒนาองค์ความรู้",
+                "มีความสามารถในการพัฒนาองค์ความรู้และนวัตกรรมเพื่อแก้ปัญหาในองค์กร โดยใช้ความรู้ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์",
+                "มีคุณธรรมและจรรยาบรรณวิชาชีพทางวิชาการ",
+                "มีทักษะในการพัฒนาตนเองและการเรียนรู้ตลอดชีวิต"
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "objectives",
+            "importable": true
+        },
+        "graduate_profile": {
+            "value": [
+                "วิศวกรปัญญาประดิษฐ์ (Artificial Intelligence Engineer)",
+                "วิศวกรการเรียนรู้ของเครื่อง (Machine Learning Engineer)",
+                "นักวิจัยด้านปัญญาประดิษฐ์ (Artificial Intelligence Researcher)",
+                "วิศวกรประมวลผลภาษาธรรมชาติ (Natural Language Processing Engineer)",
+                "วิศวกรระบบวิเคราะห์ข้อมูลอัจฉริยะ (Intelligent Data Analytics Engineer)",
+                "วิศวกรระบบคอมพิวเตอร์ (Computer Systems Engineer)",
+                "วิศวกรเครือข่าย (Network Engineer)",
+                "วิศวกรความปลอดภัยทางไซเบอร์ (Cybersecurity Engineer)",
+                "วิศวกรซอฟต์แวร์ฝังตัว (Embedded Software Engineer)",
+                "วิศวกรคลาวด์คอมพิวติ้ง (Cloud Computing Engineer)"
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "graduate_profile",
+            "importable": true
+        },
+        "elos_json": {
+            "value": [
+                {
+                    "category": "PLO1",
+                    "title": "ทักษะด้านเทคโนโลยี",
+                    "summary": "ใช้ซอฟต์แวร์หรือฮาร์ดแวร์ในการสร้างสรรค์ผลงาน",
+                    "detail": "ใช้ซอฟต์แวร์หรือฮาร์ดแวร์ทางคอมพิวเตอร์ในการสร้างสรรค์ผลงาน องค์ความรู้ และนวัตกรรม"
+                },
+                {
+                    "category": "PLO2",
+                    "title": "การประยุกต์ใช้ความรู้",
+                    "summary": "แก้ไขปัญหาขององค์กร ชุมชน และท้องถิ่น",
+                    "detail": "ประยุกต์ใช้ความรู้ในสาขาวิชาวิศวกรรมคอมพิวเตอร์เพื่อแก้ไขปัญหาความต้องการขององค์กรชุมชน และท้องถิ่น"
+                },
+                {
+                    "category": "PLO3",
+                    "title": "นวัตกรรมและองค์ความรู้",
+                    "summary": "สร้างองค์ความรู้และต้นแบบนวัตกรรม AI",
+                    "detail": "สร้างองค์ความรู้และต้นแบบนวัตกรรมด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ที่ตอบสนองความต้องการขององค์กร"
+                },
+                {
+                    "category": "PLO4",
+                    "title": "จรรยาบรรณวิชาชีพ",
+                    "summary": "ปฏิบัติตามหลักจรรยาบรรณวิศวกรรม",
+                    "detail": "ปฏิบัติตามหลักจรรยาบรรณวิชาชีพวิศวกรรมคอมพิวเตอร์"
+                },
+                {
+                    "category": "PLO5",
+                    "title": "ทักษะแห่งศตวรรษที่ 21",
+                    "summary": "คิดวิเคราะห์ สื่อสาร และการเรียนรู้ตลอดชีวิต",
+                    "detail": "สามารถคิดวิเคราะห์ การสื่อสาร การทำงานร่วมกัน การปรับตัว และการเรียนรู้ตลอดชีวิต"
+                }
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "elos_json",
+            "importable": true
+        },
+        "learning_standards_json": {
+            "value": {
+                "knowledge": "มีความรู้เชิงลึกในด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ สามารถเชื่อมโยงและประยุกต์ใช้เพื่อแก้ปัญหาในบริบทท้องถิ่น",
+                "skills": "มีทักษะขั้นสูงในการวิจัย พัฒนาซอฟต์แวร์และฮาร์ดแวร์ และการประมวลผลข้อมูลขนาดใหญ่",
+                "ethics": "ยึดมั่นในจรรยาบรรณวิชาชีพวิศวกรรม และมีความรับผิดชอบต่อผลกระทบของเทคโนโลยีต่อสังคม",
+                "character": "มีความเป็นผู้นำทางวิชาการ มีความคิดริเริ่มสร้างสรรค์ และใฝ่เรียนรู้ตลอดชีวิต"
+            },
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "learning_standards_json",
+            "importable": true
+        },
+        "curriculum_json": {
+            "value": [
+                {
+                    "year": 1,
+                    "title": "ชั้นปีที่ 1",
+                    "total_credits": 18,
+                    "semesters": [
+                        {
+                            "name": "ภาคเรียนที่ 1",
+                            "courses": [
+                                {"code": "4095101", "name": "ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง", "credits": 3},
+                                {"code": "4095102", "name": "การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง", "credits": 3}
+                            ]
+                        },
+                        {
+                            "name": "ภาคเรียนที่ 2",
+                            "courses": [
+                                {"code": "7015101", "name": "เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์", "credits": 3},
+                                {"code": "7015906", "name": "ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์", "credits": 3}
+                            ]
+                        },
+                        {
+                            "name": "ภาคเรียนที่ 3",
+                            "courses": [
+                                {"code": "7015907", "name": "สัมมนาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์", "credits": 3},
+                                {"code": "7015908", "name": "หัวข้อพิเศษทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์", "credits": 3}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "year": 2,
+                    "title": "ชั้นปีที่ 2",
+                    "total_credits": 18,
+                    "semesters": [
+                        {
+                            "name": "ภาคเรียนที่ 1",
+                            "courses": [
+                                {"code": "7015xxx", "name": "วิชาเฉพาะด้านเลือก", "credits": 3},
+                                {"code": "7015901", "name": "วิทยานิพนธ์ 1", "credits": 3}
+                            ]
+                        },
+                        {
+                            "name": "ภาคเรียนที่ 2",
+                            "courses": [
+                                {"code": "7015xxx", "name": "วิชาเฉพาะด้านเลือก", "credits": 3},
+                                {"code": "7015902", "name": "วิทยานิพนธ์ 2", "credits": 3}
+                            ]
+                        },
+                        {
+                            "name": "ภาคเรียนที่ 3",
+                            "courses": [
+                                {"code": "7015903", "name": "วิทยานิพนธ์ 3", "credits": 6}
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "curriculum_json",
+            "importable": true
+        },
+        "alumni_messages_json": {
+            "value": [],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "alumni_messages_json",
+            "importable": true
+        },
+        "careers_json": {
+            "value": [
+                "วิศวกรปัญญาประดิษฐ์ (Artificial Intelligence Engineer)",
+                "วิศวกรการเรียนรู้ของเครื่อง (Machine Learning Engineer)",
+                "นักวิจัยด้านปัญญาประดิษฐ์ (Artificial Intelligence Researcher)",
+                "วิศวกรระบบวิเคราะห์ข้อมูลอัจฉริยะ (Intelligent Data Analytics Engineer)",
+                "วิศวกรระบบคอมพิวเตอร์ (Computer Systems Engineer)",
+                "วิศวกรซอฟต์แวร์ฝังตัว (Embedded Software Engineer)"
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "careers_json",
+            "importable": true
+        },
+        "tuition_fees_json": {
+            "value": [
+                {"label": "ค่าธรรมเนียมการศึกษาเหมาจ่าย", "amount": "31,250", "period": "ต่อภาคการศึกษา"},
+                {"label": "ประมาณการค่าใช้จ่ายตลอดหลักสูตร", "amount": "125,000", "period": "2 ปี"}
+            ],
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "tuition_fees_json",
+            "importable": true
+        },
+        "curriculum_structure": {
+            "value": "โครงสร้างหลักสูตรประกอบด้วย วิชาเฉพาะด้านบังคับ 18 หน่วยกิต และวิชาเฉพาะด้านเลือก โดยแผน 1 เน้นการทำวิทยานิพนธ์ (12 หน่วยกิต) และแผน 2 เน้นรายวิชาและการค้นคว้าอิสระ (6 หน่วยกิต)",
+            "source": "database",
+            "table": "program_pages",
+            "column": "curriculum_structure",
+            "importable": true
+        },
+        "study_plan": {
+            "value": "ปีที่ 1 เน้นศึกษารายวิชาบังคับและเลือกพื้นฐาน ปีที่ 2 เน้นการทำวิทยานิพนธ์หรือสารนิพนธ์ และสัมมนาทางวิชาการ",
+            "source": "database",
+            "table": "program_pages",
+            "column": "study_plan",
+            "importable": true
+        },
+        "course_details": {
+            "value": "รายวิชาที่น่าสนใจ ได้แก่ ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง, การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง, โครงข่ายประสาทเทียมและการเรียนรู้เชิงลึก, และการวิเคราะห์ข้อมูลขนาดใหญ่",
+            "source": "database",
+            "table": "program_pages",
+            "column": "course_details",
+            "importable": true
+        },
+        "teaching_methods": {
+            "value": "การจัดการเรียนการสอนแบบผสมผสาน (Hybrid Learning) ผสมผสานการเรียนในห้องปฏิบัติการคอมพิวเตอร์กับการเรียนออนไลน์ เน้นการเรียนรู้ผ่านการปฏิบัติ (Experiential Learning)",
+            "source": "database",
+            "table": "program_pages",
+            "column": "teaching_methods",
+            "importable": true
+        },
+        "assessment_methods": {
+            "value": "การประเมินผลสัมฤทธิ์ของผู้เรียนตามมาตรฐานผลลัพธ์การเรียนรู้ 4 ด้าน ผ่านการสอบภาคทฤษฎี-ปฏิบัติ การประเมินโครงงาน การสังเกตพฤติกรรม และการทวนสอบมาตรฐานผลสัมฤทธิ์",
+            "source": "database",
+            "table": "program_pages",
+            "column": "assessment_methods",
+            "importable": true
+        },
+        "graduation_requirements": {
+            "value": "ศึกษาครบหน่วยกิตตามโครงสร้าง, GPA ไม่ต่ำกว่า 3.00, สอบผ่าน Comprehensive Examination, ผ่านเกณฑ์ภาษาอังกฤษตามประกาศมหาวิทยาลัย, และสอบป้องกันวิทยานิพนธ์/สารนิพนธ์ พร้อมเผยแพร่ผลงาน",
+            "source": "database",
+            "table": "program_pages",
+            "column": "graduation_requirements",
+            "importable": true
+        },
+        "career_prospects": {
+            "value": "บัณฑิตสามารถทำงานเป็นวิศวกร AI, นักวิทยาศาสตร์ข้อมูล, วิศวกรซอฟต์แวร์ระดับสูง, นักวิจัย และอาจารย์ในสถาบันอุดมศึกษา ทั้งในหน่วยงานภาครัฐและเอกชน",
+            "source": "database",
+            "table": "program_pages",
+            "column": "career_prospects",
+            "importable": true
+        },
+        "tuition_fees": {
+            "value": "ค่าธรรมเนียมการศึกษาเหมาจ่ายรายภาคการศึกษา ประมาณ 31,250 บาท (รวมค่าบำรุงมหาวิทยาลัยและค่าจัดการเรียนการสอน)",
+            "source": "database",
+            "table": "program_pages",
+            "column": "tuition_fees",
+            "importable": true
+        },
+        "admission_info": {
+            "value": "เปิดรับสมัครผู้สำเร็จการศึกษาปริญญาตรีด้านวิศวกรรมศาสตร์ วิทยาศาสตร์ เทคโนโลยี หรือสาขาที่เกี่ยวข้อง โดยมีเกณฑ์พิจารณาจากผลการเรียนและประสบการณ์การทำงาน",
+            "source": "database",
+            "table": "program_pages",
+            "column": "admission_info",
+            "importable": true
+        },
+        "admission_details_json": {
+            "value": {
+                "plan_seats": "10 คนต่อปี",
+                "requirements": {
+                    "study_plan": "เน้นวันเสาร์-อาทิตย์ สำหรับคนทำงาน",
+                    "mor_kor_2_url": "https://uru.ac.th/curriculum/master-eng-ai",
+                    "english_grade": "ตามเกณฑ์มาตรฐานระดับบัณฑิตศึกษา URU-TEP หรือเทียบเท่า",
+                    "selection_criteria": "พิจารณาจากประวัติการศึกษาและการสอบสัมภาษณ์",
+                    "tuition_per_term": "31,250",
+                    "duration": "2 ปี (4-ภาคการศึกษาปกติ)",
+                    "credits_note": "36 หน่วยกิต",
+                    "program_type": "ภาคพิเศษ/นอกเวลาราชการ"
+                },
+                "supports": {
+                    "scholarship": true,
+                    "first_term_loan": true,
+                    "ksl_loan": true,
+                    "study_scholarship": true,
+                    "entrepreneur_fund": false,
+                    "dormitory": true
+                },
+                "supports_extra": [
+                    "ทุนสนับสนุนการเผยแพร่ผลงานวิจัยระดับนานาชาติ",
+                    "สิ่งอำนวยความสะดวกห้องปฏิบัติการ AI เฉพาะทาง"
+                ]
+            },
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "admission_details_json",
+            "importable": true
+        },
+        "success_outcomes": {
+            "value": "มุ่งผลิตบัณฑิตที่สามารถสร้างนวัตกรรมปัญญาประดิษฐ์เพื่อตอบโจทย์ชุมชน และมีผลงานตีพิมพ์ในวารสารวิชาการระดับชาติหรือนานาชาติ",
+            "source": "database",
+            "table": "program_pages",
+            "column": "success_outcomes",
+            "importable": true
+        },
+        "contact_info": {
+            "value": "คณะเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏอุตรดิตถ์ โทร. 055-411096 ต่อ 1600 เว็บไซต์: indtech.uru.ac.th",
+            "source": "database",
+            "table": "program_pages",
+            "column": "contact_info",
+            "importable": true
+        },
+        "intro_video_url": {
+            "value": "",
+            "source": "database",
+            "table": "program_pages",
+            "column": "intro_video_url",
+            "importable": true
+        }
+    },
+    "settings": {
+        "slug": {
+            "value": "master-of-engineering-computer-ai",
+            "source": "database",
+            "table": "program_pages",
+            "column": "slug",
+            "importable": true
+        },
+        "hero_image": {
+            "value": "",
+            "source": "database",
+            "table": "program_pages",
+            "column": "hero_image",
+            "importable": true
+        },
+        "theme_color": {
+            "value": "#1e40af",
+            "source": "database",
+            "table": "program_pages",
+            "column": "theme_color",
+            "importable": true
+        },
+        "text_color": {
+            "value": "#ffffff",
+            "source": "database",
+            "table": "program_pages",
+            "column": "text_color",
+            "importable": true
+        },
+        "background_color": {
+            "value": "#f8fafc",
+            "source": "database",
+            "table": "program_pages",
+            "column": "background_color",
+            "importable": true
+        },
+        "meta_description": {
+            "value": "หลักสูตรปริญญาโทวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ มหาวิทยาลัยราชภัฏอุตรดิตถ์ เน้นการวิจัยและพัฒนานวัตกรรม AI เพื่อท้องถิ่น",
+            "source": "database",
+            "table": "program_pages",
+            "column": "meta_description",
+            "importable": true
+        },
+        "gallery_images": {
+            "value": null,
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "gallery_images",
+            "importable": true
+        },
+        "social_links": {
+            "value": {
+                "facebook": "https://facebook.com/ComputerEngineeringURU",
+                "line": "@ComputerEngURU"
+            },
+            "source": "database_json_column",
+            "table": "program_pages",
+            "column": "social_links",
+            "importable": true
+        },
+        "is_published": {
+            "value": 1,
+            "source": "database",
+            "table": "program_pages",
+            "column": "is_published",
+            "importable": true
+        }
+    }
+}

@@ -1,0 +1,106 @@
+% !TEX program = xelatex
+% ==============================================================================
+% SAR-CEAI-2568.tex  — Main File
+% รายงานประเมินตนเอง (SAR) AUN-QA
+% หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์
+% มหาวิทยาลัยราชภัฏอุตรดิตถ์  ปีการศึกษา 2568
+% ------------------------------------------------------------------------------
+% โครงสร้างไฟล์:
+%   SAR-CEAI-2568.tex          ← Main file (ไฟล์นี้)
+%   aunqa.cls                  ← Document class
+%   sections/
+%     00_preface.tex           ← คำนำ
+%     01_toc.tex               ← สารบัญ
+%     02_part1_intro.tex       ← ส่วนที่ 1: ส่วนนำ
+%     03_spo_criteria.tex      ← ตัวบ่งชี้ 1.1 เกณฑ์ สป.อว. + เปิด Criteria
+%     04_criteria1_plos.tex    ← Criteria 1: Expected Learning Outcomes
+%     05_criteria2_structure.tex ← Criteria 2: Programme Structure
+%     06_criteria3_teaching.tex  ← Criteria 3: Teaching and Learning
+%     07_criteria4_assessment.tex← Criteria 4: Student Assessment
+%     08_criteria5_staff.tex   ← Criteria 5: Academic Staff
+%     09_criteria6_studentsupport.tex ← Criteria 6: Student Support
+%     10_criteria7_facilities.tex     ← Criteria 7: Facilities
+%     11_criteria8_outcomes.tex       ← Criteria 8: Output and Outcomes
+%     12_part3_results.tex     ← ส่วนที่ 3: ผลการประเมินตนเอง + แผนพัฒนา
+%     13_appendix.tex          ← ส่วนที่ 4: ภาคผนวก
+% ==============================================================================
+\documentclass[master]{aunqa}
+
+% =============================================================================
+% ข้อมูลหลักสูตร — แก้ไขที่นี่เพียงที่เดียว
+% =============================================================================
+\programnameth{วิศวกรรมศาสตรมหาบัณฑิต}
+\programbranch{วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์}
+\programnameen{Master of Engineering Program in Computer Engineering and Artificial Intelligence}
+\degreeth{วิศวกรรมศาสตรมหาบัณฑิต (วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์)}
+\degreeen{Master of Engineering (Computer Engineering and Artificial Intelligence)}
+\degreeabbrevth{วศ.ม. (วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์)}
+\degreeabbreben{M.Eng. (Computer Engineering and Artificial Intelligence)}
+\faculty{เทคโนโลยีอุตสาหกรรม ร่วมกับ คณะวิทยาศาสตร์และเทคโนโลยี}
+\programyear{2568}
+\programcode{...............}
+\totalcredits{36}
+\academicyear{2568}
+\reportperiod{(16 มิถุนายน 2568 ถึง .... มิถุนายน 2569)}
+\programstatus{ใหม่}
+\reportdate{...............}
+\chairperson{...................................}
+
+% ==============================================================================
+\begin{document}
+
+% ==============================================================================
+% PDF metadata
+% ==============================================================================
+\hypersetup{
+    pdftitle  = {SAR AUN-QA วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ 2568},
+    pdfauthor = {มหาวิทยาลัยราชภัฏอุตรดิตถ์},
+}
+
+% ------------------------------------------------------------ หน้าปก
+\makecover
+
+% ------------------------------------------------------------ คำนำ
+\input{sections/00_preface}
+
+% ------------------------------------------------------------ สารบัญ
+\input{sections/01_toc}
+
+% ==============================================================================
+% ส่วนที่ 1 — ส่วนนำ
+% ==============================================================================
+\partpage{ส่วนที่ 1}{ส่วนนำ}
+\input{sections/02_part1_intro}
+
+% ==============================================================================
+% ส่วนที่ 2 — การประเมินตนเอง
+% ==============================================================================
+\partpage{ส่วนที่ 2}{การประเมินตนเอง}
+
+% ตัวบ่งชี้ 1.1 / เปิด AUN-QA Criteria
+\input{sections/03_spo_criteria}
+
+% ----- AUN-QA Criteria 1–8 -----
+\input{sections/04_criteria1_plos}
+\input{sections/05_criteria2_structure}
+\input{sections/06_criteria3_teaching}
+\input{sections/07_criteria4_assessment}
+\input{sections/08_criteria5_staff}
+\input{sections/09_criteria6_studentsupport}
+\input{sections/10_criteria7_facilities}
+\input{sections/11_criteria8_outcomes}
+
+% ==============================================================================
+% ส่วนที่ 3 — ผลการประเมินและแผนพัฒนา
+% ==============================================================================
+\partpage{ส่วนที่ 3}{ผลการประเมินตนเองและแผนพัฒนาหลักสูตร}
+\input{sections/12_part3_results}
+
+% ==============================================================================
+% ส่วนที่ 4 — ภาคผนวก
+% ==============================================================================
+\partpage{ส่วนที่ 4}{ภาคผนวก}
+\input{sections/13_appendix}
+
+% ==============================================================================
+\end{document}
