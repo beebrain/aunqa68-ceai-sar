@@ -359,7 +359,11 @@ def main() -> None:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     (OUT / "assets").mkdir()
-    shutil.copytree(STATIC, OUT / "assets", dirs_exist_ok=True)
+    assets_out = OUT / "assets"
+    assets_out.mkdir(parents=True, exist_ok=True)
+    for f in STATIC.glob("*"):
+        if f.is_file():
+            shutil.copy2(f, assets_out / f.name)
     (OUT / ".nojekyll").touch()
 
     nav_home = render_nav("")
