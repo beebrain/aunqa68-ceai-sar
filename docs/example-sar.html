@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ตัวอย่าง SAR AUN-QA — การจัดการธุรกิจสมัยใหม่ (ปี 66) — CE&AI AUN-QA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="./index.html" class="brand-link">
+        <span class="brand-uni">ม.ร.อ.</span>
+        <span class="brand-title">วศ.ม. วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์</span>
+        <span class="brand-sub">AUN-QA SAR Reference · 2568</span>
+      </a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="เปิดเมนู" data-nav-toggle>☰</button>
+  </header>
+  <div class="layout">
+    <nav class="sidebar" data-sidebar>
+      <div class="nav-search"><input type="search" placeholder="ค้นหา..." data-search-input aria-label="ค้นหา"></div>
+<p class="nav-section">หลักสูตร</p><ul>
+<li><a href="./program.html" class="nav-link">ข้อมูลหลักสูตร CE&AI</a></li>
+<li><a href="./university.html" class="nav-link">มหาวิทยาลัยราชภัฏอุตรดิตถ์</a></li>
+<li><a href="./aun-qa.html" class="nav-link">AUN-QA</a></li>
+</ul>
+<p class="nav-section">เกณฑ์ (SAR)</p><ul>
+<li><a href="./criteria/1.html" class="nav-link">Criterion 1</a></li>
+<li><a href="./criteria/2.html" class="nav-link">Criterion 2</a></li>
+<li><a href="./criteria/3.html" class="nav-link">Criterion 3</a></li>
+<li><a href="./criteria/4.html" class="nav-link">Criterion 4</a></li>
+<li><a href="./criteria/5.html" class="nav-link">Criterion 5</a></li>
+<li><a href="./criteria/6.html" class="nav-link">Criterion 6</a></li>
+<li><a href="./criteria/7.html" class="nav-link">Criterion 7</a></li>
+<li><a href="./criteria/8.html" class="nav-link">Criterion 8</a></li>
+</ul>
+<p class="nav-section">แนวทาง (อ.ที่ปรึกษา)</p><ul>
+<li><a href="./guidelines/overview.html" class="nav-link">ภาพรวม & Rating Scale</a></li>
+<li><a href="./guidelines/1.html" class="nav-link">แนวทาง C1</a></li>
+<li><a href="./guidelines/2.html" class="nav-link">แนวทาง C2</a></li>
+<li><a href="./guidelines/3.html" class="nav-link">แนวทาง C3</a></li>
+<li><a href="./guidelines/4.html" class="nav-link">แนวทาง C4</a></li>
+<li><a href="./guidelines/5.html" class="nav-link">แนวทาง C5</a></li>
+<li><a href="./guidelines/6.html" class="nav-link">แนวทาง C6</a></li>
+<li><a href="./guidelines/7.html" class="nav-link">แนวทาง C7</a></li>
+<li><a href="./guidelines/8.html" class="nav-link">แนวทาง C8</a></li>
+</ul>
+<p class="nav-section">ข้อมูล & หลักฐาน</p><ul>
+<li><a href="./clo.html" class="nav-link">CLO ทุกรายวิชา</a></li>
+<li><a href="./clo-mapping.html" class="nav-link">CLO–YLO–PLO Mapping</a></li>
+<li><a href="./teaching.html" class="nav-link">กิจกรรมการสอน</a></li>
+<li><a href="./evidence.html" class="nav-link">ดัชนีหลักฐาน</a></li>
+<li><a href="./support.html" class="nav-link">ข้อมูลสายสนับสนุน</a></li>
+<li><a href="./example-sar.html" class="nav-link active">ตัวอย่าง SAR (MBM 66)</a></li>
+</ul>
+<p class="nav-section">เอกสาร</p><ul><li><a href="https://github.com/beebrain/aunqa68-ceai-sar" class="nav-link" target="_blank" rel="noopener">GitHub Repo</a></li></ul>
+    </nav>
+    <main class="content">
+      <article class="prose">
+        <header class="page-header">
+          <h1>ตัวอย่าง SAR AUN-QA — การจัดการธุรกิจสมัยใหม่ (ปี 66)</h1>
+          <p class="page-meta">summary</p>
+        </header>
+        <h1>ตัวอย่างการเขียน SAR AUN-QA — บธ.บ. การจัดการธุรกิจสมัยใหม่</h1>
+<blockquote>
+<p><strong>วัตถุประสงค์ของหน้านี้:</strong> เป็น benchmark การเขียนรายงานประเมินตนเองระดับหลักสูตร (ม.ร.อ. ปี 2566) สำหรับอ้างอิงเมื่อร่าง <strong>SAR-CEAI-2568</strong> หลักสูตร วศ.ม. วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์<br>
+Ground truth การตีความเกณฑ์: <a href="guidelines/overview.html">guidelines/00_overview</a> และ <code>guidelines/01</code>–<code>08</code><br>
+Raw: <a href="example-sar-structure.html">raw/example66-mbm-extract</a> | ข้อความเต็ม: <code>raw/example66-mbm-full.txt</code></p>
+</blockquote>
+<hr>
+<h2>ภาพรวมเอกสาร</h2>
+<table>
+<thead>
+<tr>
+<th>หัวข้อ</th>
+<th>รายละเอียด</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ชื่อเต็ม</td>
+<td>รายงานประเมินตนเอง การประกันคุณภาพการศึกษาภายใน ระดับหลักสูตร ตามเกณฑ์คุณภาพ AUN-QA</td>
+</tr>
+<tr>
+<td>มาตรฐาน</td>
+<td>AUN-QA <strong>Version 4.0</strong> + องค์ประกอบที่ 1 สป.อว. (ตัวบ่งชี้ 1.1)</td>
+</tr>
+<tr>
+<td>ระดับ</td>
+<td>ปริญญาตรี (4 ปี) — <strong>ต่างจาก</strong> วศ.ม. บัณฑิตศึกษา 2 ปี แต่โครง SAR เดียวกัน</td>
+</tr>
+<tr>
+<td>ปริมาณ</td>
+<td>159 หน้า; ส่วนที่ 2 (เกณฑ์ 1–8) ~107 หน้า</td>
+</tr>
+<tr>
+<td>คะแนนประเมินตนเอง</td>
+<td><strong>2</strong> ทุก Criterion ในบทสรุปผู้บริหาร; ตาราง 3.1 ทำเครื่องหมายที่คอลัมน์ 2 เช่นกัน</td>
+</tr>
+</tbody>
+</table>
+<p><strong>หมายเหตุสำหรับ CE&amp;AI:</strong> ตัวอย่างนี้ให้ <strong>รูปแบบการนำเสนอ</strong> (โครงสร้าง ตาราง รหัสหลักฐาน ภาษา) ไม่ใช่คะแนนหรือตัวเลขที่คัดลอกได้โดยตรง</p>
+<hr>
+<h2>โครงสร้าง SAR 4 ส่วน (ใช้เป็น template)</h2>
+<pre><code>ส่วนที่ 1  ส่วนนำ
+  ├─ 1.1 บทสรุปผู้บริหาร (ภาพรวม + ตารางคะแนน)
+  └─ 1.2 ข้อมูลพื้นฐาน (มหาวิทยาลัย → คณะ → หลักสูตร → บุคลากร)
+
+ส่วนที่ 2  การประเมินตนเอง
+  ├─ ตัวบ่งชี้ 1.1 สป.อว. (แยกจาก AUN-QA)
+  └─ Criteria 1–8 (แต่ละข้อย่อย EN → เนื้อหา TH → ตาราง → หลักฐาน)
+
+ส่วนที่ 3  ผลการประเมินและแผนพัฒนา
+  ├─ 3.1 ตาราง Rating ราย Requirement
+  ├─ 3.2 จุดแข็ง / ข้อจำกัด
+  └─ 3.3 แผนพัฒนา (โครงการ, KPI, งบ)
+
+ส่วนที่ 4  ภาคผนวก (หลักฐานภาพ/กิจกรรม)
+</code></pre>
+<hr>
+<h2>รูปแบบการเขียนต่อ Requirement (นำไปใช้กับทุกเกณฑ์)</h2>
+<h3>1) โครงย่อหน้ามาตรฐาน</h3>
+<p>ทุกข้อย่อยเริ่มด้วย <strong>ข้อความ Requirement ภาษาอังกฤษ</strong> (คัดจาก AUN-QA) ตามด้วยย่อหน้าไทยที่:</p>
+<ol>
+<li>เปิดด้วยชื่อหลักสูตรเต็ม + ปี/รอบที่เกี่ยวข้อง</li>
+<li>อธิบาย <strong>สิ่งที่ทำแล้ว</strong> (กระบวนการ, นโยบาย, การประชุม)</li>
+<li>อ้าง <strong>ตัวเลข/ปีการศึกษา</strong> เมื่อมี</li>
+<li>ปิดด้วย <strong>ตาราง</strong> หรือ <strong>รายการหลักฐาน</strong></li>
+</ol>
+<p><strong>ตัวอย่างเปิดย่อหน้า (Criterion 1.1):</strong></p>
+<blockquote>
+<p>หลักสูตรบริหารธุรกิจบัณฑิต สาขาวิชาการจัดการธุรกิจสมัยใหม่ … ได้กำหนดผลการเรียนรู้ที่คาดหวังของหลักสูตร (PLOs) ที่สามารถวัดได้และสะท้อนความต้องการของกลุ่มผู้มีส่วนได้ส่วนเสีย … จำนวน 5 กลุ่ม โดยมีกระบวนการ …</p>
+</blockquote>
+<h3>2) การอ้าง stakeholder (Criterion 1.1, 1.4, 2.3)</h3>
+<p>ระบุกลุ่ม SHs เป็นหมายเลขชัดเจน:</p>
+<ol>
+<li>ผู้ใช้บัณฑิต — แบบสอบถาม, นิเทศ</li>
+<li>ศิษย์เก่า — แบบสอบถาม</li>
+<li>สถานประกอบการ — สัมภาษณ์</li>
+<li>นักศึกษาปัจจุบัน — สัมภาษณ์</li>
+<li>อาจารย์ประจำหลักสูตร — สัมภาษณ์</li>
+</ol>
+<p>จากนั้น <strong>ตาราง mapping</strong> PLO ↔ วิสัยทัศน์/พันธกิจ/อัตลักษณ์/TQF 5 ด้าน</p>
+<h3>3) รหัสหลักฐาน</h3>
+<p>รูปแบบ: <code>AUNQA-{เกณฑ์}-{ลำดับ}</code> พร้อมคำอธิบายสั้นหรือ URL<br>
+ตัวอย่าง MBM ใช้ทั้งเล่ม มคอ.2, เว็บคณะ, ลิงก์ระบบมหาวิทยาลัย (สอดคล้องกับ <a href="evidence.html">summaries/evidence-index</a> ของ CE&amp;AI แต่รหัสอาจต่างกัน)</p>
+<h3>4) ตารางที่ “ต้องมี” ตามเกณฑ์หลัก</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>ตาราง/เนื้อหาที่ตัวอย่างใช้หนัก</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong> PLO</td>
+<td>PLO↔องค์กร; รายวิชา↔PLO; SHs↔PLO; PLO ชั้นปี + วิธีวัด</td>
+</tr>
+<tr>
+<td><strong>2</strong> Structure</td>
+<td>ช่องทางเผยแพร่ มคอ.2/3; ข้อเสนอแนะ SHs; ลำดับรายวิชาตามชั้นปี</td>
+</tr>
+<tr>
+<td><strong>3</strong> Teaching</td>
+<td>ตารางรายวิชา × TQF/CLO × กิจกรรมสอน × เครื่องมือวัด (หลายหน้า)</td>
+</tr>
+<tr>
+<td><strong>4</strong> Assessment</td>
+<td>วิธีประเมินหลากหลาย; นโยบาย; rubric (อ้างว่ามี)</td>
+</tr>
+<tr>
+<td><strong>5</strong> Staff</td>
+<td>ตารางคุณวุฒิ/ผลงานอาจารย์; ภาระงาน; การพัฒนา</td>
+</tr>
+<tr>
+<td><strong>6</strong> Support</td>
+<td>รับเข้า; ที่ปรึกษา; กิจกรรมเสริม</td>
+</tr>
+<tr>
+<td><strong>7</strong> Facilities</td>
+<td>สถิติห้อง/IT/WiFi; ห้องสมุดดิจิทัล; URL ยาวหลายรายการ</td>
+</tr>
+<tr>
+<td><strong>8</strong> Outcomes</td>
+<td>อัตราสำเร็จ/ตกออก; การได้งาน; วิจัย; ผล PLO ตาม TQF; ความพึงพอใจ</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>สรุปเนื้อหาแต่ละ Criterion (takeaways)</h2>
+<h3>Criterion 1 — Expected Learning Outcomes</h3>
+<ul>
+<li>PLO <strong>5 ข้อ</strong> ผูก TQF 5 ด้าน + Bloom’s Taxonomy</li>
+<li>แสดงกระบวนการรับฟัง SHs ก่อนกำหนด PLO</li>
+<li>CLO ทุกวิชาปี 2566 ภาค 1/2 — อ้าง มคอ.3</li>
+<li>1.5: ตาราง PLO × พฤติกรรมบ่งชี้ × วิธีวัด × ชั้นปีที่บรรลุ (1/2/3/4)</li>
+</ul>
+<p>ดูแนวทางเชิงเกณฑ์: <a href="guidelines/1.html">guidelines/01_criterion1_plo</a>, <a href="criteria/1.html">criterion-1-plo</a></p>
+<h3>Criterion 2 — Programme Structure</h3>
+<ul>
+<li>2.1: มคอ.2 PDF + ช่องทาง Facebook/เว็บ/Road Show</li>
+<li>2.3: ตารางข้อเสนอแนะ SHs ภายนอก แยก 5 ด้าน TQF</li>
+<li>2.4–2.5: ตาราง mapping รายวิชา (สัญลักษณ์ ● หลัก / ○ รอง) + ลำดับชั้นปี</li>
+</ul>
+<p>ดู: <a href="guidelines/2.html">guidelines/02_criterion2_structure</a>, <a href="criteria/2.html">criterion-2-structure</a></p>
+<h3>Criterion 3 — Teaching &amp; Learning</h3>
+<ul>
+<li>ผูก <strong>ปรัชญาการศึกษา IEL</strong> ของมหาวิทยาลัย</li>
+<li>ตารางรายวิชายาว: จุดมุ่งหมาย, เครื่องมือวัด, กิจกรรม (บรรยาย, กรณีศึกษา, นำเสนอ), เนื้อหา/ทรัพยากร</li>
+<li>เน้นคำว่า active learning, WiL, สหกิจ, ชุมชน</li>
+</ul>
+<p>ดู: <a href="guidelines/3.html">guidelines/03_criterion3_teaching</a>, <a href="criteria/3.html">criterion-3-teaching-learning</a></p>
+<h3>Criterion 4 — Student Assessment</h3>
+<ul>
+<li>หลากหลายวิธี: สอบ, สังเกต, ฝึกปฏิบัติ, รายงานกลุ่ม</li>
+<li>อ้างความสอดคล้องกับ CLO/PLO (ข้อความ; ตารางใน C3 ช่วยพิสูจน์)</li>
+</ul>
+<p>ดู: <a href="guidelines/4.html">guidelines/04_criterion4_assessment</a>, <a href="criteria/4.html">criterion-4-student-assessment</a></p>
+<h3>Criterion 5 — Academic Staff</h3>
+<ul>
+<li>ตารางรายชื่ออาจารย์ผู้รับผิดชอบ + คุณวุฒิ + ผลงานตีพิมพ์ (อย่างน้อย 1 เรื่อง/5 ปี)</li>
+<li>แยกอาจารย์ผู้สอนภายใน / พิเศษ (ไม่มี)</li>
+</ul>
+<p>ดู: <a href="guidelines/5.html">guidelines/05_criterion5_staff</a>, <a href="criteria/5.html">criterion-5-academic-staff</a></p>
+<h3>Criterion 6 — Student Support</h3>
+<ul>
+<li>นโยบายรับเข้า, ที่ปรึกษา, ติดตามผลการเรียน, กิจกรรมเสริมหลักสูตร</li>
+</ul>
+<p>ดู: <a href="guidelines/6.html">guidelines/06_criterion6_support</a>, <a href="criteria/6.html">criterion-6-student-support</a></p>
+<h3>Criterion 7 — Facilities</h3>
+<ul>
+<li>ส่วนที่ยาวที่สุด (~37 หน้า): สถิติสิ่งอำนวยความสะดวก + ห้องสมุดดิจิทัล + รายการ URL</li>
+<li>7.9: ประเมินความพึงพอใจ + ตัวอย่างการปรับปรุง (เครื่องเสียงห้องประชุม ฯลฯ)</li>
+</ul>
+<p>ดู: <a href="guidelines/7.html">guidelines/07_criterion7_facilities</a>, <a href="support.html">summaries/support-data-summary</a>, <a href="criteria/7.html">criterion-7-facilities</a></p>
+<h3>Criterion 8 — Output &amp; Outcomes</h3>
+<ul>
+<li>8.1: ตารางสำเร็จ/ตกออก 5 ปี + <strong>วิเคราะห์สาเหตุ</strong> (ทุน, เปลี่ยนสาขา) + benchmark ม.ราชภัฏกำแพงเพชร</li>
+<li>8.2: ตารางการได้งาน + แนวโน้มผู้ประกอบการ/ศึกษาต่อ</li>
+<li>8.3–8.5: วิจัยอาจารย์/นักศึกษา, ผลประเมิน PLO ตาม TQF (คะแนน ~4.6–4.9), ความพึงพอใจ SHs</li>
+</ul>
+<p>ดู: <a href="guidelines/8.html">guidelines/08_criterion8_outcomes</a>, <a href="criteria/8.html">criterion-8-output-outcomes</a></p>
+<hr>
+<h2>ส่วนที่ 3 — วิเคราะห์และแผนพัฒนา (รูปแบบสรุป)</h2>
+<h3>3.2 จุดแข็ง (11 ข้อ) — หัวข้อที่ใช้ซ้ำได้</h3>
+<ol>
+<li>PLO/CLO จาก SHs + สอดคล้อง vision/mission/TQF  </li>
+<li>นวัตกรรม/ผู้ประกอบการ/active learning  </li>
+<li>ทบทวนหลักสูตรเป็นระยะ  </li>
+<li>นักศึกษามีส่วนร่วมการเรียนรู้  </li>
+<li>ปรับสาระรายวิชาให้ทันสมัย  </li>
+<li>ประเมินผลสอดคล้อง PLO  </li>
+<li>วิธีประเมินหลากหลาย + สื่อสารชัด  </li>
+<li>แจ้งผล/feedback เป็นระยะ  </li>
+<li>แผนบุคลากร + ภาระงาน + พัฒนาต่อเนื่อง  </li>
+<li>นโยบายรับเข้าชัดเจน  </li>
+<li>สิ่งสนับสนุนการเรียนรู้เพียงพอ  </li>
+</ol>
+<h3>3.2 ข้อจำกัด (5 ข้อ) — สะท้อน gap ที่ MBM ยังให้คะแนน 2</h3>
+<ol>
+<li>PLO/YLO/CLO + learning taxonomy ยังไม่ครบถ้วน  </li>
+<li>GLO/SSLO  </li>
+<li>ปรัชญาการศึกษามหาวิทยาลัยในการสอน  </li>
+<li>Rubrics / marking schemes  </li>
+<li>Benchmarking บริการสนับสนุน  </li>
+</ol>
+<p>→ เมื่อร่าง SAR CE&amp;AI ควร <strong>ไม่ copy ข้อจำกัด</strong> แต่ใช้เป็น checklist ว่าเราปิด gap เหล่านี้หรือยัง (ดู <a href="guidelines/4.html">guidelines/04_criterion4_assessment</a> เรื่อง rubric)</p>
+<h3>3.3 แผนพัฒนา</h3>
+<p>ตาราง: โครงการ | กลุ่มเป้าหมาย | ระยะเวลา | ผู้รับผิดชอบ | งบ | KPIs<br>
+ตัวอย่าง: โครงการพัฒนาศักยภาพสู่ผู้ประกอบการรุ่นใหม่ — KPI ร้อยละ 80 ได้รับการพัฒนาทักษะ</p>
+<hr>
+<h2>บทเรียนสำหรับ SAR วศ.ม. CE&amp;AI</h2>
+<table>
+<thead>
+<tr>
+<th>หัวข้อ</th>
+<th>จากตัวอย่าง MBM</th>
+<th>การปรับสำหรับ CE&amp;AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ระยะเวลาศึกษา</td>
+<td>4 ปี, ชั้นปี 1–4</td>
+<td>2 ปี, แผน 1/2, วิทยานิพนธ์ — ใช้ <a href="clo-mapping.html">summaries/clo-ylo-mapping</a></td>
+</tr>
+<tr>
+<td>PLO</td>
+<td>5 ข้อ TQF แบบปริญญาตรี</td>
+<td>5 PLOs แยกแผน — <a href="program.html">หลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์-บัณฑิตศึกษา</a></td>
+</tr>
+<tr>
+<td>ตารางรายวิชา</td>
+<td>หลายสิบวิชาปริญญาตรี</td>
+<td>33 วิชา — <a href="clo-detailed.html">summaries/clo-all-courses-detailed</a></td>
+</tr>
+<tr>
+<td>Criterion 8.1</td>
+<td>average time to graduate มีตาราง 4 ปี</td>
+<td>อาจ N/A หรืออธิบายตาม <a href="guidelines/8.html">guidelines/08_criterion8_outcomes</a> Addendum</td>
+</tr>
+<tr>
+<td>หลักฐาน</td>
+<td>AUNQA-X-Y + URL</td>
+<td>จัดให้สอดคล้อง <a href="evidence.html">summaries/evidence-index</a></td>
+</tr>
+<tr>
+<td>คะแนนตนเอง</td>
+<td>ระดับ 2 (ยังพัฒนา)</td>
+<td>ประเมินจาก evidence จริงของหลักสูตรใหม่</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>ไฟล์และลิงก์</h2>
+<table>
+<thead>
+<tr>
+<th>ไฟล์</th>
+<th>บทบาท</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>66-AUNQAการจัดการธุรกิจสมัยใหม่-6-มิย.-67  ปรับแก้.pdf</code></td>
+<td>ต้นฉบับ (ห้ามแก้)</td>
+</tr>
+<tr>
+<td><code>assets/example66/p*.png</code></td>
+<td>ภาพหน้า PDF (render 160 dpi)</td>
+</tr>
+<tr>
+<td><a href="example-sar-structure.html">raw/example66-mbm-extract</a></td>
+<td>สารบัญ + โครงสร้าง</td>
+</tr>
+<tr>
+<td><code>aun-qa-wiki/raw/example66-mbm-full.txt</code></td>
+<td>ข้อความสกัดเต็ม</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>การอ้างอิงเมื่อเขียน SAR section</h2>
+<ol>
+<li>อ่าน <strong>guideline</strong> ของ criterion นั้นก่อน (ground truth)  </li>
+<li>เปิด <strong>ตัวอย่าง MBM</strong> หน้า criterion เดียวกัน — ดูว่ามีตาราง/หลักฐานอะไรบ้าง  </li>
+<li>แทนที่เนื้อหาด้วย evidence จาก <code>summaries/</code> ของ CE&amp;AI  </li>
+<li>ใช้รูปแบบย่อหน้า + รหัสหลักฐานเดียวกัน ไม่คัดลอกตัวเลข/ชื่อหลักสูตร MBM</li>
+</ol>
+      </article>
+    </main>
+  </div>
+  <script src="./assets/search.js" defer></script>
+</body>
+</html>

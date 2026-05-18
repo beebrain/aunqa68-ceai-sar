@@ -23,6 +23,7 @@ _docx_dump.txt
 __pycache__/
 *.pyc
 *.pyo
+website/.venv/
 
 # macOS
 .DS_Store
@@ -30,3 +31,4 @@ __pycache__/
 # Local knowledge base & skills (not versioned)
 aun-qa-wiki/
 skills/
+*.docx
