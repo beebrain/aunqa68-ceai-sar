@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>คณาจารย์ — CE&AI AUN-QA ม.ร.อ. 2568</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+  <style>
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin: 1rem 0 2rem;
+    }
+    .staff-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .staff-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(13, 92, 122, 0.13);
+      border-color: var(--accent);
+    }
+    .staff-photo-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .staff-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .staff-placeholder {
+      width: 72px;
+      height: 72px;
+      opacity: 0.35;
+    }
+    .staff-info {
+      padding: 0.85rem 0.75rem 1rem;
+    }
+    .staff-position {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: var(--accent-light);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .staff-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.3rem;
+      line-height: 1.35;
+    }
+    .staff-degree {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0 0 0.15rem;
+    }
+    .staff-univ {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 2rem 0 0.75rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.4rem;
+    }
+    .badge-count {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 0.1rem 0.55rem;
+    }
+    .summary-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }
+    .summary-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+    }
+    .summary-chip strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="./index.html" class="brand-link">
+        <span class="brand-uni">มหาวิทยาลัยราชภัฏอุตรดิตถ์</span>
+        <span class="brand-title">วศ.ม. วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์</span>
+        <span class="brand-sub">คณาจารย์ประจำหลักสูตร · AUN-QA SAR 2568</span>
+      </a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="เปิดเมนู" data-nav-toggle>☰</button>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" data-sidebar>
+      <div class="nav-search"><input type="search" placeholder="ค้นหา..." data-search-input aria-label="ค้นหา"></div>
+<p class="nav-section">หลักสูตร</p><ul>
+<li><a href="./program.html" class="nav-link">ข้อมูลหลักสูตร CE&AI</a></li>
+<li><a href="./staff.html" class="nav-link active">คณาจารย์</a></li>
+<li><a href="./university.html" class="nav-link">มหาวิทยาลัยราชภัฏอุตรดิตถ์</a></li>
+<li><a href="./aun-qa.html" class="nav-link">AUN-QA</a></li>
+</ul>
+<p class="nav-section">เกณฑ์ (SAR)</p><ul>
+<li><a href="./criteria/1.html" class="nav-link">Criterion 1</a></li>
+<li><a href="./criteria/2.html" class="nav-link">Criterion 2</a></li>
+<li><a href="./criteria/3.html" class="nav-link">Criterion 3</a></li>
+<li><a href="./criteria/4.html" class="nav-link">Criterion 4</a></li>
+<li><a href="./criteria/5.html" class="nav-link">Criterion 5 — Academic Staff</a></li>
+<li><a href="./criteria/6.html" class="nav-link">Criterion 6</a></li>
+<li><a href="./criteria/7.html" class="nav-link">Criterion 7</a></li>
+<li><a href="./criteria/8.html" class="nav-link">Criterion 8</a></li>
+</ul>
+<p class="nav-section">แนวทาง (อ.ที่ปรึกษา)</p><ul>
+<li><a href="./guidelines/overview.html" class="nav-link">ภาพรวม & Rating Scale</a></li>
+<li><a href="./guidelines/1.html" class="nav-link">แนวทาง C1</a></li>
+<li><a href="./guidelines/2.html" class="nav-link">แนวทาง C2</a></li>
+<li><a href="./guidelines/3.html" class="nav-link">แนวทาง C3</a></li>
+<li><a href="./guidelines/4.html" class="nav-link">แนวทาง C4</a></li>
+<li><a href="./guidelines/5.html" class="nav-link">แนวทาง C5</a></li>
+<li><a href="./guidelines/6.html" class="nav-link">แนวทาง C6</a></li>
+<li><a href="./guidelines/7.html" class="nav-link">แนวทาง C7</a></li>
+<li><a href="./guidelines/8.html" class="nav-link">แนวทาง C8</a></li>
+</ul>
+<p class="nav-section">ข้อมูล & หลักฐาน</p><ul>
+<li><a href="./clo.html" class="nav-link">CLO ทุกรายวิชา</a></li>
+<li><a href="./clo-mapping.html" class="nav-link">CLO–YLO–PLO Mapping</a></li>
+<li><a href="./teaching.html" class="nav-link">กิจกรรมการสอน</a></li>
+<li><a href="./evidence.html" class="nav-link">ดัชนีหลักฐาน AUNQA</a></li>
+<li><a href="./support.html" class="nav-link">ข้อมูลสายสนับสนุน</a></li>
+<li><a href="./example-sar.html" class="nav-link">ตัวอย่าง SAR (MBM 66)</a></li>
+</ul>
+<p class="nav-section">เอกสาร</p><ul><li><a href="https://github.com/beebrain/aunqa68-ceai-sar" class="nav-link" target="_blank" rel="noopener">GitHub Repo</a></li></ul>
+    </nav>
+
+    <main class="content prose">
+      <div class="page-header">
+        <h1>คณาจารย์ประจำหลักสูตร</h1>
+        <p class="page-meta">หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ · ปีการศึกษา 2568</p>
+      </div>
+
+      <div class="summary-bar">
+        <div class="summary-chip"><strong>7</strong>อาจารย์ประจำหลักสูตร</div>
+        <div class="summary-chip"><strong>6</strong>อาจารย์ผู้สอน</div>
+        <div class="summary-chip"><strong>0</strong>อาจารย์พิเศษ</div>
+        <div class="summary-chip"><strong>13</strong>รวมทั้งหมด</div>
+      </div>
+
+      <!-- อาจารย์ประจำหลักสูตร -->
+      <div class="section-label">
+        อาจารย์ประจำหลักสูตร <span class="badge-count">7 คน</span>
+      </div>
+
+      <div class="staff-grid">
+
+        <!-- 1. พิศิษฐ์ นาคใจ -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <img src="./assets/pisit_nakjai.jpg" alt="ผศ.ดร.พิศิษฐ์ นาคใจ" loading="lazy">
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">พิศิษฐ์ นาคใจ</p>
+            <p class="staff-degree">ปร.ด. วิศวกรรมคอมพิวเตอร์</p>
+            <p class="staff-univ">มหาวิทยาลัยขอนแก่น · 2564</p>
+          </div>
+        </div>
+
+        <!-- 2. กาญจนา ดาวเด่น -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <img src="./assets/kanjana_dawden.png" alt="ผศ.ดร.กาญจนา ดาวเด่น" loading="lazy">
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">กาญจนา ดาวเด่น</p>
+            <p class="staff-degree">ปร.ด. วิศวกรรมคอมพิวเตอร์</p>
+            <p class="staff-univ">มหาวิทยาลัยเชียงใหม่ · 2562</p>
+          </div>
+        </div>
+
+        <!-- 3. พัชรี มณีรัตน์ -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <img src="./assets/patcharee_maneerat.jpg" alt="ผศ.ดร.พัชรี มณีรัตน์" loading="lazy">
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">พัชรี มณีรัตน์</p>
+            <p class="staff-degree">ปร.ด. สถิติประยุกต์</p>
+            <p class="staff-univ">มจพ. · 2563</p>
+          </div>
+        </div>
+
+        <!-- 4. อิสระ อินจันทร์ -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">รศ.ดร.</span>
+            <p class="staff-name">อิสระ อินจันทร์</p>
+            <p class="staff-degree">วท.ด. คณิตศาสตร์</p>
+            <p class="staff-univ">มหาวิทยาลัยนเรศวร · 2550</p>
+          </div>
+        </div>
+
+        <!-- 5. โสภณ วิริยะรัตนกุล -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">โสภณ วิริยะรัตนกุล</p>
+            <p class="staff-degree">ปร.ด. วิศวกรรมคอมพิวเตอร์</p>
+            <p class="staff-univ">มหาวิทยาลัยขอนแก่น · 2560</p>
+          </div>
+        </div>
+
+        <!-- 6. ธัชชัย อยู่ยิ่ง -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">ธัชชัย อยู่ยิ่ง</p>
+            <p class="staff-degree">ปร.ด. คณิตศาสตร์</p>
+            <p class="staff-univ">มหาวิทยาลัยนเรศวร · 2562</p>
+          </div>
+        </div>
+
+        <!-- 7. อภิศักดิ์ พรหมฝาย -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">อภิศักดิ์ พรหมฝาย</p>
+            <p class="staff-degree">วศ.ด. เทคโนโลยีการผลิตขั้นสูง</p>
+            <p class="staff-univ">สถาบันเทคโนโลยีปทุมวัน · 2565</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- อาจารย์ผู้สอน -->
+      <div class="section-label">
+        อาจารย์ผู้สอน <span class="badge-count">6 คน</span>
+      </div>
+
+      <div class="staff-grid">
+
+        <!-- 1. พิทักษ์ คล้ายชม -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ผศ.ดร.</span>
+            <p class="staff-name">พิทักษ์ คล้ายชม</p>
+            <p class="staff-degree">ปร.ด. การจัดการทรัพยากรธรรมชาติฯ</p>
+            <p class="staff-univ">ม.ราชภัฏอุตรดิตถ์ · 2564</p>
+          </div>
+        </div>
+
+        <!-- 2. สารัลย์ กระจง -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ดร.</span>
+            <p class="staff-name">สารัลย์ กระจง</p>
+            <p class="staff-degree">ปร.ด. การบริหารเทคโนโลยีและนวัตกรรม</p>
+            <p class="staff-univ">ม.ราชภัฏบ้านสมเด็จเจ้าพระยา · 2567</p>
+          </div>
+        </div>
+
+        <!-- 3. ภานุวัฒน์ ขันจาว -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">อ.</span>
+            <p class="staff-name">ภานุวัฒน์ ขันจาว</p>
+            <p class="staff-degree">วศ.ม. วิศวกรรมคอมพิวเตอร์</p>
+            <p class="staff-univ">มหาวิทยาลัยเชียงใหม่ · 2552</p>
+          </div>
+        </div>
+
+        <!-- 4. สุภัตรา ปินจันทร์ -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">อ.</span>
+            <p class="staff-name">สุภัตรา ปินจันทร์</p>
+            <p class="staff-degree">วศ.ม. วิศวกรรมคอมพิวเตอร์</p>
+            <p class="staff-univ">มหาวิทยาลัยเชียงใหม่ · 2555</p>
+          </div>
+        </div>
+
+        <!-- 5. คเชนทร์ ซ่อนกลิ่น -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ดร.</span>
+            <p class="staff-name">คเชนทร์ ซ่อนกลิ่น</p>
+            <p class="staff-degree">Ph.D. Computer Science</p>
+            <p class="staff-univ">Queensland Univ. of Technology · 2564</p>
+          </div>
+        </div>
+
+        <!-- 6. ชาณิภา ซ่อนกลิ่น -->
+        <div class="staff-card">
+          <div class="staff-photo-wrap">
+            <svg class="staff-placeholder" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="16" fill="#0d5c7a"/>
+              <path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="#0d5c7a"/>
+            </svg>
+          </div>
+          <div class="staff-info">
+            <span class="staff-position">ดร.</span>
+            <p class="staff-name">ชาณิภา ซ่อนกลิ่น</p>
+            <p class="staff-degree">Ph.D. Computer Science</p>
+            <p class="staff-univ">Queensland Univ. of Technology · 2563</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="build-note">อาจารย์ที่ยังไม่มีรูป — สามารถเพิ่มได้โดยนำไฟล์รูปไปไว้ที่ <code>docs/assets/</code> และอัปเดต src ในไฟล์นี้</p>
+
+    </main>
+  </div>
+
+  <script src="./assets/search.js" defer></script>
+  <script>
+    const toggle = document.querySelector('[data-nav-toggle]');
+    const sidebar = document.querySelector('[data-sidebar]');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+    }
+  </script>
+</body>
+</html>
