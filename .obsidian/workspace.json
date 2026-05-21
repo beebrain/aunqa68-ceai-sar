@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "04ca65cf510bc5f0",
+    "type": "split",
+    "children": [
+      {
+        "id": "4642c6932eb0fd16",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6bb3d52a8c6f9cb8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "aun-qa-wiki/summaries/support-data-summary.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "support-data-summary"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "15171d9263006566",
+    "type": "split",
+    "children": [
+      {
+        "id": "c9ad9f8ce4bfd776",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "644d313c5d5b9456",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5c55b88d3436b54a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#criterion-6",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "4ecb5385fc2d53c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "f22876ccefb807be",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a0a10a77c8ec50b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0752217196c15954",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "aun-qa-wiki/concepts/criterion-8-output-outcomes.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for criterion-8-output-outcomes"
+            }
+          },
+          {
+            "id": "fdb703790feef89f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "aun-qa-wiki/concepts/criterion-8-output-outcomes.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from criterion-8-output-outcomes"
+            }
+          },
+          {
+            "id": "f0873ecb825511bc",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "427c63b74d524846",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9455c25c05ae9460",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "aun-qa-wiki/concepts/criterion-8-output-outcomes.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of criterion-8-output-outcomes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "6bb3d52a8c6f9cb8",
+  "lastOpenFiles": [
+    "aun-qa-wiki/entities/หลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์-บัณฑิตศึกษา.md",
+    "aun-qa-wiki/summaries/facebook-page-summary.md",
+    "meeting-minutes/pdf/report_meeting_2569-05-16_semester3-closeout-and-satisfaction.pdf",
+    "meeting-minutes/pdf/report_meeting_2569-05-09_admission2569-interview.pdf",
+    "meeting-minutes/pdf/report_meeting_2569-04-25_semester3-and-admission2569.pdf",
+    "meeting-minutes/pdf/report_meeting_2569-03-27_semester2-closeout.pdf",
+    "meeting-minutes/pdf/report_meeting_2569-02-27_monthly-feb.pdf",
+    "meeting-minutes/pdf/report_meeting_2569-01-30_monthly-jan.pdf",
+    "meeting-minutes/pdf/report_meeting_2568-12-26_monthly-dec.pdf",
+    "meeting-minutes/pdf/report_meeting_2568-11-28_semester2-opening.pdf",
+    "meeting-minutes/pdf/report_meeting_2568-11-15_interview-committee.pdf",
+    "meeting-minutes/pdf/report_meeting_2568-10-11_admission-committee.pdf",
+    "aun-qa-wiki/raw/facebook/facebook-page-extract.md",
+    "aun-qa-wiki/raw/articles/evidence-gap-analysis.md",
+    "aun-qa-wiki/raw/articles/aunqa-1-5-orientation-2568.md",
+    "aun-qa-wiki/raw/articles/aunqa-6-2-2-it-plan-2568.md",
+    "aun-qa-wiki/raw/articles/student-satisfaction-survey-2568.md",
+    "aun-qa-wiki/raw/articles/gmo-thesis-publication-65.md",
+    "aun-qa-wiki/raw/mko3/7015906_mko3.md",
+    "aun-qa-wiki/raw/facebook/pitak-khlaichom-post-20231120.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_123827.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_123059.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_122849.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_122141.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_122008.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_121526.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120958.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120818.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120512.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120405.md",
+    "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120316.md",
+    "website/README.md",
+    "aun-qa-wiki/summaries/example-sar-mbm-66.md",
+    "aun-qa-wiki/raw/example66-mbm-extract.md",
+    "CLAUDE.md",
+    "aun-qa-wiki/guidelines/08_criterion8_outcomes.md"
+  ]
+}

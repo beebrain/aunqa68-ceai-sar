@@ -1,0 +1,86 @@
+% ตัวอย่าง มคอ.5 — รายงานการสัมฤทธิ์ผลของผู้เรียนระดับรายวิชา
+% Compile: xelatex example.tex (สองครั้งถ้ามี cross-ref)
+\documentclass{mko5}
+
+\begin{document}
+
+\mkofivetitle
+
+% ----- ข้อมูลหัวรายงาน -----
+\coursecode{7015101}
+\coursename{เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์}
+\curriculumnote{หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ พ.ศ. 2568}
+\coursegroup{วิชาเฉพาะ}
+\coursecredits{3 (3-0-6)}
+\studyplan{แผน 2 (วิชาชีพ --- สารนิพนธ์)}
+\semester{ภาคเรียนที่ 2 / ปีการศึกษา 2568}
+\prerequisite{ไม่มี}
+\corequisite{ไม่มี}
+\studyplace{มหาวิทยาลัยราชภัฏอุตรดิตถ์ (คณะเทคโนโลยีอุตสาหกรรม / ออนไลน์ผสม)}
+\registeredstudents{4 คน}
+\completedstudents{4 คน}
+\instructor{ผศ.ดร.พิศิษฐ์ นาคใจ, ผศ.ดร.พัชรี มณีรัตน์}
+\coinstructors{---}
+
+\mkoheaderinfo
+
+% ----- 1. กิจกรรมที่ดำเนินการจริง -----
+\begin{teachingactualtable}
+  \actualrow{CLO1}{บรรยายสาระสำคัญเทคโนโลยีอุบัติใหม่ (AI, IoT, Blockchain) พร้อมกรณีศึกษา;
+  อภิปรายเชิงวิพากษ์; มอบหมายให้อ่านบทความวิจัยล่าสุด}
+  \actualrow{CLO2}{Workshop การประยุกต์ใช้เครื่องมือ ML/DL บนชุดข้อมูลจริง;
+  ปฏิบัติการกลุ่มย่อย; นำเสนอผลงานต้นแบบ}
+  \actualrow{CLO3}{สัมมนาเชิงปฏิบัติการ IEL Community Workshop (ถ่ายทอดความรู้ AI ให้โรงเรียนใน จ.อุตรดิตถ์)}
+\end{teachingactualtable}
+
+% ----- 2. วิธีการวัดผลที่ใช้ -----
+\begin{assessmentusedtable}
+  \assessusedrow{CLO1}{แบบทดสอบกลางภาค, รายงานกลุ่ม, Rubric 4 ระดับ}
+  \assessusedrow{CLO2}{โครงงานปฏิบัติ, การนำเสนอ, แบบประเมินตนเองและเพื่อน}
+  \assessusedrow{CLO3}{รายงานกิจกรรมบริการวิชาการ, สังเกตพฤติกรรม, แบบสะท้อนคิด}
+\end{assessmentusedtable}
+
+% ----- 3. สรุปการสัมฤทธิ์ผล -----
+\mkosectionthree
+
+\closummaryblock{CLO1}{อธิบายและวิเคราะห์เทคโนโลยีอุบัติใหม่ที่เกี่ยวข้องกับวิศวกรรมคอมพิวเตอร์ได้อย่างถูกต้อง}{80}
+\achievementpass{4}{100}{ผ่านเกณฑ์ระดับ 3 ขึ้นไปทุกคน}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO2}{ออกแบบและพัฒนาต้นแบบระบบจากโจทย์ที่กำหนดได้}{80}
+\achievementpass{4}{100}{ผ่านการประเมินโครงงานและการนำเสนอ}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO3}{ถ่ายทอนความรู้ด้านปัญญาประดิษฐ์ให้ชุมชน/โรงเรียนได้อย่างมีประสิทธิภาพ}{80}
+\achievementpass{4}{100}{เข้าร่วม IEL Workshop ครบและผ่าน Rubric}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+% ----- 4. ปัญหา/อุปสรรค -----
+\mkosectionfour
+\begin{mkotextblock}
+จำนวนนักศึกษาน้อย ($n=4$) ทำให้การวิเคราะห์สถิติเชิงเปรียบเทียบมีข้อจำกัด;
+บางสัปดาห์ต้องจัดการเรียนแบบออนไลน์เนื่องจากภารกิจบริการวิชาการนอกสถานที่
+\end{mkotextblock}
+
+% ----- 5. แผนปรับปรุง -----
+\mkosectionfive
+\begin{mkotextblock}
+เพิ่มชุดข้อมูลฝึกปฏิบัติที่หลากหลายขึ้น; จัดทำแบบฟอร์มสะท้อนคิดมาตรฐานสำหรับ CLO3;
+ประสานกับหลักสูตรเพื่อรวบรวมผล มคอ.5 ทุกวิชาเข้าสู่การทบทวนระดับหลักสูตรภาคถัดไป
+\end{mkotextblock}
+
+% ----- 6. ข้อเสนอแนะ -----
+\mkosectionsix
+\begin{mkotextblock}
+ขอให้คณะสนับสนุนการเข้าถึง GPU/ห้องปฏิบัติการสำหรับรายวิชา CE\&AI;
+พิจารณาจัดอบรม Rubric-based assessment สำหรับอาจารย์ผู้สอนรายวิชาใหม่
+\end{mkotextblock}
+
+% ----- 7. ลงลายมือชื่อ -----
+\mkosectionseven
+\mkosignaturepair{ผศ.ดร.พิศิษฐ์ นาคใจ}{27 มีนาคม 2569}{ผศ.ดร.พิทักษ์ คล้ายชม}{27 มีนาคม 2569}
+
+\end{document}
