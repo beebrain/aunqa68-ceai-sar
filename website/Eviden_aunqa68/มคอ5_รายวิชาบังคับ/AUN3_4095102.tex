@@ -1,0 +1,85 @@
+% มคอ.5 — 4095102 ภาคเรียนที่ 1/2568 (รุ่นแรก)
+\documentclass{mko5}
+\begin{document}
+\mkofivetitle
+
+\coursecode{4095102}
+\coursename{การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง}
+\curriculumnote{หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ พ.ศ. 2568}
+\coursegroup{วิชาเฉพาะด้านบังคับ}
+\coursecredits{3 (2-2-5)}
+\studyplan{แผน 2 --- วิชาชีพ (สารนิพนธ์)}
+\semester{ภาคเรียนที่ 1 / ปีการศึกษา 2568}
+\prerequisite{ไม่มี}
+\corequisite{ไม่มี}
+\studyplace{มหาวิทยาลัยราชภัฏอุตรดิตถ์ --- คณะเทคโนโลยีอุตสาหกรรม}
+\registeredstudents{4 คน}
+\completedstudents{4 คน}
+\instructor{ผศ.ดร.พิศิษฐ์ นาคใจ และ ผศ.ดร.พัชรี มณีรัตน์}
+\coinstructors{---}
+
+\mkoheaderinfo
+
+\begin{teachingactualtable}
+  \actualrow{CLO1}{บรรยาย Python/ไลบรารี ML สาธิต ทดลองตามตัวอย่าง แบบทดสอบความเข้าใจ}
+  \actualrow{CLO2}{Workshop การเตรียมและทำความสะอาดข้อมูล โปรเจกต์กลุ่ม แบบฝึกหัดการจัดการข้อมูล}
+  \actualrow{CLO3}{สอนการสร้างแผนภาพ สาธิตการตีความผล รายงานการวิเคราะห์ข้อมูล}
+  \actualrow{CLO4}{อภิปรายจริยธรรม กรณีศึกษา รายงานวิเคราะห์จริยธรรม}
+  \actualrow{CLO5}{สาธิต Git/GitHub แนะนำ deploy model โครงงาน ML นำเสนอผลงาน}
+\end{teachingactualtable}
+
+\begin{assessmentusedtable}
+  \assessusedrow{CLO1}{แบบทดสอบความเข้าใจ การนำเสนอและอธิบายหลักการ การตอบคำถาม}
+  \assessusedrow{CLO2}{แบบฝึกหัดการจัดการข้อมูล โปรเจกต์กลุ่ม การนำเสนอผลการวิเคราะห์}
+  \assessusedrow{CLO3}{รายงานการวิเคราะห์ข้อมูล คุณภาพแผนภาพ การนำเสนอและอภิปรายผล}
+  \assessusedrow{CLO4}{รายงานวิเคราะห์จริยธรรม การมีส่วนร่วมในการอภิปราย}
+  \assessusedrow{CLO5}{คุณภาพโค้ดและ version control ประสิทธิภาพแบบจำลอง การนำเสนอโครงงาน}
+\end{assessmentusedtable}
+
+\mkosectionthree
+
+\closummaryblock{CLO1}{อธิบาย หลักการของภาษาโปรแกรมสมัยใหม่และไลบรารีสำหรับการเรียนรู้ของเครื่อง ได้อย่างถูกต้อง}{80}
+\achievementpass{4}{100}{ผ่านเกณฑ์ระดับ 3 ขึ้นไป}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO2}{ประยุกต์ใช้ เทคนิคการจัดการข้อมูล ตั้งแต่การเตรียม ทำความสะอาด แปลง และแบ่งชุดข้อมูลสำหรับแบบจำลองการเรียนรู้ของเครื่อง}{80}
+\achievementpass{4}{100}{โปรเจกต์กลุ่มและแบบฝึกหัดผ่าน}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO3}{วิเคราะห์ ข้อมูลด้วยแผนภาพและการตีความ เพื่อเลือกใช้และปรับปรุงแบบจำลองที่เหมาะสม}{80}
+\achievementpass{4}{100}{รายงานวิเคราะห์ข้อมูลผ่านเกณฑ์}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO4}{แสดงออก ถึงความตระหนักในจริยธรรมและความรับผิดชอบต่อสังคม ในการพัฒนาโปรแกรมสำหรับการเรียนรู้ของเครื่อง}{80}
+\achievementpass{4}{100}{รายงานและการอภิปรายผ่าน}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\closummaryblock{CLO5}{พัฒนา แบบจำลองการเรียนรู้ของเครื่อง โดยใช้ระบบควบคุมเวอร์ชันและนำไปใช้งานในสภาพแวดล้อมจริงได้อย่างมีประสิทธิภาพ}{80}
+\achievementpass{4}{100}{โครงงาน ML และการ deploy ผ่าน}
+\achievementfail{0}{0}{ไม่มี}
+\closummaryend
+
+\mkosectionfour
+\begin{mkotextblock}
+การ deploy model ในสภาพแวดล้อม production ต้องการเวลาฝึกเพิ่ม;
+ความหลากหลายระดับพื้นฐาน Python ของนักศึกษาไม่เท่ากัน
+\end{mkotextblock}
+
+\mkosectionfive
+\begin{mkotextblock}
+จัดทำ Repository ตัวอย่างพร้อม CI สำหรับโครงงาน;
+เพิ่ม Workshop การใช้ MLOps เบื้องต้นในภาคเรียนถัดไป
+\end{mkotextblock}
+
+\mkosectionsix
+\begin{mkotextblock}
+ขอสนับสนุน Cloud credits หรือเซิร์ฟเวอร์สำหรับการ deploy โมเดลของนักศึกษา
+\end{mkotextblock}
+
+\mkosectionseven
+\mkosignaturepair{ผศ.ดร.พิศิษฐ์ นาคใจ และ ผศ.ดร.พัชรี มณีรัตน์}{30 เมษายน 2569}{ผศ.ดร.พิทักษ์ คล้ายชม}{30 เมษายน 2569}
+\end{document}
