@@ -11,14 +11,10 @@
             "id": "6bb3d52a8c6f9cb8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "aun-qa-wiki/summaries/support-data-summary.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "support-data-summary"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -53,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#criterion-6",
+                "query": "tag:#aun-qa",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -186,7 +182,10 @@
   },
   "active": "6bb3d52a8c6f9cb8",
   "lastOpenFiles": [
+    "aun-qa-wiki/raw/mko3/7015101_mko3.md",
     "aun-qa-wiki/entities/หลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์-บัณฑิตศึกษา.md",
+    "aun-qa-wiki/index.md",
+    "aun-qa-wiki/summaries/support-data-summary.md",
     "aun-qa-wiki/summaries/facebook-page-summary.md",
     "meeting-minutes/pdf/report_meeting_2569-05-16_semester3-closeout-and-satisfaction.pdf",
     "meeting-minutes/pdf/report_meeting_2569-05-09_admission2569-interview.pdf",
@@ -218,9 +217,6 @@
     "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120405.md",
     "aun-qa-wiki/raw/facebook/output/facebook_posts_20260518_120316.md",
     "website/README.md",
-    "aun-qa-wiki/summaries/example-sar-mbm-66.md",
-    "aun-qa-wiki/raw/example66-mbm-extract.md",
-    "CLAUDE.md",
-    "aun-qa-wiki/guidelines/08_criterion8_outcomes.md"
+    "aun-qa-wiki/summaries/example-sar-mbm-66.md"
   ]
 }

@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html class="light" lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>คลังเอกสารหลักฐาน AUN-QA 2568 - M.Eng. CE&AI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <!-- Using Tailwind CSS CDN and mapping to the exact configuration for visual consistency -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dm+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#e040a0",
+                        "primary-container": "#f080c0",
+                        "on-primary-container": "#2e1a28",
+                        "secondary": "#7c52aa",
+                        "on-surface-variant": "#604868",
+                        "surface": "#fef7ff",
+                        "background": "#fef7ff",
+                        "on-background": "#2e1a28",
+                        "on-surface": "#2e1a28",
+                        "surface-variant": "#f2e8f2",
+                        "tertiary": "#0096cc",
+                    },
+                    "fontFamily": {
+                        "sans": ["Dm Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Dm Sans', sans-serif; }
+        .glass {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .bouncy-hover {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bouncy-hover:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(224, 64, 160, 0.1), 0 10px 10px -5px rgba(224, 64, 160, 0.04);
+        }
+        body.lang-th .text-en { display: none !important; }
+        body.lang-en .text-th { display: none !important; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased pt-20 lang-th">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 transition-all duration-300">
+        <div class="flex items-center justify-between px-8 py-4 max-w-[1280px] mx-auto">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-primary hover:scale-105 transition-transform">
+                วศ.ม. <span class="text-secondary">CE&AI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-wider">
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#about">
+                    <span class="text-th">เกี่ยวกับเรา</span><span class="text-en">About Us</span>
+                </a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#curriculum">
+                    <span class="text-th">หลักสูตร</span><span class="text-en">Curriculum</span>
+                </a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#faculty">
+                    <span class="text-th">คณาจารย์</span><span class="text-en">Faculty</span>
+                </a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#admission">
+                    <span class="text-th">การรับสมัคร</span><span class="text-en">Admission</span>
+                </a>
+                <a class="text-primary border-b-2 border-primary transition-colors" href="eviden.html">
+                    <span class="text-th">หลักฐาน AUNQA_68</span><span class="text-en">Evidence AUNQA_68</span>
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-surface-variant text-primary px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm bouncy-hover border border-primary/20">
+                    <span class="material-symbols-outlined text-sm">translate</span>
+                    <span class="text-th">EN</span><span class="text-en">TH</span>
+                </button>
+                <a href="index.html#admission" class="bg-primary text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-all shadow-lg shadow-primary/20 bouncy-hover">
+                    <span class="text-th">สมัครเรียน</span><span class="text-en">Apply Now</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="relative w-full py-20 flex items-center justify-center overflow-hidden bg-primary-container/10 border-b border-primary/5">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
+        </div>
+        <div class="relative z-10 max-w-[1280px] mx-auto px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border border-primary/20 mb-6">
+                <span class="material-symbols-outlined text-sm text-primary">folder_open</span>
+                <span class="text-xs font-black uppercase tracking-widest text-primary">
+                    <span class="text-th">คลังเอกสารหลักฐานการประกันคุณภาพ</span>
+                    <span class="text-en">Quality Assurance Evidence Repository</span>
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-on-background mb-4 leading-tight tracking-tight">
+                <span class="text-th">หลักฐาน <span class="text-primary">AUNQA_68</span></span>
+                <span class="text-en"><span class="text-primary">AUNQA_68</span> Evidence Index</span>
+            </h1>
+            <p class="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto font-medium">
+                <span class="text-th">รวบรวมและแสดงเฉพาะเอกสารหลักฐานสำคัญในรูปแบบไฟล์ PDF และ CSV สำหรับปีการศึกษา 2568</span>
+                <span class="text-en">A compiled list of official evidence documents in PDF and CSV formats for the Academic Year 2025 (2568 B.E.).</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="py-12 max-w-[1280px] mx-auto px-8">
+        
+        <!-- Controls: Search & Filters -->
+        <div class="mb-10 glass p-6 rounded-2xl border border-primary/10 shadow-lg space-y-6">
+            <!-- Search bar -->
+            <div class="relative w-full">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant">
+                    <span class="material-symbols-outlined">search</span>
+                </span>
+                <input type="text" id="search-input" placeholder="ค้นหาเอกสารจากชื่อ หรือ รหัส... / Search by name or code..." class="w-full pl-12 pr-4 py-3 bg-white/70 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-on-background placeholder:opacity-60 transition-all shadow-inner" />
+            </div>
+
+            <!-- Filters Section -->
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-t border-primary/5 pt-4">
+                <!-- Type filters -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mr-2">
+                        <span class="text-th">ประเภทไฟล์:</span><span class="text-en">File Type:</span>
+                    </span>
+                    <button onclick="filterType('all')" id="type-btn-all" class="filter-type-btn active bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105">
+                        <span class="text-th">ทั้งหมด</span><span class="text-en">All</span>
+                    </button>
+                    <button onclick="filterType('pdf')" id="type-btn-pdf" class="filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        PDF
+                    </button>
+                    <button onclick="filterType('csv')" id="type-btn-csv" class="filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        CSV
+                    </button>
+                </div>
+
+                <!-- Criterion filters -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mr-2">
+                        <span class="text-th">หมวดหมู่:</span><span class="text-en">Category:</span>
+                    </span>
+                    <button onclick="filterCriterion('all')" id="crit-btn-all" class="filter-crit-btn active bg-secondary text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105">
+                        <span class="text-th">ทั้งหมด</span><span class="text-en">All</span>
+                    </button>
+                    <button onclick="filterCriterion('General')" id="crit-btn-General" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        General
+                    </button>
+                    <button onclick="filterCriterion('1')" id="crit-btn-1" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 1
+                    </button>
+                    <button onclick="filterCriterion('2')" id="crit-btn-2" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 2
+                    </button>
+                    <button onclick="filterCriterion('3')" id="crit-btn-3" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 3
+                    </button>
+                    <button onclick="filterCriterion('4')" id="crit-btn-4" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 4
+                    </button>
+                    <button onclick="filterCriterion('5')" id="crit-btn-5" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 5
+                    </button>
+                    <button onclick="filterCriterion('6')" id="crit-btn-6" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 6
+                    </button>
+                    <button onclick="filterCriterion('7')" id="crit-btn-7" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 7
+                    </button>
+                    <button onclick="filterCriterion('8')" id="crit-btn-8" class="filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        Criterion 8
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documents Statistics Panel -->
+        <div class="mb-8 flex flex-wrap gap-4 items-center justify-between px-2">
+            <div class="text-sm font-bold text-on-surface-variant">
+                <span class="text-th">แสดงผล: <span id="visible-count" class="text-primary font-black">0</span> จากทั้งหมด <span class="text-secondary font-black">35</span> รายการ</span>
+                <span class="text-en">Showing: <span id="visible-count-en" class="text-primary font-black">0</span> of <span class="text-secondary font-black">35</span> items</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> PDF (<span id="pdf-total">33</span>)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> CSV (<span id="csv-total">2</span>)</span>
+            </div>
+        </div>
+
+        <!-- Criteria Sections Container -->
+        <div id="criteria-sections-container" class="space-y-12">
+            <!-- General Reference Section -->
+            <section id="section-General" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">description</span>
+                        <span class="text-th">ข้อมูลทั่วไปและเอกสารอ้างอิง</span>
+                        <span class="text-en">General & Reference Documents</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+
+            <!-- Criterion 1 -->
+            <section id="section-1" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_one</span>
+                        <span class="text-th">Criterion 1: ผลลัพธ์การเรียนรู้ที่คาดหวัง (Expected Learning Outcomes)</span>
+                        <span class="text-en">Criterion 1: Expected Learning Outcomes</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+
+            <!-- Criterion 2 -->
+            <section id="section-2" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_two</span>
+                        <span class="text-th">Criterion 2: รายละเอียดหลักสูตร (Program Specification)</span>
+                        <span class="text-en">Criterion 2: Program Specification</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+
+            <!-- Criterion 3 -->
+            <section id="section-3" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_3</span>
+                        <span class="text-th">Criterion 3: โครงสร้างหลักสูตรและเนื้อหา (Program Structure & Content)</span>
+                        <span class="text-en">Criterion 3: Program Structure & Content</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+                <div class="no-docs-helper hidden glass p-6 rounded-2xl border border-primary/10 text-center text-on-surface-variant/60 font-medium">
+                    <span class="text-th">ไม่มีเอกสารหลักฐานประเภท PDF หรือ CSV ในหมวดหมู่นี้</span>
+                    <span class="text-en">No PDF or CSV evidence documents in this category</span>
+                </div>
+            </section>
+
+            <!-- Criterion 4 -->
+            <section id="section-4" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_4</span>
+                        <span class="text-th">Criterion 4: การประเมินผลการเรียนของผู้เรียน (Student Assessment)</span>
+                        <span class="text-en">Criterion 4: Student Assessment</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+
+            <!-- Criterion 5 -->
+            <section id="section-5" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_5</span>
+                        <span class="text-th">Criterion 5: คุณภาพอาจารย์ผู้สอน (Academic Staff Quality)</span>
+                        <span class="text-en">Criterion 5: Academic Staff Quality</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+                <div class="no-docs-helper hidden glass p-6 rounded-2xl border border-primary/10 text-center text-on-surface-variant/60 font-medium">
+                    <span class="text-th">ไม่มีเอกสารหลักฐานประเภท PDF หรือ CSV ในหมวดหมู่นี้</span>
+                    <span class="text-en">No PDF or CSV evidence documents in this category</span>
+                </div>
+            </section>
+
+            <!-- Criterion 6 -->
+            <section id="section-6" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_6</span>
+                        <span class="text-th">Criterion 6: การสนับสนุนและการบริการผู้เรียน (Student Support Services)</span>
+                        <span class="text-en">Criterion 6: Student Support Services</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+
+            <!-- Criterion 7 -->
+            <section id="section-7" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_7</span>
+                        <span class="text-th">Criterion 7: สิ่งอำนวยความสะดวกและโครงสร้างพื้นฐาน (Facilities & Infrastructure)</span>
+                        <span class="text-en">Criterion 7: Facilities & Infrastructure</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+                <div class="no-docs-helper hidden glass p-6 rounded-2xl border border-primary/10 text-center text-on-surface-variant/60 font-medium">
+                    <span class="text-th">ไม่มีเอกสารหลักฐานประเภท PDF หรือ CSV ในหมวดหมู่นี้</span>
+                    <span class="text-en">No PDF or CSV evidence documents in this category</span>
+                </div>
+            </section>
+
+            <!-- Criterion 8 -->
+            <section id="section-8" class="criteria-section space-y-6 scroll-mt-24">
+                <div class="flex items-center justify-between border-b border-primary/20 pb-3">
+                    <h2 class="text-xl md:text-2xl font-black text-secondary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-2xl text-primary font-bold">looks_8</span>
+                        <span class="text-th">Criterion 8: ผลผลิตและผลลัพธ์ (Output and Outcomes)</span>
+                        <span class="text-en">Criterion 8: Output and Outcomes</span>
+                    </h2>
+                    <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-bold uppercase tracking-widest">
+                        <span class="section-count">0</span> <span class="text-th">รายการ</span><span class="text-en">Items</span>
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 section-grid">
+                    <!-- Cards will be dynamically rendered here -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden text-center py-20 bg-white/40 rounded-2xl border border-primary/10 shadow-inner">
+            <span class="material-symbols-outlined text-6xl text-primary/40 mb-4">folder_off</span>
+            <h3 class="text-xl font-bold text-on-background mb-2">
+                <span class="text-th">ไม่พบเอกสารหลักฐาน</span><span class="text-en">No Documents Found</span>
+            </h3>
+            <p class="text-sm text-on-surface-variant max-w-md mx-auto">
+                <span class="text-th">ลองปรับเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่ใหม่อีกครั้ง</span>
+                <span class="text-en">Try refining your search terms or choosing a different filter.</span>
+            </p>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-on-surface text-white py-12 text-center mt-20 border-t border-primary/10">
+        <div class="max-w-[1280px] mx-auto px-8">
+            <h2 class="text-2xl font-black text-primary mb-2">วศ.ม. CE&AI</h2>
+            <p class="text-white/60 text-sm font-medium">
+                <span class="text-th">มหาวิทยาลัยราชภัฏอุตรดิตถ์ (Uttaradit Rajabhat University)</span>
+                <span class="text-en">Uttaradit Rajabhat University</span>
+            </p>
+            <p class="text-white/40 text-xs mt-4">
+                <span class="text-th">คลังเอกสารและหลักฐานนี้ เผยแพร่เฉพาะไฟล์ PDF และ CSV เพื่อการประกันคุณภาพการศึกษาตามหลักเกณฑ์สากล</span>
+                <span class="text-en">This repository publishes only PDF and CSV files for quality assurance purposes in accordance with AUN-QA standards.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Javascript Logic -->
+    <script>
+        // Full structured dataset of all PDF and CSV files in Eviden_aunqa68
+        const documents = [
+    {
+        "code": "มคอ 2 หลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ ",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD%202%20%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B8%9E%E0%B8%B4%E0%B8%A7%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C%20%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%A0%E0%B8%B2%202%20%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%20Comment%20%E0%B8%AA%E0%B8%A0%E0%B8%B2%20%E0%B9%81%E0%B8%A5%E0%B8%B0%20%E0%B8%A1%E0%B8%95%E0%B8%B4%E0%B8%AA%E0%B8%A0%E0%B8%B2.pdf",
+        "th": {
+            "title": "มคอ.2 หลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (ผ่านสภา 2568)",
+            "desc": "มคอ.2 ฉบับที่ผ่านสภา มรอ. พ.ศ. 2568 รองรับ R1/R2 ทั้งหมด"
+        },
+        "en": {
+            "title": "Programme Specification (มคอ.2) — Approved by University Council 2568",
+            "desc": "Full programme specification approved by council, covering R1/R2 entirely"
+        }
+    },
+    {
+        "code": "AUN3_4095101",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD3/AUN3_4095101.pdf",
+        "th": {
+            "title": "มคอ.3 รายวิชา 4095101 ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง",
+            "desc": "รายละเอียดรายวิชา ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง รองรับ R2.3/R3.1 โครงสร้างเนื้อหาและวิธีการสอน"
+        },
+        "en": {
+            "title": "Course Specification (มคอ.3) — 4095101",
+            "desc": "Course details for ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง (R2.3/R3.1)"
+        }
+    },
+    {
+        "code": "AUN3_4095102",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD3/AUN3_4095102.pdf",
+        "th": {
+            "title": "มคอ.3 รายวิชา 4095102 การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง",
+            "desc": "รายละเอียดรายวิชา การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง รองรับ R2.3/R3.1 โครงสร้างเนื้อหาและวิธีการสอน"
+        },
+        "en": {
+            "title": "Course Specification (มคอ.3) — 4095102",
+            "desc": "Course details for การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง (R2.3/R3.1)"
+        }
+    },
+    {
+        "code": "AUN3_7015101",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD3/AUN3_7015101.pdf",
+        "th": {
+            "title": "มคอ.3 รายวิชา 7015101 เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์",
+            "desc": "รายละเอียดรายวิชา เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ รองรับ R2.3/R3.1 โครงสร้างเนื้อหาและวิธีการสอน"
+        },
+        "en": {
+            "title": "Course Specification (มคอ.3) — 7015101",
+            "desc": "Course details for เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (R2.3/R3.1)"
+        }
+    },
+    {
+        "code": "AUN3_7015906",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD3/AUN3_7015906.pdf",
+        "th": {
+            "title": "มคอ.3 รายวิชา 7015906 ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์",
+            "desc": "รายละเอียดรายวิชา ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์ รองรับ R2.3/R3.1 โครงสร้างเนื้อหาและวิธีการสอน"
+        },
+        "en": {
+            "title": "Course Specification (มคอ.3) — 7015906",
+            "desc": "Course details for ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์ (R2.3/R3.1)"
+        }
+    },
+    {
+        "code": "example",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD3/example.pdf",
+        "th": {
+            "title": "มคอ.3 รายวิชา example ตัวอย่างมคอ.3",
+            "desc": "รายละเอียดรายวิชา ตัวอย่างมคอ.3 รองรับ R2.3/R3.1 โครงสร้างเนื้อหาและวิธีการสอน"
+        },
+        "en": {
+            "title": "Course Specification (มคอ.3) — example",
+            "desc": "Course details for ตัวอย่างมคอ.3 (R2.3/R3.1)"
+        }
+    },
+    {
+        "code": "AUN3_4095101",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD5/AUN3_4095101.pdf",
+        "th": {
+            "title": "มคอ.5 รายงานผลการดำเนินรายวิชา 4095101 ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง",
+            "desc": "รายงานผลการดำเนินรายวิชา ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง รองรับ R4.8/R8.4 CLO achievement"
+        },
+        "en": {
+            "title": "Course Report (มคอ.5) — 4095101",
+            "desc": "Course outcome report for ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง (R4.8/R8.4)"
+        }
+    },
+    {
+        "code": "AUN3_4095102",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD5/AUN3_4095102.pdf",
+        "th": {
+            "title": "มคอ.5 รายงานผลการดำเนินรายวิชา 4095102 การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง",
+            "desc": "รายงานผลการดำเนินรายวิชา การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง รองรับ R4.8/R8.4 CLO achievement"
+        },
+        "en": {
+            "title": "Course Report (มคอ.5) — 4095102",
+            "desc": "Course outcome report for การเขียนโปรแกรมขั้นสูงสำหรับการเรียนรู้ของเครื่อง (R4.8/R8.4)"
+        }
+    },
+    {
+        "code": "AUN3_7015101",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD5/AUN3_7015101.pdf",
+        "th": {
+            "title": "มคอ.5 รายงานผลการดำเนินรายวิชา 7015101 เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์",
+            "desc": "รายงานผลการดำเนินรายวิชา เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ รองรับ R4.8/R8.4 CLO achievement"
+        },
+        "en": {
+            "title": "Course Report (มคอ.5) — 7015101",
+            "desc": "Course outcome report for เทคโนโลยีอุบัติใหม่ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (R4.8/R8.4)"
+        }
+    },
+    {
+        "code": "AUN3_7015906",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD5/AUN3_7015906.pdf",
+        "th": {
+            "title": "มคอ.5 รายงานผลการดำเนินรายวิชา 7015906 ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์",
+            "desc": "รายงานผลการดำเนินรายวิชา ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์ รองรับ R4.8/R8.4 CLO achievement"
+        },
+        "en": {
+            "title": "Course Report (มคอ.5) — 7015906",
+            "desc": "Course outcome report for ระเบียบวิธีวิจัยทางวิทยาศาสตร์และวิศวกรรมศาสตร์ (R4.8/R8.4)"
+        }
+    },
+    {
+        "code": "example",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD5/example.pdf",
+        "th": {
+            "title": "มคอ.5 รายงานผลการดำเนินรายวิชา example ตัวอย่างมคอ.5",
+            "desc": "รายงานผลการดำเนินรายวิชา ตัวอย่างมคอ.5 รองรับ R4.8/R8.4 CLO achievement"
+        },
+        "en": {
+            "title": "Course Report (มคอ.5) — example",
+            "desc": "Course outcome report for ตัวอย่างมคอ.5 (R4.8/R8.4)"
+        }
+    },
+    {
+        "code": "รวมเล่ม CLO รายวิชา",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1%20CLO%20%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2.pdf",
+        "th": {
+            "title": "รวมเล่ม CLO รายวิชาทุกวิชา ปีการศึกษา 2568",
+            "desc": "รวม CLO ทุกรายวิชาในหลักสูตร CE&AI รองรับ R1.3/R2.4 การ mapping CLO-PLO"
+        },
+        "en": {
+            "title": "Complete CLO Collection — All Courses 2568",
+            "desc": "All course CLOs for CE&AI programme, supporting R1.3/R2.4 CLO-PLO mapping"
+        }
+    },
+    {
+        "code": "AUNQA-1-1_มคอ2_ผ่านสภา_2568",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-1-1_%E0%B8%A1%E0%B8%84%E0%B8%AD2_%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%A0%E0%B8%B2_2568.pdf",
+        "th": {
+            "title": "AUNQA-1-1_มคอ2_ผ่านสภา_2568",
+            "desc": "AUNQA-1-1_มคอ2_ผ่านสภา_2568.pdf"
+        },
+        "en": {
+            "title": "AUNQA-1-1_มคอ2_ผ่านสภา_2568",
+            "desc": "AUNQA-1-1_มคอ2_ผ่านสภา_2568.pdf"
+        }
+    },
+    {
+        "code": "AUNQA-1-3_รวมเล่มCLO_2568",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-1-3_%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1CLO_2568.pdf",
+        "th": {
+            "title": "AUNQA-1-3_รวมเล่มCLO_2568",
+            "desc": "AUNQA-1-3_รวมเล่มCLO_2568.pdf"
+        },
+        "en": {
+            "title": "AUNQA-1-3_รวมเล่มCLO_2568",
+            "desc": "AUNQA-1-3_รวมเล่มCLO_2568.pdf"
+        }
+    },
+    {
+        "code": "AUNQA-1-4b_stakeholder_survey_responses_31คน",
+        "criterion": "1",
+        "type": "csv",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-1-4b_stakeholder_survey_responses_31%E0%B8%84%E0%B8%99.csv",
+        "th": {
+            "title": "แบบสำรวจผู้มีส่วนได้ส่วนเสีย 31 คน (CSV)",
+            "desc": "ข้อมูลแบบสำรวจความต้องการผู้มีส่วนได้ส่วนเสียต่อหลักสูตร CE&AI จำนวน 31 ราย"
+        },
+        "en": {
+            "title": "Stakeholder Survey Responses (31 persons)",
+            "desc": "Survey data on stakeholder needs for the CE&AI programme"
+        }
+    },
+    {
+        "code": "AUNQA-1-4c_บทสัมภาษณ์ผู้มีส่วนได้ส่วนเสียภายนอก",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-1-4c_%E0%B8%9A%E0%B8%97%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%A1%E0%B8%B5%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%80%E0%B8%AA%E0%B8%B5%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B8%99%E0%B8%AD%E0%B8%81.pdf",
+        "th": {
+            "title": "บทสัมภาษณ์ผู้มีส่วนได้ส่วนเสียภายนอก",
+            "desc": "รายงานบทสัมภาษณ์ผู้มีส่วนได้ส่วนเสียภายนอก สนับสนุน R1.4 ความต้องการของผู้ใช้บัณฑิต"
+        },
+        "en": {
+            "title": "External Stakeholder Interviews",
+            "desc": "Interview transcripts from external stakeholders for R1.4"
+        }
+    },
+    {
+        "code": "AUNQA-1-5_ปฐมนิเทศนักศึกษาบัณฑิตศึกษา_2568",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-1-5_%E0%B8%9B%E0%B8%90%E0%B8%A1%E0%B8%99%E0%B8%B4%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%9A%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2568.pdf",
+        "th": {
+            "title": "บันทึกการปฐมนิเทศนักศึกษาบัณฑิตศึกษา ปีการศึกษา 2568",
+            "desc": "หลักฐานการแจ้ง PLO และโครงสร้างหลักสูตรแก่นักศึกษาแรกเข้า รองรับ R1.5 / R6.4"
+        },
+        "en": {
+            "title": "Graduate Student Orientation 2568",
+            "desc": "Evidence of PLO communication to incoming students (R1.5/R6.4)"
+        }
+    },
+    {
+        "code": "AUNQA-3-1_ประกาศIEL_2566",
+        "criterion": "3",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-3-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8IEL_2566.pdf",
+        "th": {
+            "title": "ประกาศเกณฑ์ภาษาอังกฤษ (IEL) พ.ศ. 2566",
+            "desc": "ประกาศมหาวิทยาลัยกำหนดเกณฑ์ทักษะภาษาอังกฤษสำหรับนักศึกษา สนับสนุน R3.1"
+        },
+        "en": {
+            "title": "English Language Requirement Announcement 2566",
+            "desc": "University announcement on English language standards for students (R3.1)"
+        }
+    },
+    {
+        "code": "AUNQA-4-2-1_ประกาศอุทธรณ์ผลประเมิน_2567",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-4-2-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%A3%E0%B8%93%E0%B9%8C%E0%B8%9C%E0%B8%A5%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A1%E0%B8%B4%E0%B8%99_2567.pdf",
+        "th": {
+            "title": "ประกาศระบบและแนวทางการอุทธรณ์ผลการประเมิน พ.ศ. 2567",
+            "desc": "ระเบียบการอุทธรณ์ผลการประเมิน รองรับ R4.2 ความยุติธรรมในการประเมิน"
+        },
+        "en": {
+            "title": "Assessment Appeal Policy 2567",
+            "desc": "Regulations for appealing assessment results (R4.2)"
+        }
+    },
+    {
+        "code": "AUNQA-4-3-1_ข้อบังคับบัณฑิตศึกษา_2566",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-4-3-1_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B8%9A%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2566.pdf",
+        "th": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการจัดการศึกษาระดับบัณฑิตศึกษา พ.ศ. 2566",
+            "desc": "ข้อบังคับหลักของบัณฑิตศึกษา กำหนดระบบการจัดการศึกษา วิทยานิพนธ์ และการสำเร็จการศึกษา (R4.3)"
+        },
+        "en": {
+            "title": "Graduate Studies Regulations 2566",
+            "desc": "URU graduate studies regulations governing academic management and graduation (R4.3)"
+        }
+    },
+    {
+        "code": "AUNQA-4-3-2_ข้อบังคับบัณฑิตศึกษาฉ2_2566",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-4-3-2_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B8%9A%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%892_2566.pdf",
+        "th": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการจัดการศึกษาระดับบัณฑิตศึกษา (ฉบับที่ 2) พ.ศ. 2566",
+            "desc": "ฉบับแก้ไขเพิ่มเติมข้อบังคับบัณฑิตศึกษา รองรับ R4.3"
+        },
+        "en": {
+            "title": "Graduate Studies Regulations Amendment No.2 2566",
+            "desc": "Amendment to URU graduate studies regulations (R4.3)"
+        }
+    },
+    {
+        "code": "AUNQA-4-7-1_แนวปฏิบัติส่งผลประเมิน_2567",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-4-7-1_%E0%B9%81%E0%B8%99%E0%B8%A7%E0%B8%9B%E0%B8%8F%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%9C%E0%B8%A5%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A1%E0%B8%B4%E0%B8%99_2567.pdf",
+        "th": {
+            "title": "แนวปฏิบัติและการกำกับติดตามการส่งผลการประเมิน พ.ศ. 2567",
+            "desc": "แนวปฏิบัติการส่งผลการประเมิน สนับสนุน R4.7 การกำกับดูแลระบบประเมิน"
+        },
+        "en": {
+            "title": "Assessment Submission Guidelines 2567",
+            "desc": "Guidelines for assessment result submission and monitoring (R4.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-1-1_แผนบริหารทรัพยากรบุคคล_2565-2569",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-5-1-1_%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%9E%E0%B8%A2%E0%B8%B2%E0%B8%81%E0%B8%A3%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%84%E0%B8%A5_2565-2569.pdf",
+        "th": {
+            "title": "แผนบริหารทรัพยากรบุคคล มรอ. พ.ศ. 2565-2569",
+            "desc": "แผนยุทธศาสตร์บริหารทรัพยากรบุคคล 27+ หน้า รองรับ R5.1 การวางแผนอัตรากำลัง"
+        },
+        "en": {
+            "title": "URU Human Resources Management Plan 2565-2569",
+            "desc": "Strategic HR plan (27+ pages) supporting R5.1 staff planning"
+        }
+    },
+    {
+        "code": "AUNQA-5-2-1_ประกาศภาระงานขั้นต่ำ_2566",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-5-2-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%A0%E0%B8%B2%E0%B8%A3%E0%B8%B0%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B9%88%E0%B8%B3_2566.pdf",
+        "th": {
+            "title": "ประกาศ มรอ. เรื่อง ภาระงานขั้นต่ำของอาจารย์ พ.ศ. 2566",
+            "desc": "กำหนดภาระงานขั้นต่ำ >= 35 ชม./สัปดาห์ สอน >= 24 ชม. ป.โท <= 20 คน รองรับ R5.2"
+        },
+        "en": {
+            "title": "URU Minimum Faculty Workload Announcement 2566",
+            "desc": "Defines minimum workload >= 35 hrs/week for faculty (R5.2)"
+        }
+    },
+    {
+        "code": "AUNQA-5-3-1_ข้อบังคับแต่งตั้งตำแหน่งวิชาการพิเศษ_2",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-5-3-1_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9_2566.pdf",
+        "th": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการแต่งตั้งตำแหน่งทางวิชาการพิเศษ พ.ศ. 2566",
+            "desc": "ข้อบังคับแต่งตั้ง ผช./รศ./ศ.พิเศษ มติสภา 7/2566 รองรับ R5.3 คุณวุฒิอาจารย์"
+        },
+        "en": {
+            "title": "URU Special Academic Rank Appointment Regulations 2566",
+            "desc": "Regulations for appointing special academic ranks (R5.3)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-1_แผนพัฒนาบุคลากร_2565-2569",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-5-7-1_%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%A5%E0%B8%B2%E0%B8%81%E0%B8%A3_2565-2569.pdf",
+        "th": {
+            "title": "แผนพัฒนาบุคลากร มรอ. พ.ศ. 2565-2569",
+            "desc": "แผนพัฒนาบุคลากรเชิงยุทธศาสตร์ 42 หน้า 6 ส่วน รองรับ R5.7 การพัฒนาวิชาชีพ"
+        },
+        "en": {
+            "title": "URU Staff Development Plan 2565-2569",
+            "desc": "42-page strategic staff development plan (6 sections) supporting R5.7"
+        }
+    },
+    {
+        "code": "AUNQA-6-1-1_นโยบายรับนักศึกษา_2567",
+        "criterion": "6",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-6-1-1_%E0%B8%99%E0%B9%82%E0%B8%A2%E0%B8%9A%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2567.pdf",
+        "th": {
+            "title": "นโยบายและแนวทางการรับนักศึกษา มรอ. พ.ศ. 2567",
+            "desc": "นโยบายการรับนักศึกษาของมหาวิทยาลัย รองรับ R6.1 ระบบรับนักศึกษา"
+        },
+        "en": {
+            "title": "URU Student Admission Policy 2567",
+            "desc": "University student admission policy and procedures (R6.1)"
+        }
+    },
+    {
+        "code": "AUNQA-6-2-2_แผนIT_2568",
+        "criterion": "6",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-6-2-2_%E0%B9%81%E0%B8%9C%E0%B8%99IT_2568.pdf",
+        "th": {
+            "title": "แผนยุทธศาสตร์เทคโนโลยีสารสนเทศ มรอ. พ.ศ. 2568",
+            "desc": "แผน IT มหาวิทยาลัย รองรับ R6.2 ระบบสนับสนุนเทคโนโลยี และ R7 โครงสร้างพื้นฐาน"
+        },
+        "en": {
+            "title": "URU IT Strategic Plan 2568",
+            "desc": "University IT plan supporting R6.2 technology support and R7 infrastructure"
+        }
+    },
+    {
+        "code": "AUNQA-8-4-1_CLO_PLO_Achievement_2568",
+        "criterion": "8",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/AUNQA-8-4-1_CLO_PLO_Achievement_2568.pdf",
+        "th": {
+            "title": "รายงานผลการประเมิน CLO-PLO Achievement ปีการศึกษา 2568",
+            "desc": "PLO ทั้ง 5 ตัวผ่าน 100% (4/4 คน) จาก 4 รายวิชา ปีการศึกษา 2568 รองรับ R8.4"
+        },
+        "en": {
+            "title": "CLO-PLO Achievement Report 2568",
+            "desc": "All 5 PLOs achieved 100% (4/4 students) across 4 courses in 2568 (R8.4)"
+        }
+    },
+    {
+        "code": "GMO-03_เกณฑ์มาตรฐานหลักสูตรบัณฑิตศึกษา_2565",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/GMO-03_%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3%E0%B8%9A%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2565.pdf",
+        "th": {
+            "title": "ประกาศ กมอ. เกณฑ์มาตรฐานหลักสูตรระดับบัณฑิตศึกษา พ.ศ. 2565",
+            "desc": "เกณฑ์ กมอ. กำหนดคุณสมบัติอาจารย์ >= 3 คน ปร.ด./ผช. มีผลงานตีพิมพ์ รองรับ R2.1/R5.1"
+        },
+        "en": {
+            "title": "GMO Graduate Programme Standards 2565",
+            "desc": "GMO standards for graduate programmes: faculty qualifications, workload (R2.1/R5.1)"
+        }
+    },
+    {
+        "code": "GMO-04_รายละเอียดผลลัพธ์การเรียนรู้_2565",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/GMO-04_%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%94%E0%B8%9C%E0%B8%A5%E0%B8%A5%E0%B8%B1%E0%B8%9E%E0%B8%98%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89_2565.pdf",
+        "th": {
+            "title": "ประกาศ กมอ. รายละเอียดผลลัพธ์การเรียนรู้ระดับอุดมศึกษา พ.ศ. 2565",
+            "desc": "กรอบผลลัพธ์ 4 ด้าน (ความรู้ ทักษะ จริยธรรม ลักษณะบุคคล) รองรับ R1.1/R2.1"
+        },
+        "en": {
+            "title": "GMO Learning Outcomes Framework 2565",
+            "desc": "4-domain learning outcomes framework (knowledge, skills, ethics, character) (R1.1/R2.1)"
+        }
+    },
+    {
+        "code": "GMO-14_ประกาศหลักเกณฑ์ตีพิมพ์วิทยานิพนธ์_2565",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/GMO-14_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%95%E0%B8%B5%E0%B8%9E%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B8%B4%E0%B8%9E%E0%B8%99%E0%B8%98%E0%B9%8C_2565.pdf",
+        "th": {
+            "title": "ประกาศ กมอ. หลักเกณฑ์การตีพิมพ์เผยแพร่ผลงานวิทยานิพนธ์ พ.ศ. 2565",
+            "desc": "กำหนดให้วิทยานิพนธ์ ป.โท ตีพิมพ์ใน TCI ระดับชาติ หรือ Scopus/WoS ระดับนานาชาติ รองรับ R8.3"
+        },
+        "en": {
+            "title": "GMO Thesis Publication Standards 2565",
+            "desc": "Requires master's thesis publication in TCI/Scopus/WoS (R8.3)"
+        }
+    },
+    {
+        "code": "URU-REF_ข้อบังคับปริญญาตรี_2566",
+        "criterion": "General",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AD%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B9%86/URU-REF_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%B5_2566.pdf",
+        "th": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการจัดการศึกษาระดับปริญญาตรี พ.ศ. 2566 (อ้างอิง)",
+            "desc": "เอกสารอ้างอิงเปรียบเทียบสำหรับ institutional framework ภาพรวมของ มรอ."
+        },
+        "en": {
+            "title": "URU Undergraduate Regulations 2566 (Reference)",
+            "desc": "Reference document showing URU institutional framework (not for graduate programme)"
+        }
+    },
+    {
+        "code": "กมศ_2566-09-15_ยกร่างหลักสูตร_ครั้งที่1",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2566-09-15_%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3_%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%881.pdf",
+        "th": {
+            "title": "กมศ 15 ก.ย. 2566 ครั้งที่ 1 — ยกร่างหลักสูตร",
+            "desc": "การประชุม กมศ. ครั้งแรก เพื่อยกร่างหลักสูตร CE&AI รองรับ R1.4/R2.1"
+        },
+        "en": {
+            "title": "กมศ 15 ก.ย. 2566 ครั้งที่ 1 — ยกร่างหลักสูตร",
+            "desc": "การประชุม กมศ. ครั้งแรก เพื่อยกร่างหลักสูตร CE&AI รองรับ R1.4/R2.1"
+        }
+    },
+    {
+        "code": "กมศ_2566-10-20_ยกร่างหลักสูตร_ครั้งที่2",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2566-10-20_%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3_%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%882.pdf",
+        "th": {
+            "title": "กมศ 20 ต.ค. 2566 ครั้งที่ 2 — ยกร่างหลักสูตร",
+            "desc": "การประชุม กมศ. ครั้งที่ 2 ยกร่างหลักสูตร พิจารณา PLO และโครงสร้าง รองรับ R1.1/R2.1"
+        },
+        "en": {
+            "title": "กมศ 20 ต.ค. 2566 ครั้งที่ 2 — ยกร่างหลักสูตร",
+            "desc": "การประชุม กมศ. ครั้งที่ 2 ยกร่างหลักสูตร พิจารณา PLO และโครงสร้าง รองรับ R1.1/R2.1"
+        }
+    },
+    {
+        "code": "กมศ_2566-11-20_สัมภาษณ์ผู้มีส่วนได้ส่วนเสีย",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2566-11-20_%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%A1%E0%B8%B5%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%80%E0%B8%AA%E0%B8%B5%E0%B8%A2.pdf",
+        "th": {
+            "title": "กมศ 20 พ.ย. 2566 — สัมภาษณ์ผู้มีส่วนได้ส่วนเสีย",
+            "desc": "การประชุมสรุปผลสัมภาษณ์ผู้มีส่วนได้ส่วนเสีย รองรับ R1.4"
+        },
+        "en": {
+            "title": "กมศ 20 พ.ย. 2566 — สัมภาษณ์ผู้มีส่วนได้ส่วนเสีย",
+            "desc": "การประชุมสรุปผลสัมภาษณ์ผู้มีส่วนได้ส่วนเสีย รองรับ R1.4"
+        }
+    },
+    {
+        "code": "กมศ_2566-12-15_ทบทวนโครงสร้างหลักสูตร",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2566-12-15_%E0%B8%97%E0%B8%9A%E0%B8%97%E0%B8%A7%E0%B8%99%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3.pdf",
+        "th": {
+            "title": "กมศ 15 ธ.ค. 2566 — ทบทวนโครงสร้างหลักสูตร",
+            "desc": "การประชุมทบทวนโครงสร้างและเนื้อหาหลักสูตร รองรับ R2.3"
+        },
+        "en": {
+            "title": "กมศ 15 ธ.ค. 2566 — ทบทวนโครงสร้างหลักสูตร",
+            "desc": "การประชุมทบทวนโครงสร้างและเนื้อหาหลักสูตร รองรับ R2.3"
+        }
+    },
+    {
+        "code": "กมศ_2567-01-19_พัฒนา_CLO_CurriculumMapping",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2567-01-19_%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2_CLO_CurriculumMapping.pdf",
+        "th": {
+            "title": "กมศ 19 ม.ค. 2567 — พัฒนา CLO และ Curriculum Mapping",
+            "desc": "การประชุมพัฒนา CLO และ Curriculum Mapping รองรับ R1.3/R2.4"
+        },
+        "en": {
+            "title": "กมศ 19 ม.ค. 2567 — พัฒนา CLO และ Curriculum Mapping",
+            "desc": "การประชุมพัฒนา CLO และ Curriculum Mapping รองรับ R1.3/R2.4"
+        }
+    },
+    {
+        "code": "กมศ_2567-02-16_ตรวจสอบ_มคอ2",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2567-02-16_%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%88%E0%B8%AA%E0%B8%AD%E0%B8%9A_%E0%B8%A1%E0%B8%84%E0%B8%AD2.pdf",
+        "th": {
+            "title": "กมศ 16 ก.พ. 2567 — ตรวจสอบ มคอ.2",
+            "desc": "การประชุมตรวจสอบและรับรองร่าง มคอ.2 รองรับ R2.1"
+        },
+        "en": {
+            "title": "กมศ 16 ก.พ. 2567 — ตรวจสอบ มคอ.2",
+            "desc": "การประชุมตรวจสอบและรับรองร่าง มคอ.2 รองรับ R2.1"
+        }
+    },
+    {
+        "code": "กมศ_2567-06-07_สรุปสำรวจ_Stakeholder",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2567-06-07_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%AA%E0%B8%B3%E0%B8%A3%E0%B8%A7%E0%B8%88_Stakeholder.pdf",
+        "th": {
+            "title": "กมศ 7 มิ.ย. 2567 — สรุปสำรวจผู้มีส่วนได้ส่วนเสีย",
+            "desc": "การประชุมสรุปผลการสำรวจผู้มีส่วนได้ส่วนเสีย 31 คน รองรับ R1.4"
+        },
+        "en": {
+            "title": "กมศ 7 มิ.ย. 2567 — สรุปสำรวจผู้มีส่วนได้ส่วนเสีย",
+            "desc": "การประชุมสรุปผลการสำรวจผู้มีส่วนได้ส่วนเสีย 31 คน รองรับ R1.4"
+        }
+    },
+    {
+        "code": "กมศ_2567-08-16_เตรียมเปิดรับนักศึกษา",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2567-08-16_%E0%B9%80%E0%B8%95%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2.pdf",
+        "th": {
+            "title": "กมศ 16 ส.ค. 2567 — เตรียมเปิดรับนักศึกษา",
+            "desc": "การประชุมเตรียมความพร้อมก่อนเปิดรับนักศึกษา ปี 2568 รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 16 ส.ค. 2567 — เตรียมเปิดรับนักศึกษา",
+            "desc": "การประชุมเตรียมความพร้อมก่อนเปิดรับนักศึกษา ปี 2568 รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2568-10-11_รับสมัครนักศึกษา",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2568-10-11_%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2.pdf",
+        "th": {
+            "title": "กมศ 11 ต.ค. 2568 — รับสมัครนักศึกษา",
+            "desc": "การประชุมคัดเลือกนักศึกษา ปีการศึกษา 2568 รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 11 ต.ค. 2568 — รับสมัครนักศึกษา",
+            "desc": "การประชุมคัดเลือกนักศึกษา ปีการศึกษา 2568 รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2568-11-15_AUNQA-รายงานสัมภาษณ์รับนักศึกษา_256",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2568-11-15_AUNQA-%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2568.pdf",
+        "th": {
+            "title": "กมศ 15 พ.ย. 2568 — รายงานสัมภาษณ์รับนักศึกษา 2568 (AUN-QA)",
+            "desc": "รายงานผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2568 สำหรับ AUN-QA รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 15 พ.ย. 2568 — รายงานสัมภาษณ์รับนักศึกษา 2568 (AUN-QA)",
+            "desc": "รายงานผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2568 สำหรับ AUN-QA รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2568-11-15_สัมภาษณ์นักศึกษา_รับ4คน",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2568-11-15_%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_%E0%B8%A3%E0%B8%B1%E0%B8%9A4%E0%B8%84%E0%B8%99.pdf",
+        "th": {
+            "title": "กมศ 15 พ.ย. 2568 — สัมภาษณ์นักศึกษา รับ 4 คน",
+            "desc": "ผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2568 รับเข้า 4 คน (สมัคร 6 คน) รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 15 พ.ย. 2568 — สัมภาษณ์นักศึกษา รับ 4 คน",
+            "desc": "ผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2568 รับเข้า 4 คน (สมัคร 6 คน) รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2568-11-28_เปิดภาคเรียน2",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2568-11-28_%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%992.pdf",
+        "th": {
+            "title": "กมศ 28 พ.ย. 2568 — เปิดภาคเรียนที่ 2/2568",
+            "desc": "การประชุมเปิดภาคเรียนที่ 2/2568 ติดตามการจัดการเรียนการสอน รองรับ R3/R4"
+        },
+        "en": {
+            "title": "กมศ 28 พ.ย. 2568 — เปิดภาคเรียนที่ 2/2568",
+            "desc": "การประชุมเปิดภาคเรียนที่ 2/2568 ติดตามการจัดการเรียนการสอน รองรับ R3/R4"
+        }
+    },
+    {
+        "code": "กมศ_2568-12-26_ติดตามผลการเรียน",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2568-12-26_%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B2%E0%B8%A1%E0%B8%9C%E0%B8%A5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99.pdf",
+        "th": {
+            "title": "กมศ 26 ธ.ค. 2568 — ติดตามผลการเรียน",
+            "desc": "การประชุมติดตามผลการเรียนนักศึกษา รองรับ R6.4/R8"
+        },
+        "en": {
+            "title": "กมศ 26 ธ.ค. 2568 — ติดตามผลการเรียน",
+            "desc": "การประชุมติดตามผลการเรียนนักศึกษา รองรับ R6.4/R8"
+        }
+    },
+    {
+        "code": "กมศ_2569-01-07_ทบทวนหลักสูตร",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-01-07_%E0%B8%97%E0%B8%9A%E0%B8%97%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3.pdf",
+        "th": {
+            "title": "กมศ 7 ม.ค. 2569 — ทบทวนหลักสูตร",
+            "desc": "การประชุมทบทวนหลักสูตรประจำปี รองรับ R2.7"
+        },
+        "en": {
+            "title": "กมศ 7 ม.ค. 2569 — ทบทวนหลักสูตร",
+            "desc": "การประชุมทบทวนหลักสูตรประจำปี รองรับ R2.7"
+        }
+    },
+    {
+        "code": "กมศ_2569-01-30_ติดตาม_midterm",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-01-30_%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B2%E0%B8%A1_midterm.pdf",
+        "th": {
+            "title": "กมศ 30 ม.ค. 2569 — ติดตาม Midterm",
+            "desc": "การประชุมติดตามผลสอบกลางภาค รองรับ R4/R8"
+        },
+        "en": {
+            "title": "กมศ 30 ม.ค. 2569 — ติดตาม Midterm",
+            "desc": "การประชุมติดตามผลสอบกลางภาค รองรับ R4/R8"
+        }
+    },
+    {
+        "code": "กมศ_2569-02-27_ติดตามการสอน",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-02-27_%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B2%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%99.pdf",
+        "th": {
+            "title": "กมศ 27 ก.พ. 2569 — ติดตามการสอน",
+            "desc": "การประชุมติดตามคุณภาพการสอน รองรับ R3/R5"
+        },
+        "en": {
+            "title": "กมศ 27 ก.พ. 2569 — ติดตามการสอน",
+            "desc": "การประชุมติดตามคุณภาพการสอน รองรับ R3/R5"
+        }
+    },
+    {
+        "code": "กมศ_2569-03-27_สรุปผลภาคเรียน2",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-03-27_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9C%E0%B8%A5%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%992.pdf",
+        "th": {
+            "title": "กมศ 27 มี.ค. 2569 — สรุปผลภาคเรียนที่ 2/2568",
+            "desc": "การประชุมสรุปผลการดำเนินการภาคเรียนที่ 2/2568 รองรับ R8"
+        },
+        "en": {
+            "title": "กมศ 27 มี.ค. 2569 — สรุปผลภาคเรียนที่ 2/2568",
+            "desc": "การประชุมสรุปผลการดำเนินการภาคเรียนที่ 2/2568 รองรับ R8"
+        }
+    },
+    {
+        "code": "กมศ_2569-04-25_เปิดภาค3_แผนรับนักศึกษา2569",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-04-25_%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A0%E0%B8%B2%E0%B8%843_%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B22569.pdf",
+        "th": {
+            "title": "กมศ 25 เม.ย. 2569 — เปิดภาค 3 แผนรับนักศึกษา 2569",
+            "desc": "การประชุมวางแผนรับนักศึกษา ปีการศึกษา 2569 รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 25 เม.ย. 2569 — เปิดภาค 3 แผนรับนักศึกษา 2569",
+            "desc": "การประชุมวางแผนรับนักศึกษา ปีการศึกษา 2569 รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2569-05-09_AUNQA-รายงานสัมภาษณ์รับนักศึกษา_256",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-05-09_AUNQA-%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2569.pdf",
+        "th": {
+            "title": "กมศ 9 พ.ค. 2569 — รายงานสัมภาษณ์รับนักศึกษา 2569 (AUN-QA)",
+            "desc": "รายงานผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2569 สำหรับ AUN-QA รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 9 พ.ค. 2569 — รายงานสัมภาษณ์รับนักศึกษา 2569 (AUN-QA)",
+            "desc": "รายงานผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2569 สำหรับ AUN-QA รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2569-05-09_สัมภาษณ์นักศึกษา_รับ8คน",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-05-09_%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_%E0%B8%A3%E0%B8%B1%E0%B8%9A8%E0%B8%84%E0%B8%99.pdf",
+        "th": {
+            "title": "กมศ 9 พ.ค. 2569 — สัมภาษณ์นักศึกษา รับ 8 คน",
+            "desc": "ผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2569 รับเข้า 8 คน รองรับ R6.1"
+        },
+        "en": {
+            "title": "กมศ 9 พ.ค. 2569 — สัมภาษณ์นักศึกษา รับ 8 คน",
+            "desc": "ผลการสัมภาษณ์คัดเลือกนักศึกษา ปี 2569 รับเข้า 8 คน รองรับ R6.1"
+        }
+    },
+    {
+        "code": "กมศ_2569-05-16_สรุปปีการศึกษา_ความพึงพอใจ",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%81%E0%B8%A1%E0%B8%A8_2569-05-16_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9B%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%B6%E0%B8%87%E0%B8%9E%E0%B8%AD%E0%B9%83%E0%B8%88.pdf",
+        "th": {
+            "title": "กมศ 16 พ.ค. 2569 — สรุปปีการศึกษา 2568 ความพึงพอใจ",
+            "desc": "การประชุมสรุปผลปีการศึกษา 2568 และผลความพึงพอใจนักศึกษา รองรับ R8.2/R8.4"
+        },
+        "en": {
+            "title": "กมศ 16 พ.ค. 2569 — สรุปปีการศึกษา 2568 ความพึงพอใจ",
+            "desc": "การประชุมสรุปผลปีการศึกษา 2568 และผลความพึงพอใจนักศึกษา รองรับ R8.2/R8.4"
+        }
+    },
+    {
+        "code": "รวมรายงานการประชุมทั้งหมด",
+        "criterion": "1",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AB%E0%B8%A1%E0%B8%94.pdf",
+        "th": {
+            "title": "รวมรายงานการประชุม กมศ. ทั้งหมด",
+            "desc": "รวมเล่มรายงานการประชุม กมศ. ทุกครั้ง รองรับ R1/R2/R6/R8"
+        },
+        "en": {
+            "title": "รวมรายงานการประชุม กมศ. ทั้งหมด",
+            "desc": "รวมเล่มรายงานการประชุม กมศ. ทุกครั้ง รองรับ R1/R2/R6/R8"
+        }
+    },
+    {
+        "code": "AUNQA-2-7-1_ประชุมกรรมการประจำคณะ_เสนอหลักสูตร_256",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/AUNQA-2-7-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B3%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B9%80%E0%B8%AA%E0%B8%99%E0%B8%AD%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3_2568.pdf",
+        "th": {
+            "title": "การประชุมกรรมการประจำคณะ เพื่อเสนอหลักสูตร CE&AI พ.ศ. 2568",
+            "desc": "บันทึกการประชุมกรรมการประจำคณะที่อนุมัติเสนอหลักสูตร CE&AI ไปยังสภา รองรับ R2.7"
+        },
+        "en": {
+            "title": "การประชุมกรรมการประจำคณะ เพื่อเสนอหลักสูตร CE&AI พ.ศ. 2568",
+            "desc": "บันทึกการประชุมกรรมการประจำคณะที่อนุมัติเสนอหลักสูตร CE&AI ไปยังสภา รองรับ R2.7"
+        }
+    },
+    {
+        "code": "คณะ_2568-10_สรุปบันทึกประชุม_10-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2568-10_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_10-2568.pdf",
+        "th": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 10/2568",
+            "desc": "บันทึกการประชุมคณะเดือนตุลาคม 2568 รองรับ R5"
+        },
+        "en": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 10/2568",
+            "desc": "บันทึกการประชุมคณะเดือนตุลาคม 2568 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_2568-11_สรุปบันทึกประชุม_11-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2568-11_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_11-2568.pdf",
+        "th": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 11/2568",
+            "desc": "บันทึกการประชุมคณะเดือนพฤศจิกายน 2568 รองรับ R5"
+        },
+        "en": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 11/2568",
+            "desc": "บันทึกการประชุมคณะเดือนพฤศจิกายน 2568 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_2568-12_สรุปบันทึกประชุม_12-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2568-12_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_12-2568.pdf",
+        "th": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 12/2568",
+            "desc": "บันทึกการประชุมคณะเดือนธันวาคม 2568 รองรับ R5"
+        },
+        "en": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 12/2568",
+            "desc": "บันทึกการประชุมคณะเดือนธันวาคม 2568 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_2568_สแกนรายงานการประชุมรวม_34หน้า",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2568_%E0%B8%AA%E0%B9%81%E0%B8%81%E0%B8%99%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%A3%E0%B8%A7%E0%B8%A1_34%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2.pdf",
+        "th": {
+            "title": "รายงานการประชุมคณะ ปี 2568 รวม 34 หน้า (สแกน)",
+            "desc": "รวมบันทึกการประชุมคณะ ปีการศึกษา 2568 สแกนต้นฉบับ รองรับ R2.7/R5"
+        },
+        "en": {
+            "title": "รายงานการประชุมคณะ ปี 2568 รวม 34 หน้า (สแกน)",
+            "desc": "รวมบันทึกการประชุมคณะ ปีการศึกษา 2568 สแกนต้นฉบับ รองรับ R2.7/R5"
+        }
+    },
+    {
+        "code": "คณะ_2569-01_รายงานการประชุม_1-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2569-01_%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_1-2569.pdf",
+        "th": {
+            "title": "รายงานการประชุมคณะ ครั้งที่ 1/2569",
+            "desc": "บันทึกการประชุมคณะ ครั้งที่ 1/2569 รองรับ R5"
+        },
+        "en": {
+            "title": "รายงานการประชุมคณะ ครั้งที่ 1/2569",
+            "desc": "บันทึกการประชุมคณะ ครั้งที่ 1/2569 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_2569-01_สรุปบันทึกประชุม_1-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2569-01_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_1-2569.pdf",
+        "th": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 1/2569",
+            "desc": "สรุปบันทึกการประชุมคณะ ครั้งที่ 1/2569 รองรับ R5"
+        },
+        "en": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 1/2569",
+            "desc": "สรุปบันทึกการประชุมคณะ ครั้งที่ 1/2569 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_2569-02_สรุปบันทึกประชุม_2-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_2569-02_%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_2-2569.pdf",
+        "th": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 2/2569",
+            "desc": "บันทึกการประชุมคณะ ครั้งที่ 2/2569 รองรับ R5"
+        },
+        "en": {
+            "title": "สรุปบันทึกการประชุมคณะ ครั้งที่ 2/2569",
+            "desc": "บันทึกการประชุมคณะ ครั้งที่ 2/2569 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_ขอเชิญประชุมวิชาการ_10-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%82%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_10-2568.pdf",
+        "th": {
+            "title": "หนังสือเชิญประชุมวิชาการคณะ ครั้งที่ 10/2568",
+            "desc": "หนังสือเชิญประชุมคณะกรรมการวิชาการ เดือนตุลาคม 2568"
+        },
+        "en": {
+            "title": "หนังสือเชิญประชุมวิชาการคณะ ครั้งที่ 10/2568",
+            "desc": "หนังสือเชิญประชุมคณะกรรมการวิชาการ เดือนตุลาคม 2568"
+        }
+    },
+    {
+        "code": "คณะ_ทอ_ขอเชิญประชุม_856-68",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%97%E0%B8%AD_%E0%B8%82%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_856-68.pdf",
+        "th": {
+            "title": "บันทึกขอเชิญประชุม ทอ. ที่ 856/68",
+            "desc": "บันทึกขอเชิญประชุมทางไกล รองรับ R5"
+        },
+        "en": {
+            "title": "บันทึกขอเชิญประชุม ทอ. ที่ 856/68",
+            "desc": "บันทึกขอเชิญประชุมทางไกล รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_บริหารคณะ_8-2568_ต้นฉบับ",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B8%93%E0%B8%B0_8-2568_%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A.pdf",
+        "th": {
+            "title": "บันทึกการประชุมบริหารคณะ ครั้งที่ 8/2568 (ต้นฉบับ)",
+            "desc": "ต้นฉบับบันทึกการประชุมบริหารคณะ ครั้งที่ 8/2568 รองรับ R5"
+        },
+        "en": {
+            "title": "บันทึกการประชุมบริหารคณะ ครั้งที่ 8/2568 (ต้นฉบับ)",
+            "desc": "ต้นฉบับบันทึกการประชุมบริหารคณะ ครั้งที่ 8/2568 รองรับ R5"
+        }
+    },
+    {
+        "code": "คณะ_บันทึกเชิญประชุม_2-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_2-2569.pdf",
+        "th": {
+            "title": "บันทึกเชิญประชุมคณะ ครั้งที่ 2/2569",
+            "desc": "บันทึกข้อความเชิญประชุมคณะ ครั้งที่ 2/2569"
+        },
+        "en": {
+            "title": "บันทึกเชิญประชุมคณะ ครั้งที่ 2/2569",
+            "desc": "บันทึกข้อความเชิญประชุมคณะ ครั้งที่ 2/2569"
+        }
+    },
+    {
+        "code": "คณะ_ประชุมบริหารวิชาการ_1-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_1-2569.pdf",
+        "th": {
+            "title": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 1/2569",
+            "desc": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 1/2569 รองรับ R3/R5"
+        },
+        "en": {
+            "title": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 1/2569",
+            "desc": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 1/2569 รองรับ R3/R5"
+        }
+    },
+    {
+        "code": "คณะ_ประชุมบริหารวิชาการ_3-2569",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_3-2569.pdf",
+        "th": {
+            "title": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 3/2569",
+            "desc": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 3/2569 รองรับ R3/R5"
+        },
+        "en": {
+            "title": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 3/2569",
+            "desc": "บันทึกการประชุมบริหารวิชาการ ครั้งที่ 3/2569 รองรับ R3/R5"
+        }
+    },
+    {
+        "code": "คณะ_หนังสือเชิญประชุม_12-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B7%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1_12-2568.pdf",
+        "th": {
+            "title": "หนังสือเชิญประชุมคณะ ครั้งที่ 12/2568",
+            "desc": "หนังสือเชิญประชุมคณะ เดือนธันวาคม 2568"
+        },
+        "en": {
+            "title": "หนังสือเชิญประชุมคณะ ครั้งที่ 12/2568",
+            "desc": "หนังสือเชิญประชุมคณะ เดือนธันวาคม 2568"
+        }
+    },
+    {
+        "code": "คณะ_หนังสือเชิญประชุมวิชาการ_11-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B7%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_11-2568.pdf",
+        "th": {
+            "title": "หนังสือเชิญประชุมวิชาการคณะ ครั้งที่ 11/2568",
+            "desc": "หนังสือเชิญประชุมคณะกรรมการวิชาการ เดือนพฤศจิกายน 2568"
+        },
+        "en": {
+            "title": "หนังสือเชิญประชุมวิชาการคณะ ครั้งที่ 11/2568",
+            "desc": "หนังสือเชิญประชุมคณะกรรมการวิชาการ เดือนพฤศจิกายน 2568"
+        }
+    },
+    {
+        "code": "คณะ_เชิญประชุมกรรมการวิชาการ_9-2568",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%84%E0%B8%93%E0%B8%B0_%E0%B9%80%E0%B8%8A%E0%B8%B4%E0%B8%8D%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_9-2568.pdf",
+        "th": {
+            "title": "หนังสือเชิญประชุมกรรมการวิชาการ ครั้งที่ 9/2568",
+            "desc": "หนังสือเชิญประชุมกรรมการวิชาการ เดือนกันยายน 2568"
+        },
+        "en": {
+            "title": "หนังสือเชิญประชุมกรรมการวิชาการ ครั้งที่ 9/2568",
+            "desc": "หนังสือเชิญประชุมกรรมการวิชาการ เดือนกันยายน 2568"
+        }
+    },
+    {
+        "code": "มรอ_สภา_เม.ย.2569_2-69",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/02_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%93%E0%B8%B0/%E0%B8%A1%E0%B8%A3%E0%B8%AD_%E0%B8%AA%E0%B8%A0%E0%B8%B2_%E0%B9%80%E0%B8%A1.%E0%B8%A2.2569_2-69.pdf",
+        "th": {
+            "title": "รายงานการประชุมสภา มรอ. ครั้งที่ 2/2569 (เม.ย. 2569)",
+            "desc": "รายงานการประชุมสภา มรอ. เดือนเมษายน 2569 รองรับ R2.7"
+        },
+        "en": {
+            "title": "รายงานการประชุมสภา มรอ. ครั้งที่ 2/2569 (เม.ย. 2569)",
+            "desc": "รายงานการประชุมสภา มรอ. เดือนเมษายน 2569 รองรับ R2.7"
+        }
+    },
+    {
+        "code": "มรอ_2567-07-31_ประชุมกรรมการบัณฑิตศึกษา_4-2567",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/03_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2/%E0%B8%A1%E0%B8%A3%E0%B8%AD_2567-07-31_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_4-2567.pdf",
+        "th": {
+            "title": "การประชุมกรรมการบัณฑิตศึกษา มรอ. ครั้งที่ 4/2567",
+            "desc": "บันทึกการประชุมกรรมการบัณฑิตศึกษา ที่อนุมัติเปิดหลักสูตร CE&AI รองรับ R2.7"
+        },
+        "en": {
+            "title": "การประชุมกรรมการบัณฑิตศึกษา มรอ. ครั้งที่ 4/2567",
+            "desc": "บันทึกการประชุมกรรมการบัณฑิตศึกษา ที่อนุมัติเปิดหลักสูตร CE&AI รองรับ R2.7"
+        }
+    },
+    {
+        "code": "มรอ_สภามหาวิทยาลัย_4-2568_สแกน",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/03_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2/%E0%B8%A1%E0%B8%A3%E0%B8%AD_%E0%B8%AA%E0%B8%A0%E0%B8%B2%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2_4-2568_%E0%B8%AA%E0%B9%81%E0%B8%81%E0%B8%99.pdf",
+        "th": {
+            "title": "รายงานการประชุมสภา มรอ. ครั้งที่ 4/2568 (สแกน)",
+            "desc": "รายงานการประชุมสภามหาวิทยาลัย ที่อนุมัติหลักสูตร CE&AI รองรับ R2.7"
+        },
+        "en": {
+            "title": "รายงานการประชุมสภา มรอ. ครั้งที่ 4/2568 (สแกน)",
+            "desc": "รายงานการประชุมสภามหาวิทยาลัย ที่อนุมัติหลักสูตร CE&AI รองรับ R2.7"
+        }
+    },
+    {
+        "code": "มรอ_สมอ08_วศม_วิศวกรรมคอมพิวเตอร์_รับรองหลักสูตร",
+        "criterion": "2",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/03_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2/%E0%B8%A1%E0%B8%A3%E0%B8%AD_%E0%B8%AA%E0%B8%A1%E0%B8%AD08_%E0%B8%A7%E0%B8%A8%E0%B8%A1_%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B8%9E%E0%B8%B4%E0%B8%A7%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C_%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3.pdf",
+        "th": {
+            "title": "สมอ.08 วศ.ม. วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ — รับรองหลักสูตร",
+            "desc": "เอกสาร สมอ.08 รับรองหลักสูตร วศ.ม. CE&AI จาก สป.อว. รองรับ R2.1"
+        },
+        "en": {
+            "title": "สมอ.08 วศ.ม. วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ — รับรองหลักสูตร",
+            "desc": "เอกสาร สมอ.08 รับรองหลักสูตร วศ.ม. CE&AI จาก สป.อว. รองรับ R2.1"
+        }
+    },
+    {
+        "code": "AUNQA-4-2-1_ประกาศระบบและแนวทางการอุทธรณ์_2567",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-4-2-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%A7%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%A3%E0%B8%93%E0%B9%8C_2567.pdf",
+        "th": {
+            "title": "ประกาศระบบและแนวทางการอุทธรณ์ผลการประเมิน พ.ศ. 2567",
+            "desc": "ระเบียบการอุทธรณ์ผลการประเมิน รองรับ R4.2"
+        },
+        "en": {
+            "title": "ประกาศระบบและแนวทางการอุทธรณ์ผลการประเมิน พ.ศ. 2567",
+            "desc": "ระเบียบการอุทธรณ์ผลการประเมิน รองรับ R4.2"
+        }
+    },
+    {
+        "code": "AUNQA-4-3-1_ข้อบังคับอนุปริญญาและปริญญาตรี_2566",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-4-3-1_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%B5_2566.pdf",
+        "th": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการจัดการศึกษาระดับอนุปริญญาและปริญญาตรี พ.ศ. 2566",
+            "desc": "ข้อบังคับระดับปริญญาตรี ใช้อ้างอิงเปรียบเทียบ R4.3"
+        },
+        "en": {
+            "title": "ข้อบังคับ มรอ. ว่าด้วยการจัดการศึกษาระดับอนุปริญญาและปริญญาตรี พ.ศ. 2566",
+            "desc": "ข้อบังคับระดับปริญญาตรี ใช้อ้างอิงเปรียบเทียบ R4.3"
+        }
+    },
+    {
+        "code": "AUNQA-4-7-1_แนวปฏิบัติและกำกับติดตามการส่งผล_2567",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-4-7-1_%E0%B9%81%E0%B8%99%E0%B8%A7%E0%B8%9B%E0%B8%8F%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%81%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B2%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%9C%E0%B8%A5_2567.pdf",
+        "th": {
+            "title": "แนวปฏิบัติและการกำกับติดตามการส่งผลการประเมิน พ.ศ. 2567",
+            "desc": "แนวปฏิบัติส่งผลการประเมิน รองรับ R4.7"
+        },
+        "en": {
+            "title": "แนวปฏิบัติและการกำกับติดตามการส่งผลการประเมิน พ.ศ. 2567",
+            "desc": "แนวปฏิบัติส่งผลการประเมิน รองรับ R4.7"
+        }
+    },
+    {
+        "code": "AUNQA-6-1-1_นโยบายและแนวทางการรับนักศึกษา_2567",
+        "criterion": "6",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-6-1-1_%E0%B8%99%E0%B9%82%E0%B8%A2%E0%B8%9A%E0%B8%B2%E0%B8%A2%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%A7%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2567.pdf",
+        "th": {
+            "title": "นโยบายและแนวทางการรับนักศึกษา พ.ศ. 2567",
+            "desc": "นโยบายรับนักศึกษา รองรับ R6.1"
+        },
+        "en": {
+            "title": "นโยบายและแนวทางการรับนักศึกษา พ.ศ. 2567",
+            "desc": "นโยบายรับนักศึกษา รองรับ R6.1"
+        }
+    },
+    {
+        "code": "AUNQA-6-2-2_แผนIT_2568",
+        "criterion": "6",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-6-2-2_%E0%B9%81%E0%B8%9C%E0%B8%99IT_2568.pdf",
+        "th": {
+            "title": "แผนยุทธศาสตร์เทคโนโลยีสารสนเทศ มรอ. พ.ศ. 2568",
+            "desc": "แผน IT มหาวิทยาลัย รองรับ R6.2 ระบบสนับสนุนเทคโนโลยี และ R7 โครงสร้างพื้นฐาน"
+        },
+        "en": {
+            "title": "URU IT Strategic Plan 2568",
+            "desc": "University IT plan supporting R6.2 technology support and R7 infrastructure"
+        }
+    },
+    {
+        "code": "student_satisfaction_survey_2568",
+        "criterion": "8",
+        "type": "csv",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/student_satisfaction_survey_2568.csv",
+        "th": {
+            "title": "ผลแบบสอบถามความพึงพอใจนักศึกษา ปีการศึกษา 2568 (CSV)",
+            "desc": "ข้อมูลดิบแบบสอบถามความพึงพอใจนักศึกษาต่อหลักสูตรและการสอน รองรับ R8.2"
+        },
+        "en": {
+            "title": "ผลแบบสอบถามความพึงพอใจนักศึกษา ปีการศึกษา 2568 (CSV)",
+            "desc": "ข้อมูลดิบแบบสอบถามความพึงพอใจนักศึกษาต่อหลักสูตรและการสอน รองรับ R8.2"
+        }
+    }
+];
+
+        let selectedType = 'all';
+        let selectedCriterion = 'all';
+        let searchQuery = '';
+        let currentLang = 'th';
+
+        // Initialize display stats
+        document.getElementById('pdf-total').innerText = documents.filter(d => d.type === 'pdf').length;
+        document.getElementById('csv-total').innerText = documents.filter(d => d.type === 'csv').length;
+
+        // Render documents based on filters and search queries
+        function render() {
+            const container = document.getElementById('criteria-sections-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            // Total visible count
+            let totalVisible = 0;
+            
+            // List of all criteria keys
+            const criteriaKeys = ['General', '1', '2', '3', '4', '5', '6', '7', '8'];
+            
+            criteriaKeys.forEach(crit => {
+                const sectionEl = document.getElementById(`section-${crit}`);
+                if (!sectionEl) return;
+                
+                const gridEl = sectionEl.querySelector('.section-grid');
+                const countEl = sectionEl.querySelector('.section-count');
+                const helperEl = sectionEl.querySelector('.no-docs-helper');
+                
+                // Filter documents for this specific criterion
+                const critDocs = documents.filter(doc => doc.criterion === crit);
+                const filteredDocs = critDocs.filter(doc => {
+                    // Filter by Type
+                    const matchesType = (selectedType === 'all' || doc.type === selectedType);
+                    
+                    // Filter by Search Query
+                    const titleText = (currentLang === 'th' ? doc.th.title : doc.en.title).toLowerCase();
+                    const descText = (currentLang === 'th' ? doc.th.desc : doc.en.desc).toLowerCase();
+                    const codeText = doc.code.toLowerCase();
+                    const pathText = doc.path.toLowerCase();
+                    
+                    const matchesSearch = searchQuery === '' || 
+                        titleText.includes(searchQuery) || 
+                        descText.includes(searchQuery) || 
+                        codeText.includes(searchQuery) ||
+                        pathText.includes(searchQuery);
+
+                    return matchesType && matchesSearch;
+                });
+
+                // Determine if this section should be visible based on global category filter
+                const matchesCategoryFilter = (selectedCriterion === 'all' || selectedCriterion === crit);
+                
+                if (!matchesCategoryFilter) {
+                    sectionEl.classList.add('hidden');
+                    return;
+                }
+
+                // Render card elements into this section's grid
+                gridEl.innerHTML = '';
+                
+                if (filteredDocs.length > 0) {
+                    // Show section, hide helper, show grid
+                    sectionEl.classList.remove('hidden');
+                    if (helperEl) helperEl.classList.add('hidden');
+                    gridEl.classList.remove('hidden');
+                    
+                    // Render cards
+                    filteredDocs.forEach(doc => {
+                        const card = document.createElement('a');
+                        card.href = doc.path;
+                        card.target = "_blank";
+                        card.className = "glass p-6 rounded-2xl border border-primary/10 bouncy-hover flex items-start gap-4 cursor-pointer relative overflow-hidden group";
+
+                        const isPdf = doc.type === 'pdf';
+                        const iconColor = isPdf ? 'text-red-500 bg-red-500/10 border-red-500/20' : 'text-orange-500 bg-orange-500/10 border-orange-500/20';
+                        const fileIconName = isPdf ? 'picture_as_pdf' : 'table_chart';
+                        
+                        // Badge color based on Criterion
+                        let critBadgeColor = "bg-primary-container/20 text-primary border-primary/20";
+                        if (doc.criterion === "General") critBadgeColor = "bg-gray-500/10 text-gray-700 border-gray-500/20 dark:text-gray-300";
+                        else if (doc.criterion === "1") critBadgeColor = "bg-blue-500/10 text-blue-700 border-blue-500/20";
+                        else if (doc.criterion === "2") critBadgeColor = "bg-purple-500/10 text-purple-700 border-purple-500/20";
+                        else if (doc.criterion === "4") critBadgeColor = "bg-teal-500/10 text-teal-700 border-teal-500/20";
+                        else if (doc.criterion === "5") critBadgeColor = "bg-rose-500/10 text-rose-700 border-rose-500/20";
+                        else if (doc.criterion === "6") critBadgeColor = "bg-yellow-500/10 text-yellow-700 border-yellow-500/20";
+                        else if (doc.criterion === "8") critBadgeColor = "bg-indigo-500/10 text-indigo-700 border-indigo-500/20";
+
+                        const title = currentLang === 'th' ? doc.th.title : doc.en.title;
+                        const desc = currentLang === 'th' ? doc.th.desc : doc.en.desc;
+
+                        card.innerHTML = `
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center border ${iconColor} transition-transform group-hover:scale-110">
+                                <span class="material-symbols-outlined text-2xl">${fileIconName}</span>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <div class="flex flex-wrap items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-black tracking-wider uppercase bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">${doc.code}</span>
+                                    <span class="text-[10px] font-bold tracking-wider border px-2 py-0.5 rounded-full ${critBadgeColor}">
+                                        ${doc.criterion === 'General' ? 'General' : 'Criterion ' + doc.criterion}
+                                    </span>
+                                </div>
+                                <h3 class="text-base font-extrabold text-on-background line-clamp-2 leading-snug group-hover:text-primary transition-colors mb-1" title="${title}">
+                                    ${title}
+                                </h3>
+                                <p class="text-xs text-on-surface-variant font-medium line-clamp-2 leading-relaxed opacity-85 mb-3">
+                                    ${desc}
+                                </p>
+                                <div class="flex items-center justify-between text-[11px] font-bold text-on-surface-variant/60">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-xs">database</span>
+                                        ${doc.type.toUpperCase()} · ${doc.size}
+                                    </span>
+                                    <span class="flex items-center gap-0.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span class="text-th">เปิดดู</span><span class="text-en">View</span>
+                                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                        gridEl.appendChild(card);
+                    });
+                    
+                    countEl.innerText = filteredDocs.length;
+                    totalVisible += filteredDocs.length;
+                } else {
+                    // 0 matches inside this criterion
+                    const isFiltering = (searchQuery !== '' || selectedType !== 'all' || selectedCriterion !== 'all');
+                    
+                    if (isFiltering) {
+                        sectionEl.classList.add('hidden');
+                    } else {
+                        // Not filtering, meaning it is empty by default (e.g. C3, C7)
+                        sectionEl.classList.remove('hidden');
+                        gridEl.classList.add('hidden');
+                        if (helperEl) helperEl.classList.remove('hidden');
+                        countEl.innerText = '0';
+                    }
+                }
+            });
+
+            // Update global counts
+            document.getElementById('visible-count').innerText = totalVisible;
+            document.getElementById('visible-count-en').innerText = totalVisible;
+
+            if (totalVisible === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } else {
+                container.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        // Search trigger
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            render();
+        });
+
+        // Type filter trigger
+        function filterType(type) {
+            selectedType = type;
+            document.querySelectorAll('.filter-type-btn').forEach(btn => {
+                btn.className = "filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5";
+            });
+            const activeBtn = document.getElementById(`type-btn-${type}`);
+            if (activeBtn) {
+                activeBtn.className = "filter-type-btn active bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105";
+            }
+            render();
+        }
+
+        // Criterion filter trigger
+        function filterCriterion(crit) {
+            selectedCriterion = crit;
+            document.querySelectorAll('.filter-crit-btn').forEach(btn => {
+                btn.className = "filter-crit-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5";
+            });
+            const activeBtn = document.getElementById(`crit-btn-${crit}`);
+            if (activeBtn) {
+                activeBtn.className = "filter-crit-btn active bg-secondary text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105";
+            }
+            render();
+        }
+
+        // Language toggle trigger
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-th')) {
+                body.classList.remove('lang-th');
+                body.classList.add('lang-en');
+                currentLang = 'en';
+            } else {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-th');
+                currentLang = 'th';
+            }
+            render();
+        }
+
+        // Initial execution
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const critParam = urlParams.get('criterion');
+            const typeParam = urlParams.get('type');
+            
+            let hasParams = false;
+            if (critParam) {
+                filterCriterion(critParam);
+                hasParams = true;
+            }
+            if (typeParam) {
+                filterType(typeParam.toLowerCase());
+                hasParams = true;
+            }
+            
+            if (!hasParams) {
+                render();
+            }
+        });
+    </script>
+</body>
+</html>

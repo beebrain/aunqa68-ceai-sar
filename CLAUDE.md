@@ -22,7 +22,7 @@ aun-qa-wiki/
 ├── guidelines/         ← ground truth: "เนื้อเกณฑ์ที่พึงพิจารณา" ของ ผศ.ดร.ขวัญดาว (Criterion 1-8)
 ├── concepts/           ← criterion-1 ถึง criterion-8 + CLO/PLO concepts
 ├── summaries/          ← CLO ทุกวิชา, evidence index, teaching activities, support data
-├── entities/           ← มรอ., หลักสูตร CE&AI
+├── entities/           ← มรอ., หลักสูตร CPE&AI
 └── raw/                ← extracted text จาก source documents
 ```
 

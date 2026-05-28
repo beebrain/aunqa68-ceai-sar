@@ -13,11 +13,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_UNLESS_FORCE = {"meeting_2569-03-27_semester2-closeout"}
 COMMITTEE_PROGRAM = "คณะกรรมการบริหารหลักสูตร วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (บัณฑิตศึกษา)"
-COMMITTEE_UNI = "คณะกรรมการ/มติระดับมหาวิทยาลัย (สรุปที่เกี่ยวข้องกับหลักสูตร CE\\&AI)"
+COMMITTEE_UNI = "คณะกรรมการ/มติระดับมหาวิทยาลัย (สรุปที่เกี่ยวข้องกับหลักสูตร CPE\\&AI)"
 
 SPECIAL = {
     "meeting_2566-11-20_stakeholder-consultation": (
-        "รายงานสรุปการสัมภาษณ์ผู้มีส่วนได้ส่วนเสีย (หลักสูตร CE\\&AI)",
+        "รายงานสรุปการสัมภาษณ์ผู้มีส่วนได้ส่วนเสีย (หลักสูตร CPE\\&AI)",
         True,
     ),
     "meeting_2567-03-04_grad-committee-mko2": (COMMITTEE_UNI, False),

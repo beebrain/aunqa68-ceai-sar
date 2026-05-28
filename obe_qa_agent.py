@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OBE / AUN-QA Agent — CLI สำหรับตอบคำถามประกันคุณภาพหลักสูตร CE&AI มรอ. 2568
+OBE / AUN-QA Agent — CLI สำหรับตอบคำถามประกันคุณภาพหลักสูตร CPE&AI มรอ. 2568
 ใช้ MiniMax API (OpenAI-compatible) อ่าน key จาก ~/.continue/config.yaml
 """
 
@@ -69,7 +69,7 @@ def load_system_prompt() -> str:
     qa_auditor    = _read(SKILLS / "qa_review_auditor"        / "SKILL.md")
     evidence_map  = _read(SKILLS / "evidence_mapper"          / "SKILL.md")
 
-    return f"""คุณคือ **OBE/AUN-QA Expert Agent** สำหรับหลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (CE&AI) มหาวิทยาลัยราชภัฏอุตรดิตถ์ พ.ศ. 2568
+    return f"""คุณคือ **OBE/AUN-QA Expert Agent** สำหรับหลักสูตรวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ (CPE&AI) มหาวิทยาลัยราชภัฏอุตรดิตถ์ พ.ศ. 2568
 
 ## บทบาทของคุณ
 คุณมีความเชี่ยวชาญ 3 โหมด ที่สลับกันได้ตามคำสั่งผู้ใช้:
@@ -242,8 +242,8 @@ def chat(user_input: str, history: list, system_prompt: str, kb_content: str, mo
 
     messages = [
         {"role": "system",    "content": system_prompt},
-        {"role": "user",      "content": "ข้อมูล knowledge base ของหลักสูตร CE&AI มรอ. 2568 มีดังนี้:\n\n" + kb_content},
-        {"role": "assistant", "content": "รับทราบ ฉันได้โหลด knowledge base ของหลักสูตร CE&AI มรอ. 2568 เรียบร้อยแล้ว พร้อมตอบคำถามครับ"},
+        {"role": "user",      "content": "ข้อมูล knowledge base ของหลักสูตร CPE&AI มรอ. 2568 มีดังนี้:\n\n" + kb_content},
+        {"role": "assistant", "content": "รับทราบ ฉันได้โหลด knowledge base ของหลักสูตร CPE&AI มรอ. 2568 เรียบร้อยแล้ว พร้อมตอบคำถามครับ"},
         *history,
         {"role": "user",      "content": user_input + mode_suffix},
     ]

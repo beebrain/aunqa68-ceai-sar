@@ -119,7 +119,7 @@ Found 323 matches across 38 files.
 | Line | Matches | Content |
 | --- | --- | --- |
 | 40 | `ประชุม` | - [[raw/facebook/pitak-khlaichom-post-20231120\|โพสต์ อ.ปิตก — ประชุมพัฒนาหลักสูตร AI (2023-11-20)]] — หลักฐาน AUNQA-1-2: inter-faculty SH consultation ระหว่างยกร่างหลักสูตร, 107 reactions, 4 รูปบรรยากาศ |
-| 47 | `stakeholder` | - [[raw/articles/stakeholder-survey-2567\|Stakeholder Survey — CE&AI (มิถุนายน 2567)]] — แบบสอบถาม n=31 คน (AUNQA-1-4a/b): 61.3% ต้องการ ป.โท, 83.9% เรียน Weekend, Needs→PLO mapping ครบ 5 PLO |
+| 47 | `stakeholder` | - [[raw/articles/stakeholder-survey-2567\|Stakeholder Survey — CPE&AI (มิถุนายน 2567)]] — แบบสอบถาม n=31 คน (AUNQA-1-4a/b): 61.3% ต้องการ ป.โท, 83.9% เรียน Weekend, Needs→PLO mapping ครบ 5 PLO |
 | 53 | `คณะกรรมการ` | - [[raw/articles/aunqa-4-2-1-grade-appeal\|AUNQA-4-2-1 — ระบบอุทธรณ์ผลการประเมิน 2567]] — ขั้นตอน 2 ระดับ (คณะ/มหาวิทยาลัย), คณะกรรมการ 5 คน; R4.2/R4.4/R4.6 |
 
 ## File: `log.md` (10 matches)
@@ -135,7 +135,7 @@ Found 323 matches across 38 files.
 | 261 | `stakeholder` | - `AUNQA-1-4b_stakeholder_survey_responses_31คน.csv` — raw responses 31 คน (วิเคราะห์แล้ว) |
 | 266 | `stakeholder` | - Created raw: `raw/articles/stakeholder-survey-2567.md` (สรุป survey n=31) |
 | 327 | `คณะกรรมการ` | \| คณะกรรมการสอบ \| อาจารย์ที่ปรึกษา + in 1 + external 1 (Open Defense) \| |
-| 333 | `ผู้มีส่วนได้ส่วนเสีย` | ## [2026-05-20] ingest \| แบบสำรวจความพึงพอใจนักศึกษาและผู้มีส่วนได้ส่วนเสีย CE&AI 2568 |
+| 333 | `ผู้มีส่วนได้ส่วนเสีย` | ## [2026-05-20] ingest \| แบบสำรวจความพึงพอใจนักศึกษาและผู้มีส่วนได้ส่วนเสีย CPE&AI 2568 |
 
 ## File: `raw\articles\aunqa-1-1-website-screenshots.md` (1 matches)
 
@@ -190,10 +190,10 @@ Found 323 matches across 38 files.
 
 | Line | Matches | Content |
 | --- | --- | --- |
-| 2 | `stakeholder` | title: Stakeholder Survey — CE&AI Programme (มิถุนายน 2567) |
+| 2 | `stakeholder` | title: Stakeholder Survey — CPE&AI Programme (มิถุนายน 2567) |
 | 6 | `stakeholder` | tags: [stakeholder, survey, criterion-1, r1.4, needs-analysis, external-sh, aun-qa] |
 | 7 | `stakeholder` | sources: [ข้อมูลหลักฐานที่ต้องการ/AUNQA-1-4a_stakeholder_survey_form.md, ข้อมูลหลักฐานที่ต้องการ/AUNQA-1-4b_stakeholder_survey_responses_31คน.csv] |
-| 11 | `stakeholder` | # Stakeholder Survey — CE&AI Programme (มิถุนายน 2567) |
+| 11 | `stakeholder` | # Stakeholder Survey — CPE&AI Programme (มิถุนายน 2567) |
 | 14 | `stakeholder` | **หลักฐานสำหรับ:** R1.4 — Stakeholder Requirements → PLOs |
 | 23 | `stakeholder` | - **ไฟล์ Responses:** `AUNQA-1-4b_stakeholder_survey_responses_31คน.csv` |
 | 87 | `stakeholder` | ## External Stakeholders ในกลุ่มผู้ตอบ |
@@ -202,7 +202,7 @@ Found 323 matches across 38 files.
 
 | Line | Matches | Content |
 | --- | --- | --- |
-| 1 | `ผู้มีส่วนได้ส่วนเสีย` | # แบบสำรวจความพึงพอใจนักศึกษาและผู้มีส่วนได้ส่วนเสีย — CE&AI 2568 |
+| 1 | `ผู้มีส่วนได้ส่วนเสีย` | # แบบสำรวจความพึงพอใจนักศึกษาและผู้มีส่วนได้ส่วนเสีย — CPE&AI 2568 |
 
 ## File: `raw\clo-all-courses-extract.md` (16 matches)
 
@@ -487,9 +487,9 @@ Found 323 matches across 38 files.
 | 13 | `stakeholder` | > หลักฐานการใช้ Social Media เป็นช่องทางสื่อสาร ประชาสัมพันธ์กิจกรรม และเชื่อมต่อ Stakeholder |
 | 65 | `ประชุม` | > "สาขาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ ได้รับโอกาสที่ดีจากคณะดำเนินการของสหกรณ์ออมทรัพย์ครูอุตรดิตถ์ชุดที่ 65 และคณบดีคณะเทคโนโลยีอุตสาหกรรม ให้ดำเนินการจัดโครงการอบรมในหัวข้อ **'การอบรมปฏิบัติการปัญญาประดิษฐ์ (AI) เพื่อพัฒนาคุณภาพชีวิตการทำงาน'** สำหรับครูที่เป็นสมาชิกสหกรณ์ฯ วันเสาร์ที่ 4 ตุลาคม 2568 ณ ห้องประชุมพระยาพิชัย ชั้น 3 สอ.ครูอุตรดิตถ์ รับ 50 ท่านแรก" |
 | 92 | `ประชุม` | > ภาพป้ายดิจิทัลในโรงพยาบาลพิชัย แสดงข้อความ **"การอบรมให้ความรู้ ด้าน AI"** วันที่ **7-8 เมษายน 2569** โดย **วิทยากรผู้เชี่ยวชาญ จาก มหาวิทยาลัยราชภัฏอุตรดิตถ์** ณ ห้องประชุมเกียรติภูมิพิชัย โรงพยาบาลพิชัย — โลโก้ "PHICHAI HOSPITAL" ชัดเจน |
-| 156 | `ประชุม` | > "ขอขอบคุณ #โรงเรียนเทศบาลท่าอิฐ #โรงเรียนเทศบาลวัดหนองผา #โรงเรียนเทศบาลวัดเกษมจิตตาราม และคณบดีคณะเทคโนโลยีอุตสาหกรรม ที่ให้โอกาสคณาจารย์และ**นักศึกษาปริญญาโท** สาขา CE&AI และสาขาการจัดการงานวิศวกรรม ได้บรรยายเชิงปฏิบัติการ **'การใช้ AI ในการพัฒนาสื่อและนวัตกรรมเพื่อส่งเสริมการจัดการเรียนรู้ในยุคดิจิทัล'** ณ ห้องประชุมวงศ์วรกุล ชั้น 5 คณะเทคโนโลยีอุตสาหกรรม มรอ. วันที่ 26 มีนาคม 2569" |
-| 185 | `ประชุม` | → บทบาท รศ.ดร.กันต์: **อดีตคณบดีคณะเทคโนโลยีอุตสาหกรรม** — ประชุมร่วมยกร่างหลักสูตร CE&AI (2023) ([[raw/facebook/pitak-khlaichom-post-20231120]]) |
-| 198 | `stakeholder` | - เพจเป็นสะพานเชื่อม CE&AI กับ stakeholders ในจังหวัดอุตรดิตถ์ |
+| 156 | `ประชุม` | > "ขอขอบคุณ #โรงเรียนเทศบาลท่าอิฐ #โรงเรียนเทศบาลวัดหนองผา #โรงเรียนเทศบาลวัดเกษมจิตตาราม และคณบดีคณะเทคโนโลยีอุตสาหกรรม ที่ให้โอกาสคณาจารย์และ**นักศึกษาปริญญาโท** สาขา CPE&AI และสาขาการจัดการงานวิศวกรรม ได้บรรยายเชิงปฏิบัติการ **'การใช้ AI ในการพัฒนาสื่อและนวัตกรรมเพื่อส่งเสริมการจัดการเรียนรู้ในยุคดิจิทัล'** ณ ห้องประชุมวงศ์วรกุล ชั้น 5 คณะเทคโนโลยีอุตสาหกรรม มรอ. วันที่ 26 มีนาคม 2569" |
+| 185 | `ประชุม` | → บทบาท รศ.ดร.กันต์: **อดีตคณบดีคณะเทคโนโลยีอุตสาหกรรม** — ประชุมร่วมยกร่างหลักสูตร CPE&AI (2023) ([[raw/facebook/pitak-khlaichom-post-20231120]]) |
+| 198 | `stakeholder` | - เพจเป็นสะพานเชื่อม CPE&AI กับ stakeholders ในจังหวัดอุตรดิตถ์ |
 | 204 | `stakeholder` | #### R8.4 Stakeholder Satisfaction / Program Visibility |
 | 207 | `stakeholder` | - Engagement กับ stakeholders ภายนอก = บ่งชี้ถึงการยอมรับจากชุมชน |
 | 265 | `สัมมนา` | \| 2026-04-04 \| `2026-04-04_122173703912907878.jpg` \| สัมมนา AI ในงานวิจัย+การสอน ระดับบัณฑิตศึกษา ✅ \| |

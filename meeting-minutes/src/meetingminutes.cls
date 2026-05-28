@@ -33,6 +33,17 @@
 \setmainlanguage{thai}
 \setotherlanguage{english}
 
+% ── Thai line breaking ──────────────────────────────────────
+% Enable XeTeX to break Thai text at character boundaries
+\AtBeginDocument{%
+  \XeTeXlinebreaklocale "th"%
+  \XeTeXlinebreakskip = 0pt plus 1pt%
+  \XeTeXlinebreakpenalty = 0%
+  \emergencystretch = 3em%
+  \tolerance = 10000%
+  \pretolerance = 10000%
+}
+
 % ── Font ────────────────────────────────────────────────────
 \setmainfont{TH Sarabun New}[
   BoldFont       = TH Sarabun New Bold,
@@ -149,7 +160,9 @@
 \renewcommand\maketitle{%
   \thispagestyle{firstpage}%
   \begin{center}%
-    {\large\bfseries รายงานการประชุม\@mtgcommittee\par}%
+    {\large\bfseries รายงานการประชุม\par}%
+    \vspace{2pt}%
+    {\large\bfseries\@mtgcommittee\par}%
     \vspace{4pt}%
     {\large\bfseries ครั้งที่ \@mtgno{} / \@mtgyear\par}%
     \vspace{4pt}%
@@ -181,26 +194,26 @@
 %    \end{participants}
 % ============================================================
 \newenvironment{participants}{%
-  \par\small
+  \par\small\sloppy
   \setlength\tabcolsep{4pt}%
-  \begin{tabular}{@{}>{\RaggedRight}p{6.5cm}>{\RaggedRight}p{5.0cm}>{\RaggedRight}p{3.2cm}@{}}%
+  \begin{tabular}{@{}>{\RaggedRight\arraybackslash}p{6.5cm}>{\RaggedRight\arraybackslash}p{6.0cm}>{\RaggedRight\arraybackslash}p{2.2cm}@{}}%
 }{%
   \end{tabular}\par\normalsize
 }
 
 % Normal member row
 \newcommand\pmember[4]{%
-  \thainum{#1}.~#2 & #3 & #4 \\[4pt]%
+  \thainum{#1}.\allowbreak{}#2 & #3 & #4 \\[4pt]%
 }
 
 % Long member — same as \pmember (\RaggedRight handles wrapping automatically)
 \newcommand\pmemberL[4]{%
-  \thainum{#1}.~#2 & #3 & #4 \\[4pt]%
+  \thainum{#1}.\allowbreak{}#2 & #3 & #4 \\[4pt]%
 }
 
 % Absent member: \pabsent{num}{name}{position}{reason}
 \newcommand\pabsent[4]{%
-  \thainum{#1}.~#2 & #3 & #4 \\[3pt]%
+  \thainum{#1}.\allowbreak{}#2 & #3 & #4 \\[3pt]%
 }
 
 % Observer (ผู้เข้าร่วมประชุม) — 2-column only
@@ -213,7 +226,7 @@
 }
 
 \newcommand\pobserver[3]{%
-  \thainum{#1}.~#2 & #3 \\[3pt]%
+  \thainum{#1}.\allowbreak{}#2 & #3 \\[3pt]%
 }
 
 % ============================================================
@@ -297,7 +310,7 @@
   \vspace{6pt}%
   \small
   \setlength\tabcolsep{5pt}%
-  \begin{longtable}{|>{\centering\arraybackslash}p{1.2cm}|p{4.6cm}|p{4.6cm}|p{3.0cm}|}%
+  \begin{longtable}{|>{\centering\arraybackslash}p{1.2cm}|>{\RaggedRight\arraybackslash}p{4.6cm}|>{\RaggedRight\arraybackslash}p{4.6cm}|>{\RaggedRight\arraybackslash}p{3.0cm}|}%
   \hline
   \bfseries วาระที่ &
   \centering\bfseries เรื่อง &

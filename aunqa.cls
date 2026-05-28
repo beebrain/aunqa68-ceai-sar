@@ -108,6 +108,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{hyperref}
 \RequirePackage{bookmark}
+\RequirePackage{pdfpages}
 
 % ==============================================================================
 % TYPOGRAPHY
@@ -433,7 +434,7 @@
 
 % Single evidence item: \evidence{code}{description}
 \newcommand{\evidence}[2]{%
-    \item {\fontbody #1\quad #2}%
+    \item {\fontbody \hyperlink{ref:#1}{#1}\quad #2}%
 }
 
 % Alias for evidence-list (used in sections)

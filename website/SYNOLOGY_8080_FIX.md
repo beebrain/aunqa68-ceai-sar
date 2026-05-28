@@ -11,7 +11,7 @@
 | Path | เนื้อหา |
 |------|---------|
 | `/volume1/docker/ci4_web_system/apps/.htaccess` | routing หลัก |
-| `.../apps/default/public/` | static CE&AI site (rsync จาก `docs/`) |
+| `.../apps/default/public/` | static CPE&AI site (rsync จาก `docs/`) |
 | `.../apps/SSVT/` | ระบบ SSVT (CodeIgniter) |
 
 ## แนวทางแก้ (root = static, `/SSVT/` = CI4)

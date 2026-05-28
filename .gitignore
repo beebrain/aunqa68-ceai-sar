@@ -32,3 +32,7 @@ website/.venv/
 aun-qa-wiki/
 skills/
 *.docx
+
+# Node.js
+node_modules/
+website/node_modules/
