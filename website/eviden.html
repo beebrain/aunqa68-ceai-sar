@@ -145,6 +145,12 @@
                     <button onclick="filterType('csv')" id="type-btn-csv" class="filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
                         CSV
                     </button>
+                    <button onclick="filterType('img')" id="type-btn-img" class="filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        IMG
+                    </button>
+                    <button onclick="filterType('xlsx')" id="type-btn-xlsx" class="filter-type-btn bg-white border border-primary/20 text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:bg-primary/5">
+                        XLSX
+                    </button>
                 </div>
 
                 <!-- Criterion filters -->
@@ -189,12 +195,14 @@
         <!-- Documents Statistics Panel -->
         <div class="mb-8 flex flex-wrap gap-4 items-center justify-between px-2">
             <div class="text-sm font-bold text-on-surface-variant">
-                <span class="text-th">แสดงผล: <span id="visible-count" class="text-primary font-black">0</span> จากทั้งหมด <span class="text-secondary font-black">35</span> รายการ</span>
-                <span class="text-en">Showing: <span id="visible-count-en" class="text-primary font-black">0</span> of <span class="text-secondary font-black">35</span> items</span>
+                <span class="text-th">แสดงผล: <span id="visible-count" class="text-primary font-black">0</span> จากทั้งหมด <span id="doc-total" class="text-secondary font-black">0</span> รายการ</span>
+                <span class="text-en">Showing: <span id="visible-count-en" class="text-primary font-black">0</span> of <span id="doc-total-en" class="text-secondary font-black">0</span> items</span>
             </div>
             <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> PDF (<span id="pdf-total">33</span>)</span>
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> CSV (<span id="csv-total">2</span>)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> PDF (<span id="pdf-total">0</span>)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> CSV (<span id="csv-total">0</span>)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> IMG (<span id="img-total">0</span>)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> XLSX (<span id="xlsx-total">0</span>)</span>
             </div>
         </div>
 
@@ -1546,6 +1554,244 @@
             "title": "ผลแบบสอบถามความพึงพอใจนักศึกษา ปีการศึกษา 2568 (CSV)",
             "desc": "ข้อมูลดิบแบบสอบถามความพึงพอใจนักศึกษาต่อหลักสูตรและการสอน รองรับ R8.2"
         }
+    },
+    {
+        "code": "AUNQA-5-3-2",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1/01_%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3/AUNQA-5-3-2_%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A1_AI_%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_2569-03-28.pdf",
+        "th": {
+            "title": "AUNQA-5-3-2 โครงการอบรม AI เว็บวิชาการ 28 มี.ค. 2569",
+            "desc": "หลักฐานโครงการอบรมปฏิบัติการ AI สำหรับอาจารย์ ผ่านระบบเว็บวิชาการ มรอ. รองรับ R5.3"
+        },
+        "en": {
+            "title": "AUNQA-5-3-2 AI Training Project (Web Academic) 28 Mar 2026",
+            "desc": "Evidence of AI practical training project for faculty via URU academic web system (R5.3)"
+        }
+    },
+    {
+        "code": "AUNQA-3-1-1",
+        "criterion": "3",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-3-1-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%8A%E0%B8%8D%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_IEL_2566.pdf",
+        "th": {
+            "title": "AUNQA-3-1-1 ประกาศปรัชญาการจัดการศึกษา IEL 2566",
+            "desc": "ประกาศปรัชญา IEL ของ มรอ. รองรับ R3.1 โครงสร้างหลักสูตรสอดคล้องกับปรัชญา"
+        },
+        "en": {
+            "title": "AUNQA-3-1-1 Announcement of IEL Education Philosophy 2023",
+            "desc": "URU IEL philosophy announcement supporting R3.1 curriculum structure alignment"
+        }
+    },
+    {
+        "code": "AUNQA-4-1-2",
+        "criterion": "4",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-4-1-2_%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A1%E0%B8%B4%E0%B8%99%E0%B8%9C%E0%B8%A5%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2_2567.pdf",
+        "th": {
+            "title": "AUNQA-4-1-2 หลักเกณฑ์การวัดและประเมินผลรายวิชา 2567",
+            "desc": "ระเบียบการวัดและประเมินผลรายวิชาระดับบัณฑิตศึกษา รองรับ R4.1"
+        },
+        "en": {
+            "title": "AUNQA-4-1-2 Course Assessment and Grading Criteria 2024",
+            "desc": "Graduate-level course grading criteria regulation supporting R4.1"
+        }
+    },
+    {
+        "code": "AUNQA-5-2-1",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-2-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%A0%E0%B8%B2%E0%B8%A3%E0%B8%B0%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B9%88%E0%B8%B3%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%93%E0%B8%B2%E0%B8%88%E0%B8%B2%E0%B8%A3%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B3_2566.pdf",
+        "th": {
+            "title": "AUNQA-5-2-1 ประกาศภาระงานขั้นต่ำของคณาจารย์ประจำ 2566",
+            "desc": "ประกาศภาระงานขั้นต่ำของอาจารย์ประจำ มรอ. รองรับ R5.2"
+        },
+        "en": {
+            "title": "AUNQA-5-2-1 Minimum Workload Announcement for Full-time Faculty 2023",
+            "desc": "URU announcement on minimum workload for full-time faculty supporting R5.2"
+        }
+    },
+    {
+        "code": "AUNQA-5-3-1",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-3-1_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%99%E0%B9%82%E0%B8%A2%E0%B8%9A%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B8%B5%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_2569.pdf",
+        "th": {
+            "title": "AUNQA-5-3-1 ประกาศนโยบายเสรีภาพทางวิชาการ 2569",
+            "desc": "ประกาศนโยบายเสรีภาพทางวิชาการ มรอ. รองรับ R5.3"
+        },
+        "en": {
+            "title": "AUNQA-5-3-1 Academic Freedom Policy Announcement 2026",
+            "desc": "URU academic freedom policy supporting R5.3"
+        }
+    },
+    {
+        "code": "AUNQA-5-5-1",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-5-1_%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%9A%E0%B8%B1%E0%B8%87%E0%B8%84%E0%B8%B1%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%87%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3_2565.pdf",
+        "th": {
+            "title": "AUNQA-5-5-1 ข้อบังคับการแต่งตั้งตำแหน่งทางวิชาการ 2565",
+            "desc": "ข้อบังคับว่าด้วยการแต่งตั้งตำแหน่งทางวิชาการ รองรับ R5.5"
+        },
+        "en": {
+            "title": "AUNQA-5-5-1 Academic Position Appointment Regulations 2022",
+            "desc": "Regulations on academic rank appointment supporting R5.5"
+        }
+    },
+    {
+        "code": "AUNQA-5-6-2",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-6-2_%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2_2565.pdf",
+        "th": {
+            "title": "AUNQA-5-6-2 ระเบียบการจัดสวัสดิการภายในมหาวิทยาลัย 2565",
+            "desc": "ระเบียบสวัสดิการอาจารย์และบุคลากร มรอ. รองรับ R5.6"
+        },
+        "en": {
+            "title": "AUNQA-5-6-2 University Internal Welfare Regulations 2022",
+            "desc": "Welfare regulations for faculty and staff at URU supporting R5.6"
+        }
+    },
+    {
+        "code": "AUNQA-5-6-4",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-6-4_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%A3%E0%B8%A3%E0%B8%AB%E0%B8%B2%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B8%B8%E0%B8%9E%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2_2562.pdf",
+        "th": {
+            "title": "AUNQA-5-6-4 ประกาศหลักเกณฑ์การสรรหาและบรรจุพนักงาน 2562",
+            "desc": "หลักเกณฑ์การสรรหาและบรรจุพนักงานมหาวิทยาลัย รองรับ R5.6"
+        },
+        "en": {
+            "title": "AUNQA-5-6-4 Staff Recruitment and Appointment Criteria 2019",
+            "desc": "University staff recruitment and appointment criteria supporting R5.6"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-3",
+        "criterion": "5",
+        "type": "img",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-3_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%99%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3_%E0%B8%9E%E0%B8%B4%E0%B8%A8%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C_ThaiPOD_7-8%E0%B8%9E%E0%B8%842569.png",
+        "th": {
+            "title": "AUNQA-5-7-3 ประกาศนียบัตร อ.พิศิษฐ์ ThaiPOD 7-8 พ.ค. 2569",
+            "desc": "ประกาศนียบัตรผ่านการอบรม ThaiPOD รองรับ R5.7 การพัฒนาอาจารย์"
+        },
+        "en": {
+            "title": "AUNQA-5-7-3 Certificate: Aj.Pisit — ThaiPOD 7-8 May 2026",
+            "desc": "ThaiPOD training certificate for faculty professional development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-4",
+        "criterion": "5",
+        "type": "img",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-4_%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3_%E0%B8%81%E0%B8%B2%E0%B8%8D%E0%B8%88%E0%B8%99%E0%B8%B2_AI-Workshop_3%E0%B9%80%E0%B8%A1%E0%B8%A22569.png",
+        "th": {
+            "title": "AUNQA-5-7-4 เกียรติบัตร อ.กาญจนา AI Workshop 3 เม.ย. 2569",
+            "desc": "เกียรติบัตรผ่านการอบรม AI Workshop รองรับ R5.7 การพัฒนาอาจารย์"
+        },
+        "en": {
+            "title": "AUNQA-5-7-4 Certificate: Aj.Kanjana — AI Workshop 3 Apr 2026",
+            "desc": "AI Workshop training certificate for faculty professional development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-5",
+        "criterion": "5",
+        "type": "img",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-5_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%99%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3_%E0%B8%9E%E0%B8%B1%E0%B8%8A%E0%B8%A3%E0%B8%B5_HumanSubjectProtection_31%E0%B8%A1%E0%B8%842568.png",
+        "th": {
+            "title": "AUNQA-5-7-5 ประกาศนียบัตร อ.พัชรี Human Subject Protection 31 ม.ค. 2568",
+            "desc": "ประกาศนียบัตรด้านจรรยาบรรณการวิจัย รองรับ R5.7"
+        },
+        "en": {
+            "title": "AUNQA-5-7-5 Certificate: Aj.Patcharee — Human Subject Protection 31 Jan 2025",
+            "desc": "Research ethics certificate for faculty professional development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-6",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-6_Certificate_GCP_%E0%B8%9E%E0%B8%B1%E0%B8%8A%E0%B8%A3%E0%B8%B5.pdf",
+        "th": {
+            "title": "AUNQA-5-7-6 Certificate GCP อ.พัชรี",
+            "desc": "Certificate หลักสูตร Google Cloud Professional รองรับ R5.7 พัฒนาสมรรถนะอาจารย์"
+        },
+        "en": {
+            "title": "AUNQA-5-7-6 Google Cloud Professional Certificate — Aj.Patcharee",
+            "desc": "GCP certificate for faculty competency development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-7",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-7_%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3_%E0%B8%9E%E0%B8%B1%E0%B8%8A%E0%B8%A3%E0%B8%B5_SciTech_EP2.pdf",
+        "th": {
+            "title": "AUNQA-5-7-7 เกียรติบัตร อ.พัชรี SciTech EP2",
+            "desc": "เกียรติบัตรงาน SciTech รองรับ R5.7"
+        },
+        "en": {
+            "title": "AUNQA-5-7-7 Honor Certificate: Aj.Patcharee — SciTech EP2",
+            "desc": "SciTech event honor certificate for faculty development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-5-7-8",
+        "criterion": "5",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-5-7-8_%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3_%E0%B8%9E%E0%B8%B1%E0%B8%8A%E0%B8%A3%E0%B8%B5_%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A8.pdf",
+        "th": {
+            "title": "AUNQA-5-7-8 เกียรติบัตร อ.พัชรี ระบบสารสนเทศ",
+            "desc": "เกียรติบัตรด้านระบบสารสนเทศ รองรับ R5.7"
+        },
+        "en": {
+            "title": "AUNQA-5-7-8 Honor Certificate: Aj.Patcharee — Information Systems",
+            "desc": "Information systems honor certificate for faculty development (R5.7)"
+        }
+    },
+    {
+        "code": "AUNQA-6-1-5",
+        "criterion": "6",
+        "type": "pdf",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-6-1-5_%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2569.pdf",
+        "th": {
+            "title": "AUNQA-6-1-5 ประกาศมาตรฐานความสามารถภาษาอังกฤษนักศึกษา 2569",
+            "desc": "ประกาศมาตรฐานภาษาอังกฤษนักศึกษาระดับบัณฑิตศึกษา รองรับ R6.1"
+        },
+        "en": {
+            "title": "AUNQA-6-1-5 Student English Proficiency Standard Announcement 2026",
+            "desc": "Graduate student English proficiency standard announcement supporting R6.1"
+        }
+    },
+    {
+        "code": "AUNQA-8-5-1",
+        "criterion": "8",
+        "type": "img",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA-8-5-1_Facebook_CPE-AI_%E0%B8%A7%E0%B8%A8%E0%B8%A1_%E0%B8%A1%E0%B8%A3%E0%B8%AD_2568.png",
+        "th": {
+            "title": "AUNQA-8-5-1 Facebook CPE-AI วศ.ม. มรอ. 2568",
+            "desc": "ภาพสื่อสังคมออนไลน์ Facebook หลักสูตร CE&AI รองรับ R8.5 การเผยแพร่"
+        },
+        "en": {
+            "title": "AUNQA-8-5-1 Facebook Page: M.Eng. CPE&AI at URU 2025",
+            "desc": "Facebook social media evidence for CE&AI programme outreach (R8.5)"
+        }
+    },
+    {
+        "code": "AUNQA-FTES-2567",
+        "criterion": "General",
+        "type": "xlsx",
+        "path": "Eviden_aunqa68/%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%99%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%99%E0%B8%B8%E0%B8%99/AUNQA_extracted_-_%E0%B8%84%E0%B9%88%E0%B8%B2_FTES_%E0%B8%9B%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2_2567_%5B11_6_2568%5D.xlsx",
+        "th": {
+            "title": "ค่า FTES ปีการศึกษา 2567 (Extracted)",
+            "desc": "ข้อมูล FTES ปีการศึกษา 2567 ที่สกัดมาจากระบบ รองรับ R8 ผลผลิตหลักสูตร"
+        },
+        "en": {
+            "title": "FTES Values Academic Year 2567 (Extracted)",
+            "desc": "FTES data for academic year 2024 extracted from system, supporting R8 programme output"
+        }
     }
 ];
 
@@ -1557,6 +1803,10 @@
         // Initialize display stats
         document.getElementById('pdf-total').innerText = documents.filter(d => d.type === 'pdf').length;
         document.getElementById('csv-total').innerText = documents.filter(d => d.type === 'csv').length;
+        document.getElementById('img-total').innerText = documents.filter(d => d.type === 'img').length;
+        document.getElementById('xlsx-total').innerText = documents.filter(d => d.type === 'xlsx').length;
+        document.getElementById('doc-total').innerText = documents.length;
+        document.getElementById('doc-total-en').innerText = documents.length;
 
         // Render documents based on filters and search queries
         function render() {
@@ -1623,8 +1873,13 @@
                         card.className = "glass p-6 rounded-2xl border border-primary/10 bouncy-hover flex items-start gap-4 cursor-pointer relative overflow-hidden group";
 
                         const isPdf = doc.type === 'pdf';
-                        const iconColor = isPdf ? 'text-red-500 bg-red-500/10 border-red-500/20' : 'text-orange-500 bg-orange-500/10 border-orange-500/20';
-                        const fileIconName = isPdf ? 'picture_as_pdf' : 'table_chart';
+                        const isImg = doc.type === 'img';
+                        const isXlsx = doc.type === 'xlsx';
+                        const iconColor = isPdf ? 'text-red-500 bg-red-500/10 border-red-500/20'
+                            : isImg ? 'text-purple-500 bg-purple-500/10 border-purple-500/20'
+                            : isXlsx ? 'text-green-600 bg-green-500/10 border-green-500/20'
+                            : 'text-orange-500 bg-orange-500/10 border-orange-500/20';
+                        const fileIconName = isPdf ? 'picture_as_pdf' : isImg ? 'image' : isXlsx ? 'grid_on' : 'table_chart';
                         
                         // Badge color based on Criterion
                         let critBadgeColor = "bg-primary-container/20 text-primary border-primary/20";
