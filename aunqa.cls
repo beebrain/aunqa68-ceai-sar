@@ -238,7 +238,8 @@
         \vspace*{1.2cm}
         {\fontcover\bfseries รายงานประเมินตนเอง}\\[0.4cm]
         {\fontcover\bfseries การประกันคุณภาพการศึกษาภายใน~~ระดับหลักสูตร}\\[0.4cm]
-        {\fontcover\bfseries ตามเกณฑ์คุณภาพ AUN-QA}\\[1.8cm]
+        {\fontcover\bfseries ตามเกณฑ์คุณภาพ AUN-QA}\\[1.2cm]
+        \includegraphics[width=5cm]{logo-uru}\\[1.2cm]
         {\fontsection\bfseries หลักสูตร\@programnameth\space สาขาวิชา\@programbranch}\\[0.3cm]
         {\fontsection\bfseries หลักสูตร\@programstatus\space พ.ศ.~\@programyear}\\[0.3cm]
         {\fontsection\bfseries คณะ \@faculty}\\[0.3cm]
