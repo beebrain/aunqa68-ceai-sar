@@ -56,7 +56,33 @@
 
 หลักสูตรดำเนินการจัดเก็บข้อมูลจากผู้มีส่วนได้ส่วนเสียเพื่อนำมาประกอบการออกแบบหลักสูตรก่อนการยกร่าง โดยมีการระบุกลุ่มผู้มีส่วนได้ส่วนเสียและวิธีการรับข้อมูลที่หลากหลาย
 
-ข้อมูลที่ได้จากผู้มีส่วนได้ส่วนเสียสะท้อนให้เห็นในการออกแบบหลักสูตรในหลายมิติ ได้แก่ (1) ด้านเนื้อหา: มีวิชา IoT Smart Farming, AI สำหรับงาน Healthcare และ Drone AI ซึ่งตอบสนองความต้องการขององค์กรในท้องถิ่น (2) ด้านรูปแบบการเรียน: เปิดสอนในวันเสาร์--อาทิตย์ (ร้อยละ~83.9 ของกลุ่มเป้าหมายต้องการ) (3) ด้านทักษะ: เน้นทักษะการเขียนโปรแกรม MLOps และ Git/GitHub ตามความต้องการของสถานประกอบการ
+ตาราง~\ref{tbl:sh_feedback_trace} แสดงการติดตาม (Traceability) จาก Feedback ของผู้มีส่วนได้ส่วนเสีย ไปสู่การตัดสินใจออกแบบหลักสูตรที่เป็นรูปธรรม
+
+\begin{table}[H]
+  \centering
+  \caption{Stakeholder Feedback Traceability --- จาก Feedback ของ SH สู่การตัดสินใจออกแบบหลักสูตร}
+  \label{tbl:sh_feedback_trace}
+  \begingroup
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{2.2cm}|}
+    \hline
+    \textbf{แหล่ง Feedback} & \textbf{ข้อมูลที่ได้รับ} & \textbf{การตัดสินใจออกแบบหลักสูตร} & \textbf{อ้างอิง} \\
+    \hline
+    แบบสำรวจ Stakeholder ($n=31$, มิ.ย. 2567) & 83.9\% ต้องการเรียนวันเสาร์--อาทิตย์; 61.3\% ต้องการระดับ ป.โท & กำหนดรูปแบบสอน Weekend class; ยืนยันระดับมหาบัณฑิต & AUNQA-1-4a/b \\
+    \hline
+    สัมภาษณ์ภายนอก 9 หน่วยงาน (พ.ย. 2566) & ต้องการทักษะ AI สำหรับ Healthcare, เกษตร, อุตสาหกรรม, ราชการ & เพิ่มวิชาเลือก AI สำหรับ Healthcare/Agriculture; บรรจุ IoT/Smart Systems ในวิชา 7015101 & AUNQA-1-4c \\
+    \hline
+    ประชุม กบ.วช. 2/2566 (ต.ค. 2566) เปรียบเทียบ จุฬาฯ/มจพ./มช. & จุฬาฯ/มจพ./มช. เน้น MLOps และ Git/GitHub สำหรับ ML engineer & เพิ่ม Git/GitHub/MLOps ในวิชา 4095102 CLO2--3 & AUNQA-2-8 \\
+    \hline
+    สภามหาวิทยาลัย 4/2568 ข้อเสนอแนะ 9 ข้อ (เม.ย. 2568) & ปรับรหัสวิชากลุ่ม AI/ML จาก prefix 701 เป็น 409; เสริมความชัดเจนวิทยานิพนธ์แผน 1 & แก้รหัสวิชา 4095101--4095102; ชี้แจง Thesis Committee structure & AUNQA-1-2, มคอ.2 \\
+    \hline
+    ผลสำรวจนักศึกษา $n=4$ (พ.ค. 2569) & เสนอเพิ่มเนื้อหา Big Data/Cloud (4/4) และ AI Security (3/4) & บรรจุใน Agenda ทบทวนหลักสูตรประจำปี 2569 & AUNQA-C6-STSAT-2568 \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
 
 ทั้งนี้ ในฐานะหลักสูตรใหม่ที่เปิดรับนักศึกษารุ่นแรกในภาค 2/2568 หลักสูตรได้วางระบบเพื่อรับ Feedback จากผู้มีส่วนได้ส่วนเสียที่สัมผัสกับหลักสูตรจริงอย่างต่อเนื่อง โดยจะดำเนินการสำรวจประสบการณ์นักศึกษาและผู้ใช้บัณฑิตอย่างเป็นทางการในรอบการทบทวนประจำปี
 
@@ -135,6 +161,7 @@
 
 กิจกรรมทั้งสองแสดงให้เห็นว่าหลักสูตรสามารถ Integration ได้ในระดับที่นักศึกษาไม่เพียงแต่ใช้ความรู้เชิงทฤษฎี แต่สามารถสื่อสาร อธิบาย และถ่ายทอดองค์ความรู้ AI ให้กับผู้ที่ไม่มีพื้นฐานด้านคอมพิวเตอร์ได้จริง ซึ่งตรงกับ PLO5 (ทักษะการสื่อสารและการเรียนรู้ตลอดชีวิต) และ PLO2 (การพัฒนาระบบสำหรับท้องถิ่น)
 
+\textbf{การเทียบเคียงมาตรฐานสากล (International Benchmarking)}: หลักสูตรตรวจสอบความสอดคล้องของโครงสร้างกับมาตรฐานนานาชาติ 2 กรอบหลัก ได้แก่ (1)~\textbf{ABET Criteria for Accrediting Engineering Programs (2024--2025)} ซึ่งกำหนดให้หลักสูตรวิศวกรรมศาสตรบัณฑิต/มหาบัณฑิตมีความก้าวหน้าของรายวิชาอย่างเป็นระบบ (progressive sequence) ครอบคลุม mathematics, engineering fundamentals, engineering design และ ethics — โครงสร้างหลักสูตร CPE\&AI สอดคล้องโดยมีลำดับจาก Foundation (4095101, 7015906) $\rightarrow$ Application (4095102, 7015101) $\rightarrow$ Integration \& Research (7015907, 7015908 + Thesis/IS) ที่สามารถ map กับ ABET Program Criteria for Computer Engineering ได้ชัดเจน และ (2)~\textbf{IEEE Education Society Curriculum Guidelines for AI/ML} ที่แนะนำให้หลักสูตร Graduate-level AI มี core modules ครอบคลุม Mathematical Foundations, Machine Learning Theory, Practical Implementation, Ethics และ Research Methods — ซึ่งหลักสูตรครอบคลุมครบทั้ง 5 องค์ประกอบผ่านวิชาบังคับ 6 วิชา
 
 % ------------------------------------------------------------------------------
 \criterionsub{2.6 The curriculum to have option(s) for students to pursue major and/or minor specialisations.}
