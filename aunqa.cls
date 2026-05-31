@@ -366,11 +366,11 @@
 }
 
 % AUN QA narrative criterion line (e.g. ``1.1 The programme \ldots'') —
-% flush left, roman body weight (not bold); body paragraphs stay indented (\parindent).
+% bold body, with extra blank line before for visual separation.
 \newcommand{\criterionsub}[1]{%
-    \vspace{6pt}%
-    \noindent{\fontbody\normalfont\mdseries #1}%
-    \par\vspace{4pt}%
+    \vspace{14pt}%
+    \noindent{\fontbody\normalfont\bfseries #1}%
+    \par\vspace{6pt}%
 }
 
 % Numbered lists under criterion text: ``1)'' style with extra inset vs body text.
