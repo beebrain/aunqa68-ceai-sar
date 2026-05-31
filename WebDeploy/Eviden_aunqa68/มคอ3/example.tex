@@ -1,0 +1,86 @@
+% Example usage of mko3.cls — compile with XeLaTeX
+% Requires: TH Sarabun New font installed
+\documentclass{mko3}
+
+\begin{document}
+
+\mkothreetitle
+
+% ----- 1. Course info -----
+\coursecode{XX12345}
+\coursename{ชื่อรายวิชาตัวอย่าง}
+\program{หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์}
+\coursegroup{วิชาเฉพาะด้าน}
+\semester{2 / 2568}
+\instructor{ผศ.ดร.ตัวอย่าง นามสมมุติ}
+\contact{example@uru.ac.th \quad โทร. 0-XXXX-XXXX}
+\coursedesc{คำอธิบายรายวิชาเขียนรายละเอียดเนื้อหาวิชา จุดเน้น
+ทักษะที่ผู้เรียนจะได้รับ และความเชื่อมโยงกับรายวิชาอื่น ๆ
+ในหลักสูตร}
+\courseinfotable
+% ----- หมวดที่ 2–3: CLOs / คำอธิบาย / กิจกรรม -----
+\begin{clodomaintable}
+  \cloitem{CLO1}{อธิบายแนวคิดและทฤษฎีพื้นฐานของรายวิชาได้}{Cognitive}{3}
+  \cloitem{CLO2}{ออกแบบและพัฒนาระบบจากโจทย์ที่กำหนดได้}{Psychomotor}{4}
+\end{clodomaintable}
+
+% ----- 3.1 CLO ↔ PLO mapping -----
+\begin{cloplotable}{3}{ & \textbf{PLO1} & \textbf{PLO2} & \textbf{PLO3}}
+  \textbf{CLO1} & X &   & X \\ \hline
+  \textbf{CLO2} &   & X & X \\ \hline
+\end{cloplotable}
+
+% ----- 3.2 Bloom + LLL -----
+\begin{bloomtable}
+  \bloomrow{CLO1}{3}{2}{}{1}
+  \bloomrow{CLO2}{4}{}{3}{2}
+\end{bloomtable}
+
+% ----- 4. Content analysis -----
+\begin{contentanalysistable}
+  \contentrow{หลักการพื้นฐาน}{Cognitive 2}{อธิบาย}{ในบริบทของระบบจริง}{3}
+  \contentrow{การออกแบบ}{Psychomotor 3}{ออกแบบ}{ตามโจทย์ที่กำหนด}{6}
+\end{contentanalysistable}
+
+\mkocoursedesc
+
+\begin{courseactivities}
+  \actitem{บรรยายและอภิปราย}
+  \actitem{ปฏิบัติการ / โครงงาน}
+\end{courseactivities}
+
+% ----- Teaching & assessment -----
+\begin{teachingtable}
+  \teachrow{CLO1}{บรรยาย, อภิปราย, กรณีศึกษา}{แบบฝึกหัด, ข้อสอบ}
+  \teachrow{CLO2}{ปฏิบัติการ, โครงงาน}{การประเมินโครงงาน, การนำเสนอ}
+\end{teachingtable}
+
+% ----- 6. Assessment plan -----
+\begin{assessmenttable}
+  \assessrow{สอบก่อนเรียน (ถ้ามี)}{--}{0}
+  \assessrow{สอบระหว่างเรียน}{CLO1}{30}
+  \assessrow{สอบปลายภาค}{CLO1, CLO2}{40}
+  \assessrow{กิจกรรมการอื่น ๆ (ถ้ามี)}{CLO2}{30}
+\end{assessmenttable}
+
+\begin{learningmaterials}
+  \matitem{เอกสารประกอบการบรรยาย}
+  \matitem{ตำราและบทความอ้างอิง}
+\end{learningmaterials}
+
+\begin{supporttable}
+  \supportrow{ห้องเรียน}{1 ห้อง}{พร้อมใช้}{ปานกลาง}
+  \supportrow{ห้องสำหรับการเรียนรู้}{1 ห้อง}{พร้อมใช้}{ทันสมัย}
+  \supportrow{อุปกรณ์}{ครบ}{พร้อมใช้}{ทันสมัย}
+  \supportrow{เครื่องมืออื่น ๆ เช่น เอกสาร ตำรา วารสาร ที่แนะนำ}{ครบ}{พร้อมใช้}{ทันสมัย}
+\end{supporttable}
+
+\begin{weeklyplan}
+  \weekrow{1}{หัวข้อสัปดาห์ที่ 1}{บรรยาย + แบบฝึกหัด}{CLO1}{แบบทดสอบ}
+  \weekrow{2}{หัวข้อสัปดาห์ที่ 2}{ปฏิบัติการ}{CLO2}{รายงาน}
+\end{weeklyplan}
+
+% ----- Signatures -----
+\signatureblock{ผศ.ดร.ตัวอย่าง นามสมมุติ}{ผศ.ดร.รองคณบดี ฝ่ายวิชาการ}
+
+\end{document}
