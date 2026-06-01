@@ -6,6 +6,20 @@
     body {
         font-family: 'Dm Sans', sans-serif;
     }
+    button, [role="button"], a {
+        cursor: pointer;
+    }
+    button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
+        outline: 3px solid #e040a0;
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
 }
 
 @layer utilities {
