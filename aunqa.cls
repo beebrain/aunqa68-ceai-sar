@@ -54,6 +54,7 @@
     BoldFont       = * Bold,
     ItalicFont     = * Italic,
     BoldItalicFont = * BoldItalic,
+    Ligatures      = TeX,
 ]
 \setmonofont{THSarabunNew}[
     Path           = ./fonts/,
@@ -62,6 +63,7 @@
     BoldFont       = * Bold,
     ItalicFont     = * Italic,
     BoldItalicFont = * BoldItalic,
+    Ligatures      = TeX,
 ]
 \newfontfamily\thaifont{THSarabunNew}[
     Path           = ./fonts/,
@@ -69,6 +71,7 @@
     UprightFont    = *,
     BoldFont       = * Bold,
     ItalicFont     = * Italic,
+    Ligatures      = TeX,
 ]
 
 % --- Page Layout ---
@@ -109,6 +112,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{bookmark}
 \RequirePackage{pdfpages}
+\RequirePackage{environ}
 
 % ==============================================================================
 % TYPOGRAPHY
@@ -173,13 +177,38 @@
     {\fontbody\bfseries}}
 
 % --- Hyperref Setup ---
+% Visible coloured links (so AUNQA-X-Y citations look clickable in PDF)
 \hypersetup{
-    colorlinks = false,
+    colorlinks = true,
+    linkcolor  = {blue!70!black},  % internal links (\hyperlink to ref:XXX, \ref, TOC)
+    urlcolor   = {blue!70!black},  % external \href links
+    citecolor  = {blue!70!black},
     pdfborder  = {0 0 0},
 }
 
-% --- No Section Numbering ---
-\setcounter{secnumdepth}{0}
+% --- Auto Section Numbering driven by partnum counter ---
+% \partpage{ส่วนที่ X}{...} จะ step partnum + reset section
+% ทำให้ \section ใน Part X เป็น X.1, X.2 อัตโนมัติ
+\newcounter{partnum}
+\setcounter{partnum}{0}
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesection}{\arabic{partnum}.\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{partnum}.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{partnum}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+% Manual-number fallback (เมื่อ auto ไม่เหมาะสม)
+\newcommand{\nsection}[2]{%
+    \section*{#1\quad #2}%
+    \addcontentsline{toc}{section}{#1\quad #2}%
+}
+\newcommand{\nsubsection}[2]{%
+    \subsection*{#1\quad #2}%
+    \addcontentsline{toc}{subsection}{#1\quad #2}%
+}
+\newcommand{\nsubsubsection}[2]{%
+    \subsubsection*{#1\quad #2}%
+    \addcontentsline{toc}{subsubsection}{#1\quad #2}%
+}
 
 % ==============================================================================
 % HEADER & FOOTER
@@ -257,7 +286,10 @@
 \newcommand{\partpage}[2]{%
     % Chapter-style opener: start a new page but keep the next section
     % on the SAME page (no standalone separator page).
+    % Step partnum + reset section counter for auto-numbering
     \clearpage
+    \stepcounter{partnum}%
+    \setcounter{section}{0}%
     \thispagestyle{empty}
     \vspace*{0.8cm}
     \begin{center}
@@ -284,7 +316,7 @@
         \begin{minipage}{9cm}
             \centering
             ({\@chairperson})\\
-            ประธานหลักสูตร\@programnameth
+            ประธานหลักสูตร\@programnameth\space สาขา\@programbranch
         \end{minipage}
     \end{center}
     \newpage
@@ -304,6 +336,23 @@
     \hfill{\fontbody\bfseries หน้า}\par
     \vspace{0.2cm}
     {\fontbody #1}\par
+    \newpage
+}
+
+% ==============================================================================
+% LIST OF TABLES (สารบัญตาราง)
+% ==============================================================================
+% ใช้ \@starttoc{lot} โดยตรง (ใน .cls @ เป็น letter อยู่แล้ว)
+\newcommand{\makeloT}{%
+    \newpage
+    \thispagestyle{empty}%
+    \begin{center}
+        {\fontpart\bfseries สารบัญตาราง}
+    \end{center}
+    \vspace{0.4cm}
+    \hfill{\fontbody\bfseries หน้า}\par
+    \vspace{0.2cm}
+    {\fontbody\@starttoc{lot}}%
     \newpage
 }
 
@@ -352,10 +401,12 @@
 
 % Main criterion header: \criterion{number}{Thai name}{English name}
 \newcommand{\criterion}[3]{%
+    \clearpage
     \vspace{8pt}
-    \noindent{\fontbody\bfseries Criteria #1~:~#2 (#3)}
+    \noindent{\fontbody\bfseries Criteria #1\quad #2 (#3)}
     \vspace{4pt}
     \par
+    \label{cri:#1}%
 }
 
 % Sub-criterion: \subcriterion{number}{description}
@@ -423,28 +474,31 @@
 % ==============================================================================
 
 % Evidence list environment
-\newenvironment{evidencelist}{%
+\NewEnviron{evidencelist}{%
     \vspace{6pt}
-    \noindent{\fontbody\bfseries รายการหลักฐาน}
-    \vspace{2pt}
-    \begin{itemize}[leftmargin=2cm, label={}, itemsep=0pt, parsep=0pt]
-}{%
-    \end{itemize}
+    \noindent{\fontbody\bfseries รายการหลักฐาน}\par\vspace{4pt}
+    \begingroup
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \noindent
+    \begin{xltabular}{\textwidth}{@{} >{\raggedright\arraybackslash}p{3.5cm} Y >{\raggedright\arraybackslash}p{3.2cm} @{}}
+    \textbf{รหัสหลักฐาน} & \textbf{รายละเอียด} & \textbf{ชนิด link} \\[4pt]
+    \BODY
+    \end{xltabular}
+    \endgroup
     \vspace{4pt}
 }
 
-% Single evidence item: \evidence{code}{description}
-\newcommand{\evidence}[2]{%
-    \item {\fontbody \hyperlink{ref:#1}{#1}\quad #2}%
+% Single evidence item: \evidence{code}{description}{links}
+\newcommand{\evidence}[3]{%
+    \hyperlink{ref:#1}{#1} & #2 & #3 \\%
 }
 
 % Alias for evidence-list (used in sections)
-\newenvironment{evidence-list}{%
-    \vspace{6pt}
-    \begin{itemize}[leftmargin=2cm, label={}, itemsep=0pt, parsep=0pt]
-}{%
-    \end{itemize}
-    \vspace{4pt}
+\NewEnviron{evidence-list}{%
+    \begin{evidencelist}%
+    \BODY
+    \end{evidencelist}%
 }
 
 % ==============================================================================
@@ -476,9 +530,9 @@
 \newenvironment{selfassessmentbox}[2]{%
     \vspace{4pt}
     \noindent\fbox{%
-        \parbox{\linewidth-2cm}{%
-            \centering
-            {\fontbody\bfseries ผลการประเมินตนเอง : #1 / 7} \\[4pt]
+        \parbox{\linewidth - 2\fboxsep - 2\fboxrule}{%
+            \raggedright
+            {\fontbody\bfseries ผลการประเมินตนเอง #1 / 7} \\[4pt]
             #2
         }%
     }
@@ -490,14 +544,14 @@
 % ==============================================================================
 \newenvironment{strengthbox}{%
     \vspace{4pt}
-    \noindent{\fontbody\bfseries จุดแข็ง:}\space
+    \noindent{\fontbody\bfseries จุดแข็ง}\space
 }{
     \par\vspace{4pt}
 }
 
 \newenvironment{weaknessbox}{%
     \vspace{4pt}
-    \noindent{\fontbody\bfseries จุดที่ควรพัฒนา:}\space
+    \noindent{\fontbody\bfseries จุดที่ควรพัฒนา}\space
 }{
     \par\vspace{4pt}
 }
@@ -614,6 +668,18 @@
         #2\par
     \endgroup
 }
+
+% Info item (heading left-aligned, content block indented)
+\newcommand{\infoitem}[2]{%
+    \par\noindent{\fontbody\bfseries #1}\par
+    \vspace{2pt}
+    \begingroup
+        \leftskip=\parindent
+        \noindent #2\par
+    \endgroup
+    \vspace{4pt}%
+}
+
 
 % ==============================================================================
 % GAP ANALYSIS TABLE
