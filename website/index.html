@@ -1,44 +1,71 @@
-<html class="light" lang="en">
+<!DOCTYPE html>
+<html class="light" lang="th">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>M.Eng. CE&AI - Master of Engineering in Computer Engineering and AI</title>
+    <title>วศ.ม. CPE&AI - หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ มรอ.</title>
+    <meta name="description" content="หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ มหาวิทยาลัยราชภัฏอุตรดิตถ์ ได้รับการรับรองมาตรฐาน AUN-QA Version 4.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="output.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Dm+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-background text-on-background antialiased pt-20">
+    <a href="#main-content" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">ข้ามไปยังเนื้อหาหลัก</a>
     <!-- Navigation -->
     <nav
         class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 transition-all duration-300">
-        <div class="flex items-center justify-between px-8 py-4 max-w-[1280px] mx-auto">
+        <div class="flex items-center justify-between px-6 md:px-8 py-4 max-w-[1280px] mx-auto">
             <div class="text-2xl font-black tracking-tighter text-primary">วศ.ม. <span
-                    class="text-secondary">CE&AI</span></div>
+                    class="text-secondary">CPE&AI</span></div>
             <div class="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-wider">
-                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#about">เกี่ยวกับเรา</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors"
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#about">เกี่ยวกับเรา</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
                     href="#curriculum">หลักสูตร</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#faculty">คณาจารย์</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" href="#admission">การรับสมัคร</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors" href="eviden.html">หลักฐาน AUNQA_68</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#faculty">คณาจารย์</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#admission">การรับสมัคร</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="eviden.html">หลักฐาน AUNQA_68</a>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <button
-                    class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary/10 transition-all bouncy-hover" onclick="toggleLanguage()">EN / TH</button>
+                    class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary/10 transition-all bouncy-hover cursor-pointer" onclick="toggleLanguage()">EN / TH</button>
+                <a href="https://academic.uru.ac.th/Recruit.Master/" target="_blank" rel="noopener noreferrer"
+                    class="hidden md:inline-flex items-center bg-primary text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-all shadow-lg shadow-primary/20 bouncy-hover cursor-pointer">สมัครเรียน</a>
                 <button
-                    class="bg-primary text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-all shadow-lg shadow-primary/20 bouncy-hover">สมัครเรียน</button>
+                    id="mobile-menu-btn"
+                    class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer"
+                    aria-label="เปิดเมนู"
+                    aria-expanded="false"
+                    onclick="toggleMobileMenu()">
+                    <span class="w-6 h-0.5 bg-on-surface block transition-all duration-300" id="mline1"></span>
+                    <span class="w-6 h-0.5 bg-on-surface block transition-all duration-300" id="mline2"></span>
+                    <span class="w-6 h-0.5 bg-on-surface block transition-all duration-300" id="mline3"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-t border-primary/10 px-6 py-4">
+            <div class="flex flex-col gap-4">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-bold uppercase tracking-wider text-sm py-2 cursor-pointer" href="#about" onclick="closeMobileMenu()">เกี่ยวกับเรา</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-bold uppercase tracking-wider text-sm py-2 cursor-pointer" href="#curriculum" onclick="closeMobileMenu()">หลักสูตร</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-bold uppercase tracking-wider text-sm py-2 cursor-pointer" href="#faculty" onclick="closeMobileMenu()">คณาจารย์</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-bold uppercase tracking-wider text-sm py-2 cursor-pointer" href="#admission" onclick="closeMobileMenu()">การรับสมัคร</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-bold uppercase tracking-wider text-sm py-2 cursor-pointer" href="eviden.html">หลักฐาน AUNQA_68</a>
+                <a href="https://academic.uru.ac.th/Recruit.Master/" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()"
+                    class="mt-2 bg-primary text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-center hover:bg-primary-container hover:text-on-primary-container transition-all shadow-lg cursor-pointer">สมัครเรียน</a>
             </div>
         </div>
     </nav>
     <!-- Hero Section -->
-    <header
+    <header id="main-content"
         class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-primary-container/30">
         <div class="absolute inset-0 z-0">
-            <img alt="Hero" class="w-full h-full object-cover opacity-10 mix-blend-multiply"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX0qzp8Ee4zSGyt79NKzYcBeWbG94Q483AIhQZfH7hVnXLLK1jUNo7S1V4tC1MNsf4ArDMUmdwpvzCg4b6-nmSkaO5EP3Q-dnR_8eZv9lIqN8fDgdwMr89k3_1_PMiujKE02q-IhwBUH3-QO1YqCylcZjBm5uIyjVHeiHeTQQi9Zaycuq16BlHIPFRsnnabXUEaPpsuvM1Y-FWdiPOzwlY-L7mkk3U8qVJf3YpxsEEzL6GsAw7H1GfN9J2IodUyDs3Mj_o9nJuPoM" />
+            <img alt="ภาพนักศึกษาในห้องปฏิบัติการวิศวกรรมคอมพิวเตอร์" class="w-full h-full object-cover opacity-10 mix-blend-multiply"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX0qzp8Ee4zSGyt79NKzYcBeWbG94Q483AIhQZfH7hVnXLLK1jUNo7S1V4tC1MNsf4ArDMUmdwpvzCg4b6-nmSkaO5EP3Q-dnR_8eZv9lIqN8fDgdwMr89k3_1_PMiujKE02q-IhwBUH3-QO1YqCylcZjBm5uIyjVHeiHeTQQi9Zaycuq16BlHIPFRsnnabXUEaPpsuvM1Y-FWdiPOzwlY-L7mkk3U8qVJf3YpxsEEzL6GsAw7H1GfN9J2IodUyDs3Mj_o9nJuPoM"
+                width="1280" height="720" fetchpriority="high" />
             <div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/40 via-transparent to-secondary-fixed/40">
             </div>
         </div>
@@ -78,9 +105,9 @@
                             class="material-symbols-outlined text-6xl md:text-8xl text-primary font-bold">verified_user</span>
                     </div>
                     <div class="text-center md:text-left">
-                        <h2 class="text-3xl md:text-4xl font-black text-on-primary-container mb-6">ได้รับการรับรองมาตรฐาน AUN-QA</h2>
+                        <h2 class="text-3xl md:text-4xl font-black text-on-primary-container mb-6">เข้ารับการประเมินมาตรฐาน AUN-QA</h2>
                         <p class="text-lg text-on-primary-container/80 font-medium leading-relaxed mb-8">
-                            หลักสูตรมหาบัณฑิตของเราจัดการศึกษาโดยสอดคล้องกับมาตรฐานคุณภาพ AUN-QA (ASEAN University Network-Quality Assurance) Version 4.0 ซึ่งเป็นกรอบการทำงานที่ได้รับการยอมรับระดับนานาชาติ เพื่อสร้างความมั่นใจว่าหลักสูตรของเรามีคุณภาพและมาตรฐานเทียบเท่าสากล
+                            หลักสูตรมหาบัณฑิตของเราจัดการศึกษาโดยสอดคล้องกับมาตรฐานคุณภาพ AUN-QA (ASEAN University Network-Quality Assurance) Version 4.0 ซึ่งเป็นกรอบการทำงานที่ได้รับการยอมรับระดับนานาชาติ และกำลังเข้ารับการประเมินเพื่อยืนยันคุณภาพหลักสูตรในระดับสากล
                         </p>
                         <div
                             class="inline-flex items-center gap-4 bg-white/40 px-6 py-3 rounded-full border border-white/60">
@@ -102,7 +129,7 @@
 
                     <!-- มคอ.2 -->
                     <a href="Eviden_aunqa68/%E0%B8%A1%E0%B8%84%E0%B8%AD%202%20%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%A8%E0%B8%A7%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B8%9E%E0%B8%B4%E0%B8%A7%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C%20%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%A0%E0%B8%B2%202%20%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%20Comment%20%E0%B8%AA%E0%B8%A0%E0%B8%B2%20%E0%B9%81%E0%B8%A5%E0%B8%B0%20%E0%B8%A1%E0%B8%95%E0%B8%B4%E0%B8%AA%E0%B8%A0%E0%B8%B2.pdf" target="_blank"
-                        class="doc-card bg-primary p-8 rounded-2xl flex flex-col justify-between h-[300px] group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300">
+                        class="doc-card bg-primary p-8 rounded-xl flex flex-col justify-between h-[300px] group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -121,7 +148,7 @@
 
                     <!-- มคอ.3 -->
                     <a href="eviden.html?criterion=2"
-                        class="doc-card glass p-8 rounded-2xl flex flex-col justify-between h-[300px] group border border-secondary/20 hover:border-secondary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-300">
+                        class="doc-card glass p-8 rounded-xl flex flex-col justify-between h-[300px] group border border-secondary/20 hover:border-secondary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-300">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -140,7 +167,7 @@
 
                     <!-- มคอ.5 -->
                     <a href="eviden.html?criterion=4"
-                        class="doc-card glass p-8 rounded-2xl flex flex-col justify-between h-[300px] group border border-tertiary/20 hover:border-tertiary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-tertiary/10 transition-all duration-300">
+                        class="doc-card glass p-8 rounded-xl flex flex-col justify-between h-[300px] group border border-tertiary/20 hover:border-tertiary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-tertiary/10 transition-all duration-300">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -159,7 +186,7 @@
 
                     <!-- คลังหลักฐาน AUNQA 68 -->
                     <a href="eviden.html"
-                        class="doc-card glass p-8 rounded-2xl flex flex-col justify-between h-[300px] group border border-primary/20 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
+                        class="doc-card glass p-8 rounded-xl flex flex-col justify-between h-[300px] group border border-primary/20 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
                         <div>
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -243,24 +270,24 @@
                         <h3 class="text-2xl font-black text-primary mb-8 flex items-center gap-4"><span class="material-symbols-outlined text-4xl">done_all</span> ผลลัพธ์การเรียนรู้ระดับหลักสูตร (PLOs)</h3>
                         <div class="space-y-6">
                             <div class="glass p-6 rounded-xl border-l-4 bouncy-hover border-primary">
-                                <h4 class="font-bold text-on-surface">PLO 1: สร้างสรรค์และประยุกต์ใช้ (Create &amp; Apply)</h4>
-                                <p class="text-sm text-on-surface-variant mt-2">สามารถประยุกต์ใช้องค์ความรู้ขั้นสูงด้านปัญญาประดิษฐ์ในการแก้ปัญหาซับซ้อน</p>
+                                <h4 class="font-bold text-on-surface">PLO 1: สร้างสรรค์ผลงานและนวัตกรรม</h4>
+                                <p class="text-sm text-on-surface-variant mt-2">ใช้ซอฟต์แวร์หรือฮาร์ดแวร์ทางคอมพิวเตอร์ในการสร้างสรรค์ผลงาน องค์ความรู้ และนวัตกรรม</p>
                             </div>
                             <div class="glass p-6 rounded-xl border-l-4 bouncy-hover border-primary">
-                                <h4 class="font-bold text-on-surface">PLO 2: วิจัยและพัฒนานวัตกรรม (Research &amp; Innovation)</h4>
-                                <p class="text-sm text-on-surface-variant mt-2">สามารถดำเนินการวิจัยและพัฒนานวัตกรรมทางเทคโนโลยีได้อย่างอิสระ</p>
+                                <h4 class="font-bold text-on-surface">PLO 2: แก้ไขปัญหาท้องถิ่นและองค์กร</h4>
+                                <p class="text-sm text-on-surface-variant mt-2">ประยุกต์ใช้ความรู้ในสาขาวิชาวิศวกรรมคอมพิวเตอร์เพื่อแก้ไขปัญหาความต้องการขององค์กร ชุมชน และท้องถิ่น</p>
                             </div>
                             <div class="glass p-6 rounded-xl border-l-4 bouncy-hover border-primary">
-                                <h4 class="font-bold text-on-surface">PLO 3: ทักษะวิชาชีพและจรรยาบรรณ (Ethics &amp; Professionalism)</h4>
-                                <p class="text-sm text-on-surface-variant mt-2">ปฏิบัติงานตามหลักจริยธรรมและจรรยาบรรณวิชาชีพวิศวกรรม</p>
+                                <h4 class="font-bold text-on-surface">PLO 3: สร้างองค์ความรู้และต้นแบบ</h4>
+                                <p class="text-sm text-on-surface-variant mt-2">สร้างองค์ความรู้หรือต้นแบบนวัตกรรมด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ที่ตอบสนองความต้องการขององค์กร</p>
                             </div>
                             <div class="glass p-6 rounded-xl border-l-4 bouncy-hover border-primary">
-                                <h4 class="font-bold text-on-surface">PLO 4: ทักษะทางสังคมและการสื่อสาร (Social &amp; Communication)</h4>
-                                <p class="text-sm text-on-surface-variant mt-2">สามารถสื่อสารเชิงวิชาการและทำงานร่วมกับผู้อื่นในสภาพแวดล้อมพหุวัฒนธรรม</p>
+                                <h4 class="font-bold text-on-surface">PLO 4: คุณธรรมและจรรยาบรรณวิชาชีพ</h4>
+                                <p class="text-sm text-on-surface-variant mt-2">ปฏิบัติตามหลักจรรยาบรรณวิชาชีพวิศวกรรมคอมพิวเตอร์</p>
                             </div>
                             <div class="glass p-6 rounded-xl border-l-4 bouncy-hover border-primary">
-                                <h4 class="font-bold text-on-surface">PLO 5: การเรียนรู้ตลอดชีวิต (Lifelong Learning)</h4>
-                                <p class="text-sm text-on-surface-variant mt-2">มีทักษะในการเรียนรู้เทคโนโลยีใหม่ๆ ด้วยตนเองอย่างต่อเนื่อง</p>
+                                <h4 class="font-bold text-on-surface">PLO 5: การทำงานร่วมกันและการเรียนรู้ตลอดชีวิต</h4>
+                                <p class="text-sm text-on-surface-variant mt-2">สามารถคิดวิเคราะห์ การสื่อสาร การทำงานร่วมกัน การปรับตัว และการเรียนรู้ตลอดชีวิต</p>
                             </div>
                         </div>
                     </div>
@@ -280,7 +307,7 @@
                     <div class="group text-center">
                         <div
                             class="w-40 h-40 mx-auto rounded-full bg-primary-fixed mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform">
-                            <img src="pisit_nakjai.jpg" alt="ผศ.ดร.พิศิษฐ์ นาคใจ" class="w-full h-full object-cover">
+                            <img src="pisit_nakjai.jpg" alt="ผศ.ดร.พิศิษฐ์ นาคใจ" class="w-full h-full object-cover" loading="lazy" width="160" height="160">
                         </div>
                         <h3 class="text-xl font-bold text-primary mb-1">ผศ.ดร.พิศิษฐ์ นาคใจ</h3>
                         <p class="text-xs text-on-surface-variant font-bold uppercase tracking-widest">
@@ -290,7 +317,7 @@
                     <div class="group text-center">
                         <div
                             class="w-40 h-40 mx-auto rounded-full bg-secondary-fixed mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform">
-                            <img src="kanjana_dawden.png" alt="ผศ.ดร.กาญจนา ดาวเด่น" class="w-full h-full object-cover">
+                            <img src="kanjana_dawden.png" alt="ผศ.ดร.กาญจนา ดาวเด่น" class="w-full h-full object-cover" loading="lazy" width="160" height="160">
                         </div>
                         <h3 class="text-xl font-bold text-primary mb-1">ผศ.ดร.กาญจนา ดาวเด่น</h3>
                         <p class="text-xs text-on-surface-variant font-bold uppercase tracking-widest">
@@ -301,12 +328,14 @@
                         <div
                             class="w-40 h-40 mx-auto rounded-full bg-tertiary-fixed mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform">
                             <img src="patcharee_maneerat.jpg" alt="ผศ.ดร.พัชรี มณีรัตน์"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" width="160" height="160">
                         </div>
                         <h3 class="text-xl font-bold text-primary mb-1">ผศ.ดร.พัชรี มณีรัตน์</h3>
                         <p class="text-xs text-on-surface-variant font-bold uppercase tracking-widest">
                             อาจารย์ประจำหลักสูตร</p>
                     </div>
+                </div>
+            </div>
         </section>
         <!-- Graduate Journey -->
         <section class="py-32 bg-primary-container/10">
@@ -879,7 +908,7 @@
         <section class="py-32 bg-surface-container-low animate-fade-in-up" id="admission">
             <div class="max-w-[1280px] mx-auto px-8">
                 <div class="text-center mb-20">
-                    <h2 class="text-4xl font-black text-primary mb-6 tracking-tighter">เอกสารและหลักฐานการประกันคุณภาพการศึกษา</h2>
+                    <h2 class="text-4xl font-black text-primary mb-6 tracking-tighter">การรับสมัครนักศึกษา</h2>
                     <p class="text-lg text-on-surface-variant font-medium">ร่วมเป็นส่วนหนึ่งของนักนวัตกรรม AI ยุคใหม่</p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -913,7 +942,7 @@
                                 <span class="text-secondary font-black bg-secondary/10 px-3 py-1 rounded-full text-sm">ก.ค.</span>
                             </div>
                         </div>
-                        <button class="w-full mt-6 bg-secondary text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-secondary/90 transition-colors">เข้าสู่ระบบสมัครเรียน</button>
+                        <a href="https://academic.uru.ac.th/Recruit.Master/" target="_blank" rel="noopener noreferrer" class="block w-full mt-6 bg-secondary text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-secondary/90 transition-colors text-center cursor-pointer">เข้าสู่ระบบสมัครเรียน</a>
                     </div>
                 </div>
             </div>
@@ -994,6 +1023,27 @@
 
     </main>
     <script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('mobile-menu-btn');
+        const isOpen = !menu.classList.contains('hidden');
+        if (isOpen) {
+            menu.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'เปิดเมนู');
+        } else {
+            menu.classList.remove('hidden');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.setAttribute('aria-label', 'ปิดเมนู');
+        }
+    }
+    function closeMobileMenu() {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        const btn = document.getElementById('mobile-menu-btn');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'เปิดเมนู');
+    }
+
     function switchPlan(plan) {
         document.querySelectorAll('.plan-tab').forEach(t => {
             t.classList.remove('active', 'bg-secondary', 'text-white');
@@ -1074,22 +1124,26 @@ const i18n = [
   ["Equipping experts with the most in-demand architectural skills for modern computing paradigms.", "ติดอาวุธให้ผู้เชี่ยวชาญด้วยทักษะสถาปัตยกรรมที่เป็นที่ต้องการสูงสุดสำหรับกระบวนทัศน์คอมพิวเตอร์สมัยใหม่"],
   ["Program Educational Objectives & Learning Outcomes", "วัตถุประสงค์และผลลัพธ์การเรียนรู้ของหลักสูตร"],
   ["What you will achieve.", "สิ่งที่คุณจะได้รับจากหลักสูตรนี้"],
-  ["PEOs (วัตถุประสงค์ของหลักสูตร)", "PEOs (Program Educational Objectives)"],
-  ["PEO 1", "วัตถุประสงค์ที่ 1"],
-  ["PEO 2", "วัตถุประสงค์ที่ 2"],
-  ["PEO 3", "วัตถุประสงค์ที่ 3"],
-  ["PEO 4", "วัตถุประสงค์ที่ 4"],
-  ["ผลิตวิศวกรและนักวิจัยที่เชี่ยวชาญด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์", "Produce engineers and researchers skilled in computer engineering and AI."],
-  ["สร้างสรรค์นวัตกรรมและงานวิจัยที่ตอบโจทย์ภาคอุตสาหกรรมและสังคม", "Create innovations and research that meet industrial and societal needs."],
-  ["มีคุณธรรม จริยธรรม และจรรยาบรรณวิชาชีพ", "Possess morality, ethics, and professional conduct."],
-  ["มีทักษะการเรียนรู้ตลอดชีวิต (Lifelong Learning)", "Have lifelong learning skills."],
-  ["PLOs (ผลลัพธ์การเรียนรู้)", "PLOs (Program Learning Outcomes)"],
-  ["PLO 1: สร้างสรรค์และประยุกต์ใช้ (Create & Apply)", "PLO 1: Create & Apply"],
-  ["สามารถประยุกต์ใช้องค์ความรู้ขั้นสูงด้านปัญญาประดิษฐ์ในการแก้ปัญหาซับซ้อน", "Able to apply advanced AI knowledge to solve complex problems."],
-  ["PLO 2: วิจัยและพัฒนานวัตกรรม (Research & Innovation)", "PLO 2: Research & Innovation"],
-  ["สามารถดำเนินการวิจัยและพัฒนานวัตกรรมทางเทคโนโลยีได้อย่างอิสระ", "Able to independently conduct research and technological innovation."],
-  ["PLO 3: จริยธรรมวิชาชีพ (Professional Ethics)", "PLO 3: Professional Ethics"],
-  ["ยึดมั่นในความถูกต้องและตระหนักถึงผลกระทบของ AI ต่อสังคม", "Committed to integrity and aware of AI's societal impact."],
+  ["Program Educational Objectives (PEOs)", "วัตถุประสงค์ของหลักสูตร (PEOs)"],
+  ["PEO 1", "PEO 1"],
+  ["PEO 2", "PEO 2"],
+  ["PEO 3", "PEO 3"],
+  ["PEO 4", "PEO 4"],
+  ["Have skills in using appropriate software or hardware for designing and developing knowledge.", "มีทักษะในด้านการใช้งานซอฟต์แวร์หรือฮาร์ดแวร์ที่เหมาะสม ในด้านการออกแบบและพัฒนาองค์ความรู้"],
+  ["Capable of developing knowledge (Plan A1) or innovations (Plan A2) to solve problems in organizations using computer engineering and AI.", "มีความสามารถในการพัฒนาองค์ความรู้ (แผน ก1) หรือพัฒนานวัตกรรม (แผน ก2) เพื่อแก้ปัญหาในองค์กร โดยใช้ความรู้ทางวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์"],
+  ["Possess academic morality and professional ethics.", "มีคุณธรรมและจรรยาบรรณวิชาชีพทางวิชาการ"],
+  ["Have self-development and lifelong learning skills.", "มีทักษะในการพัฒนาตนเองและการเรียนรู้ตลอดชีวิต"],
+  ["Program Learning Outcomes (PLOs)", "ผลลัพธ์การเรียนรู้ระดับหลักสูตร (PLOs)"],
+  ["PLO 1: Creative Works & Innovation", "PLO 1: สร้างสรรค์ผลงานและนวัตกรรม"],
+  ["Use computer software or hardware to create works, knowledge, and innovations.", "ใช้ซอฟต์แวร์หรือฮาร์ดแวร์ทางคอมพิวเตอร์ในการสร้างสรรค์ผลงาน องค์ความรู้ และนวัตกรรม"],
+  ["PLO 2: Local & Organizational Problem Solving", "PLO 2: แก้ไขปัญหาท้องถิ่นและองค์กร"],
+  ["Apply computer engineering knowledge to solve problems for organizations, communities, and local areas.", "ประยุกต์ใช้ความรู้ในสาขาวิชาวิศวกรรมคอมพิวเตอร์เพื่อแก้ไขปัญหาความต้องการขององค์กร ชุมชน และท้องถิ่น"],
+  ["PLO 3: Knowledge Creation & Prototyping", "PLO 3: สร้างองค์ความรู้และต้นแบบ"],
+  ["Create knowledge or innovation prototypes in computer engineering and AI that meet organizational needs.", "สร้างองค์ความรู้หรือต้นแบบนวัตกรรมด้านวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ที่ตอบสนองความต้องการขององค์กร"],
+  ["PLO 4: Ethics & Professional Integrity", "PLO 4: คุณธรรมและจรรยาบรรณวิชาชีพ"],
+  ["Adhere to professional ethics in computer engineering.", "ปฏิบัติตามหลักจรรยาบรรณวิชาชีพวิศวกรรมคอมพิวเตอร์"],
+  ["PLO 5: Collaboration & Lifelong Learning", "PLO 5: การทำงานร่วมกันและการเรียนรู้ตลอดชีวิต"],
+  ["Possess analytical thinking, communication, collaboration, adaptability, and lifelong learning skills.", "สามารถคิดวิเคราะห์ การสื่อสาร การทำงานร่วมกัน การปรับตัว และการเรียนรู้ตลอดชีวิต"],
   ["Quality Assurance Documents & Evidence", "เอกสารและหลักฐานอ้างอิงคุณภาพ"],
   ["Quality Assurance Documents & Evidence", "เอกสารคุณภาพหลักสูตร"],
   ["มคอ.3 (TQF 3)", "TQF 3"],
