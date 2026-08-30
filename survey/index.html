@@ -43,43 +43,101 @@
     </script>
     <style>
         body { font-family: 'Sarabun', sans-serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-        .option-label {
+        .option-box {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .option-label:hover {
-            border-color: #7c3aed;
-            background-color: #f5f3ff;
+        .option-box:hover {
             transform: translateY(-1px);
         }
-        input[type="radio"]:checked + .option-box,
-        input[type="checkbox"]:checked + .option-box {
+        
+        /* Section Specific Selection Styles */
+        /* Section 1 - Indigo */
+        .sec-indigo input[type="radio"]:checked + .option-box {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            color: #1e1b4b;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+        
+        /* Section 2 - Knowledge (Purple) */
+        .sec-k input[type="radio"]:checked + .option-box {
+            border-color: #9333ea;
+            background-color: #faf5ff;
+            color: #581c87;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+        }
+        
+        /* Section 2 - Skill (Sky Blue) */
+        .sec-s input[type="radio"]:checked + .option-box {
+            border-color: #0284c7;
+            background-color: #f0f9ff;
+            color: #0c4a6e;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+        }
+        
+        /* Section 2 - Ethics (Emerald) */
+        .sec-e input[type="radio"]:checked + .option-box {
+            border-color: #059669;
+            background-color: #ecfdf5;
+            color: #064e3b;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+        }
+        
+        /* Section 2 - Character (Amber) */
+        .sec-c input[type="radio"]:checked + .option-box {
+            border-color: #d97706;
+            background-color: #fffbeb;
+            color: #78350f;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+        }
+        
+        /* Section 3 - Rose */
+        .sec-rose input[type="radio"]:checked + .option-box {
+            border-color: #e11d48;
+            background-color: #fff1f2;
+            color: #881337;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+        }
+        
+        /* Section 4 - Teal */
+        .sec-teal input[type="radio"]:checked + .option-box {
+            border-color: #0d9488;
+            background-color: #f0fdfa;
+            color: #134e4a;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+        }
+        
+        /* Section 5 - Violet & Checkboxes */
+        .sec-violet input[type="radio"]:checked + .option-box,
+        .sec-violet input[type="checkbox"]:checked + .option-box {
             border-color: #7c3aed;
             background-color: #f5f3ff;
-            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
-        }
-        .step-pill.active {
-            background-color: #7c3aed;
-            color: #ffffff;
+            color: #3b0764;
             font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24">
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen pb-24">
 
     <!-- Top Navigation -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
-            <a href="../index.html" class="flex items-center gap-2 text-primary font-black tracking-tight text-lg hover:opacity-80 transition-opacity">
-                <span class="material-symbols-outlined text-2xl text-primary">school</span>
+            <a href="../index.html" class="flex items-center gap-2.5 text-primary font-black tracking-tight text-lg hover:opacity-80 transition-opacity">
+                <div class="w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-xl">school</span>
+                </div>
                 <span>วศ.ม. <span class="text-secondary">CPE &amp; AI</span></span>
             </a>
             <div class="flex items-center gap-3">
-                <a href="dashboard.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 bg-slate-100 hover:bg-primary-light hover:text-primary transition-all border border-slate-200">
+                <a href="dashboard.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-violet-700 bg-violet-100 hover:bg-violet-200 transition-all border border-violet-200 shadow-sm">
                     <span class="material-symbols-outlined text-base">insights</span>
                     <span>แดชบอร์ดสรุปผล (OBE)</span>
                 </a>
@@ -90,9 +148,9 @@
         </div>
     </header>
 
-    <!-- Hero Title Banner -->
-    <div class="bg-gradient-to-r from-violet-900 via-purple-900 to-indigo-900 text-white py-12 px-4 sm:px-6 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <!-- Hero Title Banner with Mesh Gradient -->
+    <div class="bg-gradient-to-r from-violet-900 via-indigo-900 to-purple-900 text-white py-12 px-4 sm:px-6 relative overflow-hidden shadow-lg">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold uppercase tracking-widest text-violet-200 mb-4">
                 <span class="material-symbols-outlined text-sm text-yellow-300">verified</span>
@@ -111,69 +169,74 @@
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
 
         <!-- Progress Indicator -->
-        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 mb-8">
-            <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
-                <span>ความคืบหน้าการตอบแบบสำรวจ</span>
-                <span id="progress-text" class="text-primary font-extrabold">0%</span>
+        <div class="bg-white rounded-2xl p-4 shadow-md border border-slate-200 mb-8">
+            <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-2">
+                <span class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-violet-600 text-base">donut_large</span>
+                    ความคืบหน้าการตอบแบบสำรวจ
+                </span>
+                <span id="progress-text" class="text-violet-700 font-extrabold bg-violet-50 px-2 py-0.5 rounded border border-violet-200">0%</span>
             </div>
-            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                <div id="progress-bar" class="bg-gradient-to-r from-violet-600 to-indigo-600 h-full transition-all duration-300 rounded-full" style="width: 0%"></div>
+            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                <div id="progress-bar" class="bg-gradient-to-r from-violet-600 via-indigo-600 to-pink-500 h-full transition-all duration-300 rounded-full" style="width: 0%"></div>
             </div>
         </div>
 
-        <form id="surveyForm" class="space-y-8" onsubmit="handleSurveySubmit(event)">
+        <form id="surveyForm" class="space-y-10" onsubmit="handleSurveySubmit(event)">
 
             <!-- ========================================== -->
-            <!-- ส่วนที่ 1: ข้อมูลทั่วไป -->
+            <!-- ส่วนที่ 1: ข้อมูลทั่วไป (ธีมสีน้ำเงินคราม Indigo) -->
             <!-- ========================================== -->
-            <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                    <span class="w-8 h-8 rounded-lg bg-violet-100 text-primary flex items-center justify-center font-bold text-sm">1</span>
+            <section class="sec-indigo rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-indigo-50/90 via-white to-purple-50/40 shadow-md border-2 border-indigo-200">
+                <!-- Section Header Banner -->
+                <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white rounded-2xl p-4 sm:p-5 flex items-center gap-4 mb-6 shadow-sm">
+                    <span class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-lg shrink-0">1</span>
                     <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-slate-900">ส่วนที่ 1: ข้อมูลทั่วไปของผู้ตอบแบบสำรวจ</h2>
-                        <p class="text-xs text-slate-500">ข้อมูลพื้นฐานเพื่อการจัดกลุ่มและการวิเคราะห์ตามกรอบ AUN-QA</p>
+                        <h2 class="text-base sm:text-lg font-black tracking-tight">ส่วนที่ 1: ข้อมูลทั่วไปของผู้ตอบแบบสำรวจ</h2>
+                        <p class="text-xs text-indigo-100">ข้อมูลพื้นฐานเพื่อการจัดกลุ่มและการวิเคราะห์ตามเกณฑ์ AUN-QA</p>
                     </div>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            1. ท่านเป็นผู้มีส่วนได้ส่วนเสียกลุ่มใด <span class="text-rose-500">*</span>
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-indigo-100 shadow-sm">
+                        <label class="block text-sm font-bold text-indigo-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-xs font-black">ข้อ 1</span>
+                            <span>ท่านเป็นผู้มีส่วนได้ส่วนเสียกลุ่มใด <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-group">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q1_stakeholder_group" value="หน่วยงานภาครัฐ/รัฐวิสาหกิจ" class="hidden" required onchange="handleQ1Change(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
-                                    <span class="material-symbols-outlined text-slate-400 text-xl">account_balance</span>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-indigo-500 text-xl">account_balance</span>
                                     <span>หน่วยงานภาครัฐ / รัฐวิสาหกิจ</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q1_stakeholder_group" value="ภาคเอกชน/สถานประกอบการ" class="hidden" required onchange="handleQ1Change(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
-                                    <span class="material-symbols-outlined text-slate-400 text-xl">domain</span>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-indigo-500 text-xl">domain</span>
                                     <span>ภาคเอกชน / สถานประกอบการ</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q1_stakeholder_group" value="ศิษย์เก่า/บัณฑิต" class="hidden" required onchange="handleQ1Change(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
-                                    <span class="material-symbols-outlined text-slate-400 text-xl">school</span>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-indigo-500 text-xl">school</span>
                                     <span>ศิษย์เก่า / บัณฑิต</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q1_stakeholder_group" value="นักศึกษาปัจจุบัน" class="hidden" required onchange="handleQ1Change(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
-                                    <span class="material-symbols-outlined text-slate-400 text-xl">person_pin</span>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-indigo-500 text-xl">person_pin</span>
                                     <span>นักศึกษาปัจจุบัน (ระดับบัณฑิตศึกษา)</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer sm:col-span-2">
                                 <input type="radio" name="q1_stakeholder_group" value="นักศึกษาระดับปริญญาตรี" class="hidden" required onchange="handleQ1Change(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
-                                    <span class="material-symbols-outlined text-slate-400 text-xl">menu_book</span>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 flex items-center gap-3 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-indigo-500 text-xl">menu_book</span>
                                     <span>นักศึกษาระดับปริญญาตรี (ผู้สนใจศึกษาต่อ)</span>
                                 </div>
                             </label>
@@ -181,51 +244,53 @@
                     </div>
 
                     <!-- Q2 -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            2. สาขาอาชีพหรือการศึกษาของท่านเกี่ยวข้องกับด้านใด <span class="text-rose-500">*</span>
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-indigo-100 shadow-sm">
+                        <label class="block text-sm font-bold text-indigo-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-xs font-black">ข้อ 2</span>
+                            <span>สาขาอาชีพหรือการศึกษาของท่านเกี่ยวข้องกับด้านใด <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q2_field" value="วิศวกรรมคอมพิวเตอร์และซอฟต์แวร์" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">วิศวกรรมคอมพิวเตอร์และซอฟต์แวร์</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">วิศวกรรมคอมพิวเตอร์และซอฟต์แวร์</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q2_field" value="ปัญญาประดิษฐ์และข้อมูล (AI/Data)" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">ปัญญาประดิษฐ์และข้อมูล (AI / Data)</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">ปัญญาประดิษฐ์และข้อมูล (AI / Data)</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q2_field" value="เทคโนโลยีดิจิทัลและระบบอัจฉริยะ" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">เทคโนโลยีดิจิทัลและระบบอัจฉริยะ</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">เทคโนโลยีดิจิทัลและระบบอัจฉริยะ</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q2_field" value="การบริหาร/วิจัย/ธุรกิจด้านเทคโนโลยี" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การบริหาร / วิจัย / ธุรกิจด้านเทคโนโลยี</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">การบริหาร / วิจัย / ธุรกิจด้านเทคโนโลยี</div>
                             </label>
                         </div>
                     </div>
 
                     <!-- Q3 -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            3. ท่านเกี่ยวข้องกับเทคโนโลยีคอมพิวเตอร์ในลักษณะใด <span class="text-rose-500">*</span>
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-indigo-100 shadow-sm">
+                        <label class="block text-sm font-bold text-indigo-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-xs font-black">ข้อ 3</span>
+                            <span>ท่านเกี่ยวข้องกับเทคโนโลยีคอมพิวเตอร์ในลักษณะใด <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q3_tech_relation" value="การพัฒนาและประยุกต์ใช้เทคโนโลยี" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การพัฒนาและประยุกต์ใช้เทคโนโลยี</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">การพัฒนาและประยุกต์ใช้เทคโนโลยี</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q3_tech_relation" value="การบริหารจัดการและวางแผน" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การบริหารจัดการและวางแผน</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">การบริหารจัดการและวางแผน</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q3_tech_relation" value="การวิจัยและพัฒนานวัตกรรม" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การวิจัยและพัฒนานวัตกรรม</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">การวิจัยและพัฒนานวัตกรรม</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q3_tech_relation" value="การเรียนการสอน/พัฒนาบุคลากร" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การเรียนการสอน / พัฒนาบุคลากร</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 rounded-xl p-3.5 text-sm font-medium">การเรียนการสอน / พัฒนาบุคลากร</div>
                             </label>
                         </div>
                     </div>
@@ -233,236 +298,260 @@
             </section>
 
             <!-- ========================================== -->
-            <!-- ส่วนที่ 2: ความต้องการด้านสมรรถนะ (OBE) -->
+            <!-- ส่วนที่ 2: ความต้องการด้านสมรรถนะ (OBE 4 ด้าน) -->
             <!-- ========================================== -->
-            <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                    <span class="w-8 h-8 rounded-lg bg-sky-100 text-secondary flex items-center justify-center font-bold text-sm">2</span>
+            <section class="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-sky-50/90 via-white to-blue-50/40 shadow-md border-2 border-sky-200">
+                <!-- Section Header Banner -->
+                <div class="bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-2xl p-4 sm:p-5 flex items-center gap-4 mb-6 shadow-sm">
+                    <span class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-lg shrink-0">2</span>
                     <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-slate-900">ส่วนที่ 2: ความต้องการด้านสมรรถนะของมหาบัณฑิต (OBE Framework)</h2>
-                        <p class="text-xs text-slate-500">จำแนกตามกรอบ 4 ด้าน: ด้านความรู้ (K), ทักษะ (S), จริยธรรม (E), และลักษณะบุคคล (C)</p>
-                    </div>
-                </div>
-
-                <div class="space-y-8">
-                    <!-- ด้านที่ 1 ความรู้ -->
-                    <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200">
-                        <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-violet-100 text-violet-700 mb-2">ด้านที่ 1: ความรู้ (Knowledge)</span>
-                        
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                4. ความรู้ด้านใดที่ผู้สำเร็จการศึกษาควรมีมากที่สุด <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q4_knowledge" value="ปัญญาประดิษฐ์และ Generative AI" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">ปัญญาประดิษฐ์และ Generative AI</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q4_knowledge" value="Data Science และการวิเคราะห์ข้อมูล" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">Data Science และการวิเคราะห์ข้อมูล</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q4_knowledge" value="วิศวกรรมคอมพิวเตอร์และการพัฒนาระบบ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">วิศวกรรมคอมพิวเตอร์และการพัฒนาระบบ</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q4_knowledge" value="เทคโนโลยีดิจิทัลสมัยใหม่ เช่น Cloud, IoT, Cybersecurity" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">เทคโนโลยีดิจิทัลสมัยใหม่ (Cloud, IoT, Cybersecurity)</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                5. ท่านเห็นว่าหลักสูตรควรเน้นองค์ความรู้ด้านใดเป็นพิเศษ <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q5_special_knowledge" value="AI และระบบอัจฉริยะ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">AI และระบบอัจฉริยะ</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q5_special_knowledge" value="Data และการวิเคราะห์ข้อมูล" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">Data และการวิเคราะห์ข้อมูล</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q5_special_knowledge" value="Computer/Software Engineering" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">Computer / Software Engineering</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q5_special_knowledge" value="การประยุกต์ใช้เทคโนโลยีกับงานจริง" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การประยุกต์ใช้เทคโนโลยีกับงานจริง</div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ด้านที่ 2 ทักษะ -->
-                    <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200">
-                        <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-sky-100 text-sky-700 mb-2">ด้านที่ 2: ทักษะ (Skill)</span>
-                        
-                        <div class="mb-4">
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                6. ทักษะใดที่ผู้สำเร็จการศึกษาควรมีอย่างโดดเด่น <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q6_skills" value="การพัฒนาและประยุกต์ใช้ AI/เทคโนโลยี" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การพัฒนาและประยุกต์ใช้ AI/เทคโนโลยี</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q6_skills" value="การวิเคราะห์ข้อมูลและแก้ปัญหา" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การวิเคราะห์ข้อมูลและแก้ปัญหา</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q6_skills" value="การวิจัย พัฒนา และสร้างนวัตกรรม" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การวิจัย พัฒนา และสร้างนวัตกรรม</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q6_skills" value="การสื่อสาร การทำงานเป็นทีม และการบริหารโครงการ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การสื่อสาร การทำงานเป็นทีม และบริหารโครงการ</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                7. รูปแบบการเรียนรู้ใดที่ช่วยพัฒนาทักษะได้ดีที่สุด <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q7_learning_model" value="การเรียนรู้จากปัญหาและโครงงานจริง" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">Problem / Project-based Learning</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q7_learning_model" value="การทำวิจัยและพัฒนานวัตกรรม" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การทำวิจัยและพัฒนานวัตกรรม</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q7_learning_model" value="การเรียนรู้ร่วมกับสถานประกอบการ/ผู้เชี่ยวชาญ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การเรียนรู้ร่วมกับสถานประกอบการ/ผู้เชี่ยวชาญ</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="q7_learning_model" value="การเรียนแบบ Online/Hybrid และการฝึกปฏิบัติ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-3 text-sm font-medium">การเรียนแบบ Online / Hybrid และฝึกปฏิบัติ</div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ด้านที่ 3 & 4 จริยธรรมและลักษณะบุคคล -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200">
-                            <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 mb-2">ด้านที่ 3: จริยธรรม (Ethics)</span>
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                8. ประเด็นด้านจริยธรรมที่ควรให้ความสำคัญ <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="space-y-2">
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q8_ethics" value="การใช้ AI และข้อมูลอย่างมีจริยธรรมและรับผิดชอบ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">การใช้ AI และข้อมูลอย่างมีจริยธรรมและรับผิดชอบ</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q8_ethics" value="การคุ้มครองข้อมูลส่วนบุคคลและความมั่นคงปลอดภัย" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">การคุ้มครองข้อมูลส่วนบุคคล (PDPA/Security)</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q8_ethics" value="ความซื่อสัตย์ทางวิชาการและวิชาชีพ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">ความซื่อสัตย์ทางวิชาการและวิชาชีพ</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q8_ethics" value="การเคารพลิขสิทธิ์ กฎหมาย และทรัพย์สินทางปัญญา" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">การเคารพลิขสิทธิ์และทรัพย์สินทางปัญญา</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200">
-                            <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 mb-2">ด้านที่ 4: ลักษณะบุคคล (Character)</span>
-                            <label class="block text-sm font-bold text-slate-800 mb-2">
-                                9. ลักษณะบุคคลของบัณฑิตที่ท่านต้องการ <span class="text-rose-500">*</span>
-                            </label>
-                            <div class="space-y-2">
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q9_character" value="คิดวิเคราะห์ แก้ปัญหา และสร้างสรรค์นวัตกรรม" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">คิดวิเคราะห์ แก้ปัญหา และสร้างสรรค์นวัตกรรม</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q9_character" value="รับผิดชอบ มีความเป็นมืออาชีพ และมีจริยธรรม" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">รับผิดชอบ มีความเป็นมืออาชีพ และมีจริยธรรม</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q9_character" value="ทำงานเป็นทีม สื่อสาร และมีภาวะผู้นำ" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">ทำงานเป็นทีม สื่อสาร และมีภาวะผู้นำ</div>
-                                </label>
-                                <label class="block cursor-pointer">
-                                    <input type="radio" name="q9_character" value="เรียนรู้และปรับตัวต่อการเปลี่ยนแปลงของเทคโนโลยี" class="hidden" required>
-                                    <div class="option-box bg-white border border-slate-200 rounded-xl p-2.5 text-xs font-medium">เรียนรู้และปรับตัวต่อเทคโนโลยีใหม่เสมอ</div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ========================================== -->
-            <!-- ส่วนที่ 3: ความคาดหวังต่อหลักสูตร -->
-            <!-- ========================================== -->
-            <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                    <span class="w-8 h-8 rounded-lg bg-pink-100 text-accent flex items-center justify-center font-bold text-sm">3</span>
-                    <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-slate-900">ส่วนที่ 3: ความคาดหวังต่อหลักสูตร</h2>
-                        <p class="text-xs text-slate-500">ทิศทางการผลิตมหาบัณฑิตและการปรับปรุงหลักสูตร</p>
+                        <h2 class="text-base sm:text-lg font-black tracking-tight">ส่วนที่ 2: ความต้องการด้านสมรรถนะของมหาบัณฑิต (OBE Framework)</h2>
+                        <p class="text-xs text-sky-100">จำแนกตามกรอบ 4 ด้าน: ด้านความรู้ (K), ทักษะ (S), จริยธรรม (E), และลักษณะบุคคล (C)</p>
                     </div>
                 </div>
 
                 <div class="space-y-6">
+                    <!-- ด้านที่ 1 ความรู้ (ธีมสีม่วง Purple) -->
+                    <div class="sec-k bg-purple-50/90 p-5 sm:p-6 rounded-2xl border-2 border-purple-200 shadow-sm space-y-5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center font-bold text-xs">K</span>
+                            <h3 class="text-sm font-bold text-purple-950 uppercase tracking-wider">ด้านที่ 1: ความรู้ (Knowledge)</h3>
+                        </div>
+                        
+                        <div class="bg-white/90 p-4 rounded-xl border border-purple-100">
+                            <label class="block text-sm font-bold text-purple-950 mb-2.5 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-xs font-black">ข้อ 4</span>
+                                <span>ความรู้ด้านใดที่ผู้สำเร็จการศึกษาควรมีมากที่สุด <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q4_knowledge" value="ปัญญาประดิษฐ์และ Generative AI" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">ปัญญาประดิษฐ์และ Generative AI</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q4_knowledge" value="Data Science และการวิเคราะห์ข้อมูล" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">Data Science และการวิเคราะห์ข้อมูล</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q4_knowledge" value="วิศวกรรมคอมพิวเตอร์และการพัฒนาระบบ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">วิศวกรรมคอมพิวเตอร์และการพัฒนาระบบ</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q4_knowledge" value="เทคโนโลยีดิจิทัลสมัยใหม่ เช่น Cloud, IoT, Cybersecurity" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">เทคโนโลยีดิจิทัลสมัยใหม่ (Cloud, IoT, Cybersecurity)</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/90 p-4 rounded-xl border border-purple-100">
+                            <label class="block text-sm font-bold text-purple-950 mb-2.5 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-xs font-black">ข้อ 5</span>
+                                <span>ท่านเห็นว่าหลักสูตรควรเน้นองค์ความรู้ด้านใดเป็นพิเศษ <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q5_special_knowledge" value="AI และระบบอัจฉริยะ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">AI และระบบอัจฉริยะ</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q5_special_knowledge" value="Data และการวิเคราะห์ข้อมูล" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">Data และการวิเคราะห์ข้อมูล</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q5_special_knowledge" value="Computer/Software Engineering" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">Computer / Software Engineering</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q5_special_knowledge" value="การประยุกต์ใช้เทคโนโลยีกับงานจริง" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 rounded-xl p-3 text-sm font-medium">การประยุกต์ใช้เทคโนโลยีกับงานจริง</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ด้านที่ 2 ทักษะ (ธีมสีฟ้าสดใส Sky) -->
+                    <div class="sec-s bg-sky-50/90 p-5 sm:p-6 rounded-2xl border-2 border-sky-200 shadow-sm space-y-5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xs">S</span>
+                            <h3 class="text-sm font-bold text-sky-950 uppercase tracking-wider">ด้านที่ 2: ทักษะ (Skill)</h3>
+                        </div>
+                        
+                        <div class="bg-white/90 p-4 rounded-xl border border-sky-100">
+                            <label class="block text-sm font-bold text-sky-950 mb-2.5 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-sky-200 text-sky-900 text-xs font-black">ข้อ 6</span>
+                                <span>ทักษะใดที่ผู้สำเร็จการศึกษาควรมีอย่างโดดเด่น <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q6_skills" value="การพัฒนาและประยุกต์ใช้ AI/เทคโนโลยี" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การพัฒนาและประยุกต์ใช้ AI/เทคโนโลยี</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q6_skills" value="การวิเคราะห์ข้อมูลและแก้ปัญหา" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การวิเคราะห์ข้อมูลและแก้ปัญหา</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q6_skills" value="การวิจัย พัฒนา และสร้างนวัตกรรม" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การวิจัย พัฒนา และสร้างนวัตกรรม</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q6_skills" value="การสื่อสาร การทำงานเป็นทีม และการบริหารโครงการ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การสื่อสาร การทำงานเป็นทีม และบริหารโครงการ</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/90 p-4 rounded-xl border border-sky-100">
+                            <label class="block text-sm font-bold text-sky-950 mb-2.5 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-sky-200 text-sky-900 text-xs font-black">ข้อ 7</span>
+                                <span>รูปแบบการเรียนรู้ใดที่ช่วยพัฒนาทักษะได้ดีที่สุด <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q7_learning_model" value="การเรียนรู้จากปัญหาและโครงงานจริง" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">Problem / Project-based Learning</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q7_learning_model" value="การทำวิจัยและพัฒนานวัตกรรม" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การทำวิจัยและพัฒนานวัตกรรม</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q7_learning_model" value="การเรียนรู้ร่วมกับสถานประกอบการ/ผู้เชี่ยวชาญ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การเรียนรู้ร่วมกับสถานประกอบการ/ผู้เชี่ยวชาญ</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q7_learning_model" value="การเรียนแบบ Online/Hybrid และการฝึกปฏิบัติ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 rounded-xl p-3 text-sm font-medium">การเรียนแบบ Online / Hybrid และฝึกปฏิบัติ</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ด้านที่ 3 & 4 จริยธรรม (Emerald) และลักษณะบุคคล (Amber) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- ด้านที่ 3 จริยธรรม (Emerald Green) -->
+                        <div class="sec-e bg-emerald-50/90 p-5 rounded-2xl border-2 border-emerald-200 shadow-sm space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">E</span>
+                                <h3 class="text-xs font-bold text-emerald-950 uppercase tracking-wider">ด้านที่ 3: จริยธรรม (Ethics)</h3>
+                            </div>
+                            <label class="block text-xs font-bold text-emerald-950 mb-2 flex items-center gap-2">
+                                <span class="px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900 text-[10px] font-black">ข้อ 8</span>
+                                <span>ประเด็นจริยธรรมที่ควรให้ความสำคัญ <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="space-y-2">
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q8_ethics" value="การใช้ AI และข้อมูลอย่างมีจริยธรรมและรับผิดชอบ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 rounded-xl p-2.5 text-xs font-medium">การใช้ AI และข้อมูลอย่างมีจริยธรรมและรับผิดชอบ</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q8_ethics" value="การคุ้มครองข้อมูลส่วนบุคคลและความมั่นคงปลอดภัย" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 rounded-xl p-2.5 text-xs font-medium">การคุ้มครองข้อมูลส่วนบุคคล (PDPA/Security)</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q8_ethics" value="ความซื่อสัตย์ทางวิชาการและวิชาชีพ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 rounded-xl p-2.5 text-xs font-medium">ความซื่อสัตย์ทางวิชาการและวิชาชีพ</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q8_ethics" value="การเคารพลิขสิทธิ์ กฎหมาย และทรัพย์สินทางปัญญา" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 rounded-xl p-2.5 text-xs font-medium">การเคารพลิขสิทธิ์และทรัพย์สินทางปัญญา</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- ด้านที่ 4 ลักษณะบุคคล (Amber Gold) -->
+                        <div class="sec-c bg-amber-50/90 p-5 rounded-2xl border-2 border-amber-200 shadow-sm space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-7 h-7 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-xs">C</span>
+                                <h3 class="text-xs font-bold text-amber-950 uppercase tracking-wider">ด้านที่ 4: ลักษณะบุคคล (Character)</h3>
+                            </div>
+                            <label class="block text-xs font-bold text-amber-950 mb-2 flex items-center gap-2">
+                                <span class="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 text-[10px] font-black">ข้อ 9</span>
+                                <span>ลักษณะบุคคลของบัณฑิตที่ต้องการ <span class="text-rose-500">*</span></span>
+                            </label>
+                            <div class="space-y-2">
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q9_character" value="คิดวิเคราะห์ แก้ปัญหา และสร้างสรรค์นวัตกรรม" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 rounded-xl p-2.5 text-xs font-medium">คิดวิเคราะห์ แก้ปัญหา และสร้างสรรค์นวัตกรรม</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q9_character" value="รับผิดชอบ มีความเป็นมืออาชีพ และมีจริยธรรม" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 rounded-xl p-2.5 text-xs font-medium">รับผิดชอบ มีความเป็นมืออาชีพ และมีจริยธรรม</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q9_character" value="ทำงานเป็นทีม สื่อสาร และมีภาวะผู้นำ" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 rounded-xl p-2.5 text-xs font-medium">ทำงานเป็นทีม สื่อสาร และมีภาวะผู้นำ</div>
+                                </label>
+                                <label class="block cursor-pointer">
+                                    <input type="radio" name="q9_character" value="เรียนรู้และปรับตัวต่อการเปลี่ยนแปลงของเทคโนโลยี" class="hidden" required>
+                                    <div class="option-box bg-white border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 rounded-xl p-2.5 text-xs font-medium">เรียนรู้และปรับตัวต่อเทคโนโลยีใหม่เสมอ</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- ส่วนที่ 3: ความคาดหวังต่อหลักสูตร (ธีมสีกุหลาบชมพู Rose) -->
+            <!-- ========================================== -->
+            <section class="sec-rose rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-rose-50/90 via-white to-pink-50/40 shadow-md border-2 border-rose-200">
+                <!-- Section Header Banner -->
+                <div class="bg-gradient-to-r from-rose-600 to-pink-700 text-white rounded-2xl p-4 sm:p-5 flex items-center gap-4 mb-6 shadow-sm">
+                    <span class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-lg shrink-0">3</span>
                     <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            10. ท่านคาดหวังให้ผู้สำเร็จการศึกษาสามารถทำสิ่งใดได้ดีที่สุด <span class="text-rose-500">*</span>
+                        <h2 class="text-base sm:text-lg font-black tracking-tight">ส่วนที่ 3: ความคาดหวังต่อหลักสูตร</h2>
+                        <p class="text-xs text-rose-100">ทิศทางการผลิตมหาบัณฑิตและการปรับปรุงหลักสูตร พ.ศ. 2571</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-rose-100 shadow-sm">
+                        <label class="block text-sm font-bold text-rose-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-xs font-black">ข้อ 10</span>
+                            <span>ท่านคาดหวังให้ผู้สำเร็จการศึกษาสามารถทำสิ่งใดได้ดีที่สุด <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q10_expectations" value="พัฒนาและประยุกต์ใช้ AI เพื่อแก้ปัญหาจริง" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">พัฒนาและประยุกต์ใช้ AI เพื่อแก้ปัญหาจริง</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">พัฒนาและประยุกต์ใช้ AI เพื่อแก้ปัญหาจริง</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q10_expectations" value="วิเคราะห์ข้อมูลและใช้เทคโนโลยีเพื่อสนับสนุนการตัดสินใจ" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">วิเคราะห์ข้อมูลสนับสนุนการตัดสินใจเชิงกลยุทธ์</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">วิเคราะห์ข้อมูลสนับสนุนการตัดสินใจเชิงกลยุทธ์</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q10_expectations" value="วิจัย พัฒนา และสร้างนวัตกรรม" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">วิจัย พัฒนา และสร้างนวัตกรรมขั้นสูง</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">วิจัย พัฒนา และสร้างนวัตกรรมขั้นสูง</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q10_expectations" value="ทำงานร่วมกับผู้อื่นและนำเทคโนโลยีไปใช้ในองค์กรได้" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">ทำงานร่วมกับผู้อื่นและขับเคลื่อนองค์กรด้วยเทคโนโลยี</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">ทำงานร่วมกับผู้อื่นและขับเคลื่อนองค์กรด้วยเทคโนโลยี</div>
                             </label>
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            11. ประเด็นใดควรได้รับการเน้นในการปรับปรุงหลักสูตร พ.ศ. 2571 <span class="text-rose-500">*</span>
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-rose-100 shadow-sm">
+                        <label class="block text-sm font-bold text-rose-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-xs font-black">ข้อ 11</span>
+                            <span>ประเด็นใดควรได้รับการเน้นในการปรับปรุงหลักสูตร พ.ศ. 2571 <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q11_revision_focus" value="AI, Generative AI และเทคโนโลยีเกิดใหม่" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">AI, Generative AI และเทคโนโลยีเกิดใหม่</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">AI, Generative AI และเทคโนโลยีเกิดใหม่</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q11_revision_focus" value="Data Science และการประยุกต์ใช้ข้อมูล" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">Data Science และการประยุกต์ใช้ข้อมูล</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">Data Science และการประยุกต์ใช้ข้อมูล</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q11_revision_focus" value="การเรียนรู้จากโจทย์จริงและความร่วมมือกับภาคอุตสาหกรรม" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การเรียนรู้จากโจทย์จริงร่วมกับภาคอุตสาหกรรม</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">การเรียนรู้จากโจทย์จริงร่วมกับภาคอุตสาหกรรม</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q11_revision_focus" value="การวิจัย นวัตกรรม และทักษะวิชาชีพ" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">การวิจัย นวัตกรรม และทักษะวิชาชีพขั้นสูง</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 rounded-xl p-3.5 text-sm font-medium">การวิจัย นวัตกรรม และทักษะวิชาชีพขั้นสูง</div>
                             </label>
                         </div>
                     </div>
@@ -470,224 +559,268 @@
             </section>
 
             <!-- ========================================== -->
-            <!-- ส่วนที่ 4: คำถามเฉพาะตามกลุ่มผู้มีส่วนได้ส่วนเสีย (Dynamic Branching) -->
+            <!-- ส่วนที่ 4: คำถามเฉพาะตามกลุ่ม (ธีมสีเขียวหัวเป็ด Teal) -->
             <!-- ========================================== -->
-            <section id="section-specific" class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                    <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">4</span>
+            <section id="section-specific" class="sec-teal rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-teal-50/90 via-white to-emerald-50/40 shadow-md border-2 border-teal-200">
+                <!-- Section Header Banner -->
+                <div class="bg-gradient-to-r from-teal-600 to-emerald-700 text-white rounded-2xl p-4 sm:p-5 flex items-center gap-4 mb-6 shadow-sm">
+                    <span class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-lg shrink-0">4</span>
                     <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-slate-900">ส่วนที่ 4: คำถามเฉพาะตามกลุ่มผู้มีส่วนได้ส่วนเสีย</h2>
-                        <p class="text-xs text-slate-500" id="group-subtitle">ระบบจะปรับคำถามตามกลุ่มที่ท่านเลือกในข้อ 1 อัตโนมัติ</p>
+                        <h2 class="text-base sm:text-lg font-black tracking-tight">ส่วนที่ 4: คำถามเฉพาะตามกลุ่มผู้มีส่วนได้ส่วนเสีย</h2>
+                        <p class="text-xs text-teal-100" id="group-subtitle">ระบบจะปรับคำถามตามกลุ่มที่ท่านเลือกในข้อ 1 อัตโนมัติ</p>
                     </div>
                 </div>
 
                 <!-- Fallback Info if Q1 not selected yet -->
-                <div id="branch-placeholder" class="p-6 bg-slate-50 rounded-xl text-center text-slate-500 text-sm">
-                    <span class="material-symbols-outlined text-3xl text-slate-400 block mb-2">touch_app</span>
+                <div id="branch-placeholder" class="p-8 bg-white/80 rounded-2xl border-2 border-dashed border-teal-300 text-center text-teal-800 text-sm shadow-sm">
+                    <span class="material-symbols-outlined text-4xl text-teal-500 block mb-2">touch_app</span>
                     โปรดเลือก <strong>กลุ่มผู้มีส่วนได้ส่วนเสีย</strong> ในข้อ 1 ด้านบน เพื่อแสดงชุดคำถามเฉพาะกลุ่มของท่าน
                 </div>
 
                 <!-- Branch A: ภาครัฐ/รัฐวิสาหกิจ -->
                 <div id="branch-gov" class="hidden space-y-6">
-                    <div class="bg-violet-50/50 p-4 rounded-xl border border-violet-100 mb-4 text-xs text-violet-800 font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">account_balance</span>
+                    <div class="bg-violet-600 text-white p-4 rounded-2xl shadow-sm text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">account_balance</span>
                         ชุดคำถามเฉพาะ: กลุ่มหน่วยงานภาครัฐ / รัฐวิสาหกิจ
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">12. หน่วยงานของท่านต้องการบุคลากรที่มีความสามารถด้านใดมากที่สุด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 12</span>
+                            <span>หน่วยงานของท่านต้องการบุคลากรที่มีความสามารถด้านใดมากที่สุด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI และ Data Analytics" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">AI และ Data Analytics</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Digital Transformation และระบบอัจฉริยะ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Digital Transformation และระบบอัจฉริยะ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Cybersecurity และการจัดการข้อมูล" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Cybersecurity และการจัดการข้อมูลภาครัฐ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="การพัฒนาระบบเพื่อสนับสนุนภารกิจภาครัฐ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การพัฒนาระบบเพื่อสนับสนุนภารกิจภาครัฐ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI และ Data Analytics" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">AI และ Data Analytics</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Digital Transformation และระบบอัจฉริยะ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Digital Transformation และระบบอัจฉริยะ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Cybersecurity และการจัดการข้อมูล" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Cybersecurity และการจัดการข้อมูลภาครัฐ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="การพัฒนาระบบเพื่อสนับสนุนภารกิจภาครัฐ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การพัฒนาระบบเพื่อสนับสนุนภารกิจภาครัฐ</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">13. ทักษะใดควรเพิ่มเติมเพื่อให้บัณฑิตทำงานได้อย่างมีประสิทธิภาพในภาครัฐ</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 13</span>
+                            <span>ทักษะใดควรเพิ่มเติมเพื่อให้บัณฑิตทำงานได้อย่างมีประสิทธิภาพในภาครัฐ</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิเคราะห์และแก้ปัญหาจากโจทย์จริง" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การวิเคราะห์และแก้ปัญหาจากโจทย์จริง</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การพัฒนาและประยุกต์ใช้ AI" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การพัฒนาและประยุกต์ใช้ AI</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การจัดการข้อมูลและความปลอดภัย" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การจัดการข้อมูลและความมั่นคงปลอดภัย</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การบริหารโครงการและการทำงานร่วมกับผู้อื่น" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การบริหารโครงการและการทำงานร่วมกับผู้อื่น</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิเคราะห์และแก้ปัญหาจากโจทย์จริง" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การวิเคราะห์และแก้ปัญหาจากโจทย์จริง</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การพัฒนาและประยุกต์ใช้ AI" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การพัฒนาและประยุกต์ใช้ AI</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การจัดการข้อมูลและความปลอดภัย" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การจัดการข้อมูลและความมั่นคงปลอดภัย</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การบริหารโครงการและการทำงานร่วมกับผู้อื่น" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การบริหารโครงการและการทำงานร่วมกับผู้อื่น</div></label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Branch B: ภาคเอกชน/สถานประกอบการ -->
                 <div id="branch-biz" class="hidden space-y-6">
-                    <div class="bg-sky-50/50 p-4 rounded-xl border border-sky-100 mb-4 text-xs text-sky-800 font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">domain</span>
+                    <div class="bg-sky-600 text-white p-4 rounded-2xl shadow-sm text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">domain</span>
                         ชุดคำถามเฉพาะ: กลุ่มภาคเอกชน / สถานประกอบการ
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">12. ท่านต้องการให้บัณฑิตมีความสามารถด้านใดมากที่สุด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 12</span>
+                            <span>ท่านต้องการให้บัณฑิตมีความสามารถด้านใดมากที่สุด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Software / Computer Engineering" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Software / Computer Engineering</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Digital Technology / Automation" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Digital Technology / Automation</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Software / Computer Engineering" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Software / Computer Engineering</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Digital Technology / Automation" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Digital Technology / Automation</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">13. ทักษะใดมีความสำคัญต่อการทำงานในองค์กรของท่าน</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 13</span>
+                            <span>ทักษะใดมีความสำคัญต่อการทำงานในองค์กรของท่าน</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การแก้ปัญหาและประยุกต์ใช้เทคโนโลยี" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การแก้ปัญหาและประยุกต์ใช้เทคโนโลยี</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การพัฒนา AI และระบบดิจิทัล" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การพัฒนา AI และระบบดิจิทัล</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การทำงานเป็นทีมและการสื่อสาร" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การทำงานเป็นทีมและการสื่อสาร</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การแก้ปัญหาและประยุกต์ใช้เทคโนโลยี" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การแก้ปัญหาและประยุกต์ใช้เทคโนโลยี</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การพัฒนา AI และระบบดิจิทัล" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การพัฒนา AI และระบบดิจิทัล</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การทำงานเป็นทีมและการสื่อสาร" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การทำงานเป็นทีมและการสื่อสาร</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">14. สถานประกอบการต้องการมีส่วนร่วมกับหลักสูตรในรูปแบบใด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 14</span>
+                            <span>สถานประกอบการต้องการมีส่วนร่วมกับหลักสูตรในรูปแบบใด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ให้โจทย์โครงงาน/วิจัยจากสถานประกอบการ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ให้โจทย์โครงงาน / วิจัยจากสถานประกอบการ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ร่วมพัฒนารายวิชา/หลักสูตร" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ร่วมพัฒนารายวิชา / หลักสูตร</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ส่งผู้เชี่ยวชาญหรือวิทยากรร่วมสอน" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ส่งผู้เชี่ยวชาญ / วิทยากรร่วมสอน</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="รับนักศึกษา/บัณฑิตเข้าฝึกงานหรือทำงาน" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">รับนักศึกษาเข้าฝึกงาน / บัณฑิตเข้าทำงาน</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ให้โจทย์โครงงาน/วิจัยจากสถานประกอบการ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ให้โจทย์โครงงาน / วิจัยจากสถานประกอบการ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ร่วมพัฒนารายวิชา/หลักสูตร" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ร่วมพัฒนารายวิชา / หลักสูตร</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="ส่งผู้เชี่ยวชาญหรือวิทยากรร่วมสอน" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ส่งผู้เชี่ยวชาญ / วิทยากรร่วมสอน</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="รับนักศึกษา/บัณฑิตเข้าฝึกงานหรือทำงาน" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">รับนักศึกษาเข้าฝึกงาน / บัณฑิตเข้าทำงาน</div></label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Branch C: ศิษย์เก่า -->
                 <div id="branch-alumni" class="hidden space-y-6">
-                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 mb-4 text-xs text-amber-800 font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">school</span>
+                    <div class="bg-amber-600 text-white p-4 rounded-2xl shadow-sm text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">school</span>
                         ชุดคำถามเฉพาะ: กลุ่มศิษย์เก่า / บัณฑิต
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">12. จากประสบการณ์ทำงาน ท่านเห็นว่าควรเพิ่มเติมความรู้ด้านใด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 12</span>
+                            <span>จากประสบการณ์ทำงาน ท่านเห็นว่าควรเพิ่มเติมความรู้ด้านใด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Software / Cloud / Cybersecurity" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Software / Cloud / Cybersecurity</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="เทคโนโลยีเพื่อการประยุกต์ใช้ในงานจริง" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">เทคโนโลยีเพื่อการประยุกต์ใช้ในงานจริง</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Software / Cloud / Cybersecurity" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Software / Cloud / Cybersecurity</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="เทคโนโลยีเพื่อการประยุกต์ใช้ในงานจริง" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">เทคโนโลยีเพื่อการประยุกต์ใช้ในงานจริง</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">13. ทักษะใดที่ท่านเห็นว่าสำคัญต่อการทำงานมากที่สุด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 13</span>
+                            <span>ทักษะใดที่ท่านเห็นว่าสำคัญต่อการทำงานมากที่สุด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การแก้ปัญหาและประยุกต์ใช้ความรู้" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การแก้ปัญหาและประยุกต์ใช้ความรู้</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิจัยและสร้างนวัตกรรม" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การวิจัยและสร้างนวัตกรรม</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การสื่อสารและการทำงานร่วมกับผู้อื่น" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การสื่อสารและการทำงานร่วมกับผู้อื่น</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การแก้ปัญหาและประยุกต์ใช้ความรู้" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การแก้ปัญหาและประยุกต์ใช้ความรู้</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิจัยและสร้างนวัตกรรม" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การวิจัยและสร้างนวัตกรรม</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การสื่อสารและการทำงานร่วมกับผู้อื่น" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การสื่อสารและการทำงานร่วมกับผู้อื่น</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การเรียนรู้และปรับตัวต่อเทคโนโลยีใหม่</div></label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Branch D: นักศึกษาปัจจุบัน -->
                 <div id="branch-current" class="hidden space-y-6">
-                    <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 mb-4 text-xs text-emerald-800 font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">person_pin</span>
+                    <div class="bg-emerald-600 text-white p-4 rounded-2xl shadow-sm text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">person_pin</span>
                         ชุดคำถามเฉพาะ: กลุ่มนักศึกษาปัจจุบัน (ระดับบัณฑิตศึกษา)
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">12. เหตุผลสำคัญที่เลือกเรียนหลักสูตรนี้</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 12</span>
+                            <span>เหตุผลสำคัญที่เลือกเรียนหลักสูตรนี้</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการเพิ่มความรู้และทักษะด้าน AI/คอมพิวเตอร์" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ต้องการเพิ่มความรู้และทักษะด้าน AI/คอมพิวเตอร์</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการพัฒนาความก้าวหน้าในอาชีพ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ต้องการพัฒนาความก้าวหน้าในอาชีพ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการทำวิจัยและสร้างนวัตกรรม" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ต้องการทำวิจัยและสร้างนวัตกรรม</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการนำความรู้ไปประยุกต์ใช้กับงานจริง" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">ต้องการนำความรู้ไปประยุกต์ใช้กับงานจริง</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการเพิ่มความรู้และทักษะด้าน AI/คอมพิวเตอร์" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ต้องการเพิ่มความรู้และทักษะด้าน AI/คอมพิวเตอร์</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการพัฒนาความก้าวหน้าในอาชีพ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ต้องการพัฒนาความก้าวหน้าในอาชีพ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการทำวิจัยและสร้างนวัตกรรม" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ต้องการทำวิจัยและสร้างนวัตกรรม</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="ต้องการนำความรู้ไปประยุกต์ใช้กับงานจริง" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">ต้องการนำความรู้ไปประยุกต์ใช้กับงานจริง</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">13. ท่านต้องการให้หลักสูตรเพิ่มการเรียนรู้ด้านใด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 13</span>
+                            <span>ท่านต้องการให้หลักสูตรเพิ่มการเรียนรู้ด้านใด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="AI / Generative AI" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="Software / Cybersecurity / Cloud" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Software / Cybersecurity / Cloud</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิจัยและการประยุกต์ใช้เทคโนโลยีจริง" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การวิจัยและการประยุกต์ใช้เทคโนโลยีจริง</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="AI / Generative AI" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="Software / Cybersecurity / Cloud" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Software / Cybersecurity / Cloud</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="การวิจัยและการประยุกต์ใช้เทคโนโลยีจริง" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การวิจัยและการประยุกต์ใช้เทคโนโลยีจริง</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">14. รูปแบบการเรียนที่ท่านต้องการ</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 14</span>
+                            <span>รูปแบบการเรียนที่ท่านต้องการ</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="Project-based / Problem-based Learning" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Project-based / Problem-based Learning</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="การทำวิจัยและพัฒนานวัตกรรม" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การทำวิจัยและพัฒนานวัตกรรม</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="การเรียนรู้ร่วมกับสถานประกอบการ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">การเรียนรู้ร่วมกับสถานประกอบการ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="Online / Hybrid และการฝึกปฏิบัติ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Online / Hybrid และการฝึกปฏิบัติ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="Project-based / Problem-based Learning" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Project-based / Problem-based Learning</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="การทำวิจัยและพัฒนานวัตกรรม" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การทำวิจัยและพัฒนานวัตกรรม</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="การเรียนรู้ร่วมกับสถานประกอบการ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">การเรียนรู้ร่วมกับสถานประกอบการ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q14_specific" value="Online / Hybrid และการฝึกปฏิบัติ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Online / Hybrid และการฝึกปฏิบัติ</div></label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Branch E: นักศึกษา ป.ตรี -->
                 <div id="branch-ugrad" class="hidden space-y-6">
-                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-100 mb-4 text-xs text-indigo-800 font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base">menu_book</span>
+                    <div class="bg-indigo-600 text-white p-4 rounded-2xl shadow-sm text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">menu_book</span>
                         ชุดคำถามเฉพาะ: กลุ่มนักศึกษาระดับปริญญาตรี
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">12. หากศึกษาต่อระดับปริญญาโท ท่านสนใจด้านใดมากที่สุด</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 12</span>
+                            <span>หากศึกษาต่อระดับปริญญาโท ท่านสนใจด้านใดมากที่สุด</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Computer / Software Engineering" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Computer / Software Engineering</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Cybersecurity / Cloud / IoT" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">Cybersecurity / Cloud / IoT</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="AI / Generative AI" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">AI / Generative AI</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Data Science / Data Analytics" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Data Science / Data Analytics</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Computer / Software Engineering" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Computer / Software Engineering</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q12_specific" value="Cybersecurity / Cloud / IoT" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">Cybersecurity / Cloud / IoT</div></label>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">13. ปัจจัยใดมีผลต่อการตัดสินใจเลือกเรียนหลักสูตรปริญญาโท</label>
+                    <div class="bg-white/90 p-5 rounded-2xl border border-teal-100 shadow-sm">
+                        <label class="block text-sm font-bold text-teal-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 text-xs font-black">ข้อ 13</span>
+                            <span>ปัจจัยใดมีผลต่อการตัดสินใจเลือกเรียนหลักสูตรปริญญาโท</span>
+                        </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="เนื้อหาทันสมัยและตรงกับตลาดแรงงาน" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">เนื้อหาทันสมัยและตรงกับตลาดแรงงาน</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="มีโอกาสทำวิจัย/สร้างนวัตกรรม" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">มีโอกาสทำวิจัย / สร้างนวัตกรรม</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="มีการเรียนรู้จากโจทย์จริงและสถานประกอบการ" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">มีการเรียนรู้จากโจทย์จริงและสถานประกอบการ</div></label>
-                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="รูปแบบการเรียนและค่าใช้จ่ายเหมาะสม" class="hidden"><div class="option-box border border-slate-200 rounded-xl p-3 text-sm font-medium">รูปแบบการเรียนและค่าใช้จ่ายเหมาะสม</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="เนื้อหาทันสมัยและตรงกับตลาดแรงงาน" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">เนื้อหาทันสมัยและตรงกับตลาดแรงงาน</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="มีโอกาสทำวิจัย/สร้างนวัตกรรม" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">มีโอกาสทำวิจัย / สร้างนวัตกรรม</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="มีการเรียนรู้จากโจทย์จริงและสถานประกอบการ" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">มีการเรียนรู้จากโจทย์จริงและสถานประกอบการ</div></label>
+                            <label class="cursor-pointer"><input type="radio" name="q13_specific" value="รูปแบบการเรียนและค่าใช้จ่ายเหมาะสม" class="hidden"><div class="option-box bg-white border-2 border-slate-200 hover:border-teal-400 rounded-xl p-3 text-sm font-medium">รูปแบบการเรียนและค่าใช้จ่ายเหมาะสม</div></label>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ========================================== -->
-            <!-- ส่วนที่ 5: คำถามสรุป -->
+            <!-- ส่วนที่ 5: คำถามสรุป (ธีมสีม่วงสดใส Violet & Fuchsia) -->
             <!-- ========================================== -->
-            <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
-                <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                    <span class="w-8 h-8 rounded-lg bg-purple-100 text-primary flex items-center justify-center font-bold text-sm">5</span>
+            <section class="sec-violet rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-purple-50/90 via-white to-fuchsia-50/40 shadow-md border-2 border-purple-300">
+                <!-- Section Header Banner -->
+                <div class="bg-gradient-to-r from-purple-700 via-violet-700 to-fuchsia-700 text-white rounded-2xl p-4 sm:p-5 flex items-center gap-4 mb-6 shadow-sm">
+                    <span class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-lg shrink-0">5</span>
                     <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-slate-900">ส่วนที่ 5: คำถามสรุปและข้อเสนอแนะภาพรวม</h2>
-                        <p class="text-xs text-slate-500">สำหรับทุกกลุ่มผู้มีส่วนได้ส่วนเสีย</p>
+                        <h2 class="text-base sm:text-lg font-black tracking-tight">ส่วนที่ 5: คำถามสรุปและข้อเสนอแนะภาพรวม</h2>
+                        <p class="text-xs text-purple-100">สำหรับทุกกลุ่มผู้มีส่วนได้ส่วนเสีย</p>
                     </div>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q15 Checkbox max 3 -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-1">
-                            15. หากเลือกได้เพียง 3 เรื่อง ท่านเห็นว่าอะไรสำคัญที่สุดสำหรับผู้สำเร็จการศึกษาหลักสูตรนี้ <span class="text-rose-500">*</span>
-                        </label>
-                        <p class="text-xs text-slate-500 mb-3">(โปรดเลือกได้ <strong>ไม่เกิน 3 ข้อ</strong> — เลือกแล้ว <span id="q15-count" class="font-bold text-primary">0</span>/3)</p>
+                    <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border-2 border-purple-200 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <label class="block text-sm font-bold text-purple-950 flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-xs font-black">ข้อ 15</span>
+                                <span>หากเลือกได้เพียง 3 เรื่อง ท่านเห็นว่าอะไรสำคัญที่สุดสำหรับผู้สำเร็จการศึกษาหลักสูตรนี้ <span class="text-rose-500">*</span></span>
+                            </label>
+                            <span class="text-xs font-bold text-purple-800 bg-purple-100 px-3 py-1 rounded-full border border-purple-200 shrink-0">
+                                เลือกแล้ว: <span id="q15-count" class="text-purple-700 font-extrabold text-sm">0</span> / 3 ข้อ
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">(โปรดเลือกได้ <strong>ไม่เกิน 3 ข้อ</strong>)</p>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q15-container">
                             <label class="cursor-pointer">
                                 <input type="checkbox" name="q15_top3" value="มีความรู้ ด้าน AI และวิศวกรรมคอมพิวเตอร์" class="hidden" onchange="handleQ15Check(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
                                     <span class="material-symbols-outlined text-slate-400">check_box_outline_blank</span>
                                     <span><strong>มีความรู้</strong> ด้าน AI และวิศวกรรมคอมพิวเตอร์</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="checkbox" name="q15_top3" value="มีทักษะ ในการประยุกต์ใช้และแก้ปัญหาจริง" class="hidden" onchange="handleQ15Check(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
                                     <span class="material-symbols-outlined text-slate-400">check_box_outline_blank</span>
                                     <span><strong>มีทักษะ</strong> ในการประยุกต์ใช้และแก้ปัญหาจริง</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="checkbox" name="q15_top3" value="มีความสามารถด้านการวิจัยและนวัตกรรม" class="hidden" onchange="handleQ15Check(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
                                     <span class="material-symbols-outlined text-slate-400">check_box_outline_blank</span>
                                     <span><strong>มีความสามารถ</strong> ด้านการวิจัยและนวัตกรรม</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="checkbox" name="q15_top3" value="มีจริยธรรมและความรับผิดชอบ" class="hidden" onchange="handleQ15Check(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
                                     <span class="material-symbols-outlined text-slate-400">check_box_outline_blank</span>
                                     <span><strong>มีจริยธรรม</strong> และความรับผิดชอบต่อสังคม</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer sm:col-span-2">
                                 <input type="checkbox" name="q15_top3" value="มีทักษะการทำงานและการเรียนรู้ตลอดชีวิต" class="hidden" onchange="handleQ15Check(this)">
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium flex items-center gap-3">
                                     <span class="material-symbols-outlined text-slate-400">check_box_outline_blank</span>
                                     <span><strong>มีทักษะ</strong> การทำงานร่วมกับผู้อื่นและการเรียนรู้ตลอดชีวิต (Lifelong Learning)</span>
                                 </div>
@@ -696,45 +829,49 @@
                     </div>
 
                     <!-- Q16 -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-2">
-                            16. โดยภาพรวม ท่านต้องการให้หลักสูตรผลิตมหาบัณฑิตที่มีลักษณะอย่างไร <span class="text-rose-500">*</span>
+                    <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-purple-100 shadow-sm">
+                        <label class="block text-sm font-bold text-purple-950 mb-3 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-xs font-black">ข้อ 16</span>
+                            <span>โดยภาพรวม ท่านต้องการให้หลักสูตรผลิตมหาบัณฑิตที่มีลักษณะอย่างไร <span class="text-rose-500">*</span></span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="cursor-pointer">
                                 <input type="radio" name="q16_graduate_profile" value="ผู้เชี่ยวชาญด้าน AI และวิศวกรรมคอมพิวเตอร์" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">ผู้เชี่ยวชาญด้าน AI และวิศวกรรมคอมพิวเตอร์</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium">ผู้เชี่ยวชาญด้าน AI และวิศวกรรมคอมพิวเตอร์</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q16_graduate_profile" value="นักวิจัยและนักสร้างนวัตกรรม" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">นักวิจัยและนักสร้างนวัตกรรม</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium">นักวิจัยและนักสร้างนวัตกรรม</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q16_graduate_profile" value="ผู้ที่สามารถนำเทคโนโลยีไปแก้ปัญหาจริง" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">ผู้ที่สามารถนำเทคโนโลยีไปแก้ปัญหาจริง</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium">ผู้ที่สามารถนำเทคโนโลยีไปแก้ปัญหาจริง</div>
                             </label>
                             <label class="cursor-pointer">
                                 <input type="radio" name="q16_graduate_profile" value="ผู้นำด้านเทคโนโลยีที่มีจริยธรรมและความรับผิดชอบ" class="hidden" required>
-                                <div class="option-box border border-slate-200 rounded-xl p-3.5 text-sm font-medium">ผู้นำด้านเทคโนโลยีที่มีจริยธรรมและรับผิดชอบ</div>
+                                <div class="option-box bg-white border-2 border-slate-200 hover:border-purple-400 rounded-xl p-3.5 text-sm font-medium">ผู้นำด้านเทคโนโลยีที่มีจริยธรรมและรับผิดชอบ</div>
                             </label>
                         </div>
                     </div>
 
                     <!-- Additional Suggestions -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-800 mb-1">
+                    <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-purple-100 shadow-sm">
+                        <label class="block text-sm font-bold text-purple-950 mb-2">
                             ข้อเสนอแนะเพิ่มเติมสำหรับการปรับปรุงหลักสูตร วศ.ม. CPE&amp;AI พ.ศ. 2571
                         </label>
-                        <textarea name="additional_comments" rows="3" class="w-full rounded-xl border-slate-200 text-sm focus:border-primary focus:ring-primary placeholder-slate-400" placeholder="ข้อเสนอแนะด้านเนื้อหารายวิชา การฝึกปฏิบัติ การร่วมมือกับหน่วยงาน หรืออื่นๆ..."></textarea>
+                        <textarea name="additional_comments" rows="3" class="w-full rounded-xl border-2 border-slate-200 text-sm focus:border-purple-600 focus:ring-purple-600 placeholder-slate-400" placeholder="ข้อเสนอแนะด้านเนื้อหารายวิชา การฝึกปฏิบัติ การร่วมมือกับหน่วยงาน หรืออื่นๆ..."></textarea>
                     </div>
 
                     <!-- Optional Respondent Info -->
-                    <div class="pt-4 border-t border-slate-100">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">ข้อมูลสำหรับติดต่อกลับ (ไม่บังคับระบุ)</p>
+                    <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-purple-100 shadow-sm">
+                        <p class="text-xs font-bold text-purple-900 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm text-purple-600">contact_mail</span>
+                            ข้อมูลสำหรับติดต่อกลับ (ไม่บังคับระบุ)
+                        </p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <input type="text" name="organization_name" placeholder="ชื่อหน่วยงาน / องค์กร" class="rounded-xl border-slate-200 text-xs focus:border-primary focus:ring-primary">
-                            <input type="text" name="respondent_name" placeholder="ชื่อ-นามสกุล / ตำแหน่ง" class="rounded-xl border-slate-200 text-xs focus:border-primary focus:ring-primary">
-                            <input type="email" name="respondent_email" placeholder="อีเมล / เบอร์โทรศัพท์" class="rounded-xl border-slate-200 text-xs focus:border-primary focus:ring-primary">
+                            <input type="text" name="organization_name" placeholder="ชื่อหน่วยงาน / องค์กร" class="rounded-xl border-2 border-slate-200 text-xs focus:border-purple-600 focus:ring-purple-600">
+                            <input type="text" name="respondent_name" placeholder="ชื่อ-นามสกุล / ตำแหน่ง" class="rounded-xl border-2 border-slate-200 text-xs focus:border-purple-600 focus:ring-purple-600">
+                            <input type="email" name="respondent_email" placeholder="อีเมล / เบอร์โทรศัพท์" class="rounded-xl border-2 border-slate-200 text-xs focus:border-purple-600 focus:ring-purple-600">
                         </div>
                     </div>
                 </div>
@@ -742,10 +879,11 @@
 
             <!-- Submit Button Area -->
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-                <p class="text-xs text-slate-500">
-                    🔒 ข้อมูลของท่านจะถูกเก็บเป็นความลับและนำไปประมวลผลทางวิชาการตามมาตรฐาน AUN-QA
+                <p class="text-xs text-slate-500 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm text-emerald-600">lock</span>
+                    ข้อมูลของท่านจะถูกเก็บเป็นความลับและนำไปประมวลผลทางวิชาการตามมาตรฐาน AUN-QA
                 </p>
-                <button type="submit" id="submitBtn" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg shadow-violet-500/25 transition-all text-sm uppercase tracking-wider cursor-pointer">
+                <button type="submit" id="submitBtn" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-700 hover:from-violet-700 hover:to-indigo-800 text-white font-bold px-10 py-4 rounded-2xl shadow-xl shadow-indigo-500/25 transition-all text-sm uppercase tracking-wider cursor-pointer hover:scale-105 active:scale-100">
                     <span class="material-symbols-outlined">send</span>
                     <span>ส่งแบบสำรวจ</span>
                 </button>
@@ -755,17 +893,17 @@
 
     <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border border-slate-100 animate-fade-in-up">
-            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border border-slate-100">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 shadow-sm">
                 <span class="material-symbols-outlined text-4xl">task_alt</span>
             </div>
             <h3 class="text-2xl font-black text-slate-900 mb-2">บันทึกข้อมูลเรียบร้อยแล้ว!</h3>
             <p class="text-sm text-slate-600 mb-6 leading-relaxed">
                 หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต (วศ.ม. CPE&amp;AI) ขอขอบพระคุณท่านเป็นอย่างยิ่งสำหรับข้อมูลและข้อเสนอแนะอันทรงคุณค่าเพื่อการพัฒนาหลักสูตรตามกรอบ OBE
             </p>
-            <div class="bg-slate-50 p-3.5 rounded-xl text-xs text-slate-500 mb-6 flex items-center justify-between">
+            <div class="bg-slate-50 p-3.5 rounded-xl text-xs text-slate-500 mb-6 flex items-center justify-between border border-slate-200">
                 <span>รหัสแบบสำรวจ (Survey ID):</span>
-                <span id="surveyIdBadge" class="font-mono font-bold text-primary bg-white px-2 py-0.5 rounded border border-slate-200">#---</span>
+                <span id="surveyIdBadge" class="font-mono font-bold text-violet-700 bg-white px-2.5 py-1 rounded border border-slate-200">#---</span>
             </div>
             <div class="flex flex-col gap-2.5">
                 <a href="dashboard.html" class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md">
@@ -816,11 +954,11 @@
             const icon = parent.querySelector('.material-symbols-outlined');
             if (checkbox.checked) {
                 icon.textContent = 'check_box';
-                icon.classList.add('text-primary');
+                icon.classList.add('text-purple-600');
                 icon.classList.remove('text-slate-400');
             } else {
                 icon.textContent = 'check_box_outline_blank';
-                icon.classList.remove('text-primary');
+                icon.classList.remove('text-purple-600');
                 icon.classList.add('text-slate-400');
             }
             updateProgress();
@@ -909,7 +1047,6 @@
                 }
             } catch (err) {
                 console.error(err);
-                // Fallback for static demo environments
                 document.getElementById('surveyIdBadge').textContent = `#CPE-${Math.floor(Math.random()*9000+1000)}`;
                 document.getElementById('successModal').classList.remove('hidden');
             } finally {
