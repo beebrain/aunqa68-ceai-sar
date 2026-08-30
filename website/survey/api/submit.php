@@ -42,7 +42,11 @@ $required_fields = ['q1_stakeholder_group', 'q2_field', 'q3_tech_relation', 'q4_
 
 $missing = [];
 foreach ($required_fields as $field) {
-    if (!isset($data[$field]) || trim($data[$field]) === '') {
+    if (!isset($data[$field])) {
+        $missing[] = $field;
+    } elseif (is_string($data[$field]) && trim($data[$field]) === '') {
+        $missing[] = $field;
+    } elseif (is_array($data[$field]) && empty($data[$field])) {
         $missing[] = $field;
     }
 }
