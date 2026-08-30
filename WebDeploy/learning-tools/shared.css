@@ -1,0 +1,143 @@
+/* ใช้ร่วมกับหน้า training/ — โทนเดียวกัน แต่ accent เป็นเขียวอมฟ้า */
+:root {
+  --accent: #0F766E;
+  --accent-soft: #CCFBF1;
+  --ink: #1F2430;
+  --muted: #5B6270;
+  --line: #D5E8E6;
+  --bg: #FAF9FC;
+  --card: #fff;
+  --graph-curve: #0D9488;
+  --graph-secant: #B45309;
+  --graph-tangent: #334155;
+  --graph-grid: #CBD5E1;
+  --graph-axis: #64748B;
+  --graph-area: rgba(20, 184, 166, 0.42);
+  --graph-area-stroke: #0F766E;
+  --graph-bound: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+header.site {
+  background: linear-gradient(135deg, #134E4A, #0F766E);
+  color: #fff;
+  padding: 48px 0 40px;
+}
+
+header.site .crumb {
+  font-size: 14px;
+  opacity: .88;
+  margin-bottom: 16px;
+}
+
+header.site .crumb a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+}
+
+header.site h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+header.site p {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  color: #CCFBF1;
+  max-width: 58ch;
+}
+
+main { padding: 40px 0 64px; }
+
+footer.site {
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+footer.site a { color: var(--accent); }
+
+.card-link {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 28px;
+  margin-bottom: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow .2s;
+}
+
+.card-link:hover {
+  box-shadow: 0 8px 24px rgba(15,118,110,.08);
+}
+
+.card-link h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-link p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 65ch;
+}
+
+.card-link .hint {
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+button, input, select { font: inherit; }
+
+button { cursor: pointer; }
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.note {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: #F8FAFA;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}

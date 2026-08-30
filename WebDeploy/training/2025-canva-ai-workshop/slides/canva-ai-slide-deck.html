@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva AI: Magic Studio Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --primary: #7d2ae8; /* Lavender Accent */
+            --primary-light: #e8dbfc;
+            --secondary: #00c4cc; /* Cyan Accent */
+            --secondary-light: #d6f8f9;
+            --success: #10b981; /* Soft Mint Green */
+            --success-light: #d1fae5;
+            --warning: #ff4f81; /* Pale Coral */
+            --warning-light: #ffe4eb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 10px 40px -10px rgba(31, 38, 135, 0.06);
+            --font-display: 'Outfit', 'Sarabun', sans-serif;
+            --font-body: 'Sarabun', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ambient background blobs for glassmorphism */
+        .ambient-blobs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            animation: float 20s infinite alternate;
+        }
+
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            background-color: var(--primary-light);
+            top: -10%;
+            left: -10%;
+        }
+
+        .blob-2 {
+            width: 800px;
+            height: 800px;
+            background-color: var(--secondary-light);
+            bottom: -15%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 600px;
+            height: 600px;
+            background-color: var(--success-light);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* Presentation Container */
+        .presentation-container {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            flex: none; /* body เป็น flex — กันไม่ให้ถูกบีบแคบกว่า 1920px แล้วสไลด์ล้นขวา */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transform-origin: center center;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Slide layout */
+        .slide {
+            position: absolute;
+            width: 1800px;
+            height: 980px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px 80px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .slide.prev-slide {
+            transform: translateX(-50px) scale(0.98);
+        }
+
+        .slide.next-slide {
+            transform: translateX(50px) scale(0.98);
+        }
+
+        /* Common Elements */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .slide-title-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .module-tag {
+            background-color: var(--primary-light);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-title {
+            font-family: var(--font-display);
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .slide-logo {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-symbol {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .slide-content {
+            flex-grow: 1;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 160px);
+        }
+
+        .slide-content.no-columns {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+
+        .slide-column {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0; /* Prevent flex items from expanding beyond bounds */
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1.5px solid rgba(0, 0, 0, 0.05);
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 19px;
+            color: var(--text-muted);
+        }
+
+        /* Titles and Text Styles */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+        }
+
+        p {
+            font-size: 28px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        li {
+            font-size: 28px;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        li::before {
+            content: "✦";
+            color: var(--primary);
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 6px solid var(--primary);
+            padding: 25px 30px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box.cyan {
+            border-left-color: var(--secondary);
+        }
+
+        .highlight-box.green {
+            border-left-color: var(--success);
+        }
+
+        .highlight-box h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        /* Glassmorphic card details */
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.65);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-icon {
+            font-size: 52px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        /* Controls and Info */
+        .controls-overlay {
+            position: fixed;
+            bottom: 20px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            font-size: 32px;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .control-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        .progress-bar-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 99;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Specific slide styled layouts */
+        /* Cover Slide */
+        .cover-layout {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .cover-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cover-logo-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .cover-logo-text {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #1e293b, #4b5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .cover-subtitle {
+            font-size: 28px;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            max-width: 900px;
+            line-height: 1.5;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 40px;
+            font-size: 24px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 15px 40px;
+            border-radius: 50px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-item-bold {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Compare Table */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 32px;
+            margin-top: 15px;
+        }
+
+        .compare-table th, .compare-table td {
+            padding: 22px 25px;
+            text-align: left;
+            border-bottom: 1.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .compare-table th {
+            background-color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+            color: var(--text-main);
+            border-top: 1.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .compare-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Steps */
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 28px;
+            width: 55px; height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .step-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .step-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .step-desc {
+            font-size: 24px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Code block styling */
+        code, pre {
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 22px;
+        }
+
+        pre {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px 25px;
+            width: 100%;
+            overflow-x: auto;
+            line-height: 1.5;
+            color: #0f172a;
+        }
+
+        .code-tag {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .code-attr {
+            color: var(--secondary);
+        }
+
+        .code-comment {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Badge tags */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .badge-primary { background: var(--primary-light); color: var(--primary); }
+
+        /* Report Portal Live Preview */
+        .live-preview-box {
+            background: #f9fafb;
+            border: 1px dashed rgba(0, 0, 0, 0.15);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 10px;
+        }
+        .preview-title { font-weight: 700; font-size: 22px; }
+        .preview-body { flex-grow: 1; padding: 15px 0; font-size: 19px; color: var(--text-muted); }
+        .preview-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .preview-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: not-allowed;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="presentation-container" id="presentation">
+        <!-- Slide 1: Cover -->
+        <div class="slide active">
+            <div class="slide-content" style="height: 100%; display: flex; align-items: center; padding: 20px 40px;">
+                <div class="slide-column" style="flex: 1.1; display: flex; flex-direction: column; justify-content: center; padding-right: 40px;">
+                    <div class="cover-logo-wrapper" style="margin-bottom: 20px;">
+                        <div class="cover-logo-box" style="background: linear-gradient(135deg, #7d2ae8, #00c4cc);"></div>
+                        <span class="cover-logo-text" style="font-weight: 800; font-size: 32px; letter-spacing: 2px; color: var(--primary);">CANVA AI 101</span>
+                    </div>
+                    <h1 class="cover-title" style="font-size: 50px; font-weight: 800; line-height: 1.2; margin-bottom: 20px;">สร้างงานออกแบบและแอป<br>ด้วย Canva AI (Magic Studio)</h1>
+                    <p class="cover-subtitle" style="font-size: 24px; line-height: 1.5; color: var(--text-muted); margin-bottom: 30px;">หลักสูตรเชิงปฏิบัติการ: การยกระดับงานดีไซน์ สื่อประชาสัมพันธ์ และการสร้างหน้าเว็บออนไลน์ใน 1 นาทีผ่านพลังปัญญาประดิษฐ์</p>
+                    <div class="cover-meta" style="display: flex; gap: 20px; font-size: 19px;">
+                        <div class="meta-item">📍 <span class="meta-item-bold">มหาวิทยาลัยราชภัฏอุตรดิตถ์</span></div>
+                        <div class="meta-item">⏱️ <span class="meta-item-bold">3 ชั่วโมง (ครึ่งวัน)</span></div>
+                        <div class="meta-item">👥 <span class="meta-item-bold">ผู้เรียนสตาฟและนักศึกษา</span></div>
+                    </div>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; justify-content: center; align-items: center;">
+                    <img src="assets/canva_ai_cover_illustration.png" alt="Cover Illustration" style="width: 550px; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.08);">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Slide 2: Outline -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">INTRO</span>
+                    <h2 class="slide-title">ภาพรวมกิจกรรมและเป้าหมายสัมมนา</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.2;">
+                    <div class="agenda-list">
+                        <div class="agenda-item">
+                            <span class="time-box">Module 1</span>
+                            <div class="agenda-text">
+                                <strong>รู้จัก Canva Magic Studio</strong>
+                                <p>ทำความเข้าใจชุดเครื่องมืออัจฉริยะ และการเขียน Prompt Formula ที่ AI ชื่นชอบ</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="time-box">Module 2</span>
+                            <div class="agenda-text">
+                                <strong>สร้างภาพถ่าย/วิดีโอ & สไลด์นำเสนอ 8 หน้า</strong>
+                                <p>แปลงข้อความเป็นงานศิลปะผ่าน Magic Media และ Magic Design ใน 1 นาที</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="time-box">Module 3</span>
+                            <div class="agenda-text">
+                                <strong>ปฏิบัติการตัดต่อโปร (Magic Edit & Grab)</strong>
+                                <p>สลับสับเปลี่ยนเสื้อผ้า วัตถุ และขยายทัศนียภาพพื้นหลังโดย AI</p>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="time-box">Module 4</span>
+                            <div class="agenda-text">
+                                <strong>เผยแพร่หน้าเว็บจริง & เปิดเล่นแอปเสริม</strong>
+                                <p>สร้างพอร์ทัลสะสมผลงาน ลิงก์ออนไลน์ได้ทันที พร้อมติดตั้งแอปเกมจัดคลาสเรียน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-column" style="flex: 0.8; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="border-left: 6px solid var(--primary);">
+                        <h3 class="card-title">ความท้าทายในวันนี้</h3>
+                        <p style="font-size: 22px; line-height: 1.4; margin-top: 10px;">ผู้เรียนจะเปลี่ยนจาก "ผู้ที่ทำกราฟิกไม่เป็น" สู่ "ดีไซเนอร์พลัง AI" ที่สามารถเผยแพร่เว็บจัดเก็บผลงานของตัวเองออนไลน์ได้สำเร็จใน 3 ชั่วโมง</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 2 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 3: House Rules -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">RULES</span>
+                    <h2 class="slide-title">ข้อตกลงในการเรียนรู้ร่วมกัน</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1;">
+                    <div class="card" style="margin-bottom: 20px;">
+                        <h3 class="card-title" style="color: var(--primary);">1. กดปุ่มและทดลองทำด้วยตัวเอง</h3>
+                        <p style="font-size: 22px; line-height: 1.4; margin-top: 5px;">การเรียนรู้ที่ดีที่สุดมาจากปลายนิ้ว ให้รัน Prompt ทดสอบตามหน้าจอทีละขั้นตอบไปพร้อมกัน</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" style="color: var(--secondary);">2. จินตนาการอย่างไร้ขอบเขต</h3>
+                        <p style="font-size: 22px; line-height: 1.4; margin-top: 5px;">AI ทำงานตาม Prompt ยิ่งป้อนรายละเอียด สี แสง และวัตถุชัดเจนเท่าไร ภาพผลลัพธ์ก็จะว้าวเท่านั้น</p>
+                    </div>
+                </div>
+                <div class="slide-column" style="flex: 1;">
+                    <div class="card" style="margin-bottom: 20px;">
+                        <h3 class="card-title" style="color: var(--warning);">3. แข่งขันกันด้วยความสนุก</h3>
+                        <p style="font-size: 22px; line-height: 1.4; margin-top: 5px;">ในช่วงท้ายชั่วโมง จะมีการเปรียบเทียบผลงานเว็บไซต์พอร์ตโฟลิโอ เพื่อแจกรางวัลแก่หน้าเว็บที่สวยสุด</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" style="color: var(--success);">4. ส่งต่อความรู้ให้คนข้างเคียง</h3>
+                        <p style="font-size: 22px; line-height: 1.4; margin-top: 5px;">หากคนข้างๆ ล็อกอิน Canva ติดขัด ยินดีชวนชี้นำให้ไปพร้อมกันเพื่อสัมมนาที่ลื่นไหล</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 3 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 4: Module 1 Intro -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 1</span>
+                    <h2 class="slide-title">ทำความรู้จัก Canva Magic Studio</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 32px; font-weight: bold; color: var(--primary);">ระบบนิเวศการออกแบบอัจฉริยะ</p>
+                    <ul style="margin-top: 20px; font-size: 24px; line-height: 1.5;">
+                        <li><strong>Magic Design:</strong> สแกนและจัดทำพรีเซนเตชัน โปสเตอร์ หรือวิดีโอจากคีย์เวิร์ด</li>
+                        <li><strong>Magic Media:</strong> เทคโนโลยีวาดภาพถ่าย ภาพเคลื่อนไหว และวิดีโอจากข้อความ</li>
+                        <li><strong>Magic Edit:</strong> เครื่องมือแปรงระบายทับเพื่อสลับเปลี่ยนวัตถุในภาพโดย AI</li>
+                        <li><strong>Magic Switch:</strong> แปลงสัดส่วนเอกสาร หรือแปลสไลด์ข้ามภาษาได้ในคลิกเดียว</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; justify-content: center; align-items: center;">
+                    <img src="assets/canva_magic_studio_interface.png" alt="Canva Magic Studio Interface" style="width: 520px; border-radius: 20px; box-shadow: 0 12px 36px rgba(125, 42, 232, 0.12);">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 4 จาก 16</span>
+            </div>
+        </div>
+        <!-- Slide 4B: Prompt Formula -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">PROMPTS</span>
+                    <h2 class="slide-title">โครงสร้างการป้อนคำสั่งออกแบบ (Prompt Formula)</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 32px; font-weight: bold; color: var(--primary);">สูตรเขียนคำสั่งให้ AI วาดภาพได้ตรงใจที่สุด</p>
+                    <div class="card" style="margin-top: 20px; border-left: 6px solid var(--primary); background: rgba(125, 42, 232, 0.03);">
+                        <p style="font-size: 24px; line-height: 1.5; margin: 0; font-family: monospace; font-weight: bold;">
+                            [สไตล์/ชนิดของภาพ] + [วัตถุหลัก] + [โทนสี/แสง] + [องค์ประกอบเสริม]
+                        </p>
+                    </div>
+                    <ul style="margin-top: 20px; font-size: 22px;">
+                        <li><strong>สไตล์ภาพ:</strong> เวกเตอร์ (Flat vector), สีน้ำ (Watercolor), สามมิติ (3D render)</li>
+                        <li><strong>วัตถุหลัก:</strong> พนักงาน, โน้ตบุ๊ก, สุนัขจิ้งจอก, อาคารเรียน</li>
+                        <li><strong>โทนสี/แสง:</strong> สีพาสเทลอุ่น (Warm pastel), แสงยามเย็น (Sunset light)</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9;">
+                    <div class="card" style="background: rgba(255, 255, 255, 0.45); font-size: 20px;">
+                        <h3 class="card-title" style="color: var(--primary); font-size: 26px;">💡 ตัวอย่างประโยคคีย์เวิร์ด</h3>
+                        <p style="margin-top: 10px; line-height: 1.5; font-style: italic;">
+                            "Flat minimalist illustration, a workspace laptop with gears floating, warm pastel colors, vector art"
+                        </p>
+                        <p style="margin-top: 10px; line-height: 1.5; font-style: italic;">
+                            "Watercolor painting, a serene mountain lake at sunrise, lavender clouds, warm sunlight"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 5 จาก 16</span>
+            </div>
+        </div>
+        <!-- Slide 5: Module 2 Intro -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 2</span>
+                    <h2 class="slide-title">Module 2: สร้างสื่อภาพกราฟิกและสไลด์นำเสนอใน 1 นาที</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="cover-layout">
+                <h1 style="font-size: 68px; font-weight: 800; margin-bottom: 20px; color: var(--secondary);">ข้อความสู่งานออกแบบที่ดึงดูดสายตา</h1>
+                <p style="font-size: 30px; max-width: 1000px; line-height: 1.6; color: var(--text-muted);">
+                    เรียนรู้วิธีการทำงานร่วมกับ AI เพื่อแปลงแนวคิดข้อความสั้นๆ ให้เกิดเป็นสไลด์นำเสนอที่น่าสนใจพร้อมชุดคู่สีและฟอนต์ที่ลงตัว
+                </p>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 6 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 6: Mission 2.1: Magic Media -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 2</span>
+                    <h2 class="slide-title">Mission 2.1: แปลงไอเดียสู่รูปภาพและวิดีโอ (Magic Media)</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 30px; font-weight: bold; color: var(--secondary);">ขั้นตอนคัดลอกคำสั่งรันในแผงควบคุม:</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>ขั้นตอนที่ 1:</strong> คลิกเมนู <strong>Apps</strong> ฝั่งซ้าย -> ค้นหาและเลือก <strong>Magic Media</strong></li>
+                        <li><strong>ขั้นตอนที่ 2 (สร้างรูปภาพ):</strong> คัดลอก Prompt ด้านล่างไปป้อน แล้วเลือกสไตล์เป็นเวกเตอร์:</li>
+                        <pre style="font-size: 18.5px; padding: 10px; margin: 8px 0;">
+Flat minimalist illustration, a workspace laptop with gears and code brackets floating, pastel purple and cyan colors, vector style, white background
+                        </pre>
+                        <li><strong>ขั้นตอนที่ 3 (สร้างวิดีโอ):</strong> คลิกไปที่แท็บ Video ป้อน Prompt แล้วกดรันสร้างวิดีโอ 4 วินาที:</li>
+                        <pre style="font-size: 18px; padding: 10px; margin: 8px 0;">
+A futuristic digital robot working on a laptop, friendly smiling face, soft pastel background, 3D render style
+                        </pre>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="border-left: 6px solid var(--secondary); background: rgba(0, 196, 204, 0.05);">
+                        <h3 style="color: var(--secondary);">⭐ เคล็ดลับการรัน</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">หากภาพแรกยังไม่ถูกใจ สามารถคลิกปุ่ม "สร้างอีกครั้ง (Generate again)" เพื่อให้ระบบ AI ทำการเรนเดอร์ภาพใหม่จนกว่าจะพอใจได้เสมอครับ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 7 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 7: Mission 2.2: Magic Design -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 2</span>
+                    <h2 class="slide-title">Mission 2.2: โครงร่างสไลด์ 8 หน้าใน 1 นาที (Magic Design)</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 30px; font-weight: bold; color: var(--secondary);">การเริ่มต้นโครงงานนำเสนอด้วยด่วน</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>1. คลิกใช้เครื่องมือ:</strong> เปิดเทมเพลต Presentation ว่าง -> คลิกแถบค้นหาดีไซน์ -> เลือกสัญลักษณ์ดาว <strong>Magic Design</strong></li>
+                        <li><strong>2. ป้อนไอเดียหัวข้อสัมมนา:</strong> ป้อนหัวข้อที่ท่านต้องการร่างสไลด์ เช่น:
+                            <pre style="font-size: 19px; margin: 10px 0; padding: 10px;">
+แผนการอบรมหลักสูตร AI Agent และระบบการเงินอัจฉริยะสำหรับนักศึกษายุคดิจิทัล
+                            </pre>
+                        </li>
+                        <li><strong>3. ตรวจสอบแม่แบบสะดุดตา:</strong> AI จะประมวลชุดหน้าตา ฟอนต์ และการจัดวางโครงสร้างเนื้อหาออกมา 8 หน้าสำเร็จ</li>
+                        <li><strong>4. นำไปใช้งานต่อ:</strong> คลิกกดยอมรับเทมเพลต และเริ่มเปลี่ยนเนื้อหาจุดสำคัญได้ทันที</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="background: rgba(255, 255, 255, 0.45); text-align: center;">
+                        <span style="font-size: 50px;">📑</span>
+                        <h3 class="card-title">ลดเวลาทำงานเหลือ 1%</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">ไม่ต้องเสียเวลาจัดสัดส่วน ย้ายกรอบข้อความ หรือหาชุดฟอนต์ที่เข้ากันอีกต่อไป AI ร่างแม่แบบสากลให้เสร็จสิ้นพร้อมเติมรูปภาพจำลอง</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 8 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 8: Module 3 Intro -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 3</span>
+                    <h2 class="slide-title">Module 3: ปฏิบัติการตัดต่อรูปภาพระดับโปร</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="cover-layout">
+                <h1 style="font-size: 68px; font-weight: 800; margin-bottom: 20px; color: var(--warning);">การแก้ไขตกแต่งสัดส่วนของรูปภาพดั่งเวทมนตร์</h1>
+                <p style="font-size: 30px; max-width: 1000px; line-height: 1.6; color: var(--text-muted);">
+                    วิเคราะห์ชิ้นส่วนรูปภาพ ลบ ดึงวัตถุออกเป็นอิสระ หรือเปลี่ยนประเภทองค์ประกอบด้วยการทาสีแปรงทับแล้วสั่งการ AI
+                </p>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 9 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 9: Mission 3.1: Magic Edit -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 3</span>
+                    <h2 class="slide-title">Mission 3.1: เปลี่ยนเฉพาะจุดในชิ้นงานภาพ (Magic Edit)</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 31px; font-weight: bold; color: var(--warning);">เปลี่ยนแก้วน้ำ ถุงชอปปิ้ง หรือปรับเปลี่ยนเสื้อผ้าบุคคล</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>1. เลือกเครื่องมือ:</strong> คลิกรูปภาพบนจอ -> กดเมนู <strong>แก้ไขรูปภาพ (Edit Photo)</strong> -> เลือก <strong>Magic Edit</strong></li>
+                        <li><strong>2. ทาแปรงทับจุดเป้าหมาย:</strong> ระบายหัวแปรงทับวัตถุที่ถือในมือ (เช่น ถ้วยกาแฟ) ให้ครบพื้นที่ที่ต้องการแทนที่</li>
+                        <li><strong>3. พิมพ์อธิบายคีย์เวิร์ดวัตถุใหม่:</strong> พิมพ์ในกล่องข้อความเป็นภาษาอังกฤษ เช่น:
+                            <pre style="font-size: 20px; margin: 8px 0; padding: 10px;">
+A pastel pink mug with a gold star on it
+                            </pre>
+                        </li>
+                        <li><strong>4. กดสร้างผลลัพธ์:</strong> AI จะประมวลสร้างแก้วมัคสีชมพูทองมาสวมใส่เข้าแทนวัตถุเดิมอย่างแนบเนียน</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="border-left: 6px solid var(--warning); background: rgba(255, 79, 129, 0.05);">
+                        <h3 style="color: var(--warning);">⚠️ คำแนะนำความเนียน</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">ขนาดของหัวแปรงควรทาทับขอบเขตวัตถุเดิมให้คลุมทั้งหมด และระบุสีสันสไตล์ของสิ่งใหม่ใน Prompt ให้แจ่มแจ้งเพื่อความกลมกลืนกับทิศทางแสงของภาพเดิม</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 10 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 10: Mission 3.2: Magic Grab & Expand -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 3</span>
+                    <h2 class="slide-title">Mission 3.2: สกัดแยกวัตถุ & ขยายขอบเขตพื้นหลังภาพ</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 30px; font-weight: bold; color: var(--warning);">การเปลี่ยนองค์ประกอบแบบไดนามิก</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>การใช้ Magic Grab (สกัดแยกชิ้นส่วน):</strong>
+                            <p style="font-size: 20px; margin-top: 5px;">คลิกรูป -> แก้ไขรูป -> กด <strong>Magic Grab</strong> ระบบจะแกะบุคคลหรือสิ่งของหลักออกจากภาพพื้นหลัง ทำให้คุณลากปรับตำแหน่งหรือขยายใหญ่ได้อิสระ</p>
+                        </li>
+                        <li style="margin-top: 15px;"><strong>การใช้ Magic Expand (ขยายภาพให้กว้างขึ้น):</strong>
+                            <p style="font-size: 20px; margin-top: 5px;">เมื่อภาพของท่านแหว่งหรือไม่ได้สัดส่วน 16:9 ให้กดเลือก <strong>Magic Expand</strong> แล้วลากกรอบภาพให้กว้างขึ้น AI จะทำการเติมสีธรรมชาติ ท้องฟ้า ถนน หรือฉากข้างเคียงให้เต็มเฟรมโดยอ้างอิงแสงเดิม</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="background: rgba(255, 255, 255, 0.45); text-align: center;">
+                        <span style="font-size: 50px;">🖼️</span>
+                        <h3 class="card-title">ปรับมิติภาพได้อย่างไม่มีที่สิ้นสุด</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">ขจัดความปวดหัวเรื่องสัดส่วนภาพถ่ายแนวตั้งที่แชร์ลงสไลด์แนวนอนไม่ได้ ขยายขอบเขตภาพใน 5 วินาทีด้วยพลังขยายอัจฉริยะ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 11 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 11: Module 4 Intro -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 4</span>
+                    <h2 class="slide-title">Module 4: การจัดทำหน้าเว็บประวัติส่วนตัวและแอปเกมสุ่ม</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="cover-layout">
+                <h1 style="font-size: 68px; font-weight: 800; margin-bottom: 20px; color: var(--primary);">การดีพลอยหน้าเว็บออนไลน์ & เพิ่มลูกเล่นในคลาส</h1>
+                <p style="font-size: 30px; max-width: 1000px; line-height: 1.6; color: var(--text-muted);">
+                    ก้าวข้ามจากแผ่นกระดาษดีไซน์ สู่ระบบลิงก์อินเทอร์เน็ตที่เผยแพร่ให้ผู้ใช้อื่นเข้าชมได้ทั่วโลก และทดลองเล่นแอปพลิเคชันเสริมความสนุกใน Canva
+                </p>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 12 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 12: Mission 4.1: Canva Website -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 4</span>
+                    <h2 class="slide-title">Mission 4.1: เผยแพร่หน้าเว็บสะสมผลงานจริงออนไลน์</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 30px; font-weight: bold; color: var(--primary);">เปลี่ยนภาพหน้าปกให้กลายเป็น URL เว็บออนไลน์</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>1. ตกแต่งข้อมูลพอร์ตโฟลิโอ:</strong> ดึงรูปภาพจากการวาด AI ในคาบเรียนมาประกอบหน้าประวัติส่วนตัว</li>
+                        <li><strong>2. ดีพลอยงานใช้งานจริง:</strong> คลิกปุ่ม <strong>เผยแพร่เว็บไซต์ (Publish Website)</strong> ที่แถบขวาด้านบนสุด</li>
+                        <li><strong>3. กำหนดชื่อโดเมนย่อย:</strong> ติ๊กเลือกใช้โดเมนฟรีของ Canva (Free domain) และกรอกชื่อ URL ที่ต้องการ:
+                            <pre style="font-size: 20px; margin: 8px 0; padding: 10px;">
+your-name-ai.my.canva.site
+                            </pre>
+                        </li>
+                        <li><strong>4. รับลิงก์และตรวจสอบ:</strong> กดดีพลอย แล้วลองนำลิงก์ไปส่งให้เพื่อนเข้าทดสอบดูระบบการแสดงผลทางบราวเซอร์</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="border-left: 6px solid var(--primary); background: rgba(125, 42, 232, 0.05); text-align: center;">
+                        <span style="font-size: 50px;">🌐</span>
+                        <h3 style="color: var(--primary);">ออนไลน์ได้ทันทีในนาทีเดียว</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">เหมาะสำหรับผู้ใช้ที่ต้องการจัดทำระบบ Landing Page ด่วน หน้าขายของ หรือพอร์ตส่งงานสมัครเข้าเรียนระดับมหาวิทยาลัย</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 13 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 13: Mission 4.2: Canva Apps -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">MODULE 4</span>
+                    <h2 class="slide-title">Mission 4.2: ติดตั้งและทดลองเล่นระบบแอปเสริมอัจฉริยะ</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 30px; font-weight: bold; color: var(--primary);">การเปิดเมนูแอปเสริมเพื่อช่วยกระตุ้นการมีส่วนร่วม</p>
+                    <ul style="margin-top: 15px; font-size: 22px; line-height: 1.5;">
+                        <li><strong>Mojo AI / Sketch to Life:</strong> แปลงภาพวาดสเก็ตช์ด้วยดินสอธรรมดาของคุณให้กลายเป็นภาพอาร์ตเวกเตอร์ที่มีแสงสีสมบูรณ์แบบ</li>
+                        <li><strong>D-ID / HeyGen (ผู้พรีเซนต์จำลอง):</strong> วางสคริปต์ให้ผู้บรรยายใบหน้าเหมือนมนุษย์จรรโลงเสียงอ่านประกอบสไลด์นำเสนอ</li>
+                        <li><strong>Typecraft (บิดตัวหนังสือ):</strong> บีบย่อหรือดัดลวดลายหัวอักษรศิลปะให้เกิดความเป็นเอกลักษณ์ของชิ้นงานกราฟิก</li>
+                        <li><strong>Random Name Picker (ตัวสุ่มรายชื่อ):</strong> ใส่รายชื่อผู้สมัครสอบ และกดวงล้อสุ่มท้าทายกลางสไลด์</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="card" style="background: rgba(255, 255, 255, 0.45); text-align: center;">
+                        <span style="font-size: 50px;">🎮</span>
+                        <h3 class="card-title">ยกระดับด้วย Ecosystem แอป</h3>
+                        <p style="font-size: 26px; line-height: 1.4; margin-top: 5px;">Canva Apps SDK เปิดทางให้นักพัฒนาทั่วโลกรวมพลัง AI มาเชื่อมต่อช่วยงานดีไซน์ ทำให้มีทางเลือกแปลกใหม่ผุดขึ้นมาช่วยบริการเสมอ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 14 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 14: Slide Summary Table -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">SUMMARY</span>
+                    <h2 class="slide-title">สรุปภาพรวมศักยภาพเครื่องมือ Canva AI</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content no-columns">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>ชื่อเครื่องมือ</th>
+                            <th>หน้าที่การทำงาน</th>
+                            <th>ประโยชน์ที่จะได้รับหลักในการทำงาน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Magic Design</strong></td>
+                            <td>สไลด์ เอกสาร และเทมเพลต</td>
+                            <td>ประหยัดเวลาร่างหัวข้อพรีเซนต์เริ่มต้นได้ทันที จัดโทนสีและ Layout เหมาะสมใน 1 นาที</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Magic Media</strong></td>
+                            <td>แปลงข้อจำเป็นรูปภาพและคลิปสั้น</td>
+                            <td>ไม่ต้องหาภาพติดลิขสิทธิ์จากเว็บนอก วาดรูปเวกเตอร์และฉากจำลองด้วย Prompt</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Magic Edit</strong></td>
+                            <td>ระบายพู่กันสลับทดแทนชิ้นงานภาพ</td>
+                            <td>สับเปลี่ยนวัตถุในภาพ แฟชั่นเสื้อผ้า หรือเพิ่มจุดตกแต่งประกอบฉากอย่างกลมกลืน</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Magic Grab & Expand</strong></td>
+                            <td>ดึงแยกชิ้นงานและเติมฉากหลัง</td>
+                            <td>ลากวางย้ายตำแหน่งคนในรูป ปรับมิติภาพจากแนวตั้งเป็นแนวนอน 16:9 ไร้รอยต่อ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 15 จาก 16</span>
+            </div>
+        </div>
+    
+        <!-- Slide 15: Wrap-up -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="module-tag">WRAP UP</span>
+                    <h2 class="slide-title">สรุปการอบรม</h2>
+                </div>
+                <div class="slide-logo"><div class="logo-symbol"></div> Canva AI Hub</div>
+            </div>
+            <div class="slide-content">
+                <div class="slide-column" style="flex: 1.1;">
+                    <p style="font-size: 32px; font-weight: bold; color: var(--primary);">สิ่งที่ได้จากการอบรมในวันนี้</p>
+                    <ul style="margin-top: 20px; font-size: 32px; line-height: 1.5;">
+                        <li><strong>ผลงานที่ส่งมอบ:</strong> ลิงก์พอร์ตโฟลิโอเว็บไซต์ที่ออนไลน์ผ่าน Canva Domain</li>
+                        <li><strong>การก้าวต่อ:</strong> นำเทมเพลตสไลด์อัจฉริยะไปใช้ลดเวลางานออกแบบประจำวัน</li>
+                    </ul>
+                </div>
+                <div class="slide-column" style="flex: 0.9;">
+                    <div class="card" style="background: linear-gradient(135deg, var(--glass-bg), rgba(255, 255, 255, 0.7)); text-align: center; border: 2px solid var(--primary-light);">
+                        <span style="font-size: 60px;">🙏</span>
+                        <h3 class="card-title" style="margin-top: 15px; color: var(--primary);">ขอบคุณที่เข้าร่วมการอบรม</h3>
+                        <p style="font-size: 22px; line-height: 1.4; color: var(--text-muted);">กรุณาสแกนคิวอาร์โค้ดหน้าห้องสัมมนาเพื่อตอบแบบประเมินหลักสูตร</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Canva AI: Magic Studio Workshop</span>
+                <span>Slide 16 จาก 16</span>
+            </div>
+        </div>
+    <!-- Navigation Overlay -->
+    <div class="controls-overlay">
+        <button class="control-btn" id="prev-btn" title="Slide ก่อนหน้า (ArrowLeft)">←</button>
+        <button class="control-btn" id="next-btn" title="Slide ถัดไป (ArrowRight / Space)">→</button>
+    </div>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress');
+        const presentation = document.getElementById('presentation');
+
+        let currentSlide = 0;
+
+        function updateSlidePosition() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev-slide', 'next-slide');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev-slide');
+                } else {
+                    slide.classList.add('next-slide');
+                }
+            });
+
+            // Update Progress Bar
+            const percent = (currentSlide / (slides.length - 1)) * 100;
+            progressBar.style.width = `${percent}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlidePosition();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlidePosition();
+            }
+        }
+
+        // Event Listeners for buttons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Fit Slide Scale to Window size to preserve 16:9 ratio
+        function resizePresentation() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const targetWidth = 1920;
+            const targetHeight = 1080;
+            
+            const scaleX = windowWidth / targetWidth;
+            const scaleY = windowHeight / targetHeight;
+            
+            // Choose the smaller scale to fit everything on screen without clipping
+            const scale = Math.min(scaleX, scaleY) * 0.95; 
+            
+            presentation.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizePresentation);
+        // Run once on load
+        resizePresentation();
+        updateSlidePosition();
+    </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

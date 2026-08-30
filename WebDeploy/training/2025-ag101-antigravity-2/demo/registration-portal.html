@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration & Dashboard Portal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Sarabun:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --secondary: #06b6d4;
+            --secondary-light: #22d3ee;
+            --background-grad: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #ecfeff 100%);
+            --card-bg: rgba(255, 255, 255, 0.45);
+            --card-border: rgba(255, 255, 255, 0.5);
+            --text-main: #1e1b4b;
+            --text-muted: #4b5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', 'Sarabun', sans-serif;
+        }
+
+        body {
+            background: var(--background-grad);
+            min-height: 100vh;
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .portal-header {
+            margin-bottom: 25px;
+        }
+
+        .portal-title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .portal-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .form-control, select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus, select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+        }
+
+        .api-url-input {
+            border-color: rgba(6, 182, 212, 0.3);
+            background: rgba(236, 254, 255, 0.6);
+        }
+
+        .api-url-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+            transform: scale(1.01);
+        }
+
+        .btn:active {
+            transform: scale(0.99);
+        }
+
+        .btn:disabled {
+            background: #9ca3af;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Dashboard Section */
+        .dashboard-header {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+        }
+
+        /* Custom Modal / Toast Alert */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--text-main);
+            padding: 16px 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--secondary);
+            transform: translateY(150%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        .toast-icon {
+            font-size: 20px;
+            color: var(--secondary);
+        }
+
+        .toast-message {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Stats cards */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-lbl {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Registration Form Card -->
+        <div class="glass-card">
+            <div class="portal-header">
+                <h1 class="portal-title">Course Registration</h1>
+                <p class="portal-subtitle">ลงทะเบียนหลักสูตรอบรมสัมมนา และซิงค์ข้อมูลกับระบบฐานข้อมูล Google Sheets ผ่าน Apps Script Web App</p>
+            </div>
+            
+            <form id="regForm">
+                <div class="form-group">
+                    <label class="form-label" for="scriptUrl">Google Apps Script Web App URL</label>
+                    <input type="url" id="scriptUrl" class="form-control api-url-input" placeholder="https://script.google.com/macros/s/.../exec" required>
+                </div>
+                
+                <hr style="border: none; border-top: 1px solid rgba(139, 92, 246, 0.15); margin: 20px 0;">
+                
+                <div class="form-group">
+                    <label class="form-label" for="name">ชื่อ-นามสกุล (Full Name)</label>
+                    <input type="text" id="name" class="form-control" placeholder="นาย สมบูรณ์ ปรีชา" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">อีเมล (Email Address)</label>
+                    <input type="email" id="email" class="form-control" placeholder="somboon@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="phone">เบอร์โทรศัพท์ (Phone Number)</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="0812345678" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="occupation">อาชีพ (Occupation)</label>
+                    <select id="occupation" required>
+                        <option value="" disabled selected>เลือกอาชีพของคุณ</option>
+                        <option value="นักวิชาการ/อาจารย์">นักวิชาการ/อาจารย์</option>
+                        <option value="นักพัฒนาซอฟต์แวร์">นักพัฒนาซอฟต์แวร์</option>
+                        <option value="เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย">เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย</option>
+                        <option value="นักศึกษา/บุคคลทั่วไป">นักศึกษา/บุคคลทั่วไป</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="course">หลักสูตรสัมมนาที่สนใจ (Interested Course)</label>
+                    <select id="course" required>
+                        <option value="" disabled selected>เลือกหลักสูตรที่ต้องการเข้าอบรม</option>
+                        <option value="AI Agent Core Tech">AI Agent Core Tech (Antigravity 2.0)</option>
+                        <option value="AI Coworker Tools">AI Coworker (เพิ่มผลิตภาพสำนักงาน)</option>
+                        <option value="Canva AI Designer">Canva AI (งานออกแบบสื่อสร้างสรรค์)</option>
+                        <option value="AppSheet & Sheets Integration">AppSheet (ระบบฐานข้อมูลไร้โค้ด)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" id="submitBtn" class="btn">
+                    <span class="spinner" id="spinner"></span>
+                    <span id="btnText">ลงทะเบียนและส่งข้อมูลไปยังชีต</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Dashboard Analytics Card -->
+        <div class="glass-card" style="display: flex; flex-direction: column;">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="portal-title" style="font-size: 26px;">Real-time Dashboard</h1>
+                    <p class="portal-subtitle">วิเคราะห์ยอดผู้สมัครเข้าอบรมตามสายอาชีพและรายวิชา</p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-val" id="totalCount">12</div>
+                    <div class="stat-lbl">ผู้สมัครรวม (คน)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val" id="popularCourse">AI Agent</div>
+                    <div class="stat-lbl">หลักสูตรยอดฮิต</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val" style="color: var(--secondary);" id="activeUserPercent">83%</div>
+                    <div class="stat-lbl">ผู้เข้าอบรมจริง</div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="chart-grid" style="flex-grow: 1;">
+                <div class="chart-card">
+                    <h3 class="chart-title">สัดส่วนผู้สมัครตามกลุ่มอาชีพ</h3>
+                    <div class="chart-container">
+                        <canvas id="occupationChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">หลักสูตรสัมมนาที่ได้รับความสนใจ</h3>
+                    <div class="chart-container">
+                        <canvas id="courseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✨</span>
+        <span class="toast-message" id="toastMessage">ลงทะเบียนและส่งข้อมูลไปยังชีตสำเร็จ!</span>
+    </div>
+
+    <script>
+        // Mock registrations data representing initially populated dataset
+        let mockRegistrations = [
+            { name: "วิชัย สมบัติ", occupation: "นักวิชาการ/อาจารย์", course: "AI Agent Core Tech" },
+            { name: "มานพ รักเรียน", occupation: "นักศึกษา/บุคคลทั่วไป", course: "Canva AI Designer" },
+            { name: "สุดาพร มั่นใจ", occupation: "เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย", course: "AI Coworker Tools" },
+            { name: "อภิชาติ แสนดี", occupation: "นักพัฒนาซอฟต์แวร์", course: "AI Agent Core Tech" },
+            { name: "กฤษณา ขยันยิ่ง", occupation: "นักวิชาการ/อาจารย์", course: "AppSheet & Sheets Integration" },
+            { name: "ชลธิชา ทองแท้", occupation: "เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย", course: "AI Coworker Tools" },
+            { name: "ธนวัฒน์ พลดี", occupation: "นักพัฒนาซอฟต์แวร์", course: "AppSheet & Sheets Integration" },
+            { name: "ปรียานุช สีสวย", occupation: "นักศึกษา/บุคคลทั่วไป", course: "Canva AI Designer" },
+            { name: "สุรศักดิ์ ใจกว้าง", occupation: "นักวิชาการ/อาจารย์", course: "AI Agent Core Tech" },
+            { name: "จิรายุ รุ่งเรือง", occupation: "นักพัฒนาซอฟต์แวร์", course: "AI Agent Core Tech" },
+            { name: "พรทิพย์ สุขสันต์", occupation: "เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย", course: "AI Coworker Tools" },
+            { name: "นเรศวร มีชัย", occupation: "นักศึกษา/บุคคลทั่วไป", course: "AI Agent Core Tech" }
+        ];
+
+        // Chart instances
+        let occupationChart, courseChart;
+
+        // Initialize and draw charts
+        function initCharts() {
+            // Count occupations
+            const occCounts = {
+                "นักวิชาการ/อาจารย์": 0,
+                "นักพัฒนาซอฟต์แวร์": 0,
+                "เจ้าหน้าที่ธุรการ/วิเคราะห์นโยบาย": 0,
+                "นักศึกษา/บุคคลทั่วไป": 0
+            };
+            
+            // Count courses
+            const courseCounts = {
+                "AI Agent Core Tech": 0,
+                "AI Coworker Tools": 0,
+                "Canva AI Designer": 0,
+                "AppSheet & Sheets Integration": 0
+            };
+
+            mockRegistrations.forEach(r => {
+                if (occCounts[r.occupation] !== undefined) occCounts[r.occupation]++;
+                if (courseCounts[r.course] !== undefined) courseCounts[r.course]++;
+            });
+
+            // Update stats
+            document.getElementById('totalCount').innerText = mockRegistrations.length;
+            
+            // Find popular course
+            let maxCount = -1;
+            let popCourse = "";
+            for (let c in courseCounts) {
+                if (courseCounts[c] > maxCount) {
+                    maxCount = courseCounts[c];
+                    popCourse = c;
+                }
+            }
+            // Shorten display name
+            const shortNames = {
+                "AI Agent Core Tech": "AI Agent",
+                "AI Coworker Tools": "AI Coworker",
+                "Canva AI Designer": "Canva AI",
+                "AppSheet & Sheets Integration": "AppSheet"
+            };
+            document.getElementById('popularCourse').innerText = shortNames[popCourse] || "AI Agent";
+
+            // Draw Occupation Chart (Pie)
+            const ctxOcc = document.getElementById('occupationChart').getContext('2d');
+            if (occupationChart) occupationChart.destroy();
+            occupationChart = new Chart(ctxOcc, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(occCounts),
+                    datasets: [{
+                        data: Object.values(occCounts),
+                        backgroundColor: [
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(6, 182, 212, 0.7)',
+                            'rgba(236, 72, 153, 0.7)',
+                            'rgba(245, 158, 11, 0.7)'
+                        ],
+                        borderColor: 'rgba(255, 255, 255, 0.8)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Draw Course Chart (Bar)
+            const ctxCourse = document.getElementById('courseChart').getContext('2d');
+            if (courseChart) courseChart.destroy();
+            courseChart = new Chart(ctxCourse, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(courseCounts).map(name => shortNames[name]),
+                    datasets: [{
+                        data: Object.values(courseCounts),
+                        backgroundColor: [
+                            '#8b5cf6',
+                            '#06b6d4',
+                            '#ec4899',
+                            '#f59e0b'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Show toast notification
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = message;
+            toast.style.borderLeftColor = isSuccess ? 'var(--secondary)' : '#ef4444';
+            toast.querySelector('.toast-icon').innerText = isSuccess ? '✨' : '⚠️';
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        // Handle Form Submission
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            const url = document.getElementById('scriptUrl').value.trim();
+
+            const payload = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                occupation: document.getElementById('occupation').value,
+                course: document.getElementById('course').value
+            };
+
+            // Enable loading state
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            btnText.innerText = 'กำลังส่งข้อมูล...';
+
+            // Send AJAX POST request to Google Apps Script
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Apps Script Web App redirects
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => {
+                // Since 'no-cors' mode is used, the response will be opaque.
+                // We assume success if the fetch is resolved without throwing.
+                
+                // Add to local data to update dashboard visually
+                mockRegistrations.push(payload);
+                initCharts();
+                
+                // Reset form fields (except Apps Script URL for convenience)
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('occupation').selectedIndex = 0;
+                document.getElementById('course').selectedIndex = 0;
+                
+                showToast("ลงทะเบียนและส่งข้อมูลไปยังชีตสำเร็จ!");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                showToast("การเชื่อมต่อระบบล้มเหลว กรุณาตรวจสอบ URL หรือเครือข่าย", false);
+            })
+            .finally(() => {
+                // Disable loading state
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.innerText = 'ลงทะเบียนและส่งข้อมูลไปยังชีต';
+            });
+        });
+
+        // Initialize dashboard charts on load
+        window.addEventListener('load', initCharts);
+    </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

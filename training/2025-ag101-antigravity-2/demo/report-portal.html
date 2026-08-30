@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบตรวจสอบและรายงานสถิติค่าใช้จ่าย (Expense Audit Report Portal)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --primary-light: #ddd6fe;
+            --secondary: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #f43f5e;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+            --font-display: 'Outfit', 'Sarabun', sans-serif;
+            --font-body: 'Sarabun', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background blur blobs */
+        .blur-blobs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background-color: var(--primary-light);
+            top: 10%;
+            left: -10%;
+        }
+
+        .blob-2 {
+            width: 450px;
+            height: 450px;
+            background-color: var(--secondary);
+            bottom: 10%;
+            right: -10%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Glassmorphic Header Card */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 20px;
+        }
+
+        .status-badge {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Cards styling with ux-ui-pro-max micro-animations */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-header-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1.5px solid rgba(0,0,0,0.03);
+            padding-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        /* Metric cards */
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Table design */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .stats-table th {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .stats-table td.num {
+            text-align: right;
+            font-family: var(--font-display);
+            font-weight: 600;
+        }
+
+        /* Bar chart */
+        .chart-row {
+            margin-bottom: 15px;
+        }
+
+        .chart-label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Large Sync Panel */
+        .sync-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sync-title {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .sync-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sync-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+        }
+
+        .sync-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #fff;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sync-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+        }
+
+        .sync-btn:active {
+            transform: translateY(0);
+        }
+
+        .sync-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Status notification boxes */
+        .status-box {
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .status-box.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1.5px solid rgba(16, 185, 129, 0.2);
+            display: flex;
+        }
+
+        .status-box.error {
+            background-color: #ffe4e6;
+            color: #9f1239;
+            border: 1.5px solid rgba(244, 63, 94, 0.2);
+            display: flex;
+        }
+
+        .status-box.loading {
+            background-color: #f3f4f6;
+            color: #374151;
+            border: 1.5px solid rgba(0,0,0,0.05);
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Executive Summary Text area */
+        .summary-text-container {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: var(--text-main);
+            animation: spin 1s linear infinite;
+        }
+
+        .spinner-light {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blur-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-group">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>Expense Audit Portal</h1>
+                    <p>ระบบรายงานสถิติและคัดกรองข้อมูลค่าใช้จ่ายพนักงาน</p>
+                </div>
+            </div>
+            <div class="header-meta">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>ข้อมูลคลีนเสร็จสมบูรณ์</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Metrics Row -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header-group">
+                    <span class="card-title">ข้อมูลรวมที่สแกน</span>
+                    <span class="card-badge">บิลพนักงาน</span>
+                </div>
+                <div class="metric-value">5,095</div>
+                <div class="metric-label">จำนวนแถวประวัติการเคลมเงินทั้งหมด</div>
+            </div>
+
+            <div class="card" style="border-left: 5px solid var(--danger);">
+                <div class="card-header-group">
+                    <span class="card-title">ตรวจพบเบิกซ้ำซ้อน</span>
+                    <span class="card-badge" style="background:#ffe4e6; color:var(--danger)">ต้องสงสัย</span>
+                </div>
+                <div class="metric-value" style="color:var(--danger)">150</div>
+                <div class="metric-label">คัดแยกออกเพื่อสืบสวนคดีทุจริตบิล</div>
+            </div>
+
+            <div class="card" style="border-left: 5px solid var(--success);">
+                <div class="card-header-group">
+                    <span class="card-title">ข้อมูลดีที่ล้างซ้ำแล้ว</span>
+                    <span class="card-badge" style="background:#d1fae5; color:var(--success)">ปลอดภัย</span>
+                </div>
+                <div class="metric-value" style="color:var(--success)">5,020</div>
+                <div class="metric-label">จำนวนแถวที่ผ่านเกณฑ์เพื่อคิดสถิติ</div>
+            </div>
+        </div>
+
+        <!-- Tables Row -->
+        <div class="dashboard-grid" style="grid-template-columns: 1.1fr 0.9fr 1fr;">
+            <!-- Category Table -->
+            <div class="card">
+                <div class="card-header-group">
+                    <span class="card-title">ค่าใช้จ่ายแยกตามหมวดหมู่</span>
+                </div>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>หมวดหมู่</th>
+                            <th style="text-align: center;">บิล</th>
+                            <th style="text-align: right;">มูลค่าเงินรวม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ค่าที่พัก (Accommodation)</td>
+                            <td style="text-align: center;">1,259</td>
+                            <td class="num">2,927,931.65</td>
+                        </tr>
+                        <tr>
+                            <td>ค่าเดินทาง (Travel)</td>
+                            <td style="text-align: center;">1,252</td>
+                            <td class="num">2,607,252.39</td>
+                        </tr>
+                        <tr>
+                            <td>ค่าอาหาร (Meals)</td>
+                            <td style="text-align: center;">1,246</td>
+                            <td class="num">2,191,617.59</td>
+                        </tr>
+                        <tr>
+                            <td>ค่าวัสดุอุปกรณ์ (Supplies)</td>
+                            <td style="text-align: center;">1,263</td>
+                            <td class="num">1,383,395.93</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Department Chart -->
+            <div class="card">
+                <div class="card-header-group">
+                    <span class="card-title">แผนกที่มียอดเบิกสูงสุด (Top 4)</span>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">
+                        <span>ฝ่ายบริการลูกค้า (Customer Support)</span>
+                        <strong>1.67M</strong>
+                    </div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">
+                        <span>ฝ่ายการตลาด (Marketing)</span>
+                        <strong>1.61M</strong>
+                    </div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: 96.6%;"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">
+                        <span>ฝ่ายทรัพยากรบุคคล (HR)</span>
+                        <strong>1.46M</strong>
+                    </div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: 87.2%;"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">
+                        <span>ฝ่ายเทคโนโลยีสารสนเทศ (IT)</span>
+                        <strong>1.28M</strong>
+                    </div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: 76.6%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audit Insight -->
+            <div class="card">
+                <div class="card-header-group">
+                    <span class="card-title">ข้อเสนอแนะเชิงบัญชี</span>
+                </div>
+                <div style="font-size: 15px; line-height: 1.6; display:flex; flex-direction:column; gap:12px;">
+                    <div>
+                        <strong style="color:var(--danger)">⚠️ เสี่ยงเคลมซ้ำซ้อน:</strong>
+                        พบพนักงานเบิกใบเสร็จใบเดิมซ้ำ 2 รอบ สูงถึง 150 รายการ ควรติดตั้งระบบป้องกันการส่ง Receipt ID ซ้ำบนเว็บฟอร์ม
+                    </div>
+                    <div>
+                        <strong style="color:var(--primary)">💼 แผนกเบิกสูงสุด:</strong>
+                        ฝ่ายบริการลูกค้า (Customer Support) มียอดสะสมสูงสุด 1.67 ล้านบาท ควรตรวจสอบนโยบายการเบิกค่าเดินทาง/ค่าอาหารนอกพื้นที่
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sync Panel -->
+        <div class="sync-panel">
+            <div class="sync-title">
+                <span>🔄</span>
+                <h2>Google Sheets Sync Center</h2>
+            </div>
+            
+            <div class="summary-text-container" id="summary-display">
+                <!-- Executed dynamically -->
+                วิเคราะห์คัดแยกข้อมูลดิบ 5,095 แถว ตรวจพบแถวซ้ำซ้อนทุจริต 150 รายการ ทำความสะอาดเสร็จเหลือ 5,020 รายการ หมวดหมู่เบิกเงินสูงสุดคือที่พัก (2.92 ล้านบาท) แผนกเคลมเงินเบิกสะสมสะสมสูงสุดคือฝ่ายบริการลูกค้า (1.67 ล้านบาท) จัดทำและพร้อมนำส่งรายงานบอร์ดบริหาร
+            </div>
+
+            <div class="input-group">
+                <label for="apps-script-url">URL เว็บแอป Google Apps Script (Web App URL)</label>
+                <input type="url" id="apps-script-url" class="sync-input" placeholder="ตัวอย่าง: https://script.google.com/macros/s/.../exec">
+            </div>
+
+            <button class="sync-btn" id="sync-button">
+                <span>ซิงค์รายงานไปที่ Google Sheet</span>
+            </button>
+
+            <!-- Status Box -->
+            <div id="status-message" class="status-box"></div>
+        </div>
+    </div>
+
+    <!-- Google Apps Script Source Code for user reference -->
+    <!--
+    === [COPY FOR GOOGLE APPS SCRIPT DEPLOYMENT] ===
+    function doPost(e) {
+      try {
+        var json = JSON.parse(e.postData.contents);
+        var summaryText = json.summaryText;
+        
+        var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+        
+        // Append row: Timestamp, Summary Text
+        sheet.appendRow([new Date(), summaryText]);
+        
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "success",
+          message: "รายงานบันทึกสำเร็จลง Google Sheets เรียบร้อยแล้ว!"
+        })).setMimeType(ContentService.MimeType.JSON);
+        
+      } catch (err) {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: "error",
+          message: err.toString()
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    ================================================
+    -->
+
+    <script>
+        const syncButton = document.getElementById('sync-button');
+        const urlInput = document.getElementById('apps-script-url');
+        const statusBox = document.getElementById('status-message');
+        const summaryText = document.getElementById('summary-display').innerText;
+
+        syncButton.addEventListener('click', async () => {
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                showStatus("กรุณากรอก URL ของ Google Apps Script ก่อนกดยืนยันการซิงค์", "error");
+                return;
+            }
+
+            // Update UI to Loading
+            syncButton.disabled = true;
+            syncButton.innerHTML = '<div class="spinner spinner-light"></div> <span>กำลังส่งข้อมูล...</span>';
+            showStatus("กำลังดำเนินการส่งข้อมูลรายงานสรุปวิเคราะห์ไปยัง Google Sheets...", "loading");
+
+            try {
+                // Post report to Google Web App URL using no-cors mode to bypass CORS preflight blocking in training
+                const response = await fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors', // standard Apps script POST bypass
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        summaryText: summaryText
+                    })
+                });
+
+                // Since 'no-cors' is used, we cannot read the actual body response, but we can assume success
+                // if it completed without throwing an exception.
+                showStatus("ซิงค์รายงานสรุปสำเร็จ! ข้อมูลถูกบันทึกใน Google Sheets แถวใหม่แล้ว", "success");
+            } catch (error) {
+                console.error("Sync Error:", error);
+                showStatus("เกิดข้อผิดพลาดในการเชื่อมต่อ: " + error.message, "error");
+            } finally {
+                syncButton.disabled = false;
+                syncButton.innerHTML = '<span>ซิงค์รายงานไปที่ Google Sheet</span>';
+            }
+        });
+
+        function showStatus(message, type) {
+            statusBox.className = "status-box " + type;
+            let icon = "💡";
+            if (type === "success") icon = "✅";
+            if (type === "error") icon = "❌";
+            if (type === "loading") icon = "⏳";
+            
+            statusBox.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+        }
+    </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

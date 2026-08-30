@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>อนุพันธ์จากนิยามลิมิต — เครื่องมือการเรียนรู้</title>
+  <meta name="description" content="กราฟโต้ตอบ: ความชันเส้นตัด PQ เมื่อ h → 0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.75em%22 x=%2212%22 font-size=%2272%22 fill=%22%230F766E%22>f</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="../shared.css" rel="stylesheet">
+  <style>
+    .intro { color: var(--muted); font-size: 15px; max-width: 68ch; margin-bottom: 22px; }
+    .lab { display: grid; grid-template-columns: 320px 1fr; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+    .controls { padding: 22px 24px; background: #F8FAFA; border-right: 1px solid var(--line); }
+    label.field-label { display: block; font-weight: 600; margin: 0 0 6px; font-size: 14px; }
+    .field { margin-bottom: 16px; }
+    .help { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+    .select, .number { width: 100%; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; background: #fff; min-height: 44px; }
+    .select.mono, input.mono { font-family: ui-monospace, monospace; font-size: 14px; }
+    .field-error { font-size: 13px; color: #B45309; margin-top: 6px; display: none; }
+    .field-error.show { display: block; }
+    .range-row { display: grid; grid-template-columns: 1fr 76px; gap: 10px; align-items: center; }
+    input[type=range] { width: 100%; accent-color: var(--accent); }
+    .quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip { border: 1px solid var(--line); background: #fff; color: var(--ink); padding: 6px 11px; border-radius: 6px; font-size: 13px; min-height: 36px; }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+    .toggle-row { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; font-size: 14px; margin: 0 0 8px; cursor: pointer; }
+    .toggle-row input { width: auto; margin-top: 3px; accent-color: var(--accent); }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .btn-primary { flex: 1; min-width: 120px; border: 0; background: var(--accent); color: #fff; border-radius: 8px; padding: 11px 14px; font-weight: 600; min-height: 44px; }
+    .btn-primary:hover { background: #115E59; }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-ghost { flex: 1; min-width: 88px; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 10px 14px; font-weight: 600; min-height: 44px; }
+    .btn-ghost:hover { background: #F8FAFA; }
+    .btn-block { width: 100%; margin-top: 6px; }
+    .btn-toggle { width: 100%; margin-top: 8px; border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 8px; padding: 10px; font-weight: 600; min-height: 44px; }
+    .btn-toggle.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .graph-side { padding: 18px 20px; min-width: 0; }
+    .graph-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 10px; font-size: 14px; }
+    .view-tag { font-size: 12px; color: var(--muted); font-weight: 400; }
+    .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+    .swatch { width: 18px; height: 3px; border-radius: 1px; display: inline-block; vertical-align: middle; margin-right: 5px; }
+    .canvas-wrap { height: 460px; border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid var(--line); }
+    canvas { display: block; width: 100%; height: 100%; }
+    .readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .metric { background: #F8FAFA; border: 1px solid var(--line); padding: 10px 12px; border-radius: 8px; }
+    .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 2px; }
+    .metric strong { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .metric.highlight { border-color: var(--accent); background: var(--accent-soft); }
+    .err-bar-wrap { margin-top: 12px; }
+    .err-bar-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .err-bar { height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden; }
+    .err-bar-fill { height: 100%; background: var(--accent); transition: width .15s ease; }
+    .live-formula { margin-top: 12px; padding: 12px 14px; border-radius: 8px; background: #F8FAFA; border: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+    .live-formula code { font-family: ui-monospace, monospace; font-size: 13px; word-break: break-all; }
+    .status-line { margin-top: 12px; font-size: 14px; color: var(--muted); }
+    .status-line strong { color: var(--ink); font-weight: 600; }
+    .side-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+    .subpanel { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; }
+    .subpanel h3 { margin: 0 0 8px; font-size: 14px; font-weight: 700; }
+    .spark-wrap { height: 88px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+    #spark { width: 100%; height: 100%; display: block; }
+    .log-table-wrap { max-height: 150px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; }
+    table.log { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+    table.log th, table.log td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--line); }
+    table.log th { background: #F8FAFA; position: sticky; top: 0; font-weight: 600; }
+    table.log td:first-child, table.log th:first-child { text-align: left; }
+    .learn-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; margin-top: 36px; }
+    .learn-box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+    .learn-box h2 { font-size: 1.1rem; margin: 0 0 12px; }
+    .formula-block { padding: 14px 16px; border-left: 3px solid var(--accent); background: #F8FAFA; margin-bottom: 14px; font-size: 15px; line-height: 1.6; }
+    .formula-block code { font-family: ui-monospace, monospace; font-size: 14px; }
+    .learn-box ol { padding-left: 20px; color: var(--muted); font-size: 15px; }
+    .learn-box li { margin: 8px 0; }
+    .check-item { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; cursor: pointer; }
+    .check-item input { margin-right: 8px; }
+    .answer { margin-top: 12px; display: none; padding: 12px; background: var(--accent-soft); border-radius: 8px; font-size: 14px; }
+    .answer.show { display: block; }
+    @media (max-width: 900px) {
+      .lab { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .learn-grid, .side-panels { grid-template-columns: 1fr; }
+      .readout { grid-template-columns: repeat(2, 1fr); }
+      .canvas-wrap { height: 360px; }
+    }
+    @media (max-width: 480px) {
+      .canvas-wrap { height: 300px; }
+      .readout { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .err-bar-fill { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="crumb">
+        <a href="../../">หน้าหลักสูตร</a> /
+        <a href="../">เครื่องมือการเรียนรู้</a> /
+        อนุพันธ์
+      </div>
+      <h1>อนุพันธ์จากนิยามลิมิต</h1>
+      <p>ความชันเส้นสัมผัสที่ a คือ f′(a) = lim<sub>h→0</sub> [f(a+h)−f(a)]/h — ลองลด |h| แล้วดูเส้นตัด PQ ใกล้เส้นสัมผัสขึ้นหรือไม่</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="intro">เลือกฟังก์ชันและตำแหน่ง a จากนั้นปรับ h (สเกลลอการิทึม — เลื่อนขวา h ยิ่งเล็ก) ค่าความชัน secant ควรเข้าใกล้ f′(a)</p>
+
+    <section class="lab">
+      <aside class="controls">
+        <div class="field">
+          <label class="field-label" for="fn">ฟังก์ชัน f(x)</label>
+          <select id="fn" class="select">
+            <option value="square">f(x) = x² &nbsp;·&nbsp; f′(x) = 2x</option>
+            <option value="cube">f(x) = x³ &nbsp;·&nbsp; f′(x) = 3x²</option>
+            <option value="sin">f(x) = sin(x) &nbsp;·&nbsp; f′(x) = cos(x)</option>
+            <option value="exp">f(x) = eˣ &nbsp;·&nbsp; f′(x) = eˣ</option>
+            <option value="sqrt">f(x) = √x &nbsp;·&nbsp; f′(x) = 1/(2√x)</option>
+            <option value="custom">กำหนดเอง…</option>
+          </select>
+        </div>
+        <div class="field" id="customField" hidden>
+          <label class="field-label" for="customExpr">พิมพ์ f(x)</label>
+          <input id="customExpr" class="select mono" type="text" value="x^2" spellcheck="false" autocomplete="off" placeholder="x^2">
+          <div class="help">เช่น <code>x^2</code>, <code>y=x^2+1</code>, <code>sin(x)</code>, <code>2*x^3</code> — f′(a) คำนวณอัตโนมัติ</div>
+          <div id="customErr" class="field-error" role="alert"></div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="aRange">ตำแหน่ง a</label>
+          <div class="range-row">
+            <input id="aRange" type="range" min="-3" max="3" step="0.1" value="2">
+            <input id="aNum" class="number" type="number" step="0.1" value="2">
+          </div>
+          <div class="help">จุด P อยู่ที่ (a, f(a))</div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="hRange">ค่า |h| = <span id="hLive">0.500</span></label>
+          <input id="hRange" type="range" min="0" max="3" step="0.01" value="0.30103" aria-label="ระยะ h แบบสเกลลอการิทึม">
+          <div class="quick" style="margin-top:9px">
+            <button type="button" class="chip" data-h="1">h=1</button>
+            <button type="button" class="chip" data-h="0.5">0.5</button>
+            <button type="button" class="chip" data-h="0.1">0.1</button>
+            <button type="button" class="chip" data-h="0.01">0.01</button>
+            <button type="button" class="chip" data-h="0.001">0.001</button>
+          </div>
+          <div class="help">สเกลลอการิทึม: เลื่อนขวา = |h| ลดลง (h &gt; 0 โดยค่าเริ่มต้น)</div>
+        </div>
+        <div class="field">
+          <label class="toggle-row"><input type="checkbox" id="negH"> ใช้ h เป็นลบ (จุด Q อยู่ทางซ้ายของ a)</label>
+          <label class="toggle-row"><input type="checkbox" id="twoSided"> แสดงเส้นตัดทั้ง +h และ −h</label>
+          <label class="toggle-row"><input type="checkbox" id="autoLog" checked> บันทึกค่าลงตารางอัตโนมัติ</label>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="animate" class="btn-primary">ลด h อัตโนมัติ</button>
+          <button type="button" id="pauseAnim" class="btn-ghost" disabled>หยุด</button>
+        </div>
+        <button type="button" id="record" class="btn-ghost btn-block">บันทึกค่าตอนนี้</button>
+        <button type="button" id="clearLog" class="btn-ghost btn-block">ล้างตาราง</button>
+        <button type="button" id="zoomPQ" class="btn-toggle active" aria-pressed="true">แสดงกราฟทั้งหมด</button>
+        <div class="help" style="margin-top:10px">ลัด: ← → ปรับ h · Space เริ่ม/หยุดแอนิเมชัน</div>
+      </aside>
+
+      <div class="graph-side">
+        <div class="graph-head">
+          <div><strong>กราฟ</strong> <span id="viewMode" class="view-tag">ขยาย P–Q</span></div>
+          <div class="legend">
+            <span><i class="swatch" style="background:#0D9488"></i>f(x)</span>
+            <span><i class="swatch" style="background:#B45309"></i>เส้นตัด (+h)</span>
+            <span id="legNeg" style="display:none"><i class="swatch" style="background:#78716C"></i>เส้นตัด (−h)</span>
+            <span><i class="swatch" style="background:#334155"></i>เส้นสัมผัส</span>
+          </div>
+        </div>
+        <div class="canvas-wrap"><canvas id="graph" aria-label="กราฟแสดงเส้นตัดและเส้นสัมผัส"></canvas></div>
+
+        <div class="readout" aria-live="polite">
+          <div class="metric"><span>จุด P</span><strong id="pVal">—</strong></div>
+          <div class="metric"><span>จุด Q</span><strong id="qVal">—</strong></div>
+          <div class="metric"><span>Δx = h</span><strong id="dxVal">—</strong></div>
+          <div class="metric"><span>Δy</span><strong id="dyVal">—</strong></div>
+          <div class="metric"><span>ความชัน secant</span><strong id="secVal">—</strong></div>
+          <div class="metric highlight"><span id="derLabel">f′(a)</span><strong id="derVal">—</strong></div>
+        </div>
+
+        <div class="err-bar-wrap">
+          <div class="err-bar-label"><span>|secant − f′(a)|</span><span id="errPct">—</span></div>
+          <div class="err-bar"><div class="err-bar-fill" id="errFill" style="width:0%"></div></div>
+        </div>
+
+        <div class="live-formula" id="liveFormula">—</div>
+
+        <div class="status-line"><strong id="insightTitle">—</strong> <span id="insightText"></span></div>
+
+        <div class="side-panels">
+          <div class="subpanel">
+            <h3>ข้อผิดพลาดเมื่อ h เล็กลง</h3>
+            <div class="spark-wrap"><canvas id="spark"></canvas></div>
+            <div class="help" style="margin-top:6px">แกนนอน: log₁₀(h) · แกนตั้ง: |secant − f′(a)|</div>
+          </div>
+          <div class="subpanel">
+            <h3>ตารางค่า</h3>
+            <div class="log-table-wrap">
+              <table class="log">
+                <thead><tr><th>h</th><th>secant</th><th>f′(a)</th><th>|error|</th></tr></thead>
+                <tbody id="logBody"><tr><td colspan="4" style="text-align:center;color:#94a3b8">ยังไม่มีข้อมูล — ลด h หรือกดบันทึก</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="learn-grid">
+      <article class="learn-box">
+        <h2>สูตรที่ใช้</h2>
+        <div class="formula-block">
+          ความชัน secant = <code>[f(a+h) − f(a)] / h</code><br>
+          อนุพันธ์ = <code>lim<sub>h→0</sub> [f(a+h) − f(a)] / h = f′(a)</code>
+        </div>
+        <ol>
+          <li>h คือระยะจาก a ไป a+h บนแกน x</li>
+          <li>f(a+h)−f(a) คือการเปลี่ยนแปลงบนแกน y</li>
+          <li>เมื่อ |h| เล็กลง จุด Q เข้าใกล้ P และเส้นตัดใกล้เส้นสัมผัส</li>
+          <li>ไม่แทน h = 0 ในเศษส่วนโดยตรง แต่ให้ h ใกล้ศูนย์</li>
+        </ol>
+      </article>
+      <article class="learn-box">
+        <h2>ลองตอบ</h2>
+        <label class="check-item"><input type="radio" name="q" value="a"> เมื่อ h → 0 จุด Q จะห่างจาก P มากขึ้น</label>
+        <label class="check-item"><input type="radio" name="q" value="b"> เมื่อ h → 0 เส้นตัดเข้าใกล้เส้นสัมผัส</label>
+        <label class="check-item"><input type="radio" name="q" value="c"> ต้องแทน h = 0 ในสูตรก่อนถึงจะได้ f′(a)</label>
+        <button type="button" id="check" class="btn-primary btn-block" style="margin-top:14px">ตรวจคำตอบ</button>
+        <div id="answer" class="answer"></div>
+      </article>
+    </div>
+    </div>
+  </main>
+  <footer class="site">
+    <div class="wrap"><a href="../">กลับรายการเครื่องมือ</a></div>
+  </footer>
+
+<script src="../expr.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+  const canvas = $('graph');
+  const ctx = canvas.getContext('2d');
+  const spark = $('spark');
+  const sctx = spark.getContext('2d');
+
+  const defs = {
+    square: { f: x => x * x, d: x => 2 * x, dLabel: '2a', range: [-4, 4], name: 'x²', aDefault: 2 },
+    cube:   { f: x => x ** 3, d: x => 3 * x * x, dLabel: '3a²', range: [-3, 3], name: 'x³', aDefault: 1 },
+    sin:    { f: x => Math.sin(x), d: x => Math.cos(x), dLabel: 'cos(a)', range: [-6, 6], name: 'sin(x)', aDefault: 1 },
+    exp:    { f: x => Math.exp(x), d: x => Math.exp(x), dLabel: 'eᵃ', range: [-2, 2], name: 'eˣ', aDefault: 0 },
+    sqrt:   {
+      f: x => Math.sqrt(Math.max(0, x)),
+      d: x => x > 0 ? 1 / (2 * Math.sqrt(x)) : NaN,
+      dLabel: '1/(2√a)', range: [0, 6], name: '√x', aDefault: 2, minA: 0.01
+    }
+  };
+
+  let zoomPQ = true;
+  let animToken = 0;
+  let logRows = [];
+  let lastLoggedH = null;
+  let rafPending = false;
+  let state = {};
+
+  function fmt(n, d = 4) {
+    if (!Number.isFinite(n)) return 'ไม่กำหนด';
+    const s = (+n.toFixed(d)).toString();
+    return s;
+  }
+
+  function getH() {
+    const raw = Math.pow(10, -Number($('hRange').value));
+    return $('negH').checked ? -raw : raw;
+  }
+
+  function setH(absH) {
+    const v = Math.max(0.001, Math.min(3, -Math.log10(Math.max(0.001, absH))));
+    $('hRange').value = v;
+    scheduleDraw();
+  }
+
+  function clampA(v, def) {
+    let n = +v;
+    if (def.minA != null) n = Math.max(def.minA, n);
+    return Math.max(def.range[0], Math.min(def.range[1], n));
+  }
+
+  let customFn = null;
+  let customExprText = 'x^2';
+
+  function buildCustomDef() {
+    const raw = $('customExpr').value.trim();
+    customExprText = raw;
+    try {
+      const f = compileExpr(raw);
+      const probe = f(1);
+      if (!Number.isFinite(probe) && !Number.isFinite(f(0))) throw new Error('ลองสูตรอื่น');
+      customFn = f;
+      $('customErr').textContent = '';
+      $('customErr').classList.remove('show');
+      return {
+        f,
+        d: a => numericalDerivative(f, a),
+        dLabel: '≈',
+        range: [-4, 4],
+        name: raw.replace(/^y\s*=\s*/i, '') || 'f(x)',
+        aDefault: 1,
+        custom: true
+      };
+    } catch (e) {
+      customFn = null;
+      $('customErr').textContent = e.message || 'สูตรไม่ถูกต้อง';
+      $('customErr').classList.add('show');
+      return null;
+    }
+  }
+
+  function getDef() {
+    if ($('fn').value !== 'custom') return defs[$('fn').value];
+    return buildCustomDef() || {
+      f: () => NaN,
+      d: () => NaN,
+      dLabel: '—',
+      range: [-4, 4],
+      name: '?',
+      aDefault: 1,
+      custom: true
+    };
+  }
+
+  function toggleCustomField() {
+    const on = $('fn').value === 'custom';
+    $('customField').hidden = !on;
+    $('derLabel').textContent = on ? 'f′(a) ≈' : 'f′(a)';
+  }
+
+  const C = {
+    curve: '#0D9488',
+    secant: '#B45309',
+    secantNeg: '#78716C',
+    tangent: '#334155',
+    axis: '#64748B',
+    grid: '#CBD5E1',
+    ink: '#1F2430',
+    muted: '#475569'
+  };
+
+  function compute() {
+    const key = $('fn').value;
+    const def = getDef();
+    const a = clampA($('aNum').value, def);
+    const h = getH();
+    const ah = a + h;
+    const fa = def.f(a);
+    const fq = def.f(ah);
+    const dx = h;
+    const dy = fq - fa;
+    const m = Math.abs(h) > 1e-12 ? dy / dx : NaN;
+    const der = def.d(a);
+
+    let mNeg = NaN, fqNeg = NaN;
+    const hAbs = Math.abs(h);
+    if ($('twoSided').checked && hAbs > 1e-12) {
+      fqNeg = def.f(a - hAbs);
+      mNeg = (fqNeg - fa) / (-hAbs);
+    }
+
+    const gap = Number.isFinite(m) && Number.isFinite(der) ? Math.abs(m - der) : NaN;
+    const ref = Math.max(Math.abs(der), 1e-6);
+    const errPct = Number.isFinite(gap) ? Math.min(100, (gap / ref) * 100) : 100;
+
+    return { key, def, a, h, ah, fa, fq, dx, dy, m, der, mNeg, fqNeg, gap, errPct, hAbs };
+  }
+
+  function updateDOM(s) {
+    $('hLive').textContent = Math.abs(s.h) < 0.01 ? Math.abs(s.h).toFixed(4) : fmt(Math.abs(s.h), 4);
+    $('pVal').textContent = `(${fmt(s.a, 3)}, ${fmt(s.fa, 3)})`;
+    $('qVal').textContent = `(${fmt(s.ah, 3)}, ${fmt(s.fq, 3)})`;
+    $('dxVal').textContent = fmt(s.dx, 4);
+    $('dyVal').textContent = fmt(s.dy, 4);
+    $('secVal').textContent = fmt(s.m, 4);
+    $('derVal').textContent = fmt(s.der, 4);
+
+    $('errPct').textContent = Number.isFinite(s.gap)
+      ? `|error| = ${fmt(s.gap, 4)} (${fmt(s.errPct, 1)}%)`
+      : '—';
+    $('errFill').style.width = `${100 - Math.min(100, s.errPct)}%`;
+
+    const sign = s.h >= 0 ? '+' : '−';
+    $('liveFormula').innerHTML = Number.isFinite(s.m)
+      ? `[f(a${sign}h) − f(a)] / h = [${fmt(s.fq)} − ${fmt(s.fa)}] / ${fmt(s.dx)} = <code>${fmt(s.dy)} / ${fmt(s.dx)} = ${fmt(s.m)}</code> &nbsp;→&nbsp; f′(a) = ${fmt(s.der)}`
+      : `<code>f′(a)</code> ไม่เป็นจำนวนจำกัดที่ a นี้ (ลองเปลี่ยนตำแหน่ง a)`;
+
+    if (Math.abs(s.h) < 0.02 && Number.isFinite(s.gap) && s.gap < 0.05) {
+      $('insightTitle').textContent = 'ใกล้ f′(a) แล้ว';
+      $('insightText').textContent = `|error| = ${fmt(s.gap, 4)} — ลองบันทึกหลายค่า h แล้วดูกราฟด้านล่าง`;
+    } else if (!Number.isFinite(s.der)) {
+      $('insightTitle').textContent = 'f′(a) ไม่กำหนด';
+      $('insightText').textContent = 'ตำแหน่ง a นี้อาจไม่มีอนุพันธ์ (เช่น √x ที่ a = 0) — ลองเลื่อน a';
+    } else {
+      $('insightTitle').textContent = 'ยังห่างจาก f′(a)';
+      $('insightText').textContent = Number.isFinite(s.gap)
+        ? `secant ต่าง ${fmt(s.gap, 4)} — ลด |h| แล้วดูแถบและตาราง`
+        : 'ปรับ h ให้ไม่เป็นศูนย์';
+    }
+
+    $('legNeg').style.display = $('twoSided').checked ? '' : 'none';
+    $('viewMode').textContent = zoomPQ ? 'ขยาย P–Q' : 'ช่วงเต็ม';
+  }
+
+  function drawGraph(s) {
+    const { def, a, h, ah, fa, fq, m, der, mNeg, fqNeg, dy } = s;
+    const w = canvas.clientWidth;
+    const H = canvas.clientHeight;
+    let [xmin, xmax] = def.range;
+
+    if (zoomPQ) {
+      const pad = Math.max(Math.abs(h) * 0.7, 0.003);
+      xmin = Math.min(a, ah) - pad;
+      xmax = Math.max(a, ah) + pad;
+      if ($('twoSided').checked) {
+        xmin = Math.min(xmin, a - Math.abs(h) - pad);
+        xmax = Math.max(xmax, a + Math.abs(h) + pad);
+      }
+      if (s.key === 'sqrt') xmin = Math.max(0, xmin);
+    }
+
+    const samples = [];
+    for (let i = 0; i <= 280; i++) {
+      const x = xmin + (xmax - xmin) * i / 280;
+      const y = def.f(x);
+      if (Number.isFinite(y)) samples.push(y);
+    }
+    [fa, fq, fqNeg].forEach(y => { if (Number.isFinite(y)) samples.push(y); });
+    let ymin = Math.min(...samples);
+    let ymax = Math.max(...samples);
+    const padY = zoomPQ ? Math.max((ymax - ymin) * 0.45, Math.abs(dy) * 0.35, 0.002) : Math.max((ymax - ymin) * 0.12, 0.5);
+    ymin -= padY;
+    ymax += padY;
+
+    const pad = { l: 48, r: 20, t: 18, b: 38 };
+    const X = x => pad.l + (x - xmin) / (xmax - xmin) * (w - pad.l - pad.r);
+    const Y = y => H - pad.b - (y - ymin) / (ymax - ymin) * (H - pad.t - pad.b);
+
+    ctx.clearRect(0, 0, w, H);
+
+    ctx.strokeStyle = C.grid;
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 8; i++) {
+      const x = pad.l + i * (w - pad.l - pad.r) / 8;
+      ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, H - pad.b); ctx.stroke();
+    }
+    for (let i = 0; i <= 6; i++) {
+      const y = pad.t + i * (H - pad.t - pad.b) / 6;
+      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+    }
+    ctx.strokeStyle = C.axis;
+    ctx.lineWidth = 1.5;
+    if (xmin <= 0 && xmax >= 0) {
+      ctx.beginPath(); ctx.moveTo(X(0), pad.t); ctx.lineTo(X(0), H - pad.b); ctx.stroke();
+    }
+    if (ymin <= 0 && ymax >= 0) {
+      ctx.beginPath(); ctx.moveTo(pad.l, Y(0)); ctx.lineTo(w - pad.r, Y(0)); ctx.stroke();
+    }
+
+    function line(slope, color, dash) {
+      if (!Number.isFinite(slope)) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash(dash || []);
+      ctx.beginPath();
+      ctx.moveTo(X(xmin), Y(fa + slope * (xmin - a)));
+      ctx.lineTo(X(xmax), Y(fa + slope * (xmax - a)));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    if ($('twoSided').checked) line(mNeg, C.secantNeg, [6, 4]);
+    line(m, C.secant, [8, 5]);
+    line(der, C.tangent, [3, 4]);
+
+    ctx.strokeStyle = C.curve;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    let started = false;
+    for (let i = 0; i <= 300; i++) {
+      const x = xmin + (xmax - xmin) * i / 300;
+      const y = def.f(x);
+      if (!Number.isFinite(y)) { started = false; continue; }
+      const px = X(x), py = Y(y);
+      if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    const xP = X(a), yP = Y(fa);
+    const xQ = X(ah), yQ = Y(fq);
+
+    function arrow(x1, y1, x2, y2, color) {
+      const ang = Math.atan2(y2 - y1, x2 - x1);
+      const size = 8;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      for (const [x, y, d] of [[x1, y1, ang + Math.PI], [x2, y2, ang]]) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - size * Math.cos(d - 0.55), y - size * Math.sin(d - 0.55));
+        ctx.lineTo(x - size * Math.cos(d + 0.55), y - size * Math.sin(d + 0.55));
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+
+    arrow(xP, yP, xQ, yP, C.muted);
+    arrow(xQ, yP, xQ, yQ, C.secant);
+
+    if ($('twoSided').checked && Number.isFinite(fqNeg)) {
+      const xQm = X(a - Math.abs(h));
+      const yQm = Y(fqNeg);
+      arrow(xP, yP, xQm, yP, C.secantNeg);
+      arrow(xQm, yP, xQm, yQm, C.secantNeg);
+    }
+
+    ctx.font = '600 13px Sarabun, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(`Δx = h = ${fmt(h)}`, (xP + xQ) / 2, yP + (dy >= 0 ? 22 : -10));
+    ctx.save();
+    ctx.translate(xQ + (h >= 0 ? 20 : -20), (yP + yQ) / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = C.secant;
+    ctx.fillText(`Δy = ${fmt(dy)}`, 0, 0);
+    ctx.restore();
+    ctx.textAlign = 'start';
+
+    function point(x, y, color, label) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(X(x), Y(y), 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.font = '700 14px Sarabun, sans-serif';
+      ctx.fillStyle = color;
+      ctx.fillText(label, X(x) + 8, Y(y) - 8);
+    }
+    point(a, fa, C.ink, 'P');
+    point(ah, fq, C.secant, 'Q');
+  }
+
+  function drawSpark() {
+    const sw = spark.clientWidth;
+    const sh = spark.clientHeight;
+    spark.width = sw * (devicePixelRatio || 1);
+    spark.height = sh * (devicePixelRatio || 1);
+    sctx.setTransform(devicePixelRatio || 1, 0, 0, devicePixelRatio || 1, 0, 0);
+    sctx.clearRect(0, 0, sw, sh);
+
+    if (logRows.length < 2) {
+      sctx.fillStyle = '#94a3b8';
+      sctx.font = '13px Sarabun';
+      sctx.textAlign = 'center';
+      sctx.fillText('บันทึก ≥ 2 จุดเพื่อดูกราฟ', sw / 2, sh / 2);
+      return;
+    }
+
+    const pts = logRows.filter(r => r.h > 0 && Number.isFinite(r.err));
+    if (pts.length < 2) return;
+
+    const logs = pts.map(r => Math.log10(r.h));
+    const errs = pts.map(r => r.err);
+    const lxMin = Math.min(...logs) - 0.1;
+    const lxMax = Math.max(...logs) + 0.1;
+    const eMax = Math.max(...errs, 0.01) * 1.1;
+
+    const p = { l: 36, r: 10, t: 10, b: 24 };
+    const tx = v => p.l + (v - lxMin) / (lxMax - lxMin) * (sw - p.l - p.r);
+    const ty = v => sh - p.b - v / eMax * (sh - p.t - p.b);
+
+    sctx.strokeStyle = '#e2e8f0';
+    sctx.beginPath();
+    sctx.moveTo(p.l, sh - p.b);
+    sctx.lineTo(sw - p.r, sh - p.b);
+    sctx.stroke();
+
+    sctx.strokeStyle = C.curve;
+    sctx.lineWidth = 2;
+    sctx.beginPath();
+    pts.forEach((r, i) => {
+      const x = tx(Math.log10(r.h));
+      const y = ty(r.err);
+      if (i === 0) sctx.moveTo(x, y); else sctx.lineTo(x, y);
+    });
+    sctx.stroke();
+
+    sctx.fillStyle = C.curve;
+    pts.forEach(r => {
+      sctx.beginPath();
+      sctx.arc(tx(Math.log10(r.h)), ty(r.err), 4, 0, Math.PI * 2);
+      sctx.fill();
+    });
+
+    sctx.fillStyle = '#64748b';
+    sctx.font = '11px Sarabun';
+    sctx.fillText('log h', sw / 2, sh - 4);
+    sctx.save();
+    sctx.translate(10, sh / 2);
+    sctx.rotate(-Math.PI / 2);
+    sctx.fillText('error', 0, 0);
+    sctx.restore();
+  }
+
+  function renderLogTable() {
+    const body = $('logBody');
+    if (!logRows.length) {
+      body.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#94a3b8">ยังไม่มีข้อมูล</td></tr>';
+      return;
+    }
+    body.innerHTML = logRows.map(r =>
+      `<tr><td>${fmt(r.h, 4)}</td><td>${fmt(r.sec, 4)}</td><td>${fmt(r.der, 4)}</td><td>${fmt(r.err, 4)}</td></tr>`
+    ).join('');
+  }
+
+  function recordRow(force) {
+    const s = state;
+    if (!Number.isFinite(s.m) || !Number.isFinite(s.der)) return;
+    const hKey = Math.abs(s.h).toFixed(6);
+    if (!force && hKey === lastLoggedH) return;
+    lastLoggedH = hKey;
+    logRows.push({ h: Math.abs(s.h), sec: s.m, der: s.der, err: s.gap });
+    logRows.sort((a, b) => b.h - a.h);
+    if (logRows.length > 24) logRows = logRows.slice(0, 24);
+    renderLogTable();
+    drawSpark();
+  }
+
+  function draw() {
+    state = compute();
+    updateDOM(state);
+    drawGraph(state);
+    if ($('autoLog').checked) recordRow(false);
+    rafPending = false;
+  }
+
+  function scheduleDraw() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(draw);
+  }
+
+  function resizeMain() {
+    const r = canvas.getBoundingClientRect();
+    const d = devicePixelRatio || 1;
+    canvas.width = Math.round(r.width * d);
+    canvas.height = Math.round(r.height * d);
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    scheduleDraw();
+    drawSpark();
+  }
+
+  function setA(v) {
+    const def = getDef();
+    const n = clampA(v, def);
+    $('aRange').value = n;
+    $('aNum').value = n;
+    $('aRange').min = def.range[0];
+    $('aRange').max = def.range[1];
+    $('aNum').min = def.range[0];
+    $('aNum').max = def.range[1];
+    scheduleDraw();
+  }
+
+  function stopAnim() {
+    animToken++;
+    $('animate').disabled = false;
+    $('pauseAnim').disabled = true;
+  }
+
+  function runAnim() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setH(0.001);
+      return;
+    }
+    stopAnim();
+    const token = ++animToken;
+    $('animate').disabled = true;
+    $('pauseAnim').disabled = false;
+    let exp = Number($('hRange').value);
+    if (exp > 2.95) exp = 0;
+
+    function step() {
+      if (token !== animToken) return;
+      exp = Math.min(3, exp + 0.045);
+      $('hRange').value = exp;
+      scheduleDraw();
+      if (exp >= 3) { stopAnim(); return; }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  $('aRange').addEventListener('input', e => setA(e.target.value));
+  $('aNum').addEventListener('input', e => setA(e.target.value));
+  $('hRange').addEventListener('input', () => { lastLoggedH = null; scheduleDraw(); });
+  $('fn').addEventListener('change', () => {
+    toggleCustomField();
+    const def = getDef();
+    if ($('fn').value !== 'custom' || customFn) {
+      setA(def.aDefault);
+    }
+    lastLoggedH = null;
+    logRows = [];
+    renderLogTable();
+    drawSpark();
+  });
+  $('customExpr').addEventListener('input', () => {
+    lastLoggedH = null;
+    scheduleDraw();
+  });
+  $('customExpr').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); scheduleDraw(); }
+  });
+  document.querySelectorAll('[data-h]').forEach(b =>
+    b.addEventListener('click', () => { setH(Number(b.dataset.h)); lastLoggedH = null; })
+  );
+  ['negH', 'twoSided', 'autoLog'].forEach(id =>
+    $(id).addEventListener('change', scheduleDraw)
+  );
+
+  $('animate').addEventListener('click', runAnim);
+  $('pauseAnim').addEventListener('click', stopAnim);
+  $('record').addEventListener('click', () => recordRow(true));
+  $('clearLog').addEventListener('click', () => {
+    logRows = [];
+    lastLoggedH = null;
+    renderLogTable();
+    drawSpark();
+  });
+  $('zoomPQ').addEventListener('click', () => {
+    zoomPQ = !zoomPQ;
+    $('zoomPQ').classList.toggle('active', zoomPQ);
+    $('zoomPQ').setAttribute('aria-pressed', zoomPQ);
+    $('zoomPQ').textContent = zoomPQ ? 'แสดงกราฟทั้งหมด' : 'ขยายบริเวณ P–Q';
+    scheduleDraw();
+  });
+  $('check').addEventListener('click', () => {
+    const v = document.querySelector('input[name=q]:checked');
+    const a = $('answer');
+    a.classList.add('show');
+    if (!v) a.textContent = 'กรุณาเลือกคำตอบก่อน';
+    else if (v.value === 'b') a.textContent = 'ถูกต้อง — secant เข้าใกล้เส้นสัมผัสเมื่อ |h| → 0 โดยไม่ต้องแทน h = 0';
+    else a.textContent = 'ลองอีกครั้ง: เราใช้ “เข้าใกล้ศูนย์” ไม่ใช่แทน h = 0 โดยตรง';
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, select, textarea')) return;
+    if (e.code === 'Space') {
+      e.preventDefault();
+      $('pauseAnim').disabled ? runAnim() : stopAnim();
+    }
+    if (e.code === 'ArrowRight') { $('hRange').value = Math.min(3, +$('hRange').value + 0.08); lastLoggedH = null; scheduleDraw(); }
+    if (e.code === 'ArrowLeft') { $('hRange').value = Math.max(0, +$('hRange').value - 0.08); lastLoggedH = null; scheduleDraw(); }
+  });
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(resizeMain).observe(canvas.parentElement);
+  } else {
+    window.addEventListener('resize', resizeMain);
+  }
+  resizeMain();
+  toggleCustomField();
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

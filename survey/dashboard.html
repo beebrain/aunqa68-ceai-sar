@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="light" lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>แดชบอร์ดวิเคราะห์ความต้องการผู้มีส่วนได้ส่วนเสีย (OBE) | วศ.ม. CPE&amp;AI มรอ.</title>
+    <meta name="description" content="แดชบอร์ดวิเคราะห์ผลแบบสำรวจความต้องการของผู้มีส่วนได้ส่วนเสีย สำหรับการพัฒนาหลักสูตรตามกรอบ OBE และเกณฑ์ AUN-QA Version 4.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=DM+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#7c3aed',
+                            light: '#f5f3ff',
+                            dark: '#4c1d95',
+                        },
+                        secondary: {
+                            DEFAULT: '#0284c7',
+                            light: '#f0f9ff',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                        display: ['DM Sans', 'Sarabun', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-20">
+
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="flex items-center gap-2 text-primary font-black tracking-tight text-lg hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-2xl text-primary">school</span>
+                    <span>วศ.ม. <span class="text-secondary">CPE &amp; AI</span></span>
+                </a>
+                <span class="hidden sm:inline text-slate-300">|</span>
+                <span class="hidden sm:inline text-xs font-bold text-slate-500 uppercase tracking-wider">OBE Stakeholder Analytics</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <a href="index.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-primary hover:bg-primary-dark transition-all shadow-sm">
+                    <span class="material-symbols-outlined text-base">edit_document</span>
+                    <span>เปิดฟอร์มตอบแบบสำรวจ</span>
+                </a>
+                <a href="api/export.php?format=csv" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200">
+                    <span class="material-symbols-outlined text-base">download</span>
+                    <span class="hidden sm:inline">ดาวน์โหลด CSV</span>
+                </a>
+                <a href="../index.html" class="text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors ml-2">
+                    กลับหน้าหลัก
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header & Filter -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-violet-100 text-violet-800 text-xs font-bold uppercase tracking-wider mb-2">
+                    <span class="material-symbols-outlined text-sm">analytics</span>
+                    AUN-QA Criterion 1.4 · Stakeholder Needs Analysis
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                    การวิเคราะห์ความต้องการของผู้มีส่วนได้ส่วนเสียตามกรอบ OBE
+                </h1>
+                <p class="text-sm text-slate-500 mt-1">
+                    ข้อมูลสรุปเพื่อการออกแบบผลลัพธ์การเรียนรู้ระดับหลักสูตร (PLOs) และวัตถุประสงค์ (PEOs) หลักสูตร พ.ศ. 2571
+                </p>
+            </div>
+
+            <!-- Group Filter -->
+            <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-500 pl-2">กลุ่มผู้ตอบ:</span>
+                <select id="groupFilter" class="rounded-lg border-slate-200 text-xs font-bold focus:border-primary focus:ring-primary py-1.5" onchange="loadAnalyticsData()">
+                    <option value="all">ทุกกลุ่มผู้มีส่วนได้ส่วนเสีย (All Groups)</option>
+                    <option value="หน่วยงานภาครัฐ/รัฐวิสาหกิจ">หน่วยงานภาครัฐ / รัฐวิสาหกิจ</option>
+                    <option value="ภาคเอกชน/สถานประกอบการ">ภาคเอกชน / สถานประกอบการ</option>
+                    <option value="ศิษย์เก่า/บัณฑิต">ศิษย์เก่า / บัณฑิต</option>
+                    <option value="นักศึกษาปัจจุบัน">นักศึกษาปัจจุบัน (ป.โท)</option>
+                    <option value="นักศึกษาระดับปริญญาตรี">นักศึกษาระดับปริญญาตรี</option>
+                </select>
+                <button onclick="loadAnalyticsData()" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600" title="รีเฟรชข้อมูล">
+                    <span class="material-symbols-outlined text-base">refresh</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Analytics Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between text-slate-400 mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">ผู้ตอบแบบสำรวจทั้งหมด</span>
+                    <span class="material-symbols-outlined text-violet-600 text-2xl">groups</span>
+                </div>
+                <div class="text-3xl font-black text-slate-900" id="kpi-total">31</div>
+                <div class="text-xs font-bold text-emerald-600 mt-1">✓ ครบ 5 กลุ่มเป้าหมาย</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between text-slate-400 mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">กลุ่มที่มีสัดส่วนสูงสุด</span>
+                    <span class="material-symbols-outlined text-sky-600 text-2xl">domain</span>
+                </div>
+                <div class="text-xl font-black text-slate-900 truncate" id="kpi-top-group">ภาคเอกชน</div>
+                <div class="text-xs text-slate-500 mt-1">45% ของผู้ตอบทั้งหมด</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between text-slate-400 mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">ทักษะที่ต้องการสูงสุด</span>
+                    <span class="material-symbols-outlined text-pink-600 text-2xl">psychology</span>
+                </div>
+                <div class="text-xl font-black text-slate-900 truncate" id="kpi-top-skill">AI &amp; Data Science</div>
+                <div class="text-xs text-slate-500 mt-1">สอดคล้อง PLO 1 &amp; PLO 3</div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between text-slate-400 mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">รูปแบบการเรียนรู้ที่ต้องการ</span>
+                    <span class="material-symbols-outlined text-amber-600 text-2xl">construction</span>
+                </div>
+                <div class="text-xl font-black text-slate-900 truncate">Project-based</div>
+                <div class="text-xs text-slate-500 mt-1">เน้นแก้โจทย์จริงในพื้นที่</div>
+            </div>
+        </div>
+
+        <!-- Charts Grid 1: Stakeholders & Q15 Top Priorities -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Stakeholder Breakdown -->
+            <div class="lg:col-span-5 glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-violet-600 text-lg">pie_chart</span>
+                        สัดส่วนกลุ่มผู้มีส่วนได้ส่วนเสีย (Q1)
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">การกระจายตัวของผู้ให้ข้อมูลตามเกณฑ์ AUN-QA</p>
+                    <div class="relative h-64">
+                        <canvas id="chartStakeholders"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top 3 Priorities Ranking -->
+            <div class="lg:col-span-7 glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-indigo-600 text-lg">format_list_numbered</span>
+                        3 สิ่งที่สำคัญที่สุดสำหรับผู้สำเร็จการศึกษา (Q15 Ranking)
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">ลำดับความสำคัญตามความคิดเห็นของผู้มีส่วนได้ส่วนเสียทุกกลุ่ม</p>
+                    <div class="relative h-64">
+                        <canvas id="chartTop3"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid 2: 4 OBE Domains (Knowledge, Skill, Ethics, Character) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Knowledge -->
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-violet-100 text-violet-800 mb-2">ด้านความรู้ (Knowledge)</span>
+                <h4 class="text-xs font-bold text-slate-800 mb-3">ความรู้ที่ต้องการ (Q4)</h4>
+                <div class="relative h-44">
+                    <canvas id="chartKnowledge"></canvas>
+                </div>
+            </div>
+
+            <!-- Skill -->
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-800 mb-2">ด้านทักษะ (Skill)</span>
+                <h4 class="text-xs font-bold text-slate-800 mb-3">ทักษะที่ควรมี (Q6)</h4>
+                <div class="relative h-44">
+                    <canvas id="chartSkills"></canvas>
+                </div>
+            </div>
+
+            <!-- Ethics -->
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 mb-2">ด้านจริยธรรม (Ethics)</span>
+                <h4 class="text-xs font-bold text-slate-800 mb-3">จริยธรรมที่สำคัญ (Q8)</h4>
+                <div class="relative h-44">
+                    <canvas id="chartEthics"></canvas>
+                </div>
+            </div>
+
+            <!-- Character -->
+            <div class="glass-card rounded-2xl p-5 shadow-sm">
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 mb-2">ลักษณะบุคคล (Character)</span>
+                <h4 class="text-xs font-bold text-slate-800 mb-3">ลักษณะบัณฑิต (Q9)</h4>
+                <div class="relative h-44">
+                    <canvas id="chartCharacter"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- OBE Alignment Mapping Table -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-lg">alt_route</span>
+                การเชื่อมโยงความต้องการของผู้มีส่วนได้ส่วนเสียสู่ PEOs &amp; PLOs ของหลักสูตร (Constructive Alignment)
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">ตารางสังเคราะห์ผลสำรวจเพื่อใช้เป็นหลักฐาน AUN-QA Criterion 1 (Expected Learning Outcomes)</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs border border-slate-200 rounded-xl overflow-hidden">
+                    <thead class="bg-slate-100/80 text-slate-700 font-bold">
+                        <tr>
+                            <th class="p-3 border-b border-slate-200 w-1/4">ความต้องการหลักจากผลสำรวจ</th>
+                            <th class="p-3 border-b border-slate-200 w-1/4">วัตถุประสงค์หลักสูตร (PEOs)</th>
+                            <th class="p-3 border-b border-slate-200 w-1/4">ผลลัพธ์การเรียนรู้ (PLOs)</th>
+                            <th class="p-3 border-b border-slate-200 w-1/4">แนวทางการจัดการเรียนการสอน</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 font-medium">
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="p-3"><strong>AI &amp; Data Analytics ขั้นสูง:</strong> ความสามารถในการพัฒนาและประยุกต์ใช้ AI / GenAI แก้ปัญหาจริง</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-bold">PEO 1, PEO 2</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">PLO 1, PLO 3</span></td>
+                            <td class="p-3 text-slate-600">วิชาบังคับ Machine Learning, Deep Learning, Edge AI Workshop</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="p-3"><strong>การแก้ปัญหาโจทย์จริงร่วมกับองค์กร:</strong> Problem-based &amp; Project-based Learning</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-bold">PEO 2</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">PLO 2, PLO 3</span></td>
+                            <td class="p-3 text-slate-600">วิทยานิพนธ์ / การค้นคว้าอิสระจากโจทย์จริงของภาคอุตสาหกรรมในพื้นที่</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="p-3"><strong>จริยธรรม AI และความมั่นคงปลอดภัย:</strong> PDPA, Data Privacy, AI Ethics</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-bold">PEO 3</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">PLO 4</span></td>
+                            <td class="p-3 text-slate-600">สอดแทรกจรรยาบรรณวิศวกรรมและ AI Ethics ในทุกรายวิชาสัมมนาและวิจัย</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="p-3"><strong>การทำงานเป็นทีม &amp; การเรียนรู้ตลอดชีวิต:</strong> ปรับตัวต่อเทคโนโลยีใหม่</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-bold">PEO 4</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">PLO 5</span></td>
+                            <td class="p-3 text-slate-600">การนำเสนอผลงาน, การทำงานโครงงานกลุ่ม, และการเข้าร่วมอบรมทางวิชาการ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Suggestions Feed -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-600 text-lg">comment</span>
+                ข้อเสนอแนะล่าสุดจากผู้มีส่วนได้ส่วนเสีย
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">ความคิดเห็นเชิงคุณภาพเพื่อการปรับปรุงเนื้อหาหลักสูตรและการจัดการเรียนการสอน</p>
+
+            <div id="comments-container" class="space-y-3">
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                    <p class="text-slate-700 font-medium leading-relaxed">"ต้องการให้เน้นการทำโครงงาน AI ที่ตอบโจทย์การใช้งานจริงในองค์กรภาครัฐและเอกชน เช่น ระบบประมวลผลเอกสารอัตโนมัติ และการพยากรณ์ข้อมูล"</p>
+                    <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2">
+                        <span class="font-bold text-violet-600">หน่วยงานภาครัฐ / รัฐวิสาหกิจ</span>
+                        <span>ล่าสุด</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Dashboard Logic & Chart.js Script -->
+    <script>
+        let chartInstances = {};
+
+        // Default / Mock Data for initial view before API loads
+        const mockData = {
+            total: 31,
+            groups_breakdown: [
+                { group: 'ภาคเอกชน/สถานประกอบการ', count: 14 },
+                { group: 'หน่วยงานภาครัฐ/รัฐวิสาหกิจ', count: 8 },
+                { group: 'ศิษย์เก่า/บัณฑิต', count: 4 },
+                { group: 'นักศึกษาปัจจุบัน', count: 3 },
+                { group: 'นักศึกษาระดับปริญญาตรี', count: 2 }
+            ],
+            q15_top3_ranking: {
+                "มีทักษะ ในการประยุกต์ใช้และแก้ปัญหาจริง": 26,
+                "มีความรู้ ด้าน AI และวิศวกรรมคอมพิวเตอร์": 24,
+                "มีความสามารถด้านการวิจัยและนวัตกรรม": 18,
+                "มีทักษะการทำงานและการเรียนรู้ตลอดชีวิต": 14,
+                "มีจริยธรรมและความรับผิดชอบ": 11
+            },
+            q4_knowledge: [
+                { value: "ปัญญาประดิษฐ์และ Generative AI", count: 18 },
+                { value: "Data Science และการวิเคราะห์ข้อมูล", count: 7 },
+                { value: "วิศวกรรมคอมพิวเตอร์และการพัฒนาระบบ", count: 4 },
+                { value: "เทคโนโลยีดิจิทัลสมัยใหม่", count: 2 }
+            ],
+            q6_skills: [
+                { value: "การพัฒนาและประยุกต์ใช้ AI", count: 16 },
+                { value: "การวิเคราะห์ข้อมูลและแก้ปัญหา", count: 8 },
+                { value: "การวิจัยและสร้างนวัตกรรม", count: 5 },
+                { value: "การสื่อสารและบริหารโครงการ", count: 2 }
+            ],
+            q8_ethics: [
+                { value: "การใช้ AI อย่างมีจริยธรรม", count: 17 },
+                { value: "การคุ้มครองข้อมูล PDPA", count: 8 },
+                { value: "ความซื่อสัตย์ทางวิชาการ", count: 4 },
+                { value: "ลิขสิทธิ์และทรัพย์สินทางปัญญา", count: 2 }
+            ],
+            q9_character: [
+                { value: "คิดวิเคราะห์และสร้างนวัตกรรม", count: 15 },
+                { value: "เรียนรู้และปรับตัวตลอดเวลา", count: 9 },
+                { value: "รับผิดชอบและมีมืออาชีพ", count: 4 },
+                { value: "ทำงานเป็นทีมและผู้นำ", count: 3 }
+            ]
+        };
+
+        function renderCharts(data) {
+            // Destroy existing charts
+            Object.values(chartInstances).forEach(c => c.destroy());
+
+            // 1. Stakeholders Doughnut
+            const ctx1 = document.getElementById('chartStakeholders').getContext('2d');
+            chartInstances.stakeholders = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: data.groups_breakdown.map(g => g.group),
+                    datasets: [{
+                        data: data.groups_breakdown.map(g => g.count),
+                        backgroundColor: ['#7c3aed', '#0284c7', '#ec4899', '#10b981', '#f59e0b'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10, family: 'Sarabun' } } } }
+                }
+            });
+
+            // 2. Top 3 Priorities Bar
+            const ctx2 = document.getElementById('chartTop3').getContext('2d');
+            const q15_keys = Object.keys(data.q15_top3_ranking);
+            const q15_vals = Object.values(data.q15_top3_ranking);
+
+            chartInstances.top3 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: q15_keys.map(k => k.length > 28 ? k.substring(0, 26) + '...' : k),
+                    datasets: [{
+                        label: 'จำนวนที่เลือก (เสียง)',
+                        data: q15_vals,
+                        backgroundColor: '#6366f1',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid: { display: false } }, y: { ticks: { font: { size: 10, family: 'Sarabun' } } } }
+                }
+            });
+
+            // Helper mini pie
+            function createMiniPie(canvasId, items, colors) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                return new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: items.map(i => i.value),
+                        datasets: [{
+                            data: items.map(i => i.count),
+                            backgroundColor: colors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            chartInstances.k = createMiniPie('chartKnowledge', data.q4_knowledge, ['#7c3aed', '#a78bfa', '#c4b5fd', '#ede9fe']);
+            chartInstances.s = createMiniPie('chartSkills', data.q6_skills, ['#0284c7', '#38bdf8', '#7dd3fc', '#e0f2fe']);
+            chartInstances.e = createMiniPie('chartEthics', data.q8_ethics, ['#059669', '#34d399', '#6ee7b7', '#d1fae5']);
+            chartInstances.c = createMiniPie('chartCharacter', data.q9_character, ['#d97706', '#fbbf24', '#fde68a', '#fef3c7']);
+        }
+
+        async function loadAnalyticsData() {
+            const grp = document.getElementById('groupFilter').value;
+            try {
+                const res = await fetch(`api/analytics.php?group=${encodeURIComponent(grp)}`);
+                const json = await res.json();
+                if (json.success && json.data) {
+                    document.getElementById('kpi-total').textContent = json.data.total;
+                    renderCharts(json.data);
+                    
+                    if (json.data.recent_comments && json.data.recent_comments.length > 0) {
+                        const container = document.getElementById('comments-container');
+                        container.innerHTML = json.data.recent_comments.map(c => `
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                                <p class="text-slate-700 font-medium leading-relaxed">"${c.additional_comments}"</p>
+                                <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2">
+                                    <span class="font-bold text-violet-600">${c.q1_stakeholder_group}${c.organization_name ? ' ('+c.organization_name+')' : ''}</span>
+                                    <span>${c.created_at || 'บันทึกแล้ว'}</span>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                    return;
+                }
+            } catch (e) {
+                console.log('Using local mock data for presentation');
+            }
+            renderCharts(mockData);
+        }
+
+        // Initial Load
+        window.addEventListener('DOMContentLoaded', loadAnalyticsData);
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG-101: Antigravity 2.0 — Material การอบรม</title>
+<meta name="description" content="สไลด์ ใบงาน คู่มือ PDF และไฟล์ประกอบทั้งหมดของการอบรม AG-101 Antigravity 2.0 — การประยุกต์ใช้ AI Agent ในงานสำนักงาน">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#6D28D9;--accent-soft:#F1EBFB;--ink:#1F2430;--muted:#5B6270;--line:#E6E2EF;--bg:#FAF9FC;--good:#166534;--good-soft:#EAF6EE}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header.site{background:linear-gradient(135deg,#31146B,#5B21B6);color:#fff;padding:52px 0 46px}
+.crumb{font-size:14px;opacity:.85;margin-bottom:18px}
+.crumb a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+header.site h1{font-size:36px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+header.site .sub{margin-top:10px;font-size:17px;color:#DDD3F5;max-width:62ch}
+.facts{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px;font-size:14.5px;color:#EDE7FA}
+.facts span::before{content:"— ";color:#B79DEB}
+main{padding:44px 0 72px}
+h2.sec{font-size:24px;font-weight:800;margin:38px 0 6px}
+h2.sec:first-child{margin-top:0}
+p.secdesc{color:var(--muted);font-size:15.5px;margin-bottom:18px;max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column}
+.card h3{font-size:17.5px;font-weight:700;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14.5px;flex:1}
+.card .out{font-size:13px;color:var(--good);background:var(--good-soft);border-radius:8px;padding:6px 10px;margin-top:12px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{display:inline-block;font-size:13.5px;font-weight:600;text-decoration:none;border-radius:8px;padding:8px 14px;border:1px solid var(--line);color:var(--ink);background:#fff}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#5B21B6;color:#fff}
+.hero-slide{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 30px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.hero-slide img{width:320px;max-width:100%;border-radius:10px;border:1px solid var(--line)}
+.hero-slide .hs-body{flex:1;min-width:260px}
+table.sched{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px}
+table.sched th{background:var(--accent-soft);color:#31146B;text-align:left;padding:10px 16px}
+table.sched td{padding:9px 16px;border-top:1px solid var(--line);vertical-align:top}
+table.sched td:first-child{white-space:nowrap;color:var(--muted)}
+ul.docs{list-style:none}
+ul.docs li{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:14px 20px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+ul.docs li a.doc{font-weight:700;color:var(--accent);text-decoration:none;font-size:15.5px}
+ul.docs li span{color:var(--muted);font-size:14px;flex:1;min-width:220px}
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:13.5px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="crumb"><a href="../../">หน้าหลักสูตร</a> / <a href="../">การอบรม</a> / AG-101</div>
+    <h1>AG-101 · Antigravity 2.0<br>การประยุกต์ใช้ AI Agent ในงานสำนักงาน</h1>
+    <p class="sub">สั่ง AI Agent ทำงานแทนใน 4 สถานการณ์จริง ผ่านกรณีศึกษาปฏิบัติจริง —
+    ผู้เข้าอบรมไม่ต้องมีพื้นฐานการเขียนโปรแกรม</p>
+    <div class="facts">
+      <span>มหาวิทยาลัยราชภัฏอุตรดิตถ์</span>
+      <span>ระยะเวลา 1 วัน (09:00–16:30)</span>
+      <span>เครื่องมือ: Antigravity 2.0 Desktop App</span>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+    <h2 class="sec">สไลด์ประกอบการอบรม</h2>
+    <p class="secdesc">สไลด์ HTML เปิดดูในเบราว์เซอร์ได้ทันที (ปุ่มลูกศร ← → เปลี่ยนหน้า, กด F11 เพื่อเต็มจอ)</p>
+    <div class="hero-slide">
+      <img src="slides/assets/ag101_slide_cover_screenshot.png" alt="หน้าปกสไลด์ AG-101">
+      <div class="hs-body">
+        <h3 style="font-size:19px;margin-bottom:6px">Antigravity 2.0 — Slide Deck (29 หน้า)</h3>
+        <p style="color:var(--muted);font-size:14.5px">ครอบคลุมแนวคิด AI Agent vs Chatbot, วงจร Plan → Execute → Self-Debug,
+        การเขียน Prompt, ทั้ง 4 เคส และเทคนิคความปลอดภัย (PDPA / Human-in-the-Loop)</p>
+        <div class="btns">
+          <a class="btn primary" href="slides/ag-101-slide-deck.html">เปิดสไลด์</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="sec">เคสฝึกปฏิบัติ 4 เคส</h2>
+    <p class="secdesc">ดาวน์โหลด ZIP ของแต่ละเคสแล้วเปิดโฟลเดอร์เป็น Workspace ใน Antigravity 2.0 ได้ทันที —
+    ทุกเคสมีใบงาน (README) และคู่มือ PDF ทีละขั้นตอนอยู่ในตัว</p>
+    <div class="grid">
+      <div class="card">
+        <h3>🧾 Case 1 — สรุปบิลใบเสร็จจากภาพสแกนจริง</h3>
+        <p>OCR ภาพใบเสร็จจริง 10 ใบ (ชุดข้อมูลสาธารณะ SROIE) ให้ Agent อ่านภาพ → ตาราง CSV → รายงาน HTML</p>
+        <div class="out">ผลงาน: expense-sheet.csv + expense-report.html</div>
+        <div class="btns">
+          <a class="btn primary" href="downloads/case-1-receipt-summary.zip">ดาวน์โหลด ZIP</a>
+          <a class="btn" href="../md.html?f=2025-ag101-antigravity-2/cases/case-1-receipt-summary/README.md">ใบงาน</a>
+          <a class="btn" href="manuals/manual-case-1.pdf">คู่มือ PDF</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🏦 Case 2 — ผู้ช่วยนักวิเคราะห์สินเชื่อ</h3>
+        <p>ประเมินผู้สมัครสินเชื่อ 3 ราย (ใบสมัคร JSON, Statement CSV, เครดิตบูโร TXT) ตามเกณฑ์ใน loan-policy.md + What-if Analysis</p>
+        <div class="out">ผลงาน: loan-evaluation-report.md + loan-dashboard.html</div>
+        <div class="btns">
+          <a class="btn primary" href="downloads/case-2-loan-officer.zip">ดาวน์โหลด ZIP</a>
+          <a class="btn" href="../md.html?f=2025-ag101-antigravity-2/cases/case-2-loan-officer/README.md">ใบงาน</a>
+          <a class="btn" href="manuals/manual-case-2.pdf">คู่มือ PDF</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🏥 Case 3 — รายงาน Productivity เวรพยาบาล</h3>
+        <p>วิเคราะห์ตารางเวรพยาบาล 8 คน 177 แถว ให้ Agent ตรวจเจอสัญญาณซ่อน (OT เกิน, ลาบ่อย) ตาม KPI ที่กำหนด</p>
+        <div class="out">ผลงาน: nurse-productivity-summary.csv + report.html</div>
+        <div class="btns">
+          <a class="btn primary" href="downloads/case-3-nurse-productivity.zip">ดาวน์โหลด ZIP</a>
+          <a class="btn" href="../md.html?f=2025-ag101-antigravity-2/cases/case-3-nurse-productivity/README.md">ใบงาน</a>
+          <a class="btn" href="manuals/manual-case-3.pdf">คู่มือ PDF</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🚀 Case 4 — สร้างแอปลงทะเบียนด้วย Apps Script</h3>
+        <p>สั่ง Agent สร้างระบบลงทะเบียนอบรมที่บันทึกลง Google Sheets จริง + แดชบอร์ดสถิติ (แทร็ก Copy-Paste หรือ CLASP)</p>
+        <div class="out">ผลงาน: ระบบลงทะเบียนออนไลน์ Deploy ขึ้นเน็ตจริง</div>
+        <div class="btns">
+          <a class="btn primary" href="downloads/case-4-appscript-app.zip">ดาวน์โหลด ZIP</a>
+          <a class="btn" href="../md.html?f=2025-ag101-antigravity-2/cases/case-4-appscript-app/README.md">ใบงาน</a>
+          <a class="btn" href="manuals/manual-case-4.pdf">คู่มือ PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="sec">เอกสารประกอบ</h2>
+    <ul class="docs">
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/curriculum.md">Curriculum</a><span>โครงสร้างหลักสูตรและรายละเอียดเนื้อหา</span></li>
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/workshop-handout.md">Workshop Handout</a><span>ใบงานประจำแต่ละ Station</span></li>
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/copy-paste-prompts.md">Prompt Library</a><span>รวม Prompt สำเร็จรูปสำหรับ Antigravity — คัดลอกไปใช้ได้ทันที</span></li>
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/quick-reference.md">Quick Reference</a><span>Cheat sheet สรุป 1 หน้า</span></li>
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/appsscript-tutorial.md">Apps Script Tutorial</a><span>คู่มือ Google Apps Script + CLASP ฉบับเต็ม (สำหรับ Case 4)</span></li>
+      <li><a class="doc" href="../md.html?f=2025-ag101-antigravity-2/materials/assessment.md">Assessment</a><span>Pre-test / Post-test / แบบประเมินหลักสูตร</span></li>
+    </ul>
+
+    <h2 class="sec">ตัวอย่างผลงาน Case 4</h2>
+    <p class="secdesc">ตัวอย่างระบบลงทะเบียนที่สร้างเสร็จแล้ว ใช้เทียบกับผลงานของผู้เรียน</p>
+    <div class="btns" style="margin-bottom:8px">
+      <a class="btn" href="demo/registration-portal.html">หน้าลงทะเบียน (ตัวอย่าง)</a>
+      <a class="btn" href="demo/report-portal.html">แดชบอร์ดรายงาน (ตัวอย่าง)</a>
+      <a class="btn" href="demo/api-handler.gs" download>โค้ด api-handler.gs</a>
+    </div>
+
+    <h2 class="sec">กำหนดการ (แทร็กเต็มวัน)</h2>
+    <table class="sched">
+      <tr><th>เวลา</th><th>กิจกรรม</th></tr>
+      <tr><td>09:00–09:30</td><td>เปิดงาน · แนวคิด AI Agent vs Chatbot · Live Demo</td></tr>
+      <tr><td>09:30–10:00</td><td>ติดตั้ง/ล็อกอิน Antigravity 2.0 + ทัวร์หน้าจอ</td></tr>
+      <tr><td>10:00–10:45</td><td><b>Case 1</b> — สรุปบิลใบเสร็จจากภาพจริง</td></tr>
+      <tr><td>11:00–12:00</td><td><b>Case 2</b> — ผู้ช่วยนักวิเคราะห์สินเชื่อ 3 ราย</td></tr>
+      <tr><td>13:00–14:15</td><td><b>Case 3</b> — รายงาน Productivity เวรพยาบาล</td></tr>
+      <tr><td>14:30–15:45</td><td><b>Case 4</b> — สร้างแอปลงทะเบียนด้วย Apps Script</td></tr>
+      <tr><td>15:45–16:15</td><td>เทคนิค Prompt ขั้นสูง · ความปลอดภัย (PDPA, Human-in-the-Loop)</td></tr>
+      <tr><td>16:15–16:30</td><td>สรุป Q&amp;A + แบบประเมิน</td></tr>
+    </table>
+    <p class="secdesc" style="margin-top:10px">แทร็กครึ่งวัน (4 ชม.): Case 1 + เลือก Case 2 หรือ 3 ตามกลุ่มผู้เรียน และสาธิต Case 4 เป็น Demo ปิดท้าย</p>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์ · มหาวิทยาลัยราชภัฏอุตรดิตถ์ · <a href="../">กลับหน้ารวมการอบรม</a></div>
+</footer>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

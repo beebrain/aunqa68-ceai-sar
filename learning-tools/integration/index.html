@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พื้นที่ใต้กราฟ — เครื่องมือการเรียนรู้</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.75em%22 x=%2212%22 font-size=%2272%22 fill=%22%230F766E%22>∫</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="../shared.css" rel="stylesheet">
+<style>
+  .intro { color: var(--muted); font-size: 15px; max-width: 68ch; margin-bottom: 22px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin-bottom: 14px; }
+  .row label { font-size: 14px; font-weight: 600; min-width: 100px; }
+  select, input[type=range] { font: inherit; }
+  select { padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; background: #fff; min-height: 44px; }
+  input[type=text].expr { flex: 1; min-width: 160px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: ui-monospace, monospace; font-size: 14px; min-height: 44px; }
+  .field-error { font-size: 13px; color: #B45309; width: 100%; display: none; }
+  .field-error.show { display: block; }
+  input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
+  .val { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 52px; text-align: right; }
+  canvas { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: #fff; margin-top: 4px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 16px; }
+  .stat { background: #F8FAFA; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .stat .lbl { font-size: 13px; color: var(--muted); margin-bottom: 2px; }
+  .stat .num { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .formula { font-size: 13px; color: var(--muted); margin-top: 4px; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="crumb"><a href="../../">หน้าหลักสูตร</a> / <a href="../">เครื่องมือการเรียนรู้</a> / อินทegral</div>
+    <h1>พื้นที่ใต้กราฟ</h1>
+    <p>อินทegralจำกัดเขต ∫<sub>a</sub><sup>b</sup> f(x) dx คือพื้นที่ signed ใต้กราฟ — ปรับ a, b และจำนวนช่วงย่อย n เพื่อดูการประมาณด้วย Riemann sum</p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <p class="intro">เลือกฟังก์ชัน กำหนดช่วง [a, b] แล้วเพิ่ม n — ผลประมาณควรเข้าใกล้ค่าที่หาได้ตรง</p>
+
+    <div class="panel">
+      <h2>ตั้งค่า</h2>
+      <div class="row">
+        <label for="fn">ฟังก์ชัน f(x)</label>
+        <select id="fn">
+          <option value="x2">f(x) = x²</option>
+          <option value="x3">f(x) = x³</option>
+          <option value="sin">f(x) = sin(x)</option>
+          <option value="lin">f(x) = x + 1</option>
+          <option value="custom">กำหนดเอง…</option>
+        </select>
+      </div>
+      <div class="row" id="customRow" hidden>
+        <label for="customExpr">พิมพ์ f(x)</label>
+        <input type="text" id="customExpr" class="expr" value="x^2" spellcheck="false" autocomplete="off" placeholder="x^2">
+      </div>
+      <div class="row" id="customErrRow" hidden>
+        <span></span>
+        <div id="customErr" class="field-error" role="alert"></div>
+      </div>
+      <p class="help-custom" id="customHelp" hidden style="font-size:13px;color:var(--muted);margin:-6px 0 12px 116px">เช่น <code>x^2</code>, <code>y=x^2+1</code>, <code>sin(x)</code> — ค่าแน่นอนใช้ trapezoid n=500 เป็นค่าอ้างอิง</p>
+      <div class="row">
+        <label for="a">ขอบซ้าย a</label>
+        <input type="range" id="a" min="-3" max="3" step="0.1" value="0">
+        <span class="val" id="av">0.0</span>
+      </div>
+      <div class="row">
+        <label for="b">ขอบขวา b</label>
+        <input type="range" id="b" min="-3" max="3" step="0.1" value="2">
+        <span class="val" id="bv">2.0</span>
+      </div>
+      <div class="row">
+        <label for="n">จำนวนช่วง n</label>
+        <input type="range" id="n" min="2" max="80" step="1" value="10">
+        <span class="val" id="nv">10</span>
+      </div>
+      <div class="row">
+        <label for="method">วิธีประมาณ</label>
+        <select id="method">
+          <option value="left">Left Riemann sum</option>
+          <option value="trap">Trapezoidal rule</option>
+        </select>
+      </div>
+    </div>
+
+    <canvas id="graph" width="900" height="420" aria-label="กราฟพื้นที่ใต้กราฟ"></canvas>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="lbl">ช่วง [a, b]</div>
+        <div class="num" id="rangeLbl">—</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">ค่าประมาณ</div>
+        <div class="num" id="approx">—</div>
+      </div>
+      <div class="stat">
+        <div class="lbl" id="exactLbl">ค่าแน่นอน</div>
+        <div class="num" id="exact">—</div>
+        <div class="formula" id="intFormula">—</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">|error|</div>
+        <div class="num" id="err">—</div>
+      </div>
+    </div>
+
+    <p class="note">เมื่อ n → ∞ ผลรวม Riemann จะเข้าใกล้ค่าอินทegral — ถ้า f(x) ≥ 0 บน [a, b] ค่านี้เท่ากับพื้นที่ใต้กราฟ (หน่วยตามแกน x, y)</p>
+  </div>
+</main>
+<footer class="site">
+  <div class="wrap"><a href="../">กลับรายการเครื่องมือ</a></div>
+</footer>
+<script src="../expr.js"></script>
+<script>
+const C = {
+  curve: '#0D9488',
+  area: 'rgba(20, 184, 166, 0.42)',
+  areaStroke: '#0F766E',
+  grid: '#CBD5E1',
+  axis: '#64748B',
+  bound: '#334155',
+  label: '#1F2430'
+};
+
+const FUNCS = {
+  x2:  { f: x => x*x, F: (a,b) => (b**3 - a**3)/3, intLabel: 'x³/3 + C' },
+  x3:  { f: x => x*x*x, F: (a,b) => (b**4 - a**4)/4, intLabel: 'x⁴/4 + C' },
+  sin: { f: x => Math.sin(x), F: (a,b) => -Math.cos(b) + Math.cos(a), intLabel: '−cos(x) + C' },
+  lin: { f: x => x + 1, F: (a,b) => (b*b/2 + b) - (a*a/2 + a), intLabel: 'x²/2 + x + C' }
+};
+
+let customFn = null;
+
+function getFuncEntry() {
+  const key = document.getElementById('fn').value;
+  if (key !== 'custom') return FUNCS[key];
+  const raw = document.getElementById('customExpr').value.trim();
+  const errEl = document.getElementById('customErr');
+  try {
+    const f = compileExpr(raw);
+    if (!Number.isFinite(f(1)) && !Number.isFinite(f(0))) throw new Error('ลองสูตรอื่น');
+    customFn = f;
+    errEl.textContent = '';
+    errEl.classList.remove('show');
+    return {
+      f,
+      F: (a, b) => approxIntegral(f, a, b, 500, 'trap'),
+      intLabel: 'ไม่มีสูตรปิด — อ้างอิง trapezoid n=500',
+      custom: true
+    };
+  } catch (e) {
+    customFn = null;
+    errEl.textContent = e.message || 'สูตรไม่ถูกต้อง';
+    errEl.classList.add('show');
+    return { f: () => NaN, F: () => NaN, intLabel: '—', custom: true };
+  }
+}
+
+function toggleCustomField() {
+  const on = document.getElementById('fn').value === 'custom';
+  document.getElementById('customRow').hidden = !on;
+  document.getElementById('customErrRow').hidden = !on;
+  document.getElementById('customHelp').hidden = !on;
+  document.getElementById('exactLbl').textContent = on ? 'ค่าอ้างอิง ≈' : 'ค่าแน่นอน';
+}
+
+const canvas = document.getElementById('graph');
+const ctx = canvas.getContext('2d');
+const els = ['fn','a','b','n','method'].map(id => document.getElementById(id));
+
+function fmt(n) { return Number.isFinite(n) ? n.toFixed(4) : '—'; }
+
+function approxIntegral(f, a, b, n, method) {
+  if (a === b) return 0;
+  const lo = Math.min(a, b), hi = Math.max(a, b);
+  const h = (hi - lo) / n;
+  let sum = 0;
+  if (method === 'left') {
+    for (let i = 0; i < n; i++) sum += f(lo + i * h) * h;
+  } else {
+    for (let i = 0; i < n; i++) {
+      const x0 = lo + i * h, x1 = lo + (i + 1) * h;
+      sum += (f(x0) + f(x1)) / 2 * h;
+    }
+  }
+  return a <= b ? sum : -sum;
+}
+
+function draw() {
+  const { f, F, intLabel } = getFuncEntry();
+  let a = +document.getElementById('a').value;
+  let b = +document.getElementById('b').value;
+  const n = +document.getElementById('n').value;
+  const method = document.getElementById('method').value;
+
+  document.getElementById('av').textContent = fmt(a);
+  document.getElementById('bv').textContent = fmt(b);
+  document.getElementById('nv').textContent = n;
+
+  const lo = Math.min(a, b), hi = Math.max(a, b);
+  const exact = F(a, b);
+  const approx = approxIntegral(f, a, b, n, method);
+
+  document.getElementById('rangeLbl').textContent = `[${fmt(a)}, ${fmt(b)}]`;
+  document.getElementById('approx').textContent = fmt(approx);
+  document.getElementById('exact').textContent = fmt(exact);
+  document.getElementById('intFormula').textContent = '∫f(x)dx = ' + intLabel;
+  document.getElementById('err').textContent = fmt(Math.abs(exact - approx));
+
+  const W = canvas.width, H = canvas.height;
+  const pad = { l: 52, r: 24, t: 24, b: 44 };
+  const xMin = -4, xMax = 4;
+
+  let yMin = Infinity, yMax = -Infinity;
+  for (let x = xMin; x <= xMax; x += 0.08) {
+    const y = f(x);
+    if (Number.isFinite(y)) { yMin = Math.min(yMin, y); yMax = Math.max(yMax, y); }
+  }
+  yMin -= 1; yMax += 1;
+
+  const toX = x => pad.l + (x - xMin) / (xMax - xMin) * (W - pad.l - pad.r);
+  const toY = y => H - pad.b - (y - yMin) / (yMax - yMin) * (H - pad.t - pad.b);
+
+  ctx.clearRect(0, 0, W, H);
+
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    ctx.beginPath(); ctx.moveTo(toX(x), pad.t); ctx.lineTo(toX(x), H - pad.b); ctx.stroke();
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    ctx.beginPath(); ctx.moveTo(pad.l, toY(y)); ctx.lineTo(W - pad.r, toY(y)); ctx.stroke();
+  }
+  ctx.strokeStyle = C.axis; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(pad.l, toY(0)); ctx.lineTo(W - pad.r, toY(0)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(toX(0), pad.t); ctx.lineTo(toX(0), H - pad.b); ctx.stroke();
+
+  const h = (hi - lo) / n;
+  ctx.fillStyle = C.area;
+  ctx.strokeStyle = C.areaStroke;
+  ctx.lineWidth = 1.5;
+  for (let i = 0; i < n; i++) {
+    const xL = lo + i * h, xR = lo + (i + 1) * h;
+    if (method === 'left') {
+      const yH = f(xL);
+      const rx = toX(xL), rw = toX(xR) - toX(xL);
+      if (yH >= 0) {
+        const ry = toY(yH), rh = toY(0) - toY(yH);
+        ctx.fillRect(rx, ry, rw, rh);
+        ctx.strokeRect(rx, ry, rw, rh);
+      } else {
+        const ry = toY(0), rh = toY(yH) - toY(0);
+        ctx.fillRect(rx, ry, rw, rh);
+        ctx.strokeRect(rx, ry, rw, rh);
+      }
+    } else {
+      const y0 = f(xL), y1 = f(xR);
+      ctx.beginPath();
+      ctx.moveTo(toX(xL), toY(0));
+      ctx.lineTo(toX(xL), toY(y0));
+      ctx.lineTo(toX(xR), toY(y1));
+      ctx.lineTo(toX(xR), toY(0));
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+  }
+
+  ctx.strokeStyle = C.curve; ctx.lineWidth = 3;
+  ctx.beginPath();
+  let started = false;
+  for (let x = xMin; x <= xMax; x += 0.03) {
+    const y = f(x);
+    if (!Number.isFinite(y)) { started = false; continue; }
+    const px = toX(x), py = toY(y);
+    if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  ctx.strokeStyle = C.bound; ctx.lineWidth = 2.5; ctx.setLineDash([7, 5]);
+  ctx.beginPath(); ctx.moveTo(toX(a), pad.t); ctx.lineTo(toX(a), H - pad.b); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(toX(b), pad.t); ctx.lineTo(toX(b), H - pad.b); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = C.label;
+  ctx.font = '700 15px Sarabun, sans-serif';
+  ctx.fillText('a', toX(a) - 5, H - pad.b + 30);
+  ctx.fillText('b', toX(b) - 5, H - pad.b + 30);
+}
+
+els.forEach(el => el.addEventListener('input', draw));
+document.getElementById('fn').addEventListener('change', () => { toggleCustomField(); draw(); });
+document.getElementById('customExpr').addEventListener('input', draw);
+document.getElementById('customExpr').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); draw(); }
+});
+toggleCustomField();
+draw();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

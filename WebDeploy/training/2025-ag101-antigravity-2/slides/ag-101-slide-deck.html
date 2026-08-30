@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG-101: Antigravity 2.0 Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EFEFF3;
+  --surface:#FFFFFF;
+  --ink:#1B1C26;
+  --muted:#45465A;
+  --accent:#5B21B6;
+  --accent-deep:#3B1580;
+  --accent-mid:#6D28D9;
+  --accent-tint:#F1EDFB;
+  --accent-line:#D8CCF2;
+  --line:#E1E1E8;
+  --good:#0B6B4D;
+  --good-tint:#E9F5F0;
+  --warn:#9A4B00;
+  --warn-tint:#FBF1E4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Sarabun','Leelawadee UI','Segoe UI',sans-serif;
+  overflow:hidden;height:100vh;width:100vw;
+  display:flex;justify-content:center;align-items:center;
+}
+.presentation{
+  position:relative;width:1920px;height:1080px;
+  flex:none; /* body เป็น flex — กันไม่ให้ถูกบีบแคบกว่า 1920px แล้วสไลด์ล้นขวา */
+  transform-origin:center center;
+}
+/* ---------- slide base ---------- */
+.slide{
+  position:absolute;inset:0;
+  width:1920px;height:1080px;
+  background:var(--surface);
+  padding:72px 110px 60px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .45s cubic-bezier(.25,1,.5,1),transform .45s cubic-bezier(.25,1,.5,1),visibility .45s;
+  border-top:8px solid var(--accent);
+}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.slide.prev{transform:translateX(-36px)}
+.slide.next{transform:translateX(36px)}
+@media (prefers-reduced-motion: reduce){
+  .slide{transition:opacity .1s linear;transform:none !important}
+}
+/* header / footer */
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:32px;margin-bottom:44px}
+.head-left{display:flex;align-items:center;gap:20px;min-width:0}
+.tag{
+  background:var(--accent);color:#fff;
+  font-size:22px;font-weight:700;letter-spacing:.04em;
+  padding:6px 18px;border-radius:6px;white-space:nowrap;
+}
+.tag.ghost{background:var(--accent-tint);color:var(--accent-deep)}
+h2.title{font-size:52px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.brand{font-size:24px;font-weight:700;color:var(--muted);white-space:nowrap}
+.brand b{color:var(--accent)}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.foot{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--line);padding-top:18px;margin-top:36px;
+  font-size:20px;color:var(--muted);
+}
+/* ---------- layout helpers ---------- */
+.cols{display:flex;gap:64px;align-items:center;height:100%}
+.col{flex:1;min-width:0}
+.lead{font-size:32px;font-weight:700;color:var(--accent-deep);margin-bottom:18px}
+p.text{font-size:28px;line-height:1.65;color:var(--muted);max-width:70ch}
+ul.plain{list-style:none;display:flex;flex-direction:column;gap:18px}
+ul.plain li{font-size:28px;line-height:1.55;color:var(--ink);display:flex;gap:16px;align-items:flex-start}
+ul.plain li::before{content:"";flex:0 0 10px;height:10px;border-radius:2px;background:var(--accent);margin-top:16px}
+ul.plain li span.k{font-weight:700}
+img.figure{max-width:100%;border-radius:12px;border:1px solid var(--line)}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:26px}
+.stepline{display:flex;gap:24px;align-items:flex-start}
+.stepno{
+  flex:0 0 56px;height:56px;border-radius:10px;
+  background:var(--accent);color:#fff;
+  font-size:28px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.stepbody .st{font-size:30px;font-weight:700}
+.stepbody .sd{font-size:24px;color:var(--muted);line-height:1.5;margin-top:4px;max-width:66ch}
+/* tables */
+table.tbl{width:100%;border-collapse:collapse;font-size:27px}
+table.tbl th{
+  background:var(--accent-tint);color:var(--accent-deep);
+  font-weight:700;text-align:left;
+  padding:20px 26px;border-bottom:2px solid var(--accent-line);
+}
+table.tbl td{padding:19px 26px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+table.tbl td.c,table.tbl th.c{text-align:center}
+table.tbl .em{font-weight:700}
+table.tbl tr.hl td{background:var(--accent-tint)}
+/* callouts (full border + tint) */
+.callout{
+  border:1px solid var(--line);border-radius:12px;
+  padding:26px 30px;background:var(--bg);
+}
+.callout .ct{font-size:24px;font-weight:800;letter-spacing:.02em;margin-bottom:8px}
+.callout .cb{font-size:24px;line-height:1.55;color:var(--muted)}
+.callout.note{background:var(--accent-tint);border-color:var(--accent-line)}
+.callout.note .ct{color:var(--accent-deep)}
+.callout.good{background:var(--good-tint);border-color:#BCDFD2}
+.callout.good .ct{color:var(--good)}
+.callout.warn{background:var(--warn-tint);border-color:#EBD3B4}
+.callout.warn .ct{color:var(--warn)}
+/* prompt panel */
+.prompt{
+  border:1.5px solid var(--accent-line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.prompt .ph{
+  background:var(--accent);color:#fff;
+  font-size:24px;font-weight:700;padding:14px 28px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.prompt .ph small{font-weight:600;font-size:20px;opacity:.85}
+.prompt pre{
+  font-family:inherit;font-size:24.5px;line-height:1.62;
+  white-space:pre-wrap;color:var(--ink);
+  background:#FBFAFE;padding:26px 32px;
+}
+/* two-column definition */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%;align-items:stretch}
+.duo>div{padding:12px 56px;display:flex;flex-direction:column;justify-content:center}
+.duo>div:first-child{border-right:1px solid var(--line)}
+.duo h3{font-size:38px;font-weight:800;margin-bottom:6px}
+.duo .sub{font-size:25px;color:var(--muted);margin-bottom:26px}
+.duo ul.plain li{font-size:26px}
+/* divider slides */
+.slide.divider{
+  background:var(--accent-deep);color:#fff;
+  border-top:none;padding:110px 130px;
+  justify-content:center;
+}
+.divider .part{
+  font-size:30px;font-weight:700;color:#CBB8F2;
+  margin-bottom:26px;display:flex;align-items:center;gap:20px;
+}
+.divider .part::after{content:"";height:1px;width:180px;background:#7A5BC0}
+.divider h1{font-size:96px;font-weight:800;line-height:1.15;letter-spacing:-.02em;max-width:26ch;text-wrap:balance}
+.divider p{font-size:32px;line-height:1.6;color:#D9CCF5;margin-top:30px;max-width:56ch}
+.divider .foot{border-top-color:rgba(255,255,255,.22);color:#C9BBEB;position:absolute;left:130px;right:130px;bottom:44px}
+/* cover */
+.slide.cover{border-top:none;padding:0}
+.cover-grid{display:grid;grid-template-columns:1.08fr .92fr;height:100%}
+.cover-left{padding:110px 96px 90px 130px;display:flex;flex-direction:column;justify-content:center}
+.cover-right{
+  background:var(--accent-deep);
+  display:flex;align-items:center;justify-content:center;padding:80px;
+}
+.cover-right img{max-width:86%;border-radius:16px;box-shadow:0 30px 70px rgba(20,8,50,.45)}
+.cover-kicker{font-size:26px;font-weight:700;color:var(--accent);margin-bottom:28px}
+.cover h1{font-size:104px;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:26px}
+.cover .cs{font-size:31px;line-height:1.6;color:var(--muted);max-width:36ch;text-wrap:balance;margin-bottom:56px}
+.cover-meta{display:flex;flex-direction:column;gap:12px;font-size:25px;color:var(--muted)}
+.cover-meta b{color:var(--ink);font-weight:700}
+.cover-meta .row{display:flex;gap:14px;align-items:baseline}
+.cover-meta .row::before{content:"";width:26px;height:2px;background:var(--accent);align-self:center}
+/* controls */
+.controls{position:fixed;bottom:22px;right:36px;display:flex;gap:12px;z-index:50}
+.cbtn{
+  width:52px;height:52px;border-radius:10px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);font-size:26px;cursor:pointer;
+}
+.cbtn:hover{background:var(--accent-tint);border-color:var(--accent-line)}
+.progress-wrap{position:fixed;bottom:0;left:0;width:100%;height:5px;background:rgba(0,0,0,.08);z-index:49}
+.progress{height:100%;background:var(--accent);width:0%;transition:width .3s ease}
+@media (prefers-reduced-motion: reduce){.progress{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="presentation" id="presentation">
+
+<!-- 1 · Cover -->
+<section class="slide cover active">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="cover-kicker">หลักสูตรอบรมเชิงปฏิบัติการ · AG-101</div>
+      <h1>Antigravity 2.0</h1>
+      <p class="cs">การประยุกต์ใช้ AI Agent ในงานสำนักงาน ผ่านกรณีศึกษาปฏิบัติจริง 4 กรณี</p>
+      <div class="cover-meta">
+        <div class="row"><span>มหาวิทยาลัยราชภัฏอุตรดิตถ์</span></div>
+        <div class="row"><span>ระยะเวลา <b>1 วัน</b> (09.00–16.30 น.)</span></div>
+        <div class="row"><span>ผู้เข้าอบรม<b>ไม่ต้องมีพื้นฐานการเขียนโปรแกรม</b></span></div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <img src="assets/slide_cover_illustration.png" alt="ภาพประกอบหลักสูตร Antigravity 2.0">
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Objectives -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag ghost">บทนำ</span><h2 class="title">วัตถุประสงค์ของหลักสูตร</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <p class="text" style="margin-bottom:40px">เมื่อจบการอบรม ผู้เข้าอบรมจะสามารถ</p>
+    <div class="steps">
+      <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+        <div class="st">อธิบายความแตกต่างระหว่างแชตบอตกับ AI Agent</div>
+        <div class="sd">และวงจรการทำงาน วางแผน – ลงมือ – ตรวจสอบตนเอง</div></div></div>
+      <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+        <div class="st">สั่งงานเอเจนต์ด้วยพรอมต์ที่มีโครงสร้างครบถ้วน</div>
+        <div class="sd">ระบุเป้าหมาย แหล่งข้อมูล เกณฑ์ และรูปแบบผลลัพธ์</div></div></div>
+      <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+        <div class="st">กำหนดเกณฑ์ให้เอเจนต์วิเคราะห์และเสนอการตัดสินใจ</div>
+        <div class="sd">โดยมนุษย์เป็นผู้ตรวจรับและรับผิดชอบผลขั้นสุดท้าย</div></div></div>
+      <div class="stepline"><div class="stepno">4</div><div class="stepbody">
+        <div class="st">สร้างแอปพลิเคชันและนำขึ้นใช้งานจริง</div>
+        <div class="sd">ด้วย Google Apps Script โดยไม่ต้องเขียนโค้ดเอง</div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 3 · Agenda -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag ghost">บทนำ</span><h2 class="title">กำหนดการอบรม</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <table class="tbl">
+      <thead><tr><th style="width:260px">เวลา</th><th>กิจกรรม</th><th style="width:560px">ผลงานของผู้เรียน</th></tr></thead>
+      <tbody>
+        <tr><td>09.00–09.30</td><td>แนวคิด AI Agent และการสาธิตโดยวิทยากร</td><td>—</td></tr>
+        <tr><td>09.30–10.00</td><td>ติดตั้งและเข้าใช้งาน Antigravity 2.0</td><td>เครื่องพร้อมปฏิบัติการ</td></tr>
+        <tr><td>10.00–10.45</td><td class="em">กรณีศึกษาที่ 1 · สรุปบิลใบเสร็จจากภาพสแกน</td><td>ตาราง CSV + รายงาน HTML</td></tr>
+        <tr><td>11.00–12.00</td><td class="em">กรณีศึกษาที่ 2 · วิเคราะห์สินเชื่อตามเกณฑ์</td><td>รายงานประเมิน + แดชบอร์ด</td></tr>
+        <tr><td>13.00–14.15</td><td class="em">กรณีศึกษาที่ 3 · รายงาน Productivity เวรพยาบาล</td><td>ตารางสรุป + รายงานผู้บริหาร</td></tr>
+        <tr><td>14.30–15.45</td><td class="em">กรณีศึกษาที่ 4 · สร้างแอปด้วย Google Apps Script</td><td>ระบบลงทะเบียนใช้งานจริง</td></tr>
+        <tr><td>15.45–16.30</td><td>ธรรมาภิบาลการใช้ AI · สรุปและถาม–ตอบ</td><td>แบบประเมินหลักสูตร</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 4 · Four-case path -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag ghost">บทนำ</span><h2 class="title">เส้นทางการฝึก: 4 กรณีศึกษา ยากขึ้นทีละขั้น</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <table class="tbl" style="margin-bottom:36px">
+      <thead><tr><th style="width:420px">กรณีศึกษา</th><th>แนวคิดที่ฝึก</th><th style="width:540px">ผลงานที่ได้</th></tr></thead>
+      <tbody>
+        <tr><td class="em">1 · สรุปบิลใบเสร็จ</td><td>เอเจนต์อ่านข้อมูลจากภาพ (OCR)</td><td>ตารางข้อมูล + รายงานการเงิน</td></tr>
+        <tr><td class="em">2 · วิเคราะห์สินเชื่อ</td><td>ตัดสินใจตามเกณฑ์ โดยมนุษย์ตรวจรับ</td><td>รายงานประเมินผู้สมัคร 3 ราย</td></tr>
+        <tr><td class="em">3 · Productivity พยาบาล</td><td>วิเคราะห์ข้อมูลปริมาณมาก และตรวจพบความผิดปกติ</td><td>รายงานผู้บริหารพร้อมข้อเสนอแนะ</td></tr>
+        <tr><td class="em">4 · แอป Apps Script</td><td>สร้างระบบจริงและนำขึ้นใช้งานบนคลาวด์</td><td>เว็บลงทะเบียนเชื่อม Google Sheets</td></tr>
+      </tbody>
+    </table>
+    <div class="callout note">
+      <div class="ct">เอกสารประจำกรณีศึกษา</div>
+      <div class="cb">แต่ละกรณีมีโฟลเดอร์พร้อมใช้ใน <b>cases/case-1 ถึง case-4</b> ประกอบด้วยข้อมูลฝึก ใบงาน (README.md)
+      และคู่มือทีละขั้นตอนฉบับ PDF (manual-case-N.pdf) — เปิดโฟลเดอร์เป็นพื้นที่ทำงานแล้วปฏิบัติตามได้ทันที</div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 5 · Divider Part 1 -->
+<section class="slide divider">
+  <div class="part">ส่วนที่ 1 · แนวคิด</div>
+  <h1>AI Agent ต่างจาก<br>แชตบอตอย่างไร</h1>
+  <p>เข้าใจหลักการก่อนลงมือ: ระบบที่ "ตอบคำถาม" กับระบบที่ "รับมอบหมายงานแล้วทำจนเสร็จ" ต่างกันโดยพื้นฐาน</p>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 6 · Chatbot vs Agent definitions -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">แนวคิด</span><h2 class="title">สองกระบวนทัศน์ของ AI</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="duo">
+      <div>
+        <h3>แชตบอต (Chatbot)</h3>
+        <div class="sub">ระบบถาม–ตอบ: ให้ความรู้และคำแนะนำ</div>
+        <ul class="plain">
+          <li><span><span class="k">ตอบสนองทีละคำถาม</span> — ทำงานเมื่อถูกถาม และจบเมื่อตอบเสร็จ</span></li>
+          <li><span><span class="k">ผลลัพธ์คือข้อความ</span> — คำอธิบาย ร่างเอกสาร ตัวอย่างโค้ด</span></li>
+          <li><span><span class="k">ไม่เข้าถึงไฟล์ในเครื่อง</span> — ผู้ใช้ต้องนำคำตอบไปลงมือเอง</span></li>
+          <li><span>ตัวอย่าง: ChatGPT, Gemini, Claude, Copilot</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--accent-deep)">เอเจนต์ (AI Agent)</h3>
+        <div class="sub">ระบบรับเป้าหมาย: วางแผน ลงมือ และตรวจงานตนเอง</div>
+        <ul class="plain">
+          <li><span><span class="k">รับเป้าหมายแล้ววางแผนเอง</span> — แตกงานใหญ่เป็นขั้นตอนย่อย</span></li>
+          <li><span><span class="k">ผลลัพธ์คืองานที่เสร็จ</span> — ไฟล์ ตาราง รายงาน แอปพลิเคชัน</span></li>
+          <li><span><span class="k">เข้าถึงไฟล์และเครื่องมือ</span> — อ่าน เขียน รันโปรแกรม เรียกใช้ระบบภายนอก</span></li>
+          <li><span>ตัวอย่าง: Antigravity, Claude Code, Devin</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 7 · Comparison table -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">แนวคิด</span><h2 class="title">เปรียบเทียบใน 4 มิติ</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <table class="tbl">
+      <thead><tr><th style="width:380px">มิติ</th><th>แชตบอต</th><th>เอเจนต์</th></tr></thead>
+      <tbody>
+        <tr><td class="em">การทำงาน</td><td>ตอบทีละคำถาม แล้วหยุดรอ</td><td>วางแผนหลายขั้นตอน แล้วทำต่อเนื่องจนจบงาน</td></tr>
+        <tr><td class="em">การเข้าถึงไฟล์</td><td>เข้าถึงโฟลเดอร์ในเครื่องไม่ได้</td><td>อ่าน เขียน และแก้ไขไฟล์ในพื้นที่ทำงานได้</td></tr>
+        <tr><td class="em">เครื่องมือ</td><td>จำกัดอยู่ในหน้าต่างสนทนา</td><td>เขียนและรันโค้ด ค้นเว็บ เชื่อมต่อบริการภายนอก</td></tr>
+        <tr><td class="em">เมื่อเกิดข้อผิดพลาด</td><td>ผู้ใช้ต้องถามใหม่เอง</td><td>อ่านข้อผิดพลาด แก้ไข แล้วลองใหม่โดยอัตโนมัติ</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 8 · Autonomous loop -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">แนวคิด</span><h2 class="title">วงจรการทำงานของเอเจนต์</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.15">
+        <div class="steps">
+          <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+            <div class="st">รับรู้ (Perceive)</div>
+            <div class="sd">อ่านคำสั่งและสำรวจข้อมูลต้นทาง เพื่อกำหนดขอบเขตงาน</div></div></div>
+          <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+            <div class="st">วางแผน (Plan)</div>
+            <div class="sd">แตกงานเป็นขั้นตอนย่อย และเลือกเครื่องมือที่เหมาะสม</div></div></div>
+          <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+            <div class="st">ลงมือ (Execute)</div>
+            <div class="sd">เขียนสคริปต์ รันคำสั่ง สร้างไฟล์ผลลัพธ์</div></div></div>
+          <div class="stepline"><div class="stepno">4</div><div class="stepbody">
+            <div class="st">ทบทวน (Reflect)</div>
+            <div class="sd">ตรวจผลลัพธ์ หากพบข้อผิดพลาด กลับไปแก้ที่ขั้นตอน 3 จนสำเร็จ</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="flex:.85">
+        <div class="callout note">
+          <div class="ct">ตัวอย่างการแก้ไขตนเอง (Self-Debugging)</div>
+          <div class="cb">เอเจนต์รันโค้ดแล้วพบข้อผิดพลาด "ไลบรารียังไม่ติดตั้ง"
+          → สั่งติดตั้งไลบรารีเอง → รันซ้ำ → งานสำเร็จ
+          ทั้งหมดเกิดขึ้นโดยผู้ใช้ไม่ต้องพิมพ์โค้ดแม้แต่บรรทัดเดียว</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 9 · Good prompt structure -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">แนวคิด</span><h2 class="title">โครงสร้างพรอมต์ที่ดี</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.05">
+        <div class="steps">
+          <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+            <div class="st">เป้าหมาย</div><div class="sd">ต้องการอะไร เพื่อใคร</div></div></div>
+          <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+            <div class="st">แหล่งข้อมูล</div><div class="sd">ไฟล์หรือโฟลเดอร์ใด ระบุชื่อให้ชัด</div></div></div>
+          <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+            <div class="st">ขั้นตอนและเกณฑ์</div><div class="sd">วิธีคำนวณ เงื่อนไขการตัดสิน ข้อยกเว้น</div></div></div>
+          <div class="stepline"><div class="stepno">4</div><div class="stepbody">
+            <div class="st">รูปแบบผลลัพธ์</div><div class="sd">ชื่อไฟล์ หัวตาราง รูปแบบรายงานที่ต้องการ</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="flex:.95;display:flex;flex-direction:column;gap:24px">
+        <div class="callout warn">
+          <div class="ct">พรอมต์คลุมเครือ</div>
+          <div class="cb">"ช่วยสรุปใบเสร็จให้หน่อย"<br>— เอเจนต์ต้องเดาทั้งขอบเขต เกณฑ์ และรูปแบบผลลัพธ์</div>
+        </div>
+        <div class="callout good">
+          <div class="ct">พรอมต์ชัดเจน</div>
+          <div class="cb">"อ่านใบเสร็จ 10 ใบในโฟลเดอร์ receipts/ สกัดเลขที่ วันที่ ร้านค้า ยอดรวม
+          แล้วบันทึกเป็น expense-sheet.csv เรียงตามวันที่"<br>— ตรวจรับได้ ทำซ้ำได้ ผลลัพธ์คงเส้นคงวา</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 10 · Divider Part 2 -->
+<section class="slide divider">
+  <div class="part">ส่วนที่ 2 · เครื่องมือ</div>
+  <h1>ระบบนิเวศ<br>Antigravity 2.0</h1>
+  <p>เครื่องมือ 4 ระดับ ตั้งแต่ผู้ใช้ทั่วไปจนถึงนักพัฒนา — วันนี้ใช้ Desktop App เป็นเครื่องมือหลักตลอดหลักสูตร</p>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 11 · Four tools -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">เครื่องมือ</span><h2 class="title">องค์ประกอบทั้ง 4 ของ Antigravity 2.0</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <table class="tbl">
+      <thead><tr><th style="width:340px">เครื่องมือ</th><th>ลักษณะ</th><th style="width:640px">เหมาะกับ</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td class="em">Desktop App</td><td>หน้าจอกราฟิก มีกระดานติดตามงาน สั่งงานภาษาไทยได้</td><td>พนักงานทั่วไป — <b>เครื่องมือหลักของหลักสูตรนี้</b></td></tr>
+        <tr><td class="em">CLI</td><td>สั่งงานผ่านเทอร์มินัล เขียนสคริปต์อัตโนมัติได้</td><td>ผู้ดูแลระบบ งานตั้งเวลาบนเซิร์ฟเวอร์</td></tr>
+        <tr><td class="em">SDK</td><td>ไลบรารี Python / Node.js เรียกเอเจนต์จากโปรแกรมอื่น</td><td>นักพัฒนาที่ต้องการฝังความสามารถลงแอปของตน</td></tr>
+        <tr><td class="em">IDE &amp; IDL</td><td>เครื่องมือพัฒนาโค้ดครบวงจร</td><td>วิศวกรซอฟต์แวร์ โครงการขนาดใหญ่</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 12 · Install -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">เครื่องมือ</span><h2 class="title">การติดตั้งและเข้าใช้งาน</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.1">
+        <div class="steps">
+          <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+            <div class="st">ดาวน์โหลดตัวติดตั้ง</div>
+            <div class="sd">จาก QR Code หน้าห้อง หรือเว็บไซต์ผู้พัฒนา</div></div></div>
+          <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+            <div class="st">ติดตั้งตามขั้นตอนบนหน้าจอ</div>
+            <div class="sd">ใช้ค่าเริ่มต้นได้ทุกขั้น</div></div></div>
+          <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+            <div class="st">เข้าสู่ระบบ</div>
+            <div class="sd">ล็อกอินบัญชีเพื่อเชื่อมต่อโมเดล AI</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="flex:.9">
+        <div class="callout good">
+          <div class="ct">จุดตรวจความพร้อม</div>
+          <div class="cb">เปิดโปรแกรมแล้วเห็นหน้าหลักพร้อมช่องสั่งงาน ถือว่าพร้อมปฏิบัติการ
+          — หากติดขัด แจ้งทีมพี่เลี้ยงประจำแถวได้ทันที</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 13 · Main screen -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">เครื่องมือ</span><h2 class="title">หน้าจอหลักที่ต้องรู้จัก</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <ul class="plain">
+          <li><span><span class="k">ช่องสั่งงาน (Prompt Box)</span> — พิมพ์คำสั่งภาษาไทยได้โดยตรง</span></li>
+          <li><span><span class="k">แถบจัดการไฟล์ (File Explorer)</span> — ไฟล์ทั้งหมดในพื้นที่ทำงานที่เอเจนต์มองเห็น</span></li>
+          <li><span><span class="k">กระดานติดตามงาน (Task Board)</span> — สถานะงาน 3 ช่วง: รอดำเนินการ · กำลังทำ · เสร็จสิ้น</span></li>
+          <li><span><span class="k">บันทึกการทำงาน (Log)</span> — เปิดดูโค้ดและการตัดสินใจของเอเจนต์ได้ทุกขั้น</span></li>
+        </ul>
+      </div>
+      <div class="col" style="display:flex;justify-content:center">
+        <img class="figure" src="assets/task_board_workflow.png" alt="กระดานติดตามงานของ Antigravity" style="max-width:640px">
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 14 · Safety -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">เครื่องมือ</span><h2 class="title">ขอบเขตสิทธิ์และความปลอดภัย</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="steps" style="max-width:1500px">
+      <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+        <div class="st">การยืนยันสิทธิ์</div>
+        <div class="sd">เมื่อเอเจนต์จะเขียนหรือลบไฟล์นอกพื้นที่ทำงาน ระบบจะหยุดถามก่อนเสมอ
+        — อนุญาตเฉพาะสิ่งที่อยู่ในโฟลเดอร์งานของเรา</div></div></div>
+      <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+        <div class="st">พื้นที่ทดลองแยกส่วน (Sandbox)</div>
+        <div class="sd">โค้ดที่เอเจนต์รันถูกจำกัดขอบเขต ไม่กระทบไฟล์ส่วนตัวหรือระบบปฏิบัติการหลัก</div></div></div>
+      <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+        <div class="st">ข้อมูลส่วนบุคคล</div>
+        <div class="sd">พรอมต์และไฟล์ถูกส่งไปประมวลผลบนคลาวด์
+        — ห้ามใส่รหัสผ่าน เลขบัตรประชาชน หรือข้อมูลลับขององค์กร</div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 15 · Divider Part 3 -->
+<section class="slide divider">
+  <div class="part">ส่วนที่ 3 · ปฏิบัติการ</div>
+  <h1>กรณีศึกษา 4 กรณี</h1>
+  <p>เปิดโฟลเดอร์ cases/case-N ที่ได้รับแจกเป็นพื้นที่ทำงานของ Antigravity แล้วปฏิบัติตามคู่มือ PDF ประจำกรณี — สไลด์ต่อจากนี้สรุปบริบทและพรอมต์หลักของแต่ละกรณี</p>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 16 · Case 1 context -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 1</span><h2 class="title">สรุปบิลใบเสร็จจากภาพสแกนจริง</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.1">
+        <p class="lead">บทบาท: เจ้าหน้าที่การเงิน</p>
+        <ul class="plain">
+          <li><span><span class="k">ข้อมูลฝึก</span> — ภาพสแกนใบเสร็จจริง 10 ใบ (ชุดข้อมูลสาธารณะ SROIE) ในโฟลเดอร์ receipts/</span></li>
+          <li><span><span class="k">โจทย์</span> — สกัดข้อมูลทุกใบลงตารางเดียว แล้วออกรายงานสรุปการเงิน</span></li>
+          <li><span><span class="k">ผลงาน</span> — expense-sheet.csv และ expense-report.html</span></li>
+          <li><span><span class="k">แนวคิดที่ฝึก</span> — เอเจนต์อ่านเอกสารภาพที่เอียง จาง และมีลายมือได้ และมนุษย์ต้องสุ่มตรวจก่อนเชื่อ</span></li>
+        </ul>
+      </div>
+      <div class="col" style="flex:.9;display:flex;justify-content:center">
+        <img class="figure" src="assets/ocr_receipts_parsing.png" alt="การอ่านข้อมูลใบเสร็จด้วย OCR" style="max-width:600px">
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 17 · Case 1 prompt -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 1</span><h2 class="title">พรอมต์หลักประจำกรณี</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="prompt" style="margin-bottom:26px">
+      <div class="ph"><span>ภารกิจที่ 1 · สกัดข้อมูลภาพลงตาราง</span><small>คัดลอกจาก README.md ในโฟลเดอร์เคส</small></div>
+      <pre>ใช้ความสามารถอ่านภาพ (Vision/OCR) อ่านใบเสร็จทั้ง 10 ใบในโฟลเดอร์ receipts/ แล้วดำเนินการดังนี้:
+1. สกัดข้อมูลแต่ละใบ: เลขที่เอกสาร (Invoice_No), วันที่ (Date), ชื่อร้านค้า (Merchant),
+   รายการสินค้าโดยย่อ (Description), สกุลเงิน (Currency), ยอดรวม (Total_Amount)
+2. เรียงรายการตามวันที่ในใบเสร็จ
+3. บันทึกเป็นไฟล์ expense-sheet.csv ในโฟลเดอร์นี้
+4. หากใบใดอ่านค่าไม่ได้ ให้ใส่คำว่า UNREADABLE และแจ้งสรุปว่าใบไหนมีปัญหา</pre>
+    </div>
+    <div class="callout">
+      <div class="ct">ภารกิจที่ 2</div>
+      <div class="cb">สั่งต่อในบทสนทนาเดิม: สร้างรายงาน expense-report.html จากตาราง — พรอมต์ฉบับเต็มอยู่ในคู่มือ manual-case-1.pdf</div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 18 · Case 2 context -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 2</span><h2 class="title">วิเคราะห์สินเชื่อตามเกณฑ์ธนาคาร</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <p class="lead">บทบาท: เจ้าหน้าที่วิเคราะห์สินเชื่อ — ผู้สมัคร 3 ราย เอกสารรายละ 3 ชิ้น (ใบสมัคร · รายการเดินบัญชี · เครดิตบูโร)</p>
+    <table class="tbl" style="margin-bottom:30px">
+      <thead><tr><th style="width:80px" class="c">#</th><th>เกณฑ์ (จากไฟล์ loan-policy.md — ต้องผ่านครบทุกข้อ)</th><th style="width:420px">เงื่อนไข</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td>รายได้เฉลี่ยจริงต่อเดือน จากรายการเดินบัญชี 6 เดือน</td><td>ไม่น้อยกว่า 40,000 บาท</td></tr>
+        <tr><td class="c">2</td><td>อัตราส่วนภาระหนี้ต่อรายได้ (DTI)</td><td>ไม่เกิน 40%</td></tr>
+        <tr><td class="c">3</td><td>คะแนนเครดิตบูโร (NCB Score)</td><td>ไม่ต่ำกว่า 650</td></tr>
+        <tr><td class="c">4</td><td>บัญชีค้างชำระ</td><td>ต้องเป็น 0 บัญชี</td></tr>
+      </tbody>
+    </table>
+    <div class="callout note">
+      <div class="ct">ออกแบบให้ผลไม่เหมือนกัน</div>
+      <div class="cb">ผู้สมัครทั้ง 3 รายให้ผลการพิจารณาต่างกัน — รายหนึ่งเป็นกรณีก้ำกึ่งที่ตกเกณฑ์เดียว
+      ซึ่งรายงานที่ดีต้องมีข้อเสนอแนะประกอบ ไม่ใช่เพียงคำว่า "ไม่อนุมัติ"</div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 19 · Case 2 prompt -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 2</span><h2 class="title">พรอมต์หลักประจำกรณี</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="prompt" style="margin-bottom:26px">
+      <div class="ph"><span>ภารกิจที่ 1 · ประเมินผู้สมัครทั้ง 3 ราย</span><small>คัดลอกจาก README.md ในโฟลเดอร์เคส</small></div>
+      <pre>อ่านเกณฑ์จากไฟล์ loan-policy.md แล้วประเมินผู้สมัครทั้ง 3 รายในโฟลเดอร์ applicant-01 ถึง 03 โดยแต่ละราย:
+1. ดึงข้อมูลและวงเงินที่ขอกู้จาก application-form.json
+2. คำนวณรายได้เฉลี่ยจริงจากเงินเข้าใน bank-statement.csv ย้อนหลัง 6 เดือน (เดือนที่ไม่มีเงินเข้านับเป็น 0)
+3. หายอดผ่อนหนี้ต่อเดือนจาก Statement แล้วคำนวณ DTI
+4. อ่าน NCB Score และบัญชีค้างชำระจาก credit-report.txt
+5. ตัดสินตามเกณฑ์ทั้ง 4 ข้อ สรุป APPROVED หรือ REJECTED พร้อมแสดงการคำนวณทุกขั้น
+6. รายที่ REJECTED ให้เขียนข้อเสนอแนะเพื่อการปรับปรุง
+บันทึกผลเป็นไฟล์ loan-evaluation-report.md พร้อมตารางเปรียบเทียบทั้ง 3 รายตอนท้าย</pre>
+    </div>
+    <div class="callout warn">
+      <div class="ct">หลักการสำคัญ: มนุษย์ร่วมตัดสินใจ (Human-in-the-Loop)</div>
+      <div class="cb">เอเจนต์คำนวณและเสนอความเห็น — การอนุมัติจริงต้องมีเจ้าหน้าที่ตรวจสอบและลงนามรับผิดชอบเสมอ</div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 20 · Case 3 context -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 3</span><h2 class="title">รายงาน Productivity จากตารางเวรพยาบาล</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.05">
+        <p class="lead">บทบาท: หัวหน้าฝ่ายการพยาบาล</p>
+        <ul class="plain">
+          <li><span><span class="k">ข้อมูลฝึก</span> — บันทึกเวรรายวัน 177 แถว ของพยาบาล 8 คน ตลอดเดือนมิถุนายน 2569 (nurse-shift-log.csv)</span></li>
+          <li><span><span class="k">เกณฑ์กำกับ</span> — ไฟล์นิยามตัวชี้วัด kpi-definitions.md: ชั่วโมงงาน, OT, ผู้ป่วยต่อเวร, อัตราการลา, ดัชนี Productivity</span></li>
+          <li><span><span class="k">ผลงาน</span> — ตารางสรุปรายบุคคล และรายงานผู้บริหารพร้อมข้อเสนอแนะ</span></li>
+        </ul>
+      </div>
+      <div class="col" style="flex:.95">
+        <div class="callout note" style="margin-bottom:22px">
+          <div class="ct">ธงเตือน 3 ระดับ</div>
+          <div class="cb">แดง — OT เกิน 40 ชม./เดือน (เสี่ยงภาวะหมดไฟ)<br>
+          ส้ม — อัตราการลาเกิน 15%<br>
+          เหลือง — ดัชนีต่ำกว่าค่าเฉลี่ยเกิน 25% (ยกเว้นหัวหน้าหอผู้ป่วย)</div>
+        </div>
+        <div class="callout">
+          <div class="ct">แนวคิดที่ฝึก</div>
+          <div class="cb">ให้เอเจนต์วิเคราะห์ตามเกณฑ์ที่องค์กรกำหนดเป็นลายลักษณ์อักษร
+          ไม่ใช่ดุลยพินิจของ AI — ผลจึงตรวจสอบซ้ำได้</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 21 · Case 3 prompt -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 3</span><h2 class="title">พรอมต์หลักประจำกรณี</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="prompt" style="margin-bottom:26px">
+      <div class="ph"><span>ภารกิจที่ 1 · สรุปตัวชี้วัดรายบุคคล</span><small>คัดลอกจาก README.md ในโฟลเดอร์เคส</small></div>
+      <pre>อ่านไฟล์ nurse-shift-log.csv และนิยามตัวชี้วัดในไฟล์ kpi-definitions.md แล้วดำเนินการดังนี้:
+1. คำนวณตัวชี้วัดครบทุกตัวตามนิยาม แยกรายพยาบาลทั้ง 8 คน
+2. ตรวจธงเตือน (Flags) ตามเกณฑ์ในไฟล์นิยาม และระบุชื่อผู้ที่เข้าเกณฑ์แต่ละธง
+3. บันทึกตารางสรุปเป็นไฟล์ nurse-productivity-summary.csv
+   (1 แถวต่อพยาบาล 1 คน พร้อมคอลัมน์ Flags ตอนท้าย)</pre>
+    </div>
+    <div class="callout note">
+      <div class="ct">โจทย์ท้าทาย</div>
+      <div class="cb">ข้อมูลชุดนี้ซ่อนสัญญาณผิดปกติไว้ 3 จุด — เอเจนต์ของท่านตรวจพบครบหรือไม่
+      เฉลยและภารกิจที่ 2 (รายงานผู้บริหาร HTML) อยู่ในคู่มือ manual-case-3.pdf</div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 22 · Case 4 context -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 4</span><h2 class="title">สร้างแอปพลิเคชันด้วย Google Apps Script</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.05">
+        <p class="lead">บทบาท: ผู้กำหนดความต้องการ — เอเจนต์คือวิศวกรผู้สร้าง</p>
+        <ul class="plain">
+          <li><span><span class="k">โจทย์</span> — ระบบลงทะเบียนอบรมออนไลน์ บันทึกข้อมูลลง Google Sheets พร้อมแดชบอร์ดสถิติ</span></li>
+          <li><span><span class="k">ผลงาน</span> — สคริปต์หลังบ้าน api-handler.gs และหน้าเว็บ registration-portal.html</span></li>
+          <li><span><span class="k">การนำขึ้นใช้งาน</span> — 3 แนวทาง: คัดลอก–วาง (ทุกคน) · CLASP ให้เอเจนต์ส่งโค้ดเอง (ขั้นสูง) · ทุกอย่างบน Google ทั้งหมด (ขั้นสุด)</span></li>
+          <li><span><span class="k">สิ่งที่ต้องมี</span> — บัญชี Google · แนวทาง CLASP ต้องติดตั้ง Node.js</span></li>
+        </ul>
+      </div>
+      <div class="col" style="flex:.95">
+        <div class="callout note">
+          <div class="ct">ทำไมกรณีนี้จึงสำคัญ</div>
+          <div class="cb">เป็นบทสรุปของทั้งหลักสูตร: เอเจนต์เขียนได้ทั้งระบบหลังบ้านและหน้าบ้าน
+          ส่วนมนุษย์กำหนดโจทย์ ตรวจรับ และรับผิดชอบการเผยแพร่</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 23 · Case 4 prompt -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 4</span><h2 class="title">พรอมต์หลักประจำกรณี</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="prompt">
+      <div class="ph"><span>ภารกิจที่ 1 · สร้างระบบทั้งหมดในพรอมต์เดียว</span><small>คัดลอกจาก README.md ในโฟลเดอร์เคส</small></div>
+      <pre>จากโครงสร้างข้อมูลในไฟล์ sample-registrations.csv ให้สร้างระบบลงทะเบียนอบรมและแดชบอร์ดดังนี้:
+1. [api-handler.gs] ฟังก์ชัน doPost(e) รับข้อมูลลงทะเบียนแบบ JSON
+   (ชื่อ-สกุล, อีเมล, เบอร์โทร, อาชีพ, หัวข้อที่สนใจ) บันทึกลงแถวถัดไปของ Google Sheets
+   แนบ Timestamp คอลัมน์แรก ตอบกลับ JSON {status:"success"} และรองรับ CORS
+2. [registration-portal.html] หน้าเว็บสองฝั่ง: ซ้ายฟอร์มลงทะเบียน
+   ขวาแดชบอร์ด Chart.js (กราฟแท่งตามอาชีพ + กราฟวงกลมตามหัวข้อที่สนใจ)
+   มีช่องวาง Apps Script URL, ปุ่มส่งแบบ Fetch API ไม่รีเฟรชหน้า, แจ้งสถานะการส่ง
+3. บันทึกทั้งสองไฟล์ลงในโฟลเดอร์นี้</pre>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 24 · Deploy track A -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 4</span><h2 class="title">นำขึ้นใช้งานจริง · แนวทาง A (คัดลอก–วาง)</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.15">
+        <div class="steps">
+          <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+            <div class="st">สร้าง Google Sheets แผ่นใหม่</div>
+            <div class="sd">เมนู ส่วนขยาย (Extensions) → Apps Script</div></div></div>
+          <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+            <div class="st">วางโค้ดจาก api-handler.gs แล้วบันทึก</div>
+            <div class="sd">คัดลอกทั้งไฟล์ วางทับโค้ดเดิมทั้งหมด</div></div></div>
+          <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+            <div class="st">Deploy เป็นเว็บแอป</div>
+            <div class="sd">New deployment → Web app → Execute as: Me → Who has access: Anyone → อนุญาตสิทธิ์</div></div></div>
+          <div class="stepline"><div class="stepno">4</div><div class="stepbody">
+            <div class="st">เชื่อมและทดสอบ</div>
+            <div class="sd">คัดลอก Web App URL วางในหน้าเว็บ กรอกฟอร์ม แล้วดูข้อมูลปรากฏในชีตพร้อม Timestamp</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="flex:.85">
+        <div class="callout warn">
+          <div class="ct">การตั้งค่าที่พลาดบ่อยที่สุด</div>
+          <div class="cb">สิทธิ์เข้าถึงต้องเป็น "Anyone" เท่านั้น มิฉะนั้นหน้าเว็บจะส่งข้อมูลเข้าสคริปต์ไม่ได้
+          — คำเตือน "unsafe" เป็นเรื่องปกติของสคริปต์ที่เราเขียนเองซึ่งยังไม่ผ่านการรับรองจาก Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 25 · Deploy track B -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">กรณีศึกษาที่ 4</span><h2 class="title">นำขึ้นใช้งานจริง · แนวทาง B (CLASP อัตโนมัติ)</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.1">
+        <div class="steps">
+          <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+            <div class="st">ติดตั้งและเชื่อมบัญชี (ครั้งแรกครั้งเดียว)</div>
+            <div class="sd">npm install -g @google/clasp จากนั้น clasp login</div></div></div>
+          <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+            <div class="st">ผูกโฟลเดอร์กับโปรเจกต์สคริปต์</div>
+            <div class="sd">คัดลอก Script ID จาก Project Settings แล้วรัน clasp clone "SCRIPT_ID"</div></div></div>
+          <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+            <div class="st">สั่งเอเจนต์ปิดงานเองทั้งวงจร</div>
+            <div class="sd">"เขียนโค้ดลงไฟล์สคริปต์ แล้วรัน clasp push เพื่ออัปเดตขึ้นคลาวด์"</div></div></div>
+          <div class="stepline"><div class="stepno">4</div><div class="stepbody">
+            <div class="st">เปิดใช้เวอร์ชันใหม่</div>
+            <div class="sd">Manage deployments → New version → Deploy</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="flex:.85;display:flex;flex-direction:column;gap:22px">
+        <div class="callout warn">
+          <div class="ct">เงื่อนไขก่อนเริ่ม</div>
+          <div class="cb">ต้องเปิดสวิตช์ Google Apps Script API ที่
+          script.google.com/home/usersettings ก่อน มิฉะนั้นคำสั่ง clasp จะแจ้งข้อผิดพลาด 403</div>
+        </div>
+        <div class="callout note">
+          <div class="ct">แนวทาง C · ทุกอย่างบน Google ทั้งหมด</div>
+          <div class="cb">สั่งเอเจนต์สร้างโปรเจกต์เองด้วย clasp create แล้วย้ายหน้าเว็บขึ้นโฮสต์ใน Apps Script
+          (HtmlService + google.script.run) — หน้าเว็บเสิร์ฟจาก script.google.com โดยตรง
+          ไม่มีปัญหา CORS และไม่เหลือไฟล์ฝั่งเครื่อง พรอมต์อยู่ในคู่มือ manual-case-4.pdf</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 26 · Divider Part 4 -->
+<section class="slide divider">
+  <div class="part">ส่วนที่ 4 · ข้อพึงระวังและการต่อยอด</div>
+  <h1>ใช้ AI Agent<br>อย่างรับผิดชอบ</h1>
+  <p>ความสามารถของเอเจนต์มาพร้อมความรับผิดชอบของผู้สั่งงาน — สามหลักการต่อไปนี้ใช้กับทุกงานจริงในองค์กร</p>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 27 · Governance -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">ข้อพึงระวัง</span><h2 class="title">สามหลักธรรมาภิบาลการใช้ AI</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="steps" style="max-width:1520px">
+      <div class="stepline"><div class="stepno">1</div><div class="stepbody">
+        <div class="st">คุ้มครองข้อมูลส่วนบุคคล (PDPA)</div>
+        <div class="sd">แบบฝึกวันนี้ใช้ข้อมูลจำลองทั้งหมด — ข้อมูลลูกค้าหรือบุคลากรจริง
+        ต้องมีนโยบายองค์กรรองรับก่อนส่งเข้าเครื่องมือ AI ใด ๆ</div></div></div>
+      <div class="stepline"><div class="stepno">2</div><div class="stepbody">
+        <div class="st">มนุษย์ร่วมตัดสินใจ (Human-in-the-Loop)</div>
+        <div class="sd">เอเจนต์วิเคราะห์และเสนอ — การอนุมัติสินเชื่อ การประเมินบุคลากร
+        และการตัดสินใจที่มีผลทางกฎหมาย ต้องมีมนุษย์ลงนามรับผิดชอบ</div></div></div>
+      <div class="stepline"><div class="stepno">3</div><div class="stepbody">
+        <div class="st">ตรวจรับก่อนใช้เสมอ</div>
+        <div class="sd">สุ่มเทียบผลลัพธ์กับข้อมูลจริงทุกครั้ง — ความแม่นของเอเจนต์ขึ้นกับพรอมต์และข้อมูล
+        ผู้ตรวจรับคือผู้ประกันคุณภาพขั้นสุดท้าย</div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 28 · After the course -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag">การต่อยอด</span><h2 class="title">เลือกงานให้เหมาะกับเอเจนต์</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols" style="align-items:stretch">
+      <div class="col">
+        <div class="callout good" style="height:100%">
+          <div class="ct">เหมาะที่จะมอบให้เอเจนต์</div>
+          <div class="cb" style="font-size:26px;line-height:1.7">
+          งานทำซ้ำที่มีไฟล์เป็นวัตถุดิบ · การสกัดและรวมข้อมูลข้ามรูปแบบไฟล์ ·
+          การสรุปรายงานตามเกณฑ์ที่เขียนเป็นลายลักษณ์อักษร ·
+          การสร้างเครื่องมือภายในขนาดเล็ก เช่น ฟอร์ม แดชบอร์ด</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="callout warn" style="height:100%">
+          <div class="ct">ยังต้องเป็นหน้าที่ของมนุษย์</div>
+          <div class="cb" style="font-size:26px;line-height:1.7">
+          การตัดสินใจขั้นสุดท้ายด้านการเงิน กฎหมาย และบุคลากร ·
+          งานที่ใช้ข้อมูลลับโดยไม่มีนโยบายรองรับ ·
+          การรับรองความถูกต้องของรายงานก่อนเผยแพร่ ·
+          การสื่อสารที่ต้องใช้วิจารณญาณและความสัมพันธ์</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+<!-- 29 · Wrap up -->
+<section class="slide">
+  <div class="head">
+    <div class="head-left"><span class="tag ghost">ปิดการอบรม</span><h2 class="title">สรุปการอบรม</h2></div>
+    <div class="brand"><b>AG-101</b></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.1">
+        <ul class="plain">
+          <li><span><span class="k">สิ่งที่ได้ในวันนี้</span> — แนวคิด AI Agent, การสั่งงานด้วยพรอมต์ที่มีโครงสร้าง และผลงานจริง 4 กรณีศึกษา</span></li>
+          <li><span><span class="k">เอกสารนำกลับ</span> — โฟลเดอร์ cases/ พร้อมคู่มือ PDF ทั้ง 4 กรณี ใช้ฝึกซ้ำได้ด้วยตนเอง</span></li>
+          <li><span><span class="k">ก้าวต่อไป</span> — เลือกงานประจำที่ทำซ้ำทุกสัปดาห์ 1 งาน แล้วทดลองมอบให้เอเจนต์ภายใต้สามหลักธรรมาภิบาล</span></li>
+        </ul>
+      </div>
+      <div class="col" style="flex:.9">
+        <div class="callout note">
+          <div class="ct">ขอบคุณที่เข้าร่วมการอบรม</div>
+          <div class="cb">สแกน QR Code หน้าห้องเพื่อตอบแบบประเมินหลักสูตร<br>
+          ติดต่อสอบถามเพิ่มเติม: ศูนย์ประสานงาน มหาวิทยาลัยราชภัฏอุตรดิตถ์</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AG-101 · Antigravity 2.0 Workshop</span><span class="pageno"></span></div>
+</section>
+
+</div>
+
+<div class="controls">
+  <button class="cbtn" id="prev" title="สไลด์ก่อนหน้า (←)">←</button>
+  <button class="cbtn" id="next" title="สไลด์ถัดไป (→ / Space)">→</button>
+</div>
+<div class="progress-wrap"><div class="progress" id="progress"></div></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const progress=document.getElementById('progress');
+let cur=0;
+
+// เติมเลขหน้าอัตโนมัติ — ไม่ต้องแก้มือเมื่อเพิ่ม/ลบสไลด์
+slides.forEach((s,i)=>{
+  const n=s.querySelector('.pageno');
+  if(n) n.textContent=`สไลด์ ${i+1} / ${slides.length}`;
+});
+
+function show(){
+  slides.forEach((s,i)=>{
+    s.classList.remove('active','prev','next');
+    if(i===cur) s.classList.add('active');
+    else s.classList.add(i<cur?'prev':'next');
+  });
+  progress.style.width=(cur/(slides.length-1))*100+'%';
+}
+const go=d=>{cur=Math.min(slides.length-1,Math.max(0,cur+d));show();};
+document.getElementById('next').onclick=()=>go(1);
+document.getElementById('prev').onclick=()=>go(-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(1);}
+  else if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}
+  else if(e.key==='Home'){cur=0;show();}
+  else if(e.key==='End'){cur=slides.length-1;show();}
+});
+function fit(){
+  const s=Math.min(innerWidth/1920,innerHeight/1080);
+  document.getElementById('presentation').style.transform=`scale(${s})`;
+}
+addEventListener('resize',fit);
+fit();show();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"fc70359f2686407c96f3133bd97a4b06","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

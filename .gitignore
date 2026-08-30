@@ -33,6 +33,12 @@ aun-qa-wiki/
 skills/
 *.docx
 
+# Database
+survey/data/*.db
+survey/data/*.db-journal
+survey/data/*.db-wal
+survey/data/*.db-shm
+
 # Node.js
 node_modules/
 website/node_modules/
