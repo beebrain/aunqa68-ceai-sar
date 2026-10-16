@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>วท.บ. วิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ | มรภ.อุตรดิตถ์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Prompt:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/vendor/chart.umd.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+/* Design system: Trust & Authority (ui-ux-pro-max) — navy data + orange highlight, light corporate surface */
+:root{
+  --navy-900:#0B1F45; --navy-800:#12306A; --navy-700:#1E40AF; --navy-100:#E8EEF8; --navy-50:#F4F7FC;
+  --orange-600:#EA580C; --orange-500:#F97316; --orange-100:#FFEDD5; --orange-50:#FFF7ED;
+  --teal-700:#0F766E; --teal-100:#CCFBF1;
+  --ink:#0F172A; --body:#334155; --muted:#64748B; --line:#E2E8F0; --surface:#FFFFFF; --bg:#FFFFFF;
+  --r-lg:22px; --r-md:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.06);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-h:'Prompt',sans-serif; --font-b:'IBM Plex Sans Thai','Prompt',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#EEF2F7;font-family:var(--font-b);color:var(--body)}
+.viewport{position:fixed;inset:0;overflow:hidden}
+/* ponytail: fixed 1600x900 stage scaled to fit — keeps every slide pixel-identical on projector and laptop */
+.stage{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center;background:var(--bg);overflow:hidden;border-radius:6px}
+.slide{position:absolute;inset:0;padding:64px 80px 90px;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .5s var(--ease),transform .6s var(--ease),visibility 0s .6s}
+.slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.slide.prev{transform:translateX(-40px)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i,0)*80ms + 150ms)}
+.slide.active .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.slide,.rv{transition:none!important;transform:none!important}}
+
+/* type */
+h1,h2,h3,h4{font-family:var(--font-h);color:var(--ink);line-height:1.25}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--font-h);letter-spacing:.12em;text-transform:uppercase;color:var(--orange-600);margin-bottom:14px}
+.eyebrow::before{content:"";width:28px;height:3px;background:var(--orange-600);border-radius:2px}
+.title{font-size:50px;font-weight:700;letter-spacing:-.01em}
+.title em{font-style:normal;color:var(--orange-600)}
+.lead{font-size:22px;color:var(--muted);margin-top:10px;line-height:1.5}
+.head{margin-bottom:34px}
+.num{font-family:var(--font-h);font-variant-numeric:tabular-nums}
+
+/* building blocks */
+.grid{display:grid;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
+.card h3{font-size:24px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+/* formal solid tiles: navy (default), orange (.o), teal (.t) with white line icons */
+.ico{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--navy-800);color:#fff;box-shadow:0 4px 10px rgba(18,48,106,.18)}
+.ico.o{background:var(--orange-600);box-shadow:0 4px 10px rgba(234,88,12,.22)}
+.ico.t{background:var(--teal-700);box-shadow:0 4px 10px rgba(15,118,110,.2)}
+.ico svg{width:24px;height:24px}
+svg.lucide{stroke-width:1.5}
+.list{list-style:none;display:grid;gap:12px;font-size:19px;line-height:1.5}
+.list li{display:flex;gap:12px;align-items:flex-start}
+.list li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange-500);margin-top:11px;flex:none}
+.dark{background:var(--navy-50);color:var(--body);border-color:var(--navy-100)}
+.dark h3,.dark h4{color:var(--ink)}
+.dark .list li::before{background:var(--orange-500)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font:500 16px/1 var(--font-h);background:var(--navy-100);color:var(--navy-800)}
+.pill.o{background:var(--orange-100);color:#9A3412}
+.foot-note{position:absolute;left:80px;max-width:440px;bottom:24px;font-size:13px;line-height:1.45;color:var(--muted)}
+.brand{position:absolute;top:30px;right:80px;font:500 13px/1 var(--font-h);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+/* cover */
+.cover{padding:0;display:grid;grid-template-columns:1.05fr .95fr;background:#fff}
+.cover .left{padding:80px 72px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.cover .left h1{color:var(--ink);font-size:48px;font-weight:700;line-height:1.2}
+.cover .left h1 span{color:var(--orange-600);white-space:nowrap}
+.nw{white-space:nowrap}
+.cover .left .en{color:var(--muted);font-size:21px;margin-top:18px;font-family:var(--font-h);font-weight:500}
+.cover .badge{align-self:flex-start;background:var(--orange-600);color:#fff;font:600 16px/1 var(--font-h);padding:10px 18px;border-radius:999px;margin-bottom:26px;letter-spacing:.04em}
+.cover .right{position:relative;background:url(assets/bg_campus_innovation.jpg) center/cover}
+.cover .right::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.4) 30%,rgba(255,255,255,0) 60%)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.kpi{border-left:3px solid var(--orange-500);padding:6px 0 6px 16px}
+.kpi b{display:block;font:700 40px/1.1 var(--font-h);color:var(--navy-800)}
+.kpi small{font-size:16px;color:var(--muted);line-height:1.4;display:block;margin-top:6px}
+.uni{margin-top:48px;color:var(--muted);font-size:18px;display:flex;align-items:center;gap:12px}
+.uni svg{color:var(--orange-600)}
+
+/* program identity */
+.idrow{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line);font-size:20px;line-height:1.55}
+.idrow:last-child{border:0}
+.idrow dt{font:600 18px/1.55 var(--font-h);color:var(--navy-700)}
+.idrow dd span{display:block;color:var(--muted);font-size:18px}
+.philo{background:linear-gradient(135deg,#fff,var(--orange-50));border:1px solid var(--orange-100);box-shadow:var(--shadow);color:var(--body);border-radius:var(--r-lg);padding:30px 36px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.philo::after{content:"";position:absolute;right:-90px;bottom:-90px;width:300px;height:300px;border-radius:50%;border:44px solid rgba(249,115,22,.16)}
+.philo-img{height:130px;border-radius:14px;background:url(assets/img_philo.jpg) center 28%/cover;margin-bottom:18px;position:relative;z-index:1;flex:none}
+.head-img{position:absolute;top:60px;right:80px;width:460px;height:160px;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
+.philo h3{color:var(--ink);font-size:26px;margin-bottom:12px;display:flex;gap:14px;align-items:center}
+.philo p{font-size:21px;line-height:1.7;position:relative;z-index:1}
+.philo strong{color:var(--orange-600);font-weight:600}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;position:relative;z-index:1}
+.pillars div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;font:500 17px/1.3 var(--font-h);color:var(--navy-800)}
+
+/* stakeholder */
+.merge{display:flex;justify-content:center;margin:-4px 0 6px;color:var(--orange-600)}
+.merge svg{width:38px;height:38px}
+.photo-side{border-radius:var(--r-lg);background:url(assets/bg_students_collab.jpg) center/cover;position:relative;overflow:hidden}
+.photo-side figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(255,255,255,.95) 45%);color:var(--navy-800);font:500 19px/1.45 var(--font-h)}
+
+/* structure */
+.chart-card{display:flex;flex-direction:column}
+.legend{display:flex;gap:22px;font-size:16px;margin-bottom:10px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:8px;vertical-align:-1px}
+.mix{padding:10px 18px 12px;margin-bottom:8px}
+.mix-row{display:flex;align-items:center;gap:20px}
+.donut{position:relative;width:104px;height:104px;flex:none}
+.donut span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;color:var(--muted);line-height:1.1}
+.donut span b{font:700 24px/1 var(--font-h);color:var(--ink)}
+.mix-legend{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 10px;font-size:15px}
+.mix-side{flex:1;min-width:0}
+.mix-legend button{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:8px;padding:3px 6px;border-radius:6px;cursor:pointer;transition:background .2s}
+.mix-legend button:hover,.mix-legend button[aria-pressed="true"]{background:var(--navy-50)}
+.mix-legend button:focus-visible{outline:2px solid var(--orange-500)}
+.mix-legend button[aria-pressed="true"]{animation:tap .45s var(--ease)}
+@keyframes tap{0%{transform:scale(1)}35%{transform:scale(.94);background:var(--orange-100)}100%{transform:scale(1)}}
+.mix-box{margin-top:8px;min-height:58px;border-radius:12px;border:1px dashed var(--line);display:flex;align-items:center;gap:14px;padding:8px 14px;font-size:15px;line-height:1.35}
+.mix-box .hint{color:var(--muted);font-size:14px}
+.mix-box.on{border:1px solid var(--navy-100);background:var(--navy-50);animation:pop .3s var(--ease)}
+.mix-box .sw{width:6px;align-self:stretch;border-radius:3px;flex:none}
+.mix-box .txt{flex:1;min-width:0}
+.mix-box .txt b{display:block;font:600 17px/1.3 var(--font-h);color:var(--ink)}
+.mix-box .txt small{color:var(--body);font-size:14px}
+.mix-box .val{text-align:right;font-family:var(--font-h);white-space:nowrap}
+.mix-box .val b{font:700 22px/1.1 var(--font-h);color:var(--ink)}
+.mix-box .val small{display:block;font-size:13px;font-weight:600;color:var(--orange-600)}
+@keyframes pop{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.reasons li{transition:background .25s,border-color .25s}
+.reasons li.on{background:var(--orange-100);border-color:var(--orange-600);box-shadow:0 0 0 1px var(--orange-600)}
+.mix-legend i{width:11px;height:11px;border-radius:3px;flex:none}
+.mix-legend b{margin-left:auto;font-weight:600;color:var(--ink)}
+.reasons{counter-reset:r;list-style:none;display:grid;gap:4px}
+.reasons li{counter-increment:r;display:flex;gap:14px;align-items:center;font-size:16px;line-height:1.35;padding:3px 12px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.reasons li::before{content:counter(r);width:30px;height:30px;border-radius:50%;background:var(--orange-600);color:#fff;font:600 15px/30px var(--font-h);text-align:center;flex:none}
+.reasons b{color:var(--orange-600);font-family:var(--font-h)}
+.ai{margin-top:8px;padding:10px 20px}
+.ai h4{font-size:21px;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.ai h4 svg{color:var(--orange-600)}
+.course{display:grid;grid-template-columns:100px 1fr auto;gap:12px;font-size:16px;padding:3px 0}
+.course code{font:600 16px var(--font-h);color:var(--orange-600)}
+
+/* CWIE */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 24px;position:relative;box-shadow:var(--shadow)}
+.step .n{position:absolute;top:-16px;left:24px;width:36px;height:36px;border-radius:50%;background:var(--navy-700);color:#fff;font:700 17px/36px var(--font-h);text-align:center}
+.step:nth-child(2) .n{background:var(--orange-600)} .step:nth-child(3) .n{background:var(--teal-700)}
+.step h4{font-size:22px;margin:10px 0 10px;display:flex;align-items:center;gap:10px}
+.step p{font-size:17px;line-height:1.55}
+.step .tag{margin-top:12px;font-size:15px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px;line-height:1.5}
+.step:not(:last-child)::after{content:"";position:absolute;right:-16px;top:50%;width:14px;height:14px;border-top:3px solid var(--orange-500);border-right:3px solid var(--orange-500);transform:translateY(-50%) rotate(45deg);z-index:2}
+.fmt{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.fmt h4{font-size:22px;margin-bottom:6px}
+.fmt .code{font-size:17px;color:var(--navy-700);font-weight:500}
+.fmt p{font-size:17px;margin-top:6px;line-height:1.5}
+.outcome{display:flex;align-items:center;gap:22px;padding:22px 30px;border-radius:var(--r-lg)}
+.outcome b{font:600 21px var(--font-h);color:var(--orange-600);white-space:nowrap}
+.outcome span{font-size:19px;color:var(--ink)}
+
+/* network */
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.partner{display:flex;gap:16px;align-items:center;padding:20px 22px}
+.partner h4{font-size:18px;line-height:1.35}
+.partner small{display:block;font-size:15px;color:var(--muted);margin-top:4px}
+.tasks{list-style:none;display:grid;gap:8px}
+.tasks li{display:flex;align-items:center;gap:14px;font-size:18px;padding:10px 14px;border-radius:12px;background:var(--navy-50)}
+.tasks li svg{width:22px;height:22px;color:var(--navy-700);flex:none}
+.flow{display:flex;align-items:center;gap:8px;margin-top:4px}
+.flow div{flex:1;display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 12px 8px 8px;font:500 17px var(--font-h);color:var(--ink);white-space:nowrap}
+.flow div .ico{width:42px;height:42px;border-radius:50%}
+.flow > svg{color:var(--orange-600);flex:none}
+
+/* benchmark */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:18px}
+th{font:600 16px var(--font-h);color:#fff;background:var(--navy-900);text-align:left;padding:14px 16px}
+th:first-child{border-radius:12px 0 0 0} th:last-child{border-radius:0 12px 0 0;text-align:right}
+td{padding:13px 16px;border-bottom:1px solid var(--line);background:var(--surface);line-height:1.4}
+td:last-child,td:nth-child(3){font-family:var(--font-h);font-variant-numeric:tabular-nums}
+td:last-child{text-align:right}
+td small{display:block;color:var(--muted);font-size:15px}
+tr.us td{background:var(--orange-50);border-bottom-color:var(--orange-100);color:#9A3412;font-weight:600}
+tr.us td:first-child{box-shadow:inset 4px 0 var(--orange-600)}
+tr:last-child td:first-child{border-radius:0 0 0 12px} tr:last-child td:last-child{border-radius:0 0 12px 0}
+.save{display:flex;align-items:center;gap:20px;padding:22px 26px}
+.save b{white-space:nowrap;font:700 46px/1 var(--font-h);color:var(--orange-600)}
+.save p{font-size:18px;line-height:1.5;color:var(--body)}
+
+/* highlights */
+.hl .card{display:flex;flex-direction:column}
+/* background: data value chain (database → analysis → insight → innovation), faded on the left so the title stays clean */
+.bg .brand{display:none} /* artwork occupies the top-right corner */
+.bg::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--bg) right top/var(--bgs,1120px) auto no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent var(--bgm,32%),#000 calc(var(--bgm,32%) + 14%));mask-image:linear-gradient(90deg,transparent var(--bgm,32%),#000 calc(var(--bgm,32%) + 14%))}
+/* .dg = diagonal artwork (top-right + bottom-left clusters, empty centre); image pre-sized to the 1600x1000 stage */
+.bg.dg::before{background:var(--bg) center/1600px 1000px no-repeat;-webkit-mask-image:none;mask-image:none}
+.dg .foot-note{left:auto;right:80px;text-align:right}
+.hl .card .sum{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font:500 17px/1.5 var(--font-h);color:var(--navy-700)}
+.path{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.path div{text-align:center;font:500 17px/1.35 var(--font-h);color:var(--ink);flex:1}
+.path div .ico{margin:0 auto 10px;width:58px;height:58px;border-radius:50%}
+.path > svg{color:var(--orange-500);flex:none}
+.diff{border:2px solid var(--orange-600);background:var(--orange-50)}
+.diff h4{color:var(--orange-600);font-size:20px;margin-bottom:10px}
+.diff p{font:500 21px/1.55 var(--font-h);color:var(--ink)}
+
+/* closing */
+.closing{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.94) 50%,rgba(255,255,255,.55) 100%),url(assets/bg_students_collab.jpg) center/cover;display:flex;flex-direction:column;justify-content:center}
+.closing h2{color:var(--ink);font-size:64px;font-weight:700;line-height:1.2}
+.closing h2 span{color:var(--orange-600)}
+.closing .lead{color:var(--body);max-width:900px}
+.closing .kpis{max-width:1100px}
+
+/* chrome */
+.progress{position:fixed;top:0;left:0;height:4px;background:var(--orange-500);transition:width .5s var(--ease);z-index:20}
+.controls{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.9);border:1px solid var(--line);backdrop-filter:blur(8px);padding:6px;border-radius:999px;z-index:20;box-shadow:0 8px 24px rgba(15,23,42,.12);opacity:.35;transition:opacity .25s}
+.controls:hover,.controls:focus-within{opacity:1}
+.controls button{width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.controls button:hover{background:var(--navy-50)}
+.controls button:focus-visible{outline:2px solid var(--orange-500);outline-offset:2px}
+.dots{display:flex;gap:2px;padding:0 6px}
+.dots button{width:28px}
+.dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:#CBD5E1;transition:all .25s}
+.dots button[aria-current="true"]::before{background:var(--orange-500);width:20px;border-radius:4px}
+.counter{color:var(--ink);font:500 14px var(--font-h);padding:0 10px;min-width:56px;text-align:center}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="viewport"><main class="stage" id="stage">
+
+<!-- 1. COVER -->
+<section class="slide cover" data-title="หน้าปก">
+  <div class="left">
+    <span class="badge rv">หลักสูตรปรับปรุง พ.ศ. 2570</span>
+    <h1 class="rv" style="--i:1">หลักสูตรวิทยาศาสตรบัณฑิต<br>สาขาวิชา<span>วิทยาการข้อมูล</span><br>สำหรับนวัตกรรมธุรกิจ</h1>
+    <p class="en rv" style="--i:2">Bachelor of Science Program in<br>Data Science for Business Innovation</p>
+    <div class="kpis">
+      <div class="kpi rv" style="--i:3"><b class="num">124</b><small>หน่วยกิต<br>ตลอดหลักสูตร</small></div>
+      <div class="kpi rv" style="--i:4"><b class="num">~8,000</b><small>บาท / ภาคเรียน<br>(ประมาณ)</small></div>
+      <div class="kpi rv" style="--i:5"><b class="num">4</b><small>หน่วยงาน<br>พันธมิตร CWIE</small></div>
+      <div class="kpi rv" style="--i:6"><b class="num">16</b><small>สัปดาห์<br>ปฏิบัติงานจริง</small></div>
+    </div>
+    <div class="uni rv" style="--i:7"><i data-lucide="landmark"></i>สาขาวิชาวิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ · มหาวิทยาลัยราชภัฏอุตรดิตถ์</div>
+  </div>
+  <div class="right" role="img" aria-label="ภาพอาคารมหาวิทยาลัย"></div>
+</section>
+
+<!-- 2. PROGRAM IDENTITY -->
+<section class="slide bg" style="--bg:url(assets/bg_identity.jpg)" data-title="ชื่อหลักสูตรและปรัชญา">
+  <span class="brand">Data Science for Business Innovation</span>
+  <div class="head rv"><span class="eyebrow">Program Identity</span><h2 class="title">ชื่อหลักสูตร และ<em>ปรัชญาหลักสูตร</em></h2></div>
+  <div class="grid" style="grid-template-columns:1.1fr .9fr;height:620px">
+    <div class="card rv" style="--i:1;padding:18px 34px;display:flex;flex-direction:column;justify-content:center">
+      <dl>
+        <div class="idrow"><dt>ชื่อหลักสูตร</dt><dd>หลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาวิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ</dd></div>
+        <div class="idrow"><dt>ภาษาอังกฤษ</dt><dd>Bachelor of Science Program in Data Science for Business Innovation</dd></div>
+        <div class="idrow"><dt>ชื่อปริญญา</dt><dd>วิทยาศาสตรบัณฑิต<br>(วิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ)<span>Bachelor of Science (Data Science for Business Innovation)</span></dd></div>
+        <div class="idrow"><dt>ชื่อย่อ</dt><dd>วท.บ. (วิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ)<span>B.S. (Data Science for Business Innovation)</span></dd></div>
+      </dl>
+    </div>
+    <div class="philo rv" style="--i:2">
+      <div class="philo-img" role="img" aria-label="บัณฑิตในชุดครุยกับแดชบอร์ดข้อมูล"></div>
+      <h3><span class="ico o"><i data-lucide="graduation-cap"></i></span>ปรัชญาหลักสูตร</h3>
+      <p>ผลิตบัณฑิตให้เป็น <strong>นักวิเคราะห์และพัฒนา<span class="nw">นวัตกรรมธุรกิจ</span></strong> ด้วยรากฐานคณิตศาสตร์ สถิติ และวิทยาการข้อมูล ผสานปัญญาประดิษฐ์ ในการ<strong>เปลี่ยนข้อมูลเป็นนวัตกรรม<span class="nw">ขับเคลื่อนการตัดสินใจ</span></strong></p>
+      <div class="pillars"><div>คณิตศาสตร์<br>&amp; สถิติ</div><div>วิทยาการข้อมูล<br>&amp; AI</div><div>นวัตกรรม<br>ธุรกิจ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. STAKEHOLDER -->
+<section class="slide bg" style="--bg:url(assets/bg_stakeholder.jpg)" data-title="เสียงจากผู้มีส่วนได้ส่วนเสีย">
+  <span class="brand">Stakeholder Insights</span>
+  <div class="head rv"><span class="eyebrow">Stakeholder</span><h2 class="title">เสียงจาก<em>ผู้มีส่วนได้ส่วนเสีย</em></h2>
+    <p class="lead">ข้อมูลจากการสัมภาษณ์ แบบสอบถาม และความต้องการของตลาดงาน เพื่อปรับหลักสูตรให้สอดคล้องกับการทำงานจริง</p></div>
+  <div class="grid" style="grid-template-columns:1fr 360px;height:560px">
+    <div style="display:flex;flex-direction:column">
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <div class="card rv" style="--i:1"><h3><span class="ico"><i data-lucide="building-2"></i></span>สถานประกอบการและตลาดงาน</h3>
+          <ul class="list"><li>ใช้ Python, R, SQL, SPSS, Excel และ Power BI</li><li>วิเคราะห์ข้อมูล สร้าง Dashboard และแบบจำลองพยากรณ์</li><li>ประยุกต์ Machine Learning และ AI กับโจทย์ธุรกิจ</li><li>สื่อสารผลการวิเคราะห์และทำงานร่วมกับผู้อื่นได้</li></ul></div>
+        <div class="card rv" style="--i:2"><h3><span class="ico o"><i data-lucide="users"></i></span>ศิษย์เก่า</h3>
+          <ul class="list"><li>เพิ่มสื่อการเรียนรู้ด้านคณิตศาสตร์ให้นักศึกษาเรียนเพิ่มเติม</li><li>เชื่อมหลักคณิตศาสตร์กับการวิเคราะห์ การวางแผน และข้อมูล</li><li>เน้นการนำความรู้ไปใช้กับสถานการณ์และการทำงานจริง</li></ul></div>
+      </div>
+      <div class="merge rv" style="--i:3"><i data-lucide="chevrons-down"></i></div>
+      <div class="card dark rv" style="--i:4;flex:1"><h3><span class="ico o"><i data-lucide="settings-2"></i></span>นำมาใช้ในการปรับปรุงหลักสูตร</h3>
+        <ul class="list" ><li>เพิ่มรายวิชาด้านการวิเคราะห์ข้อมูล เครื่องมือดิจิทัล AI และ Machine Learning</li><li>เสริมการพยากรณ์ การสุ่มตัวอย่าง การสร้าง Dashboard และการสื่อสารข้อมูล</li><li>จัดการเรียนรู้ผ่านข้อมูลจริง ชิ้นงาน โครงงานนวัตกรรมธุรกิจ และ CWIE</li></ul></div>
+    </div>
+    <figure class="photo-side rv" style="--i:2"><figcaption>ปรับหลักสูตรให้สอดคล้องกับการทำงานจริง</figcaption></figure>
+  </div>
+</section>
+
+<!-- 4. STRUCTURE -->
+<section class="slide bg" style="--bg:url(assets/bg_structure.jpg)" data-title="โครงสร้างหลักสูตร 124 หน่วยกิต">
+  <span class="brand">Curriculum Structure</span>
+  <div class="head rv" style="margin-bottom:24px"><span class="eyebrow">Curriculum Structure</span><h2 class="title">โครงสร้างหลักสูตร <em class="num">124</em> หน่วยกิต</h2>
+    <p class="lead">หน่วยกิตเปลี่ยนแปลงจากเดิมอย่างไร และเพราะอะไร</p></div>
+  <div class="grid" style="grid-template-columns:1.15fr .85fr;height:560px">
+    <div class="card chart-card rv" style="--i:1">
+      <div class="legend"><span><i style="background:#94A9CF"></i>หลักสูตรเดิม พ.ศ. 2565 (130 นก.)</span><span><i style="background:var(--orange-600)"></i>หลักสูตรปรับปรุง พ.ศ. 2570 (124 นก.)</span></div>
+      <div style="flex:1;position:relative"><canvas id="creditChart" role="img" aria-label="เปรียบเทียบหน่วยกิตรายหมวด: ศึกษาทั่วไป 30 เป็น 24, วิชาแกน 24 เป็น 0, วิชาเอกบังคับ 42 เป็น 63, วิชาเอกเลือก 21 เป็น 24, ฝึกประสบการณ์ 7 เท่าเดิม, เลือกเสรี 6 เท่าเดิม"></canvas></div>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <div class="card mix rv" style="--i:2">
+        <div class="mix-row">
+        <div class="donut"><canvas id="mixChart" role="img" aria-label="สัดส่วนหน่วยกิตหลักสูตร 2570 รวม 124: วิชาเอกบังคับ 63, ศึกษาทั่วไป 24, วิชาเอกเลือก 24, ฝึกประสบการณ์วิชาชีพ 7, วิชาเลือกเสรี 6"></canvas><span><b class="num">124</b>หน่วยกิต</span></div>
+        <div class="mix-side">
+        <ul class="mix-legend">
+          <li><button data-cat="2" aria-pressed="false"><i style="background:#EA580C"></i>วิชาเอกบังคับ<b class="num">63</b></button></li>
+          <li><button data-cat="0" aria-pressed="false"><i style="background:#1E40AF"></i>ศึกษาทั่วไป<b class="num">24</b></button></li>
+          <li><button data-cat="3" aria-pressed="false"><i style="background:#0F766E"></i>วิชาเอกเลือก<b class="num">24</b></button></li>
+          <li><button data-cat="4" aria-pressed="false"><i style="background:#94A9CF"></i>ฝึกประสบการณ์วิชาชีพ<b class="num">7</b></button></li>
+          <li><button data-cat="5" aria-pressed="false"><i style="background:#64748B"></i>วิชาเลือกเสรี<b class="num">6</b></button></li>
+        </ul>
+        </div>
+        </div>
+        <div class="mix-box" id="mixNote" aria-live="polite"><span class="hint">แสดงการเปลี่ยนแปลงทีละหมวดอัตโนมัติ · คลิกชิ้นในวงกลมหรือชื่อหมวดเพื่อเลือกเองได้</span></div>
+      </div>
+      <ol class="reasons rv" style="--i:3">
+        <li><span>ลดรวม <b>6</b> หน่วยกิต</span></li>
+        <li><span>ปรับหมวดศึกษาทั่วไปจาก <b>30</b> เหลือ <b>24</b> หน่วยกิต</span></li>
+        <li><span>คงหมวดวิชาเฉพาะรวม <b>94</b> หน่วยกิต</span></li>
+        <li><span>บูรณาการวิชาแกนเข้าสู่วิชาเอกบังคับ</span></li>
+        <li><span>เพิ่มวิชาเอกเลือกจาก <b>21</b> เป็น <b>24</b> หน่วยกิต</span></li>
+        <li><span>มุ่งสมรรถนะสถิติ วิทยาการข้อมูล ดิจิทัล ธุรกิจ และการเรียนรู้จากงานจริง</span></li>
+      </ol>
+      <div class="card dark ai rv" style="--i:4">
+        <h4><i data-lucide="cpu"></i>AI บังคับ 6 หน่วยกิต</h4>
+        <div class="course"><code>0001234</code><span>ฉลาดทำงานผสานพลัง AI</span><span class="num">3(2-2-5)</span></div>
+        <div class="course"><code>4095101</code><span>ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง</span><span class="num">3(2-2-5)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CWIE -->
+<section class="slide bg dg" style="--bg:url(assets/dg_cwie.jpg)" data-title="CWIE บูรณาการการศึกษากับการทำงาน">
+  <span class="brand">From Data to Better Solutions</span>
+  <div class="head rv"><span class="eyebrow">CWIE</span><h2 class="title">บูรณาการ<em>การศึกษากับการทำงาน</em>อย่างไร</h2>
+    <p class="lead">เรียนรู้จากโจทย์จริง สู่การสร้างคุณค่าจากข้อมูล</p></div>
+  <div class="steps" style="margin-top:8px">
+    <div class="step rv" style="--i:1"><span class="n">1</span><h4><i data-lucide="graduation-cap"></i>เตรียมความพร้อม</h4>
+      <p>4114801 เตรียมประสบการณ์ภาคสนาม 1 หน่วยกิต ไม่น้อยกว่า 30 ชั่วโมง</p>
+      <p class="tag">ทักษะวิชาชีพ · เครื่องมือวิเคราะห์ · การสื่อสาร · การทำงานเป็นทีม · จริยธรรมข้อมูลและ PDPA</p></div>
+    <div class="step rv" style="--i:2"><span class="n">2</span><h4><i data-lucide="signpost"></i>เลือกเส้นทาง</h4>
+      <p>เลือกเรียน 1 รูปแบบ<br>จำนวน 6 หน่วยกิต</p></div>
+    <div class="step rv" style="--i:3"><span class="n">3</span><h4><i data-lucide="building"></i>ปฏิบัติงานจริง</h4>
+      <p>ปี 4 ภาคเรียนที่ 2<br>ไม่น้อยกว่า 16 สัปดาห์</p></div>
+    <div class="step rv" style="--i:4"><span class="n">4</span><h4><i data-lucide="file-check-2"></i>ประเมินผลร่วม</h4>
+      <p>รายงานหรือโครงงานจากโจทย์จริง · นำเสนอผลงาน · ประเมินผลร่วมกับสถานประกอบการ</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:24px">
+    <div class="card fmt rv" style="--i:5;background:var(--orange-50);border-color:var(--orange-100)"><span class="ico o" style="width:64px;height:64px"><i data-lucide="briefcase"></i></span>
+      <div><h4>รูปแบบที่ 1 สหกิจศึกษา</h4><div class="code">4114803 สหกิจศึกษาทางวิทยาการข้อมูลและนวัตกรรมธุรกิจ</div><p>ปฏิบัติงานเสมือนพนักงานชั่วคราว และพัฒนาโครงงานจากโจทย์จริงขององค์กร</p></div></div>
+    <div class="card fmt rv" style="--i:6;background:#F0FDFA;border-color:var(--teal-100)"><span class="ico t" style="width:64px;height:64px"><i data-lucide="cog"></i></span>
+      <div><h4>รูปแบบที่ 2 ฝึกประสบการณ์ภาคสนาม</h4><div class="code" style="color:var(--teal-700)">4114802 การฝึกประสบการณ์ภาคสนามทางวิทยาการข้อมูลและนวัตกรรมธุรกิจ</div><p>ประยุกต์สถิติ วิทยาการข้อมูล และเทคโนโลยีดิจิทัลกับงานที่ได้รับมอบหมาย</p></div></div>
+  </div>
+  <div class="outcome dark rv" style="--i:7;margin-top:22px"><i data-lucide="bar-chart-3" style="color:var(--orange-600);width:32px;height:32px"></i><b>ผลลัพธ์</b><span>วิเคราะห์ข้อมูล · แก้ปัญหา · สื่อสารผล · ทำงานร่วมกับผู้อื่น · ใช้ข้อมูลอย่างมีจริยธรรม</span></div>
+</section>
+
+<!-- 6. NETWORK -->
+<section class="slide bg dg" style="--bg:url(assets/dg_network.jpg)" data-title="เครือข่ายพันธมิตร CWIE">
+  <span class="brand">CWIE Network</span>
+  <div class="head rv" style="margin-bottom:24px"><span class="eyebrow">CWIE Network</span><h2 class="title">เครือข่ายพันธมิตร <em>เชื่อมการเรียนรู้กับงานจริง</em></h2>
+    <p class="lead">มีเอกสารความร่วมมือ <b class="num" style="color:var(--orange-600)">4</b> หน่วยงาน · เชื่อมคน เชื่อมข้อมูล สู่โอกาสจริง</p></div>
+  <div class="grid" style="grid-template-columns:1fr 1fr">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="hub">
+        <div class="card partner rv" style="--i:1"><span class="ico"><i data-lucide="landmark"></i></span><div><h4>สำนักงานสถิติ<span class="nw">จังหวัดอุตรดิตถ์</span></h4><small>หน่วยงานภาครัฐและข้อมูลสถิติ</small></div></div>
+        <div class="card partner rv" style="--i:2"><span class="ico o"><i data-lucide="monitor-cog"></i></span><div><h4>บริษัท ดรากอนไฮสปีด จำกัด</h4><small>ธุรกิจเทคโนโลยีและบริการดิจิทัล</small></div></div>
+        <div class="card partner rv" style="--i:3"><span class="ico t"><i data-lucide="radio-tower"></i></span><div><h4>บริษัท หัวเว่ย เทคโนโลยี <span class="nw">(ประเทศไทย) จำกัด</span></h4><small>เทคโนโลยีดิจิทัลและโครงสร้างพื้นฐาน</small></div></div>
+        <div class="card partner rv" style="--i:4"><span class="ico o"><i data-lucide="cloud"></i></span><div><h4>บริษัท อินเตอร์ลิ้งค์ <span class="nw">คอมมิวนิเคชั่น จำกัด (มหาชน)</span></h4><small>เทคโนโลยีสารสนเทศและการสื่อสาร</small></div></div>
+      </div>
+      <div class="card dark rv" style="--i:5;padding:22px 26px"><h3 style="font-size:21px;margin-bottom:12px"><i data-lucide="handshake" style="color:var(--orange-600)"></i>ความร่วมมือครอบคลุม</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:10px"><span class="pill">รับนักศึกษาฝึกงาน</span><span class="pill">ให้คำปรึกษาโดยผู้เชี่ยวชาญ</span><span class="pill">เสนอชุดข้อมูลและโจทย์จริง</span><span class="pill">ร่วมประเมินผล</span><span class="pill">ให้ข้อเสนอแนะต่อหลักสูตร</span></div></div>
+      <div class="flow rv" style="--i:6">
+        <div><span class="ico t"><i data-lucide="database"></i></span>ข้อมูลจริง</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico"><i data-lucide="search"></i></span>การวิเคราะห์</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico o"><i data-lucide="lightbulb"></i></span>ข้อเสนอ</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico o"><i data-lucide="target"></i></span>คุณค่า</div>
+      </div>
+    </div>
+    <div class="card rv" style="--i:3"><h3><span class="ico o"><i data-lucide="clipboard-list"></i></span>โจทย์งานจริงที่นักศึกษาได้ลงมือทำ</h3>
+      <ul class="tasks">
+        <li><i data-lucide="database"></i>เก็บรวบรวม ตรวจสอบ และทำความสะอาดข้อมูล</li>
+        <li><i data-lucide="line-chart"></i>วิเคราะห์ข้อมูลทางสถิติและสร้างแบบจำลอง</li>
+        <li><i data-lucide="pie-chart"></i>วิเคราะห์ข้อมูลเชิงธุรกิจ</li>
+        <li><i data-lucide="layout-dashboard"></i>สร้างแดชบอร์ดและสื่อสารข้อมูลด้วยภาพ</li>
+        <li><i data-lucide="shield-check"></i>จัดการฐานข้อมูลและกำกับดูแลข้อมูล</li>
+        <li><i data-lucide="brain-circuit"></i>ประยุกต์ใช้ AI และ Machine Learning</li>
+        <li><i data-lucide="lightbulb"></i>พัฒนาระบบข้อมูลเพื่อสนับสนุนการตัดสินใจ</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- 7. BENCHMARK -->
+<section class="slide bg dg" style="--bg:url(assets/dg_benchmark.jpg)" data-title="Benchmark เปรียบเทียบหลักสูตร">
+  <span class="brand">Benchmark</span>
+  <div class="head rv" style="margin-bottom:24px"><span class="eyebrow">Market Benchmark</span><h2 class="title">เปรียบเทียบ<em>หน่วยกิต</em>และ<em>ค่าเทอม</em>ต่อภาคเรียน</h2>
+    <p class="lead">Benchmark หลักสูตรใกล้เคียง · เรียงตามค่าเทอมต่อภาคเรียน จากน้อยไปมาก</p></div>
+  <div class="grid" style="grid-template-columns:1.2fr .8fr">
+    <div class="rv" style="--i:1">
+      <table>
+        <thead><tr><th>#</th><th>มหาวิทยาลัย / หลักสูตร</th><th>หน่วยกิตรวม</th><th>ค่าเทอม / ภาคเรียน</th></tr></thead>
+        <tbody>
+          <tr class="us"><td>1</td><td>มรภ.อุตรดิตถ์<small style="color:#9A3412">วท.บ. วิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ</small></td><td>124</td><td>ประมาณ 8,000 บาท</td></tr>
+          <tr><td>2</td><td>มรภ.นครศรีธรรมราช<small>วิทยาการการวิเคราะห์ข้อมูลและเทคโนโลยีดิจิทัล</small></td><td>≥ 120</td><td>13,000 บาท</td></tr>
+          <tr><td>3</td><td>มทร.พระนคร<small>การวิเคราะห์ข้อมูลเชิงธุรกิจ</small></td><td>130</td><td>13,000 บาท</td></tr>
+          <tr><td>4</td><td>ม.บูรพา (สระแก้ว)<small>เทคโนโลยีสารสนเทศและนวัตกรรมทางธุรกิจ</small></td><td>≥ 121</td><td>15,500 บาท</td></tr>
+          <tr><td>5</td><td>ม.อุบลราชธานี<small>วิทยาการข้อมูลและนวัตกรรมซอฟต์แวร์</small></td><td>≥ 120</td><td>17,000 บาท</td></tr>
+          <tr><td>6</td><td>ม.แม่ฟ้าหลวง<small>เทคโนโลยีดิจิทัลเพื่อนวัตกรรมทางธุรกิจ</small></td><td>124</td><td>28,000 บาท</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="card rv" style="--i:2;flex:1;display:flex;flex-direction:column;padding:22px 24px">
+        <h3 style="font-size:19px;margin-bottom:6px">ค่าเทอมต่อภาคเรียน (บาท)</h3>
+        <div style="flex:1;position:relative"><canvas id="feeChart" role="img" aria-label="ค่าเทอม: มรภ.อุตรดิตถ์ ประมาณ 8,000 บาท; มรภ.นครศรีธรรมราช 13,000; มทร.พระนคร 13,000; ม.บูรพา 15,500; ม.อุบลราชธานี 17,000; ม.แม่ฟ้าหลวง 28,000"></canvas></div>
+      </div>
+      <div class="card dark save rv" style="--i:3"><div><h4 style="font-size:20px;margin-bottom:6px">จุดเด่นของหลักสูตรเรา</h4><b class="num" style="font-size:30px">124 หน่วยกิต · ~8,000 บาท</b><p style="margin-top:8px">โครงสร้างกระชับ ค่าใช้จ่ายเข้าถึงง่าย และบูรณาการสถิติ การวิเคราะห์ข้อมูล เทคโนโลยีดิจิทัล AI และนวัตกรรมธุรกิจ</p></div></div>
+    </div>
+  </div>
+  <p class="foot-note rv" style="--i:4">หมายเหตุ: ค่าเทอมอาจเปลี่ยนแปลงตามปีการศึกษาและประเภทการรับเข้า ควรตรวจสอบประกาศมหาวิทยาลัยก่อนใช้อ้างอิงอย่างเป็นทางการ</p>
+</section>
+
+<!-- 8. HIGHLIGHTS -->
+<section class="slide hl bg" style="--bg:url(assets/bg_value.jpg)" data-title="จุดเด่นของหลักสูตร">
+  <span class="brand">Insight · Analysis · Innovation</span>
+  <div class="head rv" style="margin-bottom:26px"><span class="eyebrow">Value Proposition</span><h2 class="title">จุดเด่นของ<em>หลักสูตร</em></h2>
+    <p class="lead">เปลี่ยนข้อมูลจริง ให้เป็นคำตอบและนวัตกรรมที่ใช้ได้จริง</p></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);height:370px">
+    <div class="card rv" style="--i:1"><h3><span class="ico"><i data-lucide="presentation"></i></span>เรียนรู้จากโจทย์จริง</h3>
+      <ul class="list" style="font-size:18px"><li>Problem-Based และ Project-Based Learning</li><li>ใช้ชุดข้อมูลจริง กรณีศึกษา และโจทย์จากองค์กร</li><li>ห้องปฏิบัติการ โครงงาน และสหกิจศึกษาไม่น้อยกว่า 16 สัปดาห์</li></ul>
+      <div class="sum">เรียนจากปัญหา ลงมือทำ และสร้างผลงานจริง</div></div>
+    <div class="card rv" style="--i:2"><h3><span class="ico o"><i data-lucide="chart-no-axes-combined"></i></span>ทักษะวิเคราะห์ข้อมูลครบวงจร</h3>
+      <ul class="list" style="font-size:18px"><li>คณิตศาสตร์ สถิติ วิทยาการข้อมูล และการพยากรณ์</li><li>Python, R, SQL, Power BI และ AI</li><li>จัดการข้อมูล สร้างแบบจำลองและแดชบอร์ด และสื่อสารผล</li></ul>
+      <div class="sum">ตั้งแต่ข้อมูลดิบ สู่สารสนเทศเพื่อการตัดสินใจ</div></div>
+    <div class="card rv" style="--i:3"><h3><span class="ico t"><i data-lucide="brain"></i></span>นักวิเคราะห์และนักพัฒนานวัตกรรมเชิงข้อมูล</h3>
+      <ul class="list" style="font-size:18px"><li>วิเคราะห์ปัญหาอย่างเป็นระบบและสร้างแบบจำลอง</li><li>พัฒนาต้นแบบนวัตกรรมธุรกิจจากข้อมูล</li><li>สื่อสาร ทำงานเป็นทีม และใช้ข้อมูลกับ AI อย่างมีจริยธรรม</li></ul>
+      <div class="sum">พร้อมทำงานกับองค์กร ธุรกิจ ชุมชน และท้องถิ่น</div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.25fr .75fr;margin-top:22px">
+    <div class="card rv" style="--i:4;padding:22px 28px"><h4 style="font-size:19px;margin-bottom:14px;color:var(--navy-700)">เส้นทางการเรียนรู้ สู่การสร้างคุณค่า</h4>
+      <div class="path">
+        <div><span class="ico t"><i data-lucide="database"></i></span>ข้อมูลจริง</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico"><i data-lucide="search"></i></span>การวิเคราะห์<br>และแบบจำลอง</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico o"><i data-lucide="lightbulb"></i></span>ข้อเสนอเพื่อ<br>การตัดสินใจ</div><i data-lucide="arrow-right"></i>
+        <div><span class="ico o"><i data-lucide="target"></i></span>นวัตกรรมธุรกิจ</div>
+      </div></div>
+    <div class="card diff rv" style="--i:5"><h4>จุดต่างของเรา</h4><p>ผสานพื้นฐานคณิตศาสตร์และสถิติกับ Data Science, AI และบริบททางธุรกิจ เพื่อพัฒนาโมเดลหรือผลงานที่นำไปใช้ได้จริง</p></div>
+  </div>
+  <p class="foot-note">ที่มา: รายละเอียดหลักสูตร หมวดที่ 2–4 และผลลัพธ์การเรียนรู้ของหลักสูตร</p>
+</section>
+
+<!-- 9. CLOSING -->
+<section class="slide closing" data-title="สรุป">
+  <span class="eyebrow rv">Data Science for Business Innovation</span>
+  <h2 class="rv" style="--i:1">ข้อมูลวันนี้<br>สร้าง<span>นวัตกรรม</span>พรุ่งนี้</h2>
+  <p class="lead rv" style="--i:2">เปลี่ยนข้อมูลจริง ให้เป็นคำตอบและนวัตกรรมที่ใช้ได้จริง</p>
+  <div class="kpis">
+    <div class="kpi rv" style="--i:3"><b class="num">124</b><small>หน่วยกิต (ลดรวม 6 หน่วยกิต)</small></div>
+    <div class="kpi rv" style="--i:4"><b class="num">6</b><small>หน่วยกิต AI บังคับ</small></div>
+    <div class="kpi rv" style="--i:5"><b class="num">4</b><small>หน่วยงานที่มีเอกสารความร่วมมือ</small></div>
+    <div class="kpi rv" style="--i:6"><b class="num">~8,000</b><small>บาท ค่าเทอม / ภาคเรียน (ประมาณ)</small></div>
+  </div>
+  <div class="uni rv" style="--i:7"><i data-lucide="landmark"></i>สาขาวิชาวิทยาการข้อมูลสำหรับนวัตกรรมธุรกิจ · มหาวิทยาลัยราชภัฏอุตรดิตถ์</div>
+</section>
+
+</main></div>
+
+<nav class="controls" aria-label="ควบคุมสไลด์">
+  <button id="prev" aria-label="สไลด์ก่อนหน้า"><i data-lucide="chevron-left"></i></button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter" aria-live="polite"></span>
+  <button id="next" aria-label="สไลด์ถัดไป"><i data-lucide="chevron-right"></i></button>
+  <button id="fs" aria-label="เต็มจอ (F)"><i data-lucide="maximize"></i></button>
+</nav>
+
+<script>
+window.lucide?.createIcons();
+const stage=document.getElementById('stage'), slides=[...document.querySelectorAll('.slide')];
+const dots=document.getElementById('dots'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cur=-1;
+
+function fit(){stage.style.transform=`translate(-50%,-50%) scale(${Math.min(innerWidth/1600,innerHeight/900)})`}
+addEventListener('resize',fit);fit();
+
+slides.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',`${i+1}. ${s.dataset.title}`);b.title=s.dataset.title;b.onclick=()=>go(i);dots.append(b)});
+
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i)); if(i===cur)return;
+  slides.forEach((s,k)=>{s.classList.toggle('active',k===i);s.classList.toggle('prev',k<i);s.setAttribute('aria-hidden',k!==i)});
+  [...dots.children].forEach((d,k)=>d.setAttribute('aria-current',k===i));
+  cur=i;
+  document.getElementById('counter').textContent=`${i+1} / ${slides.length}`;
+  document.getElementById('progress').style.width=`${(i+1)/slides.length*100}%`;
+  history.replaceState(null,'',`#${i+1}`);
+  if(window.Chart) charts[i]?.();
+  slides[i].dataset.title.startsWith('โครงสร้าง')?(autoI=-1,startAuto()):stopAuto();
+}
+
+/* charts: built on first visit so the entrance animation plays when the slide is shown */
+const charts={};
+// หมวดหน่วยกิต 2565 → 2570 และเหตุผลข้อที่เกี่ยวข้อง (r = ลำดับในรายการเหตุผล, เริ่ม 0) ตาม PDF หน้า 3
+const CAT=[
+  {name:'ศึกษาทั่วไป',old:30,now:24,color:'#1E40AF',r:1,why:'ปรับหมวดศึกษาทั่วไปจาก 30 เหลือ 24 หน่วยกิต'},
+  {name:'วิชาแกน / ชีพเฉพาะ',old:24,now:0,color:'#CBD5E1',r:3,why:'บูรณาการวิชาแกนเข้าสู่วิชาเอกบังคับ'},
+  {name:'วิชาเอกบังคับ',old:42,now:63,color:'#EA580C',r:3,why:'บูรณาการวิชาแกนเข้าสู่วิชาเอกบังคับ'},
+  {name:'วิชาเอกเลือก',old:21,now:24,color:'#0F766E',r:4,why:'เพิ่มวิชาเอกเลือกจาก 21 เป็น 24 หน่วยกิต'},
+  {name:'ฝึกประสบการณ์วิชาชีพ',old:7,now:7,color:'#94A9CF',r:2,why:'คงเดิม (อยู่ในหมวดวิชาเฉพาะรวม 94 หน่วยกิต)'},
+  {name:'วิชาเลือกเสรี',old:6,now:6,color:'#64748B',r:-1,why:'คงเดิม'}];
+const MIX=[2,0,3,4,5]; // ลำดับชิ้นใน donut (ไม่มีวิชาแกน เพราะเป็น 0)
+let pickCat=()=>{};
+// วนแสดงทีละหมวดอัตโนมัติ ตามลำดับกราฟแท่ง (บนลงล่าง); คลิกเองได้ แล้วจะวนต่อจากหมวดที่คลิกหลังหยุด 8 วินาที
+let autoI=-1,autoT=null,autoR=null;
+const stopAuto=()=>{clearInterval(autoT);clearTimeout(autoR);autoT=autoR=null};
+const stepAuto=()=>{autoI=(autoI+1)%CAT.length;pickCat(autoI)};
+const startAuto=(delay=1300)=>{stopAuto();autoR=setTimeout(()=>{stepAuto();autoT=setInterval(stepAuto,3500)},delay)};
+const userPick=i=>{autoI=i;pickCat(i);startAuto(8000)};
+if(window.Chart){
+Chart.defaults.font.family="'IBM Plex Sans Thai','Prompt',sans-serif";
+Chart.defaults.font.size=16; Chart.defaults.color='#334155';
+if(reduce) Chart.defaults.animation=false;
+const endLabels={id:'endLabels',afterDatasetsDraw(c,_,o){const x=c.ctx;x.save();x.font=`600 15px Prompt`;
+  c.data.datasets.forEach((ds,di)=>c.getDatasetMeta(di).data.forEach((bar,j)=>{const v=ds.data[j];x.fillStyle=o.color?.(di,j)||'#0F172A';x.textBaseline='middle';x.fillText(o.fmt?o.fmt(v):v,bar.x+8,bar.y)}));x.restore()}};
+const built={}, once=(k,fn)=>()=>{if(!built[k]){built[k]=1;fn()}};
+const idx=t=>slides.findIndex(s=>s.dataset.title.startsWith(t));
+Object.assign(charts,{
+  [idx('โครงสร้าง')]:once('credit',()=>{
+    const bar=new Chart(document.getElementById('creditChart'),{type:'bar',
+    data:{labels:CAT.map(c=>c.name),
+      datasets:[{label:'พ.ศ. 2565',data:CAT.map(c=>c.old),backgroundColor:'#94A9CF',borderRadius:6,barPercentage:.8,categoryPercentage:.72},
+                {label:'พ.ศ. 2570',data:CAT.map(c=>c.now),backgroundColor:'#EA580C',borderRadius:6,barPercentage:.8,categoryPercentage:.72}]},
+    options:{indexAxis:'y',maintainAspectRatio:false,animation:{duration:1200,easing:'easeOutQuart'},layout:{padding:{right:36}},
+      onClick:(_,el)=>el.length&&userPick(el[0].index),onHover:(e,el)=>e.native.target.style.cursor=el.length?'pointer':'default',
+      plugins:{legend:{display:false},endLabels:{color:di=>di?'#C2410C':'#475569'},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw} หน่วยกิต`}}},
+      scales:{x:{max:70,grid:{color:'#EEF2F7'},border:{display:false},title:{display:true,text:'หน่วยกิต'}},y:{afterFit:a=>{a.width+=14},grid:{display:false},border:{display:false},ticks:{font:{size:17,family:'Prompt',weight:500},color:'#0F172A'}}}},
+    plugins:[endLabels]});
+    const mix=new Chart(document.getElementById('mixChart'),{type:'doughnut',
+    data:{labels:MIX.map(i=>CAT[i].name),datasets:[{data:MIX.map(i=>CAT[i].now),backgroundColor:MIX.map(i=>CAT[i].color),borderColor:'#fff',borderWidth:2,hoverOffset:6}]},
+    options:{cutout:'68%',maintainAspectRatio:false,layout:{padding:4},animation:{duration:1200,easing:'easeOutQuart'},
+      onClick:(_,el)=>el.length&&userPick(MIX[el[0].index]),onHover:(e,el)=>e.native.target.style.cursor=el.length?'pointer':'default',
+      plugins:{legend:{display:false},tooltip:{enabled:false}}}}); // ข้อมูลแสดงในกล่องด้านล่างแทน
+    // ponytail: one click handler drives bar highlight, donut highlight, note text and reason row
+    pickCat=i=>{
+      const c=CAT[i],m=MIX.indexOf(i);
+      bar.setActiveElements([{datasetIndex:0,index:i},{datasetIndex:1,index:i}]);bar.tooltip.setActiveElements([{datasetIndex:0,index:i},{datasetIndex:1,index:i}],{x:0,y:0});bar.update();
+      mix.setActiveElements(m<0?[]:[{datasetIndex:0,index:m}]);mix.update();
+      const d=c.now-c.old, box=document.getElementById('mixNote');
+      box.className='mix-box';void box.offsetWidth;box.className='mix-box on';
+      box.innerHTML=`<span class="sw" style="background:${c.color}"></span><div class="txt"><b>${c.name}</b><small>${c.why}</small></div>`+
+        `<div class="val"><b class="num">${c.old} → ${c.now}</b><small>${d?(d>0?'+':'−')+Math.abs(d)+' หน่วยกิต':'คงเดิม'}</small></div>`;
+      document.querySelectorAll('.reasons li').forEach((li,k)=>li.classList.toggle('on',k===c.r));
+      document.querySelectorAll('.mix-legend button').forEach(btn=>btn.setAttribute('aria-pressed',+btn.dataset.cat===i));
+    };
+    document.querySelectorAll('.mix-legend button').forEach(btn=>btn.onclick=()=>userPick(+btn.dataset.cat));
+  }),
+  [idx('Benchmark')]:once('fee',()=>{const d=[['มรภ.อุตรดิตถ์',8000],['มรภ.นครศรีฯ',13000],['มทร.พระนคร',13000],['ม.บูรพา',15500],['ม.อุบลฯ',17000],['ม.แม่ฟ้าหลวง',28000]];
+    new Chart(document.getElementById('feeChart'),{type:'bar',
+    data:{labels:d.map(r=>r[0]),datasets:[{data:d.map(r=>r[1]),backgroundColor:d.map((_,i)=>i?'#B6C4DE':'#EA580C'),borderRadius:6,barPercentage:.75}]},
+    options:{indexAxis:'y',maintainAspectRatio:false,animation:{duration:1200,easing:'easeOutQuart'},layout:{padding:{right:64}},
+      plugins:{legend:{display:false},endLabels:{fmt:v=>v.toLocaleString('en-US'),color:(_,j)=>j?'#475569':'#C2410C'},tooltip:{callbacks:{label:c=>` ${c.raw.toLocaleString('en-US')} บาท / ภาคเรียน`}}},
+      scales:{x:{display:false,max:30000},y:{grid:{display:false},border:{display:false},ticks:{font:{size:15,family:'Prompt',weight:500},color:'#0F172A'}}}},
+    plugins:[endLabels]})})
+});
+}
+
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+document.getElementById('fs').onclick=fs;
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)&&e.target.tagName!=='BUTTON'){e.preventDefault();go(cur+1)}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(cur-1)}
+  else if(e.key==='Home')go(0); else if(e.key==='End')go(slides.length-1);
+  else if(e.key.toLowerCase()==='f')fs();
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));tx=null});
+
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
